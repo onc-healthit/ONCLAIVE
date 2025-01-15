@@ -1,0 +1,3444 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "`virtual`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "CodeSystem/DeliveryMethodCS/concept/0/code"
+    },
+    {
+      "requirement_text": "`physical`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "CodeSystem/DeliveryMethodCS/concept/1/code"
+    },
+    {
+      "requirement_text": "The 'specialty' search parameter SHALL be applied to the `OrganizationAffiliation.specialty` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression = 'OrganizationAffiliation.specialty'"
+    },
+    {
+      "requirement_text": "The 'specialty' search parameter SHALL support the 'token' search type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type = 'token'"
+    },
+    {
+      "requirement_text": "The 'specialty' search parameter SHALL support searching with multiple OR values (e.g., `specialty=foo&specialty=bar`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr = true"
+    },
+    {
+      "requirement_text": "The 'specialty' search parameter SHALL support searching with multiple AND values (e.g., `specialty=foo,bar`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd = true"
+    },
+    {
+      "requirement_text": "The 'specialty' search parameter SHALL support the 'text' modifier (e.g., `specialty:text=foo`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier = ['text']"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL be applied to the InsurancePlan.coverageArea element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-coverage-area.expression"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL support searching with Location resources.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-coverage-area.target"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'multipleOr' search modifier for the 'coverage-area' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-coverage-area.multipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'multipleAnd' search modifier for the 'coverage-area' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-coverage-area.multipleAnd"
+    },
+    {
+      "requirement_text": "Must have either extensions or value[x], not both",
+      "conformance": "SHALL NOT",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]/constraint[1]"
+    },
+    {
+      "requirement_text": "LocationReference extensions SHALL have a fixed url value of `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference`",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[2]"
+    },
+    {
+      "requirement_text": "LocationReference extensions SHALL have a value[x] element",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]"
+    },
+    {
+      "requirement_text": "The value[x] element SHALL have a minimum cardinality of 1",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]/min"
+    },
+    {
+      "requirement_text": "The value[x] element SHALL have a maximum cardinality of 1",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/snapshot/element[4]/max"
+    },
+    {
+      "requirement_text": "The value[x] element SHALL be a Reference datatype",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]/type[0]/code"
+    },
+    {
+      "requirement_text": "The value[x] element SHALL reference a profile of `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location`",
+      "conformance": "SHALL",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]/type[0]/targetProfile[0]"
+    },
+    {
+      "requirement_text": "Systems SHALL support the LocationReference extension",
+      "conformance": "SHALL (mustSupport)",
+      "actor": "Any system producing or consuming Location resources",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[3]/mustSupport"
+    },
+    {
+      "requirement_text": "LocationReference extensions SHALL NOT have any child extensions",
+      "conformance": "SHALL NOT",
+      "actor": "Any system producing or consuming LocationReference extensions",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-location-reference.json/differential/element[1]/max"
+    },
+    {
+      "requirement_text": "Systems SHALL support the following values for Qualification Status:",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/QualificationStatusCS/concept[]"
+    },
+    {
+      "requirement_text": "The `specialty` search parameter SHALL be applied to the `PractitionerRole.specialty` element.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "SearchParameter/practitionerrole-specialty.expression"
+    },
+    {
+      "requirement_text": "The `specialty` search parameter SHALL support the `token` search type.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "SearchParameter/practitionerrole-specialty.type"
+    },
+    {
+      "requirement_text": "The `specialty` search parameter SHALL support searching with multiple OR values.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "SearchParameter/practitionerrole-specialty.multipleOr"
+    },
+    {
+      "requirement_text": "The `specialty` search parameter SHALL support searching with multiple AND values.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "SearchParameter/practitionerrole-specialty.multipleAnd"
+    },
+    {
+      "requirement_text": "The `specialty` search parameter SHALL support the `text` modifier.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "SearchParameter/practitionerrole-specialty.modifier"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL be defined with a code of `service`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.code: service"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL be of type `reference`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type: reference"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL have a base of `OrganizationAffiliation`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.base: [OrganizationAffiliation]"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL use the `OrganizationAffiliation.healthcareService` expression to filter search results.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression: OrganizationAffiliation.healthcareService"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL allow clients to search for OrganizationAffiliation resources that reference the specified HealthcareService using the `healthcareService` property.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression: OrganizationAffiliation.healthcareService, SearchParameter.target: [HealthcareService]"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL support the `multipleOr` search modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr: true"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL support the `multipleAnd` search modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd: true"
+    },
+    {
+      "requirement_text": "The `service` search parameter SHALL support chaining with the `service-category`, `organization`, and `location` search parameters.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.chain: [service-category, organization, location]"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain an `active` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.active"
+    },
+    {
+      "requirement_text": "The `active` element SHALL be populated as `true`.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.active"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain an `organization` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.organization"
+    },
+    {
+      "requirement_text": "The `organization` element SHALL be a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.organization"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain a `participatingOrganization` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.participatingOrganization"
+    },
+    {
+      "requirement_text": "The `participatingOrganization` element SHALL be a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.participatingOrganization"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain a `network` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.network"
+    },
+    {
+      "requirement_text": "The `network` element SHALL contain at least one entry.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.network"
+    },
+    {
+      "requirement_text": "Each entry in the `network` element SHALL be a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.network[n].reference"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain a `code` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code"
+    },
+    {
+      "requirement_text": "The `code` element SHALL contain at least one entry.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code"
+    },
+    {
+      "requirement_text": "Each entry in the `code` element SHALL contain a `coding` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code[n].coding"
+    },
+    {
+      "requirement_text": "The `coding` element SHALL include a code from the `http://hl7.org/fhir/organization-role` code system.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code[n].coding.system"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain a `location` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.location"
+    },
+    {
+      "requirement_text": "The `location` element SHALL contain at least one entry.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.location"
+    },
+    {
+      "requirement_text": "Each entry in the `location` element SHALL be a reference to a Location resource.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.location[n].reference"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource SHALL contain a `healthcareService` element.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.healthcareService"
+    },
+    {
+      "requirement_text": "The `healthcareService` element SHALL contain at least one entry.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.healthcareService"
+    },
+    {
+      "requirement_text": "Each entry in the `healthcareService` element SHALL be a reference to a HealthcareService resource.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.healthcareService[n].reference"
+    },
+    {
+      "requirement_text": "Organization.identifier.system SHALL be `http://hl7.org/fhir/sid/us-npi` [...] when identifier.value represents a National Provider Identifier (NPI)",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Organization.identifier[0].system"
+    },
+    {
+      "requirement_text": "Organization.type.coding.system SHALL be `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS` [...] for representing organization type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type[0].coding[0].system"
+    },
+    {
+      "requirement_text": "The `period` search parameter SHALL be restricted to the `date` type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type"
+    },
+    {
+      "requirement_text": "The `period` search parameter SHALL use the `PractitionerRole.period` element for searching.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression"
+    },
+    {
+      "requirement_text": "The `period` search parameter SHALL support the `multipleOr` search modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].url"
+    },
+    {
+      "requirement_text": "The `network-reference` extension SHALL have a `valueReference` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].valueReference"
+    },
+    {
+      "requirement_text": "The `valueReference` element of the `network-reference` extension SHALL contain a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].valueReference.reference"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one code in the `code` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code"
+    },
+    {
+      "requirement_text": "The system for the PractitionerRole `code` SHALL be `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/ProviderRoleCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code[0].coding[0].system"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one specialty in the `specialty` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty"
+    },
+    {
+      "requirement_text": "The system for the PractitionerRole `specialty` SHALL be `http://nucc.org/provider-taxonomy`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty[0].coding[0].system"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one location in the `location` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.location"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one healthcareService in the `healthcareService` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.healthcareService"
+    },
+    {
+      "requirement_text": "The 'address-state' search parameter SHALL be of type 'string'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/type"
+    },
+    {
+      "requirement_text": "The 'address-state' search parameter SHALL use the expression 'Location.address.state' to filter search results.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/expression"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'exact' modifier on the 'address-state' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/modifier[0]"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'contains' modifier on the 'address-state' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/modifier[1]"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching with multiple 'address-state' parameters combined using OR logic.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/multipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching with multiple 'address-state' parameters combined using AND logic.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-state/multipleAnd"
+    },
+    {
+      "requirement_text": "The code element SHALL be populated with a value from the `OrganizationAffiliationRoleCS` code system.",
+      "conformance": "SHALL",
+      "actor": "Payer a.k.a. Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code[0].coding[0].system"
+    },
+    {
+      "requirement_text": "If present, the `specialty` element SHALL use codes from the `http://nucc.org/provider-taxonomy` code system.",
+      "conformance": "SHALL",
+      "actor": "Payer a.k.a. Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.specialty[0].coding[0].system"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.active SHALL be populated [...] with a value of `true`.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.active"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.participatingOrganization SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.participatingOrganization"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.network SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.network"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.code SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.code.coding SHALL use a code from the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrganizationAffiliationRoleCS` code system.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code[0].coding[0].system"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.location SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.location"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.healthcareService SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer, Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.healthcareService"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL be of type 'reference'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL use the search expression 'HealthcareService.endpoint'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support searching with multiple OR values (i.e., at least one match is sufficient).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support searching with multiple AND values (i.e., all values must match).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support chaining with the 'organization' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.chain[0]"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter's target resource type SHALL be 'Endpoint'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.target[0]"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL contain an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0]"
+    },
+    {
+      "requirement_text": "The `network-reference` extension SHALL have a `valueReference` element.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].valueReference"
+    },
+    {
+      "requirement_text": "The `valueReference` element of the `network-reference` extension SHALL contain a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].valueReference.reference"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL contain an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/qualification`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1]"
+    },
+    {
+      "requirement_text": "The `qualification` extension SHALL contain an extension with URL `code`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[0]"
+    },
+    {
+      "requirement_text": "The `code` extension SHALL have a `valueCodeableConcept` element.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[0].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The `valueCodeableConcept` element of the `code` extension SHALL contain a coding with system  `http://nucc.org/provider-taxonomy`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[0].valueCodeableConcept.coding[0]"
+    },
+    {
+      "requirement_text": "The `qualification` extension SHALL contain an extension with URL `status`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[1]"
+    },
+    {
+      "requirement_text": "The `status` extension SHALL have a `valueCode` element with a value of \"active\".",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[1].valueCode"
+    },
+    {
+      "requirement_text": "The `qualification` extension SHALL contain an extension with URL `issuer`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[2]"
+    },
+    {
+      "requirement_text": "The `issuer` extension SHALL have a `valueReference` element.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[2].valueReference"
+    },
+    {
+      "requirement_text": "The `valueReference` element of the `issuer` extension SHOULD contain a `display` element.",
+      "conformance": "SHOULD",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[1].extension[2].valueReference.display"
+    },
+    {
+      "requirement_text": "The `code` element of PractitionerRole SHALL contain a coding with system `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/ProviderRoleCS`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code[0].coding[0]"
+    },
+    {
+      "requirement_text": "The `specialty` element of PractitionerRole SHALL contain a coding with system `http://nucc.org/provider-taxonomy`.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty[0].coding[0]"
+    },
+    {
+      "requirement_text": "The 'address' search parameter SHALL match [...] any of the string elements of an Organization.address.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-address: Description, Expression"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'exact' search modifier for the 'address' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-address: Modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'contains' search modifier for the 'address' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-address: Modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Organization resources with multiple address values using the 'address' search parameter with multiple values combined using OR logic (multipleOr = true).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-address: MultipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Organization resources with multiple address values using the 'address' search parameter with multiple values combined using AND logic (multipleAnd = true).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-address: MultipleAnd"
+    },
+    {
+      "requirement_text": "The Organization.identifier.system SHALL be `http://hl7.org/fhir/sid/us-npi`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.identifier[0].system"
+    },
+    {
+      "requirement_text": "The Organization.type.coding.system SHALL be `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type[0].coding[0].system"
+    },
+    {
+      "requirement_text": "InsurancePlan.type SHALL be populated with a code from the \"Insurance Product Type\" ValueSet  [http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/InsuranceProductTypeCS]",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.type.coding.system"
+    },
+    {
+      "requirement_text": "InsurancePlan.plan.type SHALL be populated with a code from the \"Insurance Plan Type\" ValueSet [http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/InsurancePlanTypeCS]",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.plan.type.coding.system"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL be of type 'string'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/type"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL use the expression 'name | alias' to identify the element(s) to search within InsurancePlan resources.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/expression"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL support the 'exact' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/modifier"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL support the 'contains' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/modifier"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL support logical AND searches using 'multipleAnd'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/multipleAnd"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL support logical OR searches using 'multipleOr'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-name/multipleOr"
+    },
+    {
+      "requirement_text": "`hl7-fhir-rest`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[0]/concept[0]/code"
+    },
+    {
+      "requirement_text": "`hl7-fhir-msg`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[0]/concept[1]/code"
+    },
+    {
+      "requirement_text": "`direct-project`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[0]/concept[2]/code"
+    },
+    {
+      "requirement_text": "Systems SHALL support the following codes as defined in `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS`:",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[1]"
+    },
+    {
+      "requirement_text": "`hl7-fhir-opn`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[1]/concept[0]/code"
+    },
+    {
+      "requirement_text": "`rest-non-fhir`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/MinEndpointConnectionTypeVS/compose/include[1]/concept[1]/code"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].url"
+    },
+    {
+      "requirement_text": "The `valueReference` element of the `network-reference` extension SHALL be a reference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.extension[0].valueReference"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one `code` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code"
+    },
+    {
+      "requirement_text": "The `system` element of the `coding` element within the `code` element SHALL be `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/ProviderRoleCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code[0].coding[0].system"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one `specialty` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty"
+    },
+    {
+      "requirement_text": "The `system` element of the `coding` element within the `specialty` element SHALL be `http://nucc.org/provider-taxonomy`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty[0].coding[0].system"
+    },
+    {
+      "requirement_text": "PractitionerRole resources SHALL include at least one `healthcareService` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.healthcareService"
+    },
+    {
+      "requirement_text": "The `healthcareService` element SHALL be a reference to a HealthcareService resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.healthcareService[0]"
+    },
+    {
+      "requirement_text": "The code `fac` SHALL have the display \"Facility\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='fac']"
+    },
+    {
+      "requirement_text": "The code `fac` SHALL have the definition \"A physical healthcare facility.\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='fac']"
+    },
+    {
+      "requirement_text": "The code `prvgrp` SHALL have the display \"Provider Group\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='prvgrp']"
+    },
+    {
+      "requirement_text": "The code `prvgrp` SHALL have the definition \"A healthcare provider entity\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='prvgrp']"
+    },
+    {
+      "requirement_text": "The code `payer` SHALL have the display \"Payer\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='payer']"
+    },
+    {
+      "requirement_text": "The code `payer` SHALL have the definition \"A healthcare payer.\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='payer']"
+    },
+    {
+      "requirement_text": "The code `atyprv` SHALL have the display \"Atypical Provider\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='atyprv']"
+    },
+    {
+      "requirement_text": "The code `atyprv` SHALL have the definition \"Providers that do not provide healthcare\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='atyprv']"
+    },
+    {
+      "requirement_text": "The code `bus` SHALL have the display \"Non-Healthcare Business\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='bus']"
+    },
+    {
+      "requirement_text": "The code `bus` SHALL have the definition \"An organization that does not meet the definitions of a Healthcare or Atypical Provider, and is not a payer or healthcare facility\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='bus']"
+    },
+    {
+      "requirement_text": "The code `ntwk` SHALL have the display \"Network\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='ntwk']"
+    },
+    {
+      "requirement_text": "The code `ntwk` SHALL have the definition \"A healthcare provider insurance network\"",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/OrgTypeCS/concept[code='ntwk']"
+    },
+    {
+      "requirement_text": "The `service-type` search parameter SHALL be of type `token`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type"
+    },
+    {
+      "requirement_text": "The `service-type` search parameter SHALL support the `text` modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier[0]"
+    },
+    {
+      "requirement_text": "The `service-type` search parameter SHALL support searching with multiple OR conditions (e.g. `service-type=code1&service-type=code2`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr"
+    },
+    {
+      "requirement_text": "The `service-type` search parameter SHALL support searching with multiple AND conditions (e.g. `service-type=code1,code2`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd"
+    },
+    {
+      "requirement_text": "The 'type' search parameter SHALL be applied to the 'Location.type' element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-type/expression"
+    },
+    {
+      "requirement_text": "The 'type' search parameter SHALL support the 'token' search type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-type/type"
+    },
+    {
+      "requirement_text": "The 'type' search parameter SHALL support both 'OR' and 'AND' searches.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-type/multipleOr, SearchParameter/location-type/multipleAnd"
+    },
+    {
+      "requirement_text": "The 'type' search parameter SHALL support the 'text' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-type/modifier"
+    },
+    {
+      "requirement_text": "Location resources SHALL include an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients']"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL contain an extension with URL `acceptingPatients`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients']"
+    },
+    {
+      "requirement_text": "The `acceptingPatients` extension SHALL have a valueCodeableConcept with a coding element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients'].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The `coding` element of the `acceptingPatients` extension SHALL have a `system` element with the value `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AcceptingPatientsCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients'].valueCodeableConcept.coding.system"
+    },
+    {
+      "requirement_text": "The `coding` element of the `acceptingPatients` extension SHALL have a `code` element with a value from the `AcceptingPatientsCS` CodeSystem.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients'].valueCodeableConcept.coding.code"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL contain an extension with URL `fromNetwork`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='fromNetwork']"
+    },
+    {
+      "requirement_text": "The `fromNetwork` extension SHALL have a valueReference element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='fromNetwork'].valueReference"
+    },
+    {
+      "requirement_text": "Location resources SHALL include one or more extensions with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility']"
+    },
+    {
+      "requirement_text": "The `accessibility` extension SHALL have a valueCodeableConcept with a coding element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility'].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The `coding` element of the `accessibility` extension SHALL have a `system` element with the value `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AccessibilityCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility'].valueCodeableConcept.coding.system"
+    },
+    {
+      "requirement_text": "The `coding` element of the `accessibility` extension SHALL have a `code` element with a value from the `AccessibilityCS` CodeSystem.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility'].valueCodeableConcept.coding.code"
+    },
+    {
+      "requirement_text": "Location resources SHALL include a `telecom` element with system `phone`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: telecom[system='phone']"
+    },
+    {
+      "requirement_text": "The `phone` telecom element SHALL include an extension with URL `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Resource: Location, Element: telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension SHALL contain one or more extensions with URL `daysOfWeek`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='daysOfWeek']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension SHALL contain an extension with URL `availableStartTime`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='availableStartTime']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension SHALL contain an extension with URL `availableEndTime`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Resource: Location, Element: telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='availableEndTime']"
+    },
+    {
+      "requirement_text": "\"The search parameter type SHALL be of type token.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-type.type"
+    },
+    {
+      "requirement_text": "\"The search parameter type SHALL support the  [...Organization.type]  modifiers text.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-type.modifier"
+    },
+    {
+      "requirement_text": "\"Servers SHALL support combining multiple type search parameters using the logical operators AND and OR.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-type.multipleOr, SearchParameter/organization-type.multipleAnd"
+    },
+    {
+      "requirement_text": "The PractitionerRoleVS value set SHALL include all codes defined in `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/ProviderRoleCS`.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/PractitionerRoleVS/compose/include[0]/system"
+    },
+    {
+      "requirement_text": "The PractitionerRoleVS value set SHALL include all codes defined in `http://terminology.hl7.org/CodeSystem/practitioner-role`.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/PractitionerRoleVS/compose/include[1]/system"
+    },
+    {
+      "requirement_text": "HealthcareService.extension SHALL contain an extension with url `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "HealthcareService.extension[0].url"
+    },
+    {
+      "requirement_text": "The `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method` extension SHALL contain an extension with url `type`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "HealthcareService.extension[0].extension[0].url"
+    },
+    {
+      "requirement_text": "The `type` extension SHALL have a valueCodeableConcept.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The `valueCodeableConcept` SHALL contain a coding with system `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/DeliveryMethodCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept.coding[0].system"
+    },
+    {
+      "requirement_text": "HealthcareService.category SHALL contain a coding with system `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/HealthcareServiceCategoryCS`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "[]",
+      "source": "HealthcareService.category[0].coding[0].system"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL be used to \"Select PractitionerRoles providing the specified service\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (description)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL use the 'reference' type",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (type)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL use the expression \"PractitionerRole.healthcareService\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (expression)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL target the \"HealthcareService\" resource",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (target)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL support the 'multipleOr' search modifier",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (multipleOr = true)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL support the 'multipleAnd' search modifier",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (multipleAnd = true)"
+    },
+    {
+      "requirement_text": "The 'service' search parameter SHALL support chaining with the following search parameters: \"service-category\", \"organization\", \"location\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-service (chain)"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL be defined as a reference parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type: reference"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL be usable to search for OrganizationAffiliation resources by the `OrganizationAffiliation.participatingOrganization` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression: OrganizationAffiliation.participatingOrganization"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL support searching with the `Organization` resource type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.target: Organization"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL support the ability to search for multiple OrganizationAffiliation resources matching any of the provided search values.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr: true"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL support the ability to search for OrganizationAffiliation resources matching all of the provided search values.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd: true"
+    },
+    {
+      "requirement_text": "The `participating-organization` search parameter SHALL support chaining through the `type`, `address`, `name`, and `partof` search parameters.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.chain: [ \"type\", \"address\", \"name\", \"partof\" ]"
+    },
+    {
+      "requirement_text": "Location resources SHALL include a `newpatients` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients']"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL contain an `acceptingPatients` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients']"
+    },
+    {
+      "requirement_text": "The `acceptingPatients` extension SHALL have a valueCodeableConcept with a coding using the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AcceptingPatientsCS` code system.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='acceptingPatients'].valueCodeableConcept.coding[0].system"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL contain a `fromNetwork` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='fromNetwork']"
+    },
+    {
+      "requirement_text": "The `fromNetwork` extension SHALL have a valueReference to an Organization resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'].extension[url='fromNetwork'].valueReference"
+    },
+    {
+      "requirement_text": "Location resources SHALL include an `accessibility` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility']"
+    },
+    {
+      "requirement_text": "The `accessibility` extension SHALL have a valueCodeableConcept with a coding using the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AccessibilityCS` code system.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility'].valueCodeableConcept.coding[0].system"
+    },
+    {
+      "requirement_text": "Location resources SHALL include a `type` element with a coding using the `http://terminology.hl7.org/CodeSystem/v3-RoleCode` code system.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.type[0].coding[0].system"
+    },
+    {
+      "requirement_text": "Location resources that have a Telecom with system 'phone' SHALL include a `contactpoint-availabletime` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "",
+      "source": "Location.telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension MAY include a `daysOfWeek` extension with a valueCode.",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='daysOfWeek']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension MAY include an `allDay` extension with a valueBoolean.",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='allDay']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension MAY include an `availableStartTime` extension with a valueTime.",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='availableStartTime']"
+    },
+    {
+      "requirement_text": "The `contactpoint-availabletime` extension MAY include an `availableEndTime` extension with a valueTime.",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.telecom[system='phone'].extension[url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'].extension[url='availableEndTime']"
+    },
+    {
+      "requirement_text": "The `Organization.active` element [MUST] be populated with a value of `true`",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.active"
+    },
+    {
+      "requirement_text": "The `Organization.type` element [MUST] be populated with a coding where the `system` element value is `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS` and the `code` element value is `ntwk`",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type"
+    },
+    {
+      "requirement_text": "The `Organization.name` element [MUST] be populated",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.name"
+    },
+    {
+      "requirement_text": "The `Organization.partOf` element [MUST] be populated",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.partOf"
+    },
+    {
+      "requirement_text": "If an `Organization.contact.telecom` element is present and the contact information is available only via an intermediary, then the `telecom` element [SHALL] have an `extension` with `url` element value of `http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/via-intermediary`",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.extension"
+    },
+    {
+      "requirement_text": "The 'role' search parameter SHALL be a token type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type: 'token'"
+    },
+    {
+      "requirement_text": "The 'role' search parameter SHALL support the 'text' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier: 'text'"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for OrganizationAffiliation resources with multiple 'role' search parameters combined using the OR search operation.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr: true"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for OrganizationAffiliation resources with multiple 'role' search parameters combined using the AND search operation.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd: true"
+    },
+    {
+      "requirement_text": "The 'role' search parameter SHALL be based on the `OrganizationAffiliation.code` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression: 'OrganizationAffiliation.code'"
+    },
+    {
+      "requirement_text": "Systems SHALL support all codes defined in `http://terminology.hl7.org/CodeSystem/endpoint-connection-type`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/EndpointConnectionTypeVS/text/div"
+    },
+    {
+      "requirement_text": "Systems SHALL support all codes defined in `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS`",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "ValueSet/EndpointConnectionTypeVS/text/div"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL be of type `string`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/type"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL match against any of the elements in the HumanName data type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/description"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support the `exact` modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/modifier"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support the `contains` modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for multiple OR values using the `name` search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/multipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for multiple AND values using the `name` search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitioner-name/multipleAnd"
+    },
+    {
+      "requirement_text": "\"Data consumers [...] SHALL support the processing of all elements marked as mustSupport [...].\"",
+      "conformance": "SHALL",
+      "actor": "Data Consumer (Implicit - based on \"mustSupport\" definition)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "General FHIR guidance on \"mustSupport\" element"
+    },
+    {
+      "requirement_text": "The address-postalcode search parameter SHALL be of type string.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type: string"
+    },
+    {
+      "requirement_text": "The address-postalcode search parameter SHALL use the following expression: `Location.address.postalCode`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression: Location.address.postalCode"
+    },
+    {
+      "requirement_text": "Servers SHALL support the `exact` modifier for the address-postalcode search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier: exact"
+    },
+    {
+      "requirement_text": "Servers SHALL support the `contains` modifier for the address-postalcode search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier: contains"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Location resources with multiple address-postalcode search parameters combined using OR logic (multipleOr).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr: true"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Location resources with multiple address-postalcode search parameters combined using AND logic (multipleAnd).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleAnd: true"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support the `exact` modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/healthcareservice-name.modifier"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support the `contains` modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/healthcareservice-name.modifier"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support searching with multiple OR conditions (e.g., `name:exact=foo|name:contains=bar`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/healthcareservice-name.multipleOr"
+    },
+    {
+      "requirement_text": "The `name` search parameter SHALL support searching with multiple AND conditions (e.g., `name:exact=foo&name:contains=bar`).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/healthcareservice-name.multipleAnd"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL be applied to the Organization resource type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.base"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL be of type 'reference'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.type"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL use the expression 'Organization.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference')'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.expression"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL support searching with the Location resource type as a target.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.target"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL support searching with multiple OR conditions.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.multipleOr"
+    },
+    {
+      "requirement_text": "The 'coverage-area' search parameter SHALL support searching with multiple AND conditions.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-coverage-area.multipleAnd"
+    },
+    {
+      "requirement_text": "The Implementation Guide (IG) SHALL conform to FHIR version `4.0.1`.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "source": "JSON content, ImplementationGuide.fhirVersion"
+    },
+    {
+      "requirement_text": "The Implementation Guide (IG) publication date SHALL be `20220404140415`.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "source": "JSON content, ImplementationGuide.date"
+    },
+    {
+      "requirement_text": "The Implementation Guide (IG) name SHALL be `hl7.fhir.us.davinci-pdex-plan-net`.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "source": "JSON content, ImplementationGuide.name"
+    },
+    {
+      "requirement_text": "Systems SHALL support the following codes as defined in the VirtualModalitiesCS value set:",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "CodeSystem/VirtualModalitiesCS (concept)"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.active SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element active"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.participatingOrganization SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element participatingOrganization"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.network SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element network"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.code SHALL be populated with the code system http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrganizationAffiliationRoleCS.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element code[0].coding[0].system"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.specialty SHALL be populated with the code system http://nucc.org/provider-taxonomy.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element specialty[0].coding[0].system"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.location SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element location"
+    },
+    {
+      "requirement_text": "OrganizationAffiliation.healthcareService SHALL be populated.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "resourceType OrganizationAffiliation, element healthcareService"
+    },
+    {
+      "requirement_text": "\"Practitioner.communication-proficiency: The communication proficiency of the practitioner\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (extension:communication-proficiency)"
+    },
+    {
+      "requirement_text": "\"Practitioner.identifier: Business Identifiers that are specific to a role/location/other context of the provider\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (element:identifier)"
+    },
+    {
+      "requirement_text": "\"Practitioner.active: Whether this practitioner's record is in active use\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (element:active)"
+    },
+    {
+      "requirement_text": "\"Practitioner.name: The name(s) that this practitioner is known by\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (element:name)"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification: Qualifications obtained by training and/or experience\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (element:qualification)"
+    },
+    {
+      "requirement_text": "\"Practitioner.communication: A language the practitioner can use in patient communication\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (element:communication)"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification: This extension defines the practitioner's qualification information\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner (extension:practitioner-qualification)"
+    },
+    {
+      "requirement_text": "\"ValueSet: Language Proficiency CS: This value set includes codes from the HL7 V3 RoleCode value set that describe a practitioner's proficiency in a language\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet-LanguageProficiencyCS.html"
+    },
+    {
+      "requirement_text": "\"CodeSystem: Language Proficiency CS: This code system includes codes from the HL7 V3 RoleCode value set that describe a practitioner's proficiency in a language\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem-LanguageProficiencyCS.html"
+    },
+    {
+      "requirement_text": "Organizations **SHALL** contain at least one [identifier with system] `http://hl7.org/fhir/sid/us-npi`.",
+      "conformance": "SHALL",
+      "actor": "Organization provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.identifier[0].system (http://hl7.org/fhir/sid/us-npi)"
+    },
+    {
+      "requirement_text": "Organizations **SHALL** contain an `active` element.",
+      "conformance": "SHALL",
+      "actor": "Organization provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.active"
+    },
+    {
+      "requirement_text": "Organizations **SHALL** contain at least one `type` element.",
+      "conformance": "SHALL",
+      "actor": "Organization provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type"
+    },
+    {
+      "requirement_text": "The `type` element **SHALL** use the code system `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS`.",
+      "conformance": "SHALL",
+      "actor": "Organization provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type[0].coding[0].system (http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS)"
+    },
+    {
+      "requirement_text": "The `telecom` element **SHALL** include a `rank` element to specify contact preference order.",
+      "conformance": "SHALL",
+      "actor": "Organization provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom[*].rank"
+    },
+    {
+      "requirement_text": "\"hasValue() or (children().count() > id.count())\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[0].constraint[0]"
+    },
+    {
+      "requirement_text": "\"Must have either extensions or value[x], not both\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[0].constraint[1]"
+    },
+    {
+      "requirement_text": "\"extension.exists() != value.exists()\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[0].constraint[1]"
+    },
+    {
+      "requirement_text": "\"The definition SHALL be a URI for the Structure Definition defining the extension.\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[3].comment"
+    },
+    {
+      "requirement_text": "\"Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[4].definition"
+    },
+    {
+      "requirement_text": "\"[Extension.value] must be one of a constrained set of the data types\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[4].definition"
+    },
+    {
+      "requirement_text": "\"[Extension.value] ... must be one of [...] Reference(Plan-Net PractitionerRole | Plan-Net OrganizationAffiliation | Plan-Net Location | Plan-Net Organization)\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.snapshot.element[4]"
+    },
+    {
+      "requirement_text": "\"[The extension] ... [SHALL] be [...] Reference(plannet-PractitionerRole [...]\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.differential.element[3]"
+    },
+    {
+      "requirement_text": "\"[The extension] ... [SHALL] be [...] Reference([...]) | plannet-OrganizationAffiliation [...]\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.differential.element[3]"
+    },
+    {
+      "requirement_text": "\"[The extension] ... [SHALL] be [...] Reference([...]) | [...] plannet-Location [...]\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.differential.element[3]"
+    },
+    {
+      "requirement_text": "\"[The extension] ... [SHALL] be [...] Reference([...]) | [...] plannet-Organization)\"",
+      "conformance": "SHALL",
+      "actor": "All",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-via-intermediary.differential.element[3]"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL be defined with a code of 'practitioner'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, code element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL be of type 'reference'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, type element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL have a base of 'PractitionerRole'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, base element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL use the expression 'PractitionerRole.practitioner'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, expression element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL target the 'Practitioner' resource type.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, target element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL support the 'multipleOr' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, multipleOr element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL support the 'multipleAnd' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, multipleAnd element"
+    },
+    {
+      "requirement_text": "The 'practitioner' search parameter SHALL support chaining with the 'name' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, chain element"
+    },
+    {
+      "requirement_text": "The server SHALL return PractitionerRole resources that reference the specified practitioner resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/practitionerrole-practitioner resource, description element: \"Select roles filled by the specified practitioner\""
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for HealthcareService resources using the 'service-category' search parameter with the 'text' modifier.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.modifier"
+    },
+    {
+      "requirement_text": "The search parameter SHALL be applied to the `HealthcareService.category` element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.expression"
+    },
+    {
+      "requirement_text": "The search parameter SHALL be of type 'token'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.type"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching using either multiple OR logic or multiple AND logic when multiple values are provided for the 'service-category' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter.multipleOr & SearchParameter.multipleAnd"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL be of type 'reference'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-endpoint/type"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL use the 'Location.endpoint' search expression.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-endpoint/expression"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support searching with multiple OR criteria.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-endpoint/multipleOr"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support searching with multiple AND criteria.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-endpoint/multipleAnd"
+    },
+    {
+      "requirement_text": "The 'endpoint' search parameter SHALL support chaining with the 'organization' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-endpoint/chain"
+    },
+    {
+      "requirement_text": "Location resources SHALL include an `accessibility` extension with a code from the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AccessibilityCS` CodeSystem.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.extension[0..1].url"
+    },
+    {
+      "requirement_text": "Location.telecom SHALL include a `contactpoint-availabletime` extension.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Location.telecom.extension[0].url"
+    },
+    {
+      "requirement_text": "If the `contactpoint-availabletime` extension is present, it SHALL include at least one `daysOfWeek` extension with a valueCode indicating the day of the week.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "",
+      "source": "Location.telecom.extension[0].extension[0..4]"
+    },
+    {
+      "requirement_text": "If the `contactpoint-availabletime` extension is present, it MAY include an `allDay` extension with a valueBoolean indicating if the contact point is available all day.",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "",
+      "source": "Location.telecom.extension[0].extension[5]"
+    },
+    {
+      "requirement_text": "The 'name' search parameter SHALL be applied to the 'Organization.name' element ...",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/expression"
+    },
+    {
+      "requirement_text": "... [The 'name' search parameter SHALL be applied to] the 'Organization.alias' element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/expression"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'exact' search modifier ...",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/modifier"
+    },
+    {
+      "requirement_text": "... [Servers SHALL support] the 'contains' search modifier for the 'name' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching where any of the search criteria are met for the 'name' search parameter [...].",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/multipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching where all of the search criteria are met for the 'name' search parameter [...].",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/organization-name/multipleAnd"
+    },
+    {
+      "requirement_text": "The HealthcareService resource SHALL include a 'delivery-method' extension.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "delivery-method-extension-requirements",
+      "source": "HealthcareService.extension[0].url (http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method)"
+    },
+    {
+      "requirement_text": "The 'delivery-method' extension SHALL contain a 'type' extension.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "delivery-method-type-extension-requirements",
+      "source": "HealthcareService.extension[0].extension[0].url (type)"
+    },
+    {
+      "requirement_text": "The 'type' extension SHALL have a valueCodeableConcept with a coding element from the 'DeliveryMethodCS' code system.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept.coding[0].system (http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/DeliveryMethodCS)"
+    },
+    {
+      "requirement_text": "The 'type' extension SHALL have a valueCodeableConcept with a coding element with the code 'virtual'.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept.coding[0].code (virtual)"
+    },
+    {
+      "requirement_text": "The 'delivery-method' extension SHALL contain one or more 'virtualModalities' extensions.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "virtualModalities-extension-requirements",
+      "source": "HealthcareService.extension[0].extension[1..4].url (virtualModalities)"
+    },
+    {
+      "requirement_text": "Each 'virtualModalities' extension SHALL have a valueCodeableConcept with a coding element from the 'VirtualModalitiesCS' code system.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[1..4].valueCodeableConcept.coding[0].system (http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/VirtualModalitiesCS)"
+    },
+    {
+      "requirement_text": "Each 'virtualModalities' extension SHALL have a valueCodeableConcept with a coding element with one of the following codes: 'web', 'app', 'tdd', 'phone'.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[1..4].valueCodeableConcept.coding[0].code (web, app, tdd, phone)"
+    },
+    {
+      "requirement_text": "The HealthcareService resource SHALL have the 'active' element set to 'true'.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.active (true)"
+    },
+    {
+      "requirement_text": "The HealthcareService resource SHALL include a 'category' element.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "category-element-requirements",
+      "source": "HealthcareService.category"
+    },
+    {
+      "requirement_text": "The 'category' element SHALL have a coding element from the 'HealthcareServiceCategoryCS' code system.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.category[0].coding[0].system (http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/HealthcareServiceCategoryCS)"
+    },
+    {
+      "requirement_text": "The 'category' element SHALL have a coding element with the code 'prov'.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.category[0].coding[0].code (prov)"
+    },
+    {
+      "requirement_text": "The HealthcareService resource SHALL include a 'specialty' element.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "specialty-element-requirements",
+      "source": "HealthcareService.specialty"
+    },
+    {
+      "requirement_text": "The 'specialty' element SHALL have a coding element from the 'provider-taxonomy' code system.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.specialty[0].coding[0].system (http://nucc.org/provider-taxonomy)"
+    },
+    {
+      "requirement_text": "The 'specialty' element SHALL have a coding element with the code '101YP2500X'.",
+      "conformance": "SHALL",
+      "actor": "Sender",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.specialty[0].coding[0].code (101YP2500X)"
+    },
+    {
+      "requirement_text": "HealthcareService resources SHALL include the `delivery-method` extension.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0]"
+    },
+    {
+      "requirement_text": "The `delivery-method` extension SHALL have an extension with url `type`.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[0]"
+    },
+    {
+      "requirement_text": "The `type` extension SHALL have a valueCodeableConcept with a coding containing the delivery method.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The delivery method code SHALL be taken from the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/DeliveryMethodCS` code system.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[0].extension[0].valueCodeableConcept.coding.system"
+    },
+    {
+      "requirement_text": "HealthcareService resources SHALL include the `newpatients` extension.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1]"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL have an extension with url `acceptingPatients`.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1].extension[0]"
+    },
+    {
+      "requirement_text": "The `acceptingPatients` extension SHALL have a valueCodeableConcept with a coding containing the accepting patients code.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1].extension[0].valueCodeableConcept"
+    },
+    {
+      "requirement_text": "The accepting patients code SHALL be taken from the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AcceptingPatientsCS` code system.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1].extension[0].valueCodeableConcept.coding.system"
+    },
+    {
+      "requirement_text": "The `newpatients` extension SHALL have an extension with url `fromNetwork`.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1].extension[1]"
+    },
+    {
+      "requirement_text": "The `fromNetwork` extension SHALL have a valueReference pointing to the Organization resource representing the network.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.extension[1].extension[1].valueReference"
+    },
+    {
+      "requirement_text": "HealthcareService resources SHALL include the `via-intermediary` extension within the telecom element.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.telecom[0].extension[0]"
+    },
+    {
+      "requirement_text": "The `via-intermediary` extension SHALL have a valueReference pointing to the Organization resource representing the intermediary.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.telecom[0].extension[0].valueReference"
+    },
+    {
+      "requirement_text": "HealthcareService.category SHALL be coded using the `http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/HealthcareServiceCategoryCS` code system.",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.category[0].coding.system"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching using the chained parameters [name] and [partof].",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/chain"
+    },
+    {
+      "requirement_text": "The search parameter [owned-by] SHALL be of type [reference].",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/type"
+    },
+    {
+      "requirement_text": "The search parameter [owned-by] SHALL search on the [InsurancePlan.ownedBy] element.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/expression"
+    },
+    {
+      "requirement_text": "The search parameter [owned-by] SHALL support searching for multiple OR values.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/multipleOr"
+    },
+    {
+      "requirement_text": "The search parameter [owned-by] SHALL support searching for multiple AND values.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/multipleAnd"
+    },
+    {
+      "requirement_text": "The search parameter [owned-by] SHALL have a target resource type of [Organization].",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/insuranceplan-owned-by/target"
+    },
+    {
+      "requirement_text": "The 'address-city' search parameter SHALL be of type 'string'.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.type"
+    },
+    {
+      "requirement_text": "The 'address-city' search parameter SHALL use the 'Location.address.city' FHIRPath expression to filter search results.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.expression"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'exact' modifier on the 'address-city' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support the 'contains' modifier on the 'address-city' search parameter.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.modifier"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Location resources with multiple 'address-city' search parameters combined using OR logic (i.e., at least one of the provided 'address-city' values must match).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.multipleOr"
+    },
+    {
+      "requirement_text": "Servers SHALL support searching for Location resources with multiple 'address-city' search parameters combined using AND logic (i.e., all of the provided 'address-city' values must match).",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter/location-address-city.multipleAnd"
+    },
+    {
+      "requirement_text": "Clients [...] that cache query results can track additions or modifications to directory content through queries that filter content using the _lastUpdated search parameter.",
+      "conformance": "MAY",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Client Detection of Updates Directory Content"
+    },
+    {
+      "requirement_text": "Clients should periodically check that data cached from past queries has not been deleted by querying for the same elements by _id.",
+      "conformance": "SHOULD",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Client Detection of Updates Directory Content"
+    },
+    {
+      "requirement_text": "It is important for payers to use the Plan-Net profiles consistently in order to achieve true interoperability of directory information among payers.",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Representing and Searching Provider Directory Data"
+    },
+    {
+      "requirement_text": "The intent of this section is to provide examples of the canonical use of the profiles provided in this IG that will guide implementers towards the consistent use of these profiles that will enable 3rd party applications to search the data.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Representing and Searching Provider Directory Data"
+    },
+    {
+      "requirement_text": "each provider's service [MUST] be supported by appropriate set of HealthcareService instances",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://davinci-plan-net-ri.logicahealth.org/fhir/PractitionerRole?_include=PractitionerRole:date=ge2021-10-25 (HealthcareService section)"
+    },
+    {
+      "requirement_text": "HealthcareServices are typically provided by an organization",
+      "conformance": "SHOULD",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://davinci-plan-net-ri.logicahealth.org/fhir/PractitionerRole?_include=PractitionerRole:date=ge2021-10-25 (HealthcareService section)"
+    },
+    {
+      "requirement_text": "HealthcareServices [MAY] be linked to a set of locations where service is provided",
+      "conformance": "MAY",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://davinci-plan-net-ri.logicahealth.org/fhir/PractitionerRole?_include=PractitionerRole:date=ge2021-10-25 (HealthcareService section)"
+    },
+    {
+      "requirement_text": "HealthcareServices [MAY] be identified as virtual services through an indicated set of virtual modalities",
+      "conformance": "MAY",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://davinci-plan-net-ri.logicahealth.org/fhir/PractitionerRole?_include=PractitionerRole:date=ge2021-10-25 (HealthcareService section)"
+    },
+    {
+      "requirement_text": "All organizations that provide service should define an appropriate set of HealthcareServices to facilitate search.",
+      "conformance": "SHOULD",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "http://davinci-plan-net-ri.logicahealth.org/fhir/PractitionerRole?_include=PractitionerRole:date=ge2021-10-25 (HealthcareService section)"
+    },
+    {
+      "requirement_text": "A healthcare provider insurance network is an aggregation of organizations and individuals that deliver a set of services across a geography through health insurance products/plans.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetNetwork Description"
+    },
+    {
+      "requirement_text": "A network is typically owned by a payer.",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetNetwork Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, individuals [...] are represented as participants in a [...] Network through the practitionerRole [...] resource.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetNetwork Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, organizations are represented as participants in a [...] Network through the [...] Plan-Net-organizationAffiliation resources.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetNetwork Description"
+    },
+    {
+      "requirement_text": "An organization is a formal or informal grouping of people or organizations with a common purpose, such as a company, institution, corporation, community group, or healthcare practice.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetOrganization Description"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource describes relationships between two or more organizations, including the services one organization provides another, the location(s) where they provide services, the availability of those services, electronic endpoints, and other relevant information.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetOrganizationAffiliation Description"
+    },
+    {
+      "requirement_text": "Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PlannetPractitioner Description"
+    },
+    {
+      "requirement_text": "Payers SHALL use the fixed filename `location-address-postalcode` for the Location Address Postal Code search parameter file.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "N/A",
+      "source": "Change History/PDEX Payer Network Implementation Guide/Changes Since v1.0.0 (paragraph 1)"
+    },
+    {
+      "requirement_text": "Payers SHALL use the fixed filename `location-address-state` for the Location Address State search parameter file.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "N/A",
+      "source": "Change History/PDEX Payer Network Implementation Guide/Changes Since v1.0.0 (paragraph 1)"
+    },
+    {
+      "requirement_text": "Payers SHALL update taxonomy codes according to Jira tickets FHIR-33206, FHIR-31494 to FHIR-31499.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "N/A",
+      "source": "Change History/PDEX Payer Network Implementation Guide/Changes Since v1.0.0 (paragraph 2)"
+    },
+    {
+      "requirement_text": "Systems implementing this capability statement should meet the CMS Final Rule requirement for provider directory access.",
+      "conformance": "SHOULD",
+      "actor": "System implementing the Plan-Net Server CapabilityStatement",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Introductory Paragraph"
+    },
+    {
+      "requirement_text": "Plan-Net Clients can use the required capabilities to access necessary data based on their local use cases and other contextual requirements.",
+      "conformance": "MAY",
+      "actor": "Plan-Net Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Introductory Paragraph"
+    },
+    {
+      "requirement_text": "Plan-Net Server [...] is responsible for providing responses to the queries submitted by the Plan-Net Requestors.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Introductory Paragraph"
+    },
+    {
+      "requirement_text": "The complete list of FHIR profiles, RESTful operations, and search parameters supported by Plan-Net Servers are defined [in the Plan-Net CapabilityStatement].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Introductory Paragraph"
+    },
+    {
+      "requirement_text": "[A Plan-Net Server] can be searched [using the following search parameters].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Behavior: Search Parameters Section"
+    },
+    {
+      "requirement_text": "[A Plan-Net Server SHALL support the following search parameter:] Plannet_sp_endpoint_organization",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Behavior: Search Parameters Section - Plannet_sp_endpoint_organization (SearchParameter-endpoint-organization.html \"SearchParameter/endpoint-organization\")"
+    },
+    {
+      "requirement_text": "[A Plan-Net Server SHALL support the following search parameter:] Plannet_sp_healthcareservice_coverage_area",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Behavior: Search Parameters Section - Plannet_sp_healthcareservice_coverage_area (SearchParameter-healthcareservice-coverage-area.html \"SearchParameter/healthcareservice-coverage-area\")"
+    },
+    {
+      "requirement_text": "[A Plan-Net Server SHALL support the following search parameter:] Plannet_sp_healthcareservice_organization",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Behavior: Search Parameters Section - Plannet_sp_healthcareservice_organization (SearchParameter-healthcareservice-organization.html \"SearchParameter/healthcareservice-organization\")"
+    },
+    {
+      "requirement_text": "[A Plan-Net Server SHALL support the following search parameter:] Plannet_sp_healthcareservice_endpoint",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement (CapabilityStatement-plan-net.html \"CapabilityStatement/plan-net\") - Behavior: Search Parameters Section - Plannet_sp_healthcareservice_endpoint (SearchParameter-healthcareservice-endpoint.html \"SearchParameter/healthcareservice-endpoint\")"
+    },
+    {
+      "requirement_text": "A healthcare provider insurance network is an aggregation of organizations and individuals that deliver a set of services across a geography through health insurance products/plans.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "A network is typically owned by a payer.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, individuals [...] are represented as participants in a Plan-Net Network through the practitionerRole [...]",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, [...] organizations are represented as participants in a Plan-Net Network through [...] the Plan-Net-organizationAffiliation resources.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "An organization is a formal or informal grouping of people or organizations with a common purpose, such as a company, institution, corporation, community group, or healthcare practice.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Organization.html - Description"
+    },
+    {
+      "requirement_text": "When the contact is a department name, rather than a human (e.g., patient help line), include a blank family and given name, and provide the department name in contact.name.text",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Organization.html - Guidance"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource describes relationships between two or more organizations",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-OrganizationAffiliation.html - Description"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource describes [...] the services one organization provides another, the location(s) where they provide services, the availability of those services, electronic endpoints, and other relevant information.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-OrganizationAffiliation.html - Description"
+    },
+    {
+      "requirement_text": "Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Practitioner.html - Description"
+    },
+    {
+      "requirement_text": "The FHIR endpoint [...] SHALL [...] be conformant with the [HL7 FHIR standard](http://hl7.org/fhir)",
+      "conformance": "SHALL",
+      "actor": "Providers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide/Introduction (Paragraph 1)"
+    },
+    {
+      "requirement_text": "The FHIR endpoint [...] SHALL [...] support the RESTful API",
+      "conformance": "SHALL",
+      "actor": "Providers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide/Introduction (Paragraph 1)"
+    },
+    {
+      "requirement_text": "Payers [...] SHALL [...] register a FHIR endpoint on the internet",
+      "conformance": "SHALL",
+      "actor": "Payers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide/Introduction (Paragraph 1)"
+    },
+    {
+      "requirement_text": "The FHIR endpoint [...] SHALL [...] be conformant with the [HL7 FHIR standard](http://hl7.org/fhir)",
+      "conformance": "SHALL",
+      "actor": "Payers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide/Introduction (Paragraph 1)"
+    },
+    {
+      "requirement_text": "The FHIR endpoint [...] SHALL [...] support the RESTful API",
+      "conformance": "SHALL",
+      "actor": "Payers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide/Introduction (Paragraph 1)"
+    },
+    {
+      "requirement_text": "Eliminate extensions that are not necessary for this use case",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 3"
+    },
+    {
+      "requirement_text": "Introduce additional constraints [...] where appropriate.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 4"
+    },
+    {
+      "requirement_text": "Introduce [...] search criteria [...] where appropriate.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 4"
+    },
+    {
+      "requirement_text": "Introduce [...] cardinality [...] where appropriate.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 4"
+    },
+    {
+      "requirement_text": "Introduce [...] value-set bindings [...] where appropriate.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 4"
+    },
+    {
+      "requirement_text": "Introduce [...] MustSupport [...] where appropriate.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Item 4"
+    },
+    {
+      "requirement_text": "This is a query only API (GET) and does not support PUT or POST",
+      "conformance": "SHALL NOT",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Content, Paragraph 2"
+    },
+    {
+      "requirement_text": "The NPI [...] identifier type [...] [SHALL be] Must-Support",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "condition": "Resource is Organization and is for a provider organization",
+      "sub-requirements": "None",
+      "source": "Relation to US Core and other IGs Section, Paragraph 1"
+    },
+    {
+      "requirement_text": "The CLIA [...] identifier type [...] [SHALL be] Must-Support",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "condition": "Resource is Organization and is for a provider organization",
+      "sub-requirements": "None",
+      "source": "Relation to US Core and other IGs Section, Paragraph 1"
+    },
+    {
+      "requirement_text": "Plan-net will need to track changes to VhDir to fulfill its goal of minimizing rework.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Disclaimers and Assumptions Section, Item 1"
+    },
+    {
+      "requirement_text": "The client [SHALL] discover the FHIR endpoint of interest [using mechanisms outside the scope of this IG].",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "There is an overarching system architecture issue that is critical to resolve -- how does the client discover the FHIR endpoint of interest. For the purposes of this IG, we consider that problem out of scope."
+    },
+    {
+      "requirement_text": "Implement the RESTful behavior according to the FHIR specification.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 2"
+    },
+    {
+      "requirement_text": "Return a (Status 400) response for invalid parameter[s].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "Return a (Status 401/4xx) response for unauthorized request[s].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "Return a (Status 403) response for insufficient scope.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "Return a (Status 404) response for unknown resource[s].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "Return a (Status 410) response for deleted resource[s].",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "Support JSON source formats for all Plan-Net interactions.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 4"
+    },
+    {
+      "requirement_text": "Identify the Plan-Net profiles supported as part of the FHIR `meta.profile` attribute for each instance.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 5"
+    },
+    {
+      "requirement_text": "Systems implementing this capability statement should meet the CMS FInal Rule requirement for provider directory access.",
+      "conformance": "SHOULD",
+      "actor": "Systems implementing capability statement (Plan-Net Server)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "General description paragraph"
+    },
+    {
+      "requirement_text": "Plan-Net Clients can use the required capabilities to access necessary data based on their local use cases and other contextual requirements.",
+      "conformance": "MAY",
+      "actor": "Plan-Net Clients",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "General description paragraph"
+    },
+    {
+      "requirement_text": "A server SHOULD be capable of returning a Organization resource using: `GET [base]/Organization/[id]/_history/vid`",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _includes: Organization:partof - `GET [base]/Organization?[parameter=value]&_include=Organization:partof`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _includes: Organization:endpoint - `GET [base]/Organization?[parameter=value]&_include=Organization:endpoint`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _includes: Organization:coverage-area - `GET [base]/Organization?[parameter=value]&_include=Organization:coverage-area`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _revincludes: Endpoint:organization - `GET [base]/Organization?[parameter=value]&_revinclude=Endpoint:organization`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _revincludes: HealthcareService:organization - `GET [base]/Organization?[parameter=value]&_revinclude=HealthcareService:organization`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _revincludes: InsurancePlan:administered-by - `GET [base]/Organization?[parameter=value]&_revinclude=InsurancePlan:administered-by`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "SHALL support `search-type`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "SHALL support `read`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "SHOULD support `vread`",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "SHALL support `GET [base]/Location?address-postalcode=[address-postalcode]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter-location-address-postalcode.html"
+    },
+    {
+      "requirement_text": "SHALL support `GET [base]/Location?address=[address]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter-location-address.html"
+    },
+    {
+      "requirement_text": "SHALL support `GET [base]/Location?type=[system] [code]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "SearchParameter-location-type.html"
+    },
+    {
+      "requirement_text": "SHALL support `GET [base]/Location?_id=[id]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "http://hl7.org/fhir/R4/search.html, SearchParameter:_id"
+    },
+    {
+      "requirement_text": "SHALL support `GET [base]/Location?_lastUpdated=[_lastUpdated]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "http://hl7.org/fhir/R4/search.html, SearchParameter:_lastUpdated"
+    },
+    {
+      "requirement_text": "A Server **SHOULD** be capable of returning a OrganizationAffiliation resource using:",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource"
+    },
+    {
+      "requirement_text": "Search Parameter [primary-organization](SearchParameter-organizationaffiliation-primary-organization.html) **SHALL** be supported. Example: `GET [base]/OrganizationAffiliation?primary-organization=[primary-organization]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "Search Parameter [participating-organization](SearchParameter-organizationaffiliation-participating-organization.html) **SHALL** be supported. Example: `GET [base]/OrganizationAffiliation?participating-organization=[participating-organization]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "Search Parameter [location](SearchParameter-organizationaffiliation-location.html) **SHALL** be supported. Example: `GET [base]/OrganizationAffiliation?location=[location]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "Search Parameter [service](SearchParameter-organizationaffiliation-service.html) **SHALL** be supported. Example: `GET [base]/OrganizationAffiliation?service=[service]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR Implementation Guide - OrganizationAffiliation Resource - Search Parameter Summary"
+    }
+  ],
+  "output_file": "requirements_gemini_extracted.csv"
+}
