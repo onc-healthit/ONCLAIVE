@@ -1,0 +1,174 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "\"A HealthcareService resource SHALL have a `category` element.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR HealthcareService Resource Definition"
+    },
+    {
+      "requirement_text": "\"A HealthcareService resource SHALL have a `type` element.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR HealthcareService Resource Definition"
+    },
+    {
+      "requirement_text": "\"A HealthcareService resource SHALL have a `name` element.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR HealthcareService Resource Definition"
+    },
+    {
+      "requirement_text": "\"A HealthcareService resource SHALL have a `telecom` element.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR HealthcareService Resource Definition"
+    },
+    {
+      "requirement_text": "\"A HealthcareService resource SHALL have a `location` element.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR HealthcareService Resource Definition"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.status`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.type`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.name`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.ownedBy`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.administeredBy`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"An InsurancePlan resource instance SHALL have a value in `InsurancePlan.coverageArea`\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetInsurancePlan profile"
+    },
+    {
+      "requirement_text": "\"A Location resource instance SHALL have a value in `Location.status`\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetLocation profile"
+    },
+    {
+      "requirement_text": "\"A Location resource instance SHALL have a value in `Location.name`\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetLocation profile"
+    },
+    {
+      "requirement_text": "\"A Location resource instance SHALL have a value in `Location.telecom`\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetLocation profile"
+    },
+    {
+      "requirement_text": "\"A Location resource instance SHALL have a value in `Location.address`\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetLocation profile"
+    },
+    {
+      "requirement_text": "\"An Organization resource instance representing a network SHALL have a value in `Organization.identifier`\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator (for networks)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetNetwork profile"
+    },
+    {
+      "requirement_text": "\"An Organization resource instance representing a network SHALL have a value in `Organization.active`\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator (for networks)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetNetwork profile"
+    },
+    {
+      "requirement_text": "\"An Organization resource instance representing a network SHALL have a value in `Organization.type` with a code from the `http://hl7.org/fhir/organization-type` value set\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator (for networks)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetNetwork profile"
+    },
+    {
+      "requirement_text": "\"An Organization resource instance representing a network SHALL have a value in `Organization.name`\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator (for networks)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetNetwork profile"
+    },
+    {
+      "requirement_text": "\"An Organization resource instance representing a network SHALL have a value in `Organization.telecom`\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator (for networks)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Implicit requirement based on PlannetNetwork profile"
+    }
+  ],
+  "processed_files": [
+    "implementation.md",
+    "examples.md",
+    "profiles.md",
+    "ChangeHistory.md",
+    "artifacts.md",
+    "index.md",
+    "CapabilityStatement_plan_net.md"
+  ],
+  "output_file": "/Users/ceadams/Documents/onclaive/onclaive/reqs_extraction/processed_output/test_requirements_claude_markdown1.csv"
+}

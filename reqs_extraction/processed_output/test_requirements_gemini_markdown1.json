@@ -1,0 +1,835 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "Clients [...] that cache query results can track additions or modifications to directory content through queries that filter content using the `_lastUpdated` search parameter.",
+      "conformance": "MAY",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Client Detection of Updates Directory Content"
+    },
+    {
+      "requirement_text": "Clients should periodically check that data cached from past queries has not been deleted by querying for the same elements by `_id`.",
+      "conformance": "SHOULD",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Client Detection of Updates Directory Content"
+    },
+    {
+      "requirement_text": "It is important for payers to use the Plan-Net profiles consistently in order to achieve true interoperability of directory information among payers.",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Representing and Searching Provider Directory Data"
+    },
+    {
+      "requirement_text": "The intent of this section is to provide examples of the canonical use of the profiles provided in this IG that will guide implementers towards the consistent use of these profiles that will enable 3rd party applications to search the data.",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Representing and Searching Provider Directory Data"
+    },
+    {
+      "requirement_text": "Each plan is associated with one or more Networks.",
+      "conformance": "SHALL",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Insurance Plan and Network section"
+    },
+    {
+      "requirement_text": "Practitioners and Organizations indicate participation in a Network with a link to the Network using a PractitionerRole or OrganizationAffiliation instance, respectively.",
+      "conformance": "SHALL",
+      "actor": "Practitioners, Organizations",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Insurance Plan and Network section"
+    },
+    {
+      "requirement_text": "PractitionerRole and OrganizationAffiliation instances are what tie Practitioners and Organizations to HealthcareServices, Organizations, Networks and Locations.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Insurance Plan and Network section"
+    },
+    {
+      "requirement_text": "\"Servers SHALL support the following profile: [PlannetEndpoint](StructureDefinition-plannet-Endpoint.html)\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Examples/Examples Table, referencing \"AcmeOfCTPortalEndpoint\" example and its associated profile."
+    },
+    {
+      "requirement_text": "\"Servers SHALL support the following profile: [PlannetHealthcareService](StructureDefinition-plannet-HealthcareService.html)\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Examples/Examples Table, referencing \"BurrClinicServices\" example and its associated profile."
+    },
+    {
+      "requirement_text": "The resource may be used to encompass a variety of services covering the entire healthcare spectrum, including promotion, prevention, diagnostics, hospital and ambulatory care, home care, long-term care, and other health-related and community services",
+      "conformance": "MAY",
+      "actor": "Healthcare Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetHealthcareService](StructureDefinition-plannet-HealthcareService.html) Overview"
+    },
+    {
+      "requirement_text": "An InsurancePlan is a discrete package of health insurance coverage benefits that are offered under a particular network type",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetInsurancePlan](StructureDefinition-plannet-InsurancePlan.html) Overview"
+    },
+    {
+      "requirement_text": "A given payer\u2019s products typically differ by network type and/or covered benefits",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetInsurancePlan](StructureDefinition-plannet-InsurancePlan.html) Overview"
+    },
+    {
+      "requirement_text": "A plan pairs a product\u2019s covered benefits with the particular cost sharing structure offered to a consumer",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetInsurancePlan](StructureDefinition-plannet-InsurancePlan.html) Overview"
+    },
+    {
+      "requirement_text": "A given product may comprise multiple plans (i.e. each plan offers different cost sharing requirements for the same set of covered benefits)",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetInsurancePlan](StructureDefinition-plannet-InsurancePlan.html) Overview"
+    },
+    {
+      "requirement_text": "InsurancePlan describes a health insurance offering comprised of a list of covered benefits (i.e. the product), costs associated with those benefits (i.e. the plan), and additional information about the offering, such as who it is owned and administered by, a coverage area, contact information, etc",
+      "conformance": "SHOULD",
+      "actor": "Payer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetInsurancePlan](StructureDefinition-plannet-InsurancePlan.html) Overview"
+    },
+    {
+      "requirement_text": "A Location is the physical place where healthcare services are provided, practitioners are employed, organizations are based, etc",
+      "conformance": "SHOULD",
+      "actor": "Healthcare Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetLocation](StructureDefinition-plannet-Location.html) Overview"
+    },
+    {
+      "requirement_text": "Locations can range in scope from a room in a building to a geographic region/area",
+      "conformance": "SHOULD",
+      "actor": "Healthcare Provider",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[PlannetLocation](StructureDefinition-plannet-Location.html) Overview"
+    },
+    {
+      "requirement_text": "Payers SHALL resolve [Jira ticket] FHIR-31499",
+      "conformance": "SHALL",
+      "actor": "Payers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PDEX Payer Network Implementation Guide, Changes Since v1.0.0, Updated Taxonomy Codes"
+    },
+    {
+      "requirement_text": "Change Organization.type binding from OrganizationType to NetworkType [...]",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-28919"
+    },
+    {
+      "requirement_text": "Add 'catastrophic' options to InsurancePlan.type [...]",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-33205"
+    },
+    {
+      "requirement_text": "Provide the ability to manage Provider Directory List for incoming providers [...]",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-33206"
+    },
+    {
+      "requirement_text": "Provide the ability to manage Provider Directory List for outgoing providers [...]",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-33206"
+    },
+    {
+      "requirement_text": "Update Resource Relationships Diagram [...]",
+      "conformance": "SHALL",
+      "actor": "Not Specified (likely documentation author)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-34289"
+    },
+    {
+      "requirement_text": "Fix spelling [...]",
+      "conformance": "SHALL",
+      "actor": "Not Specified (likely documentation author)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Jira ticket FHIR-33140"
+    },
+    {
+      "requirement_text": "Transition IG to Sushi 1.0.0 directory structure [...]",
+      "conformance": "SHALL",
+      "actor": "Not Specified (likely build process or documentation author)",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Line \"Transitioned IG to ...\""
+    },
+    {
+      "requirement_text": "A healthcare provider insurance network is an aggregation of organizations and individuals that deliver a set of services across a geography through health insurance products/plans.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "A network is typically owned by a payer.",
+      "conformance": "SHOULD",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, individuals [...] are represented as participants in a PLan-Net Network through the practitionerRole [...].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "In the PlanNet IG, [...] organizations are represented as participants in a PLan-Net Network through [...] Plan-Net-organizationAffiliation resources.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Network.html - Description"
+    },
+    {
+      "requirement_text": "An organization is a formal or informal grouping of people or organizations with a common purpose, such as a company, institution, corporation, community group, or healthcare practice.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Organization.html - Description"
+    },
+    {
+      "requirement_text": "When the contact is a department name, rather than a human (e.g., patient help line), include a blank family and given name, and provide the department name in contact.name.text",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Organization.html - Guidance"
+    },
+    {
+      "requirement_text": "The OrganizationAffiliation resource describes relationships between two or more organizations, including the services one organization provides another, the location(s) where they provide services, the availability of those services, electronic endpoints, and other relevant information.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-OrganizationAffiliation.html - Description"
+    },
+    {
+      "requirement_text": "Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-Practitioner.html - Description"
+    },
+    {
+      "requirement_text": "When the provider is a practitioner,  there may be a relationship to an organization.",
+      "conformance": "MAY",
+      "actor": "System",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Narrative Description"
+    },
+    {
+      "requirement_text": "A provider renders services to patients at a location.",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Narrative Description"
+    },
+    {
+      "requirement_text": "When the provider is a practitioner, there may also  be a relationship to an organization.",
+      "conformance": "MAY",
+      "actor": "System",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Narrative Description"
+    },
+    {
+      "requirement_text": "Practitioner participation in healthcare provider insurance networks may be direct or through their role at an organization.",
+      "conformance": "MAY",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Narrative Description"
+    },
+    {
+      "requirement_text": "[Systems SHALL support the] Accessibility [extension to describe accessibility options offered by a practitioner or at a location].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Accessibility"
+    },
+    {
+      "requirement_text": "[Systems SHALL support the] Communication Proficiency [extension to express a practitioner\u2019s spoken proficiency with the language indicated in practitioner.communication].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Communication Proficiency"
+    },
+    {
+      "requirement_text": "[Systems SHALL support the] Contactpoint Availabletime [extension representing the days and times a contact point is available].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Contactpoint Availabletime"
+    },
+    {
+      "requirement_text": "[Systems SHALL support the] Delivery Method [extension describing the service delivery method].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Delivery Method"
+    },
+    {
+      "requirement_text": "If service delivery is virtual, one or more delivery modalities should be specified [using the Delivery Method extension].",
+      "conformance": "SHOULD",
+      "actor": "System",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Delivery Method"
+    },
+    {
+      "requirement_text": "[Systems SHALL support the] Endpoint Usecase [extension which is an enumeration of the specific use cases (service descriptions) supported by the endpoint].",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "StructureDefinition-plannet-PractitionerRole.html - Structures: Extension Definitions - Endpoint Usecase"
+    },
+    {
+      "requirement_text": "A reference to a Location resource [...] defining the coverage area of a health insurance provider network",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location Reference (StructureDefinition-location-reference.html)"
+    },
+    {
+      "requirement_text": "A reference to the healthcare provider insurance networks [...] the practitioner participates in through their role",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Network Reference (StructureDefinition-network-reference.html)"
+    },
+    {
+      "requirement_text": "New Patients indicates whether new patients are being accepted in general, or from a specific network.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "New Patients (StructureDefinition-newpatients.html)"
+    },
+    {
+      "requirement_text": "This extension is included in the PractitionerRole, HealthcareService, and Location profiles.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "New Patients (StructureDefinition-newpatients.html)"
+    },
+    {
+      "requirement_text": "This provides needed flexibility for specifying whether a provider accepts new patients by location and network.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "New Patients (StructureDefinition-newpatients.html)"
+    },
+    {
+      "requirement_text": "An extension to provide a human-readable description of an organization.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Org Description (StructureDefinition-org-description.html)"
+    },
+    {
+      "requirement_text": "An extension to add status and whereValid elements to a practitioner\u2019s qualifications.",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner Qualification (StructureDefinition-practitioner-qualification.html)"
+    },
+    {
+      "requirement_text": "An extension to add qualifications for an organization (e.g. accreditation) or practitionerRole (e.g. registered to prescribe controlled substances).",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Qualification (StructureDefinition-qualification.html)"
+    },
+    {
+      "requirement_text": "A reference to an alternative point of contact (plannet-PractitionerRole, plannet-Organization, plannet-OrganizationAffiliation, or plannet-Location) for this organization",
+      "conformance": "SHALL",
+      "actor": "Systems",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Via Intermediary (StructureDefinition-via-intermediary.html)"
+    },
+    {
+      "requirement_text": "\"Servers SHALL support the Patient resource with the [...] search parameter: given\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[Specific section in the FHIR IG document]"
+    },
+    {
+      "requirement_text": "\"Servers SHALL support the Patient resource with the [...] search parameter: birthdate\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "[Specific section in the FHIR IG document]"
+    },
+    {
+      "requirement_text": "*Version*: 1.1.0",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Home section, \"Version\" field"
+    },
+    {
+      "requirement_text": "*Computable Name*: DaVinciPDEXPlanNet",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Home section, \"Computable Name\" field"
+    },
+    {
+      "requirement_text": "Publication of this data [...] will enable third parties to develop applications through which consumers and providers can query the participants in a payer\u2019s network that may provide services that address their health care needs.",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 1, Sentence 2"
+    },
+    {
+      "requirement_text": "The focus of this implementation guide is on Payer Provider Directories.",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 1, Sentence 4"
+    },
+    {
+      "requirement_text": "The PDEX Payer Network (or Plan-Net) Implementation Guide is based conceptually on the [Validated Healthcare Directory Implementation Guide (VHDir IG)](http://hl7.org/fhir/uv/vhdir/2018Sep/index.html), an international standard.",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 2, Sentence 1"
+    },
+    {
+      "requirement_text": "The VHDir IG is based on [FHIR Version 4.0](http://hl7.org/fhir/R4/index.html).",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 2, Sentence 2"
+    },
+    {
+      "requirement_text": "The use of VhDir as the conceptual base for the profiles and extensions in the PDEX Payer Network Implementation Guide is intended to protect implementers of the Plan-Net IG from rework/remapping when the VHDir concept reaches implementation, and becomes a source of data for the PDEX Payer Network.",
+      "conformance": "SHOULD",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 3, Sentence 1"
+    },
+    {
+      "requirement_text": "remove the validation and restriction resources",
+      "conformance": "SHALL",
+      "actor": "FHIR Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Paragraph 3, Item 1"
+    },
+    {
+      "requirement_text": "\"Version: 1.1.0\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement - Version"
+    },
+    {
+      "requirement_text": "\"Computable Name: DavinciPdexPlanNetCapabilityStatement\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement - Computable Name"
+    },
+    {
+      "requirement_text": "The Plan-Net Server **SHALL** Implement the RESTful behavior according to the FHIR specification.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities Section, item 2"
+    },
+    {
+      "requirement_text": "The Plan-Net Server **SHALL** Return the following response classes:",
+      "*_(status_400)": "invalid parameter",
+      "*_(status_401/4xx)": "unauthorized request",
+      "*_(status_403)": "insufficient scope",
+      "*_(status_404)": "unknown resource",
+      "*_(status_410)": "deleted resource.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities Section, item 3"
+    },
+    {
+      "requirement_text": "The Plan-Net Server **SHALL** Support json source formats for all Plan-Net interactions.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities Section, item 4"
+    },
+    {
+      "requirement_text": "The Plan-Net Server **SHALL** Identify the Plan-Net profiles supported as part of the FHIR `meta.profile` attribute for each instance.",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities Section, item 5"
+    },
+    {
+      "requirement_text": "Systems implementing this capability statement should meet the CMS FInal Rule requirement for provider directory access.",
+      "conformance": "SHOULD",
+      "actor": "Systems implementing the capability statement",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement Section, Paragraph 1"
+    },
+    {
+      "requirement_text": "Plan-Net Clients can use the required capabilities to access necessary data based on their local use cases and other contextual requirements.",
+      "conformance": "MAY",
+      "actor": "Plan-Net Clients",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Plan-Net CapabilityStatement Section, Paragraph 1"
+    },
+    {
+      "requirement_text": "Servers SHALL support the [Plan-Net Endpoint] `read` interaction.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Endpoint Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "Servers SHOULD support the [Plan-Net Endpoint] `vread` interaction.",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Endpoint Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "The reference policy for [Plan-Net Endpoint] is `resolves`.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "",
+      "source": "Endpoint Reference Policy"
+    },
+    {
+      "requirement_text": "A Server **SHOULD** be capable of returning a InsurancePlan resource using:",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "GET [base]/InsurancePlan/[id]/_history/vid"
+    },
+    {
+      "requirement_text": "A Server **SHALL** be capable of supporting the following _includes:",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "_includes Section"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `administered-by` search parameter with type reference.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - administered-by"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `owned-by` search parameter with type reference.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - owned-by"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `coverage-area` search parameter with type reference.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - coverage-area"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `name` search parameter with type string.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - name"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `plan-type` search parameter with type token.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - plan-type"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `identifier` search parameter with type token.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - identifier"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `_id` search parameter with type token.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - _id"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `_lastUpdated` search parameter with type date.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - _lastUpdated"
+    },
+    {
+      "requirement_text": "A Server **SHALL** support the `type` search parameter with type token.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary - type"
+    },
+    {
+      "requirement_text": "Location Conformance Expectation: **SHALL**",
+      "conformance": "SHALL",
+      "actor": "Not explicitly stated, assumes Server based on context",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location Section"
+    },
+    {
+      "requirement_text": "Supported Profiles: [Plan-Net Location](StructureDefinition-plannet-Location.html)",
+      "conformance": "SHALL (implied by \"Supported Profiles\" and the SHALL conformance expectation)",
+      "actor": "Not explicitly stated, assumes Server based on context",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location Section - Supported Profiles"
+    },
+    {
+      "requirement_text": "Reference Policy: `resolves`",
+      "conformance": "SHALL (implied by being listed under the SHALL conformance expectation)",
+      "actor": "Not explicitly stated, assumes Server based on context",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location Section - Reference Policy"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/OrganizationAffiliation?endpoint=[endpoint]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation Search Parameter Summary - endpoint"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/OrganizationAffiliation?role=[system] [code]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation Search Parameter Summary - role"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/OrganizationAffiliation?specialty=[system] [code]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation Search Parameter Summary - specialty"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/OrganizationAffiliation?_id=[id]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation Search Parameter Summary - _id"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/OrganizationAffiliation?_lastUpdated=[_lastUpdated]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation Search Parameter Summary - _lastUpdated"
+    },
+    {
+      "requirement_text": "The server SHALL support the [Plan-Net Practitioner](StructureDefinition-plannet-Practitioner.html) profile.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Supported Profiles"
+    },
+    {
+      "requirement_text": "The server SHALL support the `search-type` interaction for Practitioner resources.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "The server SHALL support the `read` interaction for Practitioner resources.",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "The server SHOULD support the `vread` interaction for Practitioner resources.",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of returning a Practitioner resource using: `GET [base]/Practitioner/[id]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHOULD be capable of returning a Practitioner resource using: `GET [base]/Practitioner/[id]/_history/vid`",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A Server SHALL be capable of supporting the following _revincludes: PractitionerRole:practitioner - `GET [base]/Practitioner?[parameter=value]&_revinclude=PractitionerRole:practitioner`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/Practitioner?name=[name]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Search Parameter Summary - name"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/Practitioner?_id=[id]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Search Parameter Summary - _id"
+    },
+    {
+      "requirement_text": "A server SHALL be capable of returning a Practitioner resource using: `GET [base]/Practitioner?_lastUpdated=[_lastUpdated]`",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner - Search Parameter Summary - _lastUpdated"
+    }
+  ],
+  "processed_files": [
+    "implementation.md",
+    "examples.md",
+    "profiles.md",
+    "ChangeHistory.md",
+    "artifacts.md",
+    "index.md",
+    "CapabilityStatement_plan_net.md"
+  ],
+  "output_file": "/Users/ceadams/Documents/onclaive/onclaive/reqs_extraction/processed_output/test_requirements_gemini_markdown1.csv"
+}
