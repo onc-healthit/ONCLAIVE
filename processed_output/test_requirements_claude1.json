@@ -1,0 +1,1858 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "\"Organization.active SHALL be fixed to 'true'\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.active element definition"
+    },
+    {
+      "requirement_text": "\"Organization.type SHALL be present [...] and SHALL have a cardinality of 1..1\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type element definition"
+    },
+    {
+      "requirement_text": "\"Organization.type SHALL be bound to the NetworkTypeVS value set with a required binding strength\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type element definition"
+    },
+    {
+      "requirement_text": "\"Organization.telecom SHALL NOT be present\"",
+      "conformance": "SHALL NOT",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom element definition"
+    },
+    {
+      "requirement_text": "\"Organization.partOf SHALL be present [...] and SHALL have a cardinality of 1..1\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.partOf element definition"
+    },
+    {
+      "requirement_text": "\"Organization.partOf SHALL reference a Plan-Net Organization resource\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.partOf element definition"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom.system SHALL be present if Organization.contact.telecom is present\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.system element definition"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom.value SHALL be present if Organization.contact.telecom is present\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.value element definition"
+    },
+    {
+      "requirement_text": "\"Organization.endpoint SHALL reference a Plan-Net Endpoint resource if present\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource Creator",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Organization.endpoint element definition"
+    },
+    {
+      "requirement_text": "\"Implement the RESTful behavior according to the FHIR specification.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 2"
+    },
+    {
+      "requirement_text": "\"Return the following response classes:",
+      "(status_400)": "invalid parameter",
+      "(status_401/4xx)": "unauthorized request",
+      "(status_403)": "insufficient scope",
+      "(status_404)": "unknown resource",
+      "(status_410)": "deleted resource.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 3"
+    },
+    {
+      "requirement_text": "\"Support json source formats for all Plan-Net interactions.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 4"
+    },
+    {
+      "requirement_text": "\"Identify the Plan-Net profiles supported as part of the FHIR `meta.profile` attribute for each instance.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 5"
+    },
+    {
+      "requirement_text": "\"Support the searchParameters on each profile individually and in combination.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 6"
+    },
+    {
+      "requirement_text": "\"Support forward and reverse chaining on all search parameters that specify the 'chain' property\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, item 6 (sub-item 1)"
+    },
+    {
+      "requirement_text": "\"Support xml source formats for all Plan-Net interactions.\"",
+      "conformance": "SHOULD",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "FHIR RESTful Capabilities section, SHOULD items, item 1"
+    },
+    {
+      "requirement_text": "\"See the [General Security Considerations](implementation.html#general-security-considerations) section for requirements and recommendations.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Security section, item 1"
+    },
+    {
+      "requirement_text": "\"A server SHALL reject any unauthorized requests by returning an `HTTP 401` unauthorized response code.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Security section, item 2"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a [Resource] resource using:",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Fetch and Search Criteria section for each resource type"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a [Resource] resource using:",
+      "conformance": "SHOULD",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Fetch and Search Criteria section for each resource type"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: [list of _includes for each resource]\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Fetch and Search Criteria section for each resource type"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _revincludes: [list of _revincludes for each resource]\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Fetch and Search Criteria section for each resource type"
+    },
+    {
+      "requirement_text": "\"A Server SHALL support the search parameters listed in the 'Search Parameter Summary' table for each resource type.\"",
+      "conformance": "SHALL",
+      "actor": "Plan-Net Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Search Parameter Summary table for each resource type"
+    },
+    {
+      "requirement_text": "\"The status element SHALL be present and have a fixed value of 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location.status element, min cardinality changed to 1 and fixed value set to \"active\""
+    },
+    {
+      "requirement_text": "\"The mode element SHALL NOT be present\"",
+      "conformance": "SHALL NOT",
+      "actor": "Location Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location.mode element, max cardinality set to 0"
+    },
+    {
+      "requirement_text": "\"If present, the managingOrganization element SHALL reference a Plan-Net Organization resource\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "True (only if managingOrganization is present)",
+      "sub-requirements": "None",
+      "source": "Location.managingOrganization element, targetProfile restricted to \"http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Organization\""
+    },
+    {
+      "requirement_text": "\"If present, the partOf element SHALL reference a Plan-Net Location resource\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "True (only if partOf is present)",
+      "sub-requirements": "None",
+      "source": "Location.partOf element, targetProfile restricted to \"http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location\""
+    },
+    {
+      "requirement_text": "\"If present, the endpoint element SHALL reference a Plan-Net Endpoint resource\"",
+      "conformance": "SHALL",
+      "actor": "Location Resource Creator",
+      "conditional": "True (only if endpoint is present)",
+      "sub-requirements": "None",
+      "source": "Location.endpoint element, targetProfile restricted to \"http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Endpoint\""
+    },
+    {
+      "requirement_text": "\"The Location resource SHALL have a status element with a value of 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, status element"
+    },
+    {
+      "requirement_text": "\"The Location resource SHALL have a name element\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, name element"
+    },
+    {
+      "requirement_text": "\"The Location resource SHALL have an address element with at least a state sub-element\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, address element"
+    },
+    {
+      "requirement_text": "\"The Location resource SHALL have an extension element with a url of 'http://hl7.org/fhir/StructureDefinition/location-boundary-geojson'\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, extension element"
+    },
+    {
+      "requirement_text": "\"The location-boundary-geojson extension SHALL have a valueAttachment element with a contentType of 'application/json'\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, extension.valueAttachment element"
+    },
+    {
+      "requirement_text": "\"The location-boundary-geojson extension SHALL have a valueAttachment element with a data element containing a base64-encoded GeoJSON representation of the location boundary\"",
+      "conformance": "SHALL",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, extension.valueAttachment.data element"
+    },
+    {
+      "requirement_text": "\"The Location resource SHOULD have a text element with a status of 'extensions' and a div element containing a human-readable representation of the location information\"",
+      "conformance": "SHOULD",
+      "actor": "Location resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Location resource, text element"
+    },
+    {
+      "requirement_text": "\"Endpoint.status [...] fixedCode: 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Endpoint Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Endpoint.status element definition"
+    },
+    {
+      "requirement_text": "\"Endpoint.connectionType [...] binding: { strength: 'extensible', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/EndpointConnectionTypeVS' }\"",
+      "conformance": "SHOULD",
+      "actor": "Endpoint Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Endpoint.connectionType element definition"
+    },
+    {
+      "requirement_text": "\"Endpoint.managingOrganization [...] type: [ { code: 'Reference', targetProfile: [ 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Organization' ] } ]\"",
+      "conformance": "SHALL",
+      "actor": "Endpoint Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Endpoint.managingOrganization element definition"
+    },
+    {
+      "requirement_text": "\"Endpoint.payloadType [...] max: '1', binding: { strength: 'extensible', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/EndpointPayloadTypeVS' }\"",
+      "conformance": "SHALL",
+      "actor": "Endpoint Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Endpoint.payloadType element definition"
+    },
+    {
+      "requirement_text": "\"Endpoint.address [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Endpoint Resource Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Endpoint.address element definition"
+    },
+    {
+      "requirement_text": "\"Extension SHALL have exactly one 'type' extension\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type element, cardinality 1..1"
+    },
+    {
+      "requirement_text": "\"The 'type' extension SHALL NOT have any extensions\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"The 'type' extension SHALL have a url with fixed value 'type'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.url element, fixedUri: \"type\""
+    },
+    {
+      "requirement_text": "\"The 'type' extension SHALL have a value of type CodeableConcept\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.value[x] element, type: CodeableConcept"
+    },
+    {
+      "requirement_text": "\"The 'type' extension value SHALL be bound to the DeliveryMethodVS value set\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.value[x] element, binding strength: required, valueSet: \"http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/DeliveryMethodVS\""
+    },
+    {
+      "requirement_text": "\"Extension MAY have zero or more 'virtualModalities' extensions\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities element, cardinality 0..*"
+    },
+    {
+      "requirement_text": "\"The 'virtualModalities' extension SHALL be supported\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities element, mustSupport: true"
+    },
+    {
+      "requirement_text": "\"The 'virtualModalities' extension SHALL NOT have any extensions\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"The 'virtualModalities' extension SHALL have a url with fixed value 'virtualModalities'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities.url element, fixedUri: \"virtualModalities\""
+    },
+    {
+      "requirement_text": "\"The 'virtualModalities' extension SHALL have a value of type CodeableConcept\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities.value[x] element, type: CodeableConcept"
+    },
+    {
+      "requirement_text": "\"The 'virtualModalities' extension value SHOULD be bound to the VirtualModalitiesVS value set\"",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:virtualModalities.value[x] element, binding strength: extensible, valueSet: \"http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/VirtualModalitiesVS\""
+    },
+    {
+      "requirement_text": "\"The Extension SHALL have a url with fixed value 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.url element, fixedUri: \"http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method\""
+    },
+    {
+      "requirement_text": "\"The Extension SHALL NOT have a value[x] element\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.value[x] element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"Extension SHALL have an extension element with sliceName 'type'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type element, min cardinality of 1"
+    },
+    {
+      "requirement_text": "\"Extension.extension:type SHALL NOT have any extension elements\"",
+      "conformance": "SHALL NOT",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"Extension.extension:type.url SHALL have a fixed URI value of 'type'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.url element, fixedUri attribute"
+    },
+    {
+      "requirement_text": "\"Extension.extension:type.value[x] SHALL be present\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.value[x] element, min cardinality of 1"
+    },
+    {
+      "requirement_text": "\"Extension.extension:type.value[x] SHALL be of type CodeableConcept\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.value[x] element, type attribute"
+    },
+    {
+      "requirement_text": "\"Extension.extension:type.value[x] SHOULD be bound to the 'Endpoint Usecases VS' value set with extensible binding strength\"",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:type.value[x] element, binding attribute"
+    },
+    {
+      "requirement_text": "\"Extension MAY have an extension element with sliceName 'standard'\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:standard element, min cardinality of 0 and max cardinality of 1"
+    },
+    {
+      "requirement_text": "\"Extension.extension:standard SHALL NOT have any extension elements\"",
+      "conformance": "SHALL NOT",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:standard.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"Extension.extension:standard.url SHALL have a fixed URI value of 'standard'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:standard.url element, fixedUri attribute"
+    },
+    {
+      "requirement_text": "\"Extension.extension:standard.value[x] SHALL be present when Extension.extension:standard is used\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Extension.extension:standard.value[x] element, min cardinality of 1"
+    },
+    {
+      "requirement_text": "\"Extension.extension:standard.value[x] SHALL be of type uri\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:standard.value[x] element, type attribute"
+    },
+    {
+      "requirement_text": "\"Extension.url SHALL have a fixed URI value of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/endpoint-usecase'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.url element, fixedUri attribute"
+    },
+    {
+      "requirement_text": "\"Extension SHALL NOT have a value[x] element\"",
+      "conformance": "SHALL NOT",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.value[x] element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"Practitioner.identifier.type [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.identifier.type element"
+    },
+    {
+      "requirement_text": "\"Practitioner.active [is] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.active element"
+    },
+    {
+      "requirement_text": "\"Practitioner.active [has a] patternBoolean: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.active element"
+    },
+    {
+      "requirement_text": "\"Practitioner.active [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.active element"
+    },
+    {
+      "requirement_text": "\"Practitioner.name.text [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.name.text element"
+    },
+    {
+      "requirement_text": "\"Practitioner.name.given [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.name.given element"
+    },
+    {
+      "requirement_text": "\"Practitioner.telecom [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.telecom element"
+    },
+    {
+      "requirement_text": "\"Practitioner.telecom.extension:contactpoint-availabletime [is] 0..*\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.telecom.extension:contactpoint-availabletime element"
+    },
+    {
+      "requirement_text": "\"Practitioner.telecom.extension:via-intermediary [is] 0..*\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.telecom.extension:via-intermediary element"
+    },
+    {
+      "requirement_text": "\"Practitioner.address [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.address element"
+    },
+    {
+      "requirement_text": "\"Practitioner.address.extension:geolocation [is] 0..1\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.address.extension:geolocation element"
+    },
+    {
+      "requirement_text": "\"Practitioner.address.extension:geolocation [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.address.extension:geolocation element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.extension:practitioner-qualification [is] 0..1\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.extension:practitioner-qualification element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.extension:practitioner-qualification [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.extension:practitioner-qualification element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.identifier [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.identifier element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.code [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.code element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.code [has a] binding.strength: extensible\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.code element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.period [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.period element"
+    },
+    {
+      "requirement_text": "\"Practitioner.qualification.issuer [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.qualification.issuer element"
+    },
+    {
+      "requirement_text": "\"Practitioner.communication [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.communication element"
+    },
+    {
+      "requirement_text": "\"Practitioner.communication.extension:communication-proficiency [is] 0..1\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.communication.extension:communication-proficiency element"
+    },
+    {
+      "requirement_text": "\"Practitioner.communication.extension:communication-proficiency [is] mustSupport\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Practitioner.communication.extension:communication-proficiency element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:daysOfWeek [...] min: 0, max: *\"",
+      "conformance": "MAY",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:daysOfWeek"
+    },
+    {
+      "requirement_text": "\"Extension.extension:daysOfWeek [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:daysOfWeek"
+    },
+    {
+      "requirement_text": "\"Extension.extension:daysOfWeek.valueCode [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/ValueSet/days-of-week' }\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:daysOfWeek.valueCode"
+    },
+    {
+      "requirement_text": "\"Extension.extension:allDay [...] min: 0, max: 1\"",
+      "conformance": "MAY",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:allDay"
+    },
+    {
+      "requirement_text": "\"Extension.extension:allDay [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:allDay"
+    },
+    {
+      "requirement_text": "\"Extension.extension:allDay.value[x] [...] type: [ { code: 'boolean' } ]\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:allDay.value[x]"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableStartTime [...] min: 0, max: 1\"",
+      "conformance": "MAY",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableStartTime"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableStartTime [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableStartTime"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableStartTime.value[x] [...] type: [ { code: 'time' } ]\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableStartTime.value[x]"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableEndTime [...] min: 0, max: 1\"",
+      "conformance": "MAY",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableEndTime"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableEndTime [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableEndTime"
+    },
+    {
+      "requirement_text": "\"Extension.extension:availableEndTime.value[x] [...] type: [ { code: 'time' } ]\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:availableEndTime.value[x]"
+    },
+    {
+      "requirement_text": "\"Extension.url [...] fixedUri: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'\"",
+      "conformance": "SHALL",
+      "actor": "System implementing the extension",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.url"
+    },
+    {
+      "requirement_text": "\"Extension.extension:identifier [...] min: 0, max: *\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:identifier element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:identifier [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:identifier element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:identifier.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:identifier.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:code [...] min: 1, max: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:code element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:code [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:code element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:code.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:code.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:code.value[x] [...] binding: { strength: 'extensible', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/SpecialtyAndDegreeLicenseCertificateVS' }\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:code.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:issuer [...] min: 0, max: 1\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:issuer element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:issuer [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:issuer element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:issuer.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:issuer.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:status [...] min: 1, max: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:status [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:status.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:status.valueCode [...] fixedCode: 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.valueCode element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:status.valueCode [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/QualificationStatusVS' }\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.valueCode element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:period [...] min: 0, max: 1\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:period element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:period [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:period element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:period.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:period.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:whereValid [...] min: 0, max: *\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:whereValid [...] mustSupport: true\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:whereValid.value[x] [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.value[x] element"
+    },
+    {
+      "requirement_text": "\"Extension.extension:whereValid.value[x] [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state' }\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.value[x] element"
+    },
+    {
+      "requirement_text": "\"The HealthcareServiceTypeVS ValueSet SHALL contain 102 concepts.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService resource creators/consumers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/HealthcareServiceTypeVS, text.div content"
+    },
+    {
+      "requirement_text": "\"The HealthcareServiceTypeVS ValueSet SHALL use version 4.0.1 of the http://terminology.hl7.org/CodeSystem/service-type code system.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService resource creators/consumers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/HealthcareServiceTypeVS, expansion.parameter"
+    },
+    {
+      "requirement_text": "\"The HealthcareServiceTypeVS ValueSet SHALL include the code '1' with display 'Adoption/Permanent Care Info/Support' from the http://terminology.hl7.org/CodeSystem/service-type code system.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService resource creators/consumers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/HealthcareServiceTypeVS, expansion.contains"
+    },
+    {
+      "requirement_text": "\"The HealthcareServiceTypeVS ValueSet SHALL include the code '3' with display 'Aged Care Information/Referral' from the http://terminology.hl7.org/CodeSystem/service-type code system.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService resource creators/consumers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/HealthcareServiceTypeVS, expansion.contains"
+    },
+    {
+      "requirement_text": "\"The HealthcareServiceTypeVS ValueSet SHALL include the code '8' with display 'Home Care/Housekeeping Assistance' from the http://terminology.hl7.org/CodeSystem/service-type code system.\"",
+      "conformance": "SHALL",
+      "actor": "HealthcareService resource creators/consumers",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet/HealthcareServiceTypeVS, expansion.contains"
+    },
+    {
+      "requirement_text": "\"The IndividualAndGroupSpecialtiesVS value set SHALL include 669 concepts from the NUCC Health Care Provider Taxonomy code system\"",
+      "conformance": "SHALL",
+      "actor": "Systems implementing this value set",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet resource text.div content"
+    },
+    {
+      "requirement_text": "\"Systems implementing the IndividualAndGroupSpecialtiesVS value set SHALL use version 20.2 of the NUCC Health Care Provider Taxonomy code system\"",
+      "conformance": "SHALL",
+      "actor": "Systems implementing this value set",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet resource expansion.parameter"
+    },
+    {
+      "requirement_text": "\"The IndividualAndGroupSpecialtiesVS value set SHALL have a status of 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Systems implementing this value set",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet resource status element"
+    },
+    {
+      "requirement_text": "\"The IndividualAndGroupSpecialtiesVS value set SHALL have a title of 'Individual and Group Specialties'\"",
+      "conformance": "SHALL",
+      "actor": "Systems implementing this value set",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "ValueSet resource title element"
+    },
+    {
+      "requirement_text": "\"Each InsurancePlan.plan should have a distinct plan.type.\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan constraint \"plan-type-is-distinct\""
+    },
+    {
+      "requirement_text": "\"InsurancePlan.meta.lastUpdated [...] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.meta.lastUpdated cardinality"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.status [...] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.status cardinality"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.status fixedCode: 'active'\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.status fixedCode"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.type [...] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.type cardinality"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.type binding: InsuranceProductTypeVS (extensible)\"",
+      "conformance": "SHOULD",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.type binding"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.ownedBy [...] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.ownedBy cardinality"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.ownedBy [...] Reference(Plan-Net Organization)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.ownedBy type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.administeredBy [...] 1..1\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.administeredBy cardinality"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.administeredBy [...] Reference(Plan-Net Organization)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.administeredBy type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.coverageArea [...] Reference(Plan-Net Location)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.coverageArea type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.endpoint [...] Reference(Plan-Net Endpoint)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.endpoint type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.network [...] Reference(Plan-Net Network)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.network type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.plan.type binding: InsurancePlanTypeVS (extensible)\"",
+      "conformance": "SHOULD",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.plan.type binding"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.plan.coverageArea [...] Reference(Plan-Net Location)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.plan.coverageArea type"
+    },
+    {
+      "requirement_text": "\"InsurancePlan.plan.network [...] Reference(Plan-Net Network)\"",
+      "conformance": "SHALL",
+      "actor": "InsurancePlan Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "InsurancePlan.plan.network type"
+    },
+    {
+      "requirement_text": "\"Organization.extension:qualification ... 0..*\"",
+      "conformance": "MAY",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.extension:qualification element"
+    },
+    {
+      "requirement_text": "\"Organization.extension:org-description ... 0..1\"",
+      "conformance": "MAY",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.extension:org-description element"
+    },
+    {
+      "requirement_text": "\"Organization.identifier.type ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.identifier.type element"
+    },
+    {
+      "requirement_text": "\"Organization.active ... patternBoolean: true\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.active element"
+    },
+    {
+      "requirement_text": "\"Organization.type ... 1..*\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type element"
+    },
+    {
+      "requirement_text": "\"Organization.type ... binding.strength: extensible\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.type element"
+    },
+    {
+      "requirement_text": "\"Organization.telecom.extension:contactpoint-availabletime ... 0..*\"",
+      "conformance": "MAY",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom.extension:contactpoint-availabletime element"
+    },
+    {
+      "requirement_text": "\"Organization.telecom.extension:via-intermediary ... 0..*\"",
+      "conformance": "MAY",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom.extension:via-intermediary element"
+    },
+    {
+      "requirement_text": "\"Organization.telecom.system ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom.system element"
+    },
+    {
+      "requirement_text": "\"Organization.telecom.value ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom.value element"
+    },
+    {
+      "requirement_text": "\"Organization.telecom.rank ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.telecom.rank element"
+    },
+    {
+      "requirement_text": "\"Organization.address ... 1..*\"",
+      "conformance": "SHALL",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.address element"
+    },
+    {
+      "requirement_text": "\"Organization.address.extension:geolocation ... 0..1\"",
+      "conformance": "MAY",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.address.extension:geolocation element"
+    },
+    {
+      "requirement_text": "\"Organization.address.type ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.address.type element"
+    },
+    {
+      "requirement_text": "\"Organization.address.text ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.address.text element"
+    },
+    {
+      "requirement_text": "\"Organization.partOf ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.partOf element"
+    },
+    {
+      "requirement_text": "\"Organization.contact ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.contact element"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom element"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom.system ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.system element"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom.value ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.value element"
+    },
+    {
+      "requirement_text": "\"Organization.contact.telecom.use ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.contact.telecom.use element"
+    },
+    {
+      "requirement_text": "\"Organization.endpoint ... mustSupport\"",
+      "conformance": "SHOULD",
+      "actor": "Organization Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Organization.endpoint element"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.meta.lastUpdated [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.meta.lastUpdated"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.active [...] min: 1, patternBoolean: true\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.active"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.telecom.system [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.telecom.system"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.telecom.value [...] min: 1\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.telecom.value"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.code [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/PractitionerRoleVS' }\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.code"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.specialty [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/IndividualAndGroupSpecialtiesVS' }\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.specialty"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.practitioner [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner'] }]\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.practitioner"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.organization [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Organization'] }]\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.organization"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.location [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location'] }]\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.location"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.healthcareService [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-HealthcareService'] }]\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.healthcareService"
+    },
+    {
+      "requirement_text": "\"PractitionerRole.endpoint [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Endpoint'] }]\"",
+      "conformance": "SHALL",
+      "actor": "PractitionerRole resource creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "PractitionerRole.endpoint"
+    },
+    {
+      "requirement_text": "\"Extension SHALL have exactly one 'status' extension\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status element, cardinality 1..1"
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL be supported\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status element, mustSupport flag"
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL NOT have any nested extensions\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL have a url of 'status'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.url element, fixedUri of \"status\""
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL have a value of type 'code'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.value[x] element, type constraint to \"code\""
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL have a fixed code value of 'active'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.valueCode element, fixedCode of \"active\""
+    },
+    {
+      "requirement_text": "\"The 'status' extension SHALL use a code from the 'Qualification Status VS' value set\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:status.valueCode element, required binding to \"http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/QualificationStatusVS\""
+    },
+    {
+      "requirement_text": "\"The extension MAY have zero or more 'whereValid' extensions\"",
+      "conformance": "MAY",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid element, cardinality 0..*"
+    },
+    {
+      "requirement_text": "\"The 'whereValid' extension SHALL be supported\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid element, mustSupport flag"
+    },
+    {
+      "requirement_text": "\"The 'whereValid' extension SHALL NOT have any nested extensions\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.extension element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"The 'whereValid' extension SHALL have a url of 'whereValid'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.url element, fixedUri of \"whereValid\""
+    },
+    {
+      "requirement_text": "\"The 'whereValid' extension SHALL have a value of type 'CodeableConcept' or 'Reference'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.value[x] element, type constraints"
+    },
+    {
+      "requirement_text": "\"If the 'whereValid' extension uses a Reference, it SHALL reference a Plan-Net Location\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.value[x] element, Reference targetProfile"
+    },
+    {
+      "requirement_text": "\"If the 'whereValid' extension uses a CodeableConcept, it SHALL use a code from the 'USPS Two Letter Alphabetic Codes' value set\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Extension.extension:whereValid.valueCodeableConcept element, required binding to \"http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state\""
+    },
+    {
+      "requirement_text": "\"The extension SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/practitioner-qualification'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.url element, fixedUri"
+    },
+    {
+      "requirement_text": "\"The extension SHALL NOT have a value element\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.value[x] element, max cardinality of 0"
+    },
+    {
+      "requirement_text": "\"Extension.extension:acceptingPatients SHALL have a cardinality of 1..1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:acceptingPatients element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:acceptingPatients.value[x] SHALL have a minimum cardinality of 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:acceptingPatients.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:acceptingPatients.value[x] SHALL be of type CodeableConcept\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:acceptingPatients.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:acceptingPatients.value[x] SHALL be bound to the AcceptingPatientsVS value set with a required binding strength\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:acceptingPatients.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:fromNetwork.value[x] SHALL have a minimum cardinality of 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:fromNetwork.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:fromNetwork.value[x] SHALL be of type Reference(Plan-Net Network)\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:fromNetwork.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:characteristics.value[x] SHALL have a minimum cardinality of 1\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:characteristics.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.extension:characteristics.value[x] SHALL be of type string\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:characteristics.value[x] element definition"
+    },
+    {
+      "requirement_text": "\"Extension.url SHALL be fixed to the value 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients'\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.url element definition"
+    },
+    {
+      "requirement_text": "\"If no new patients are accepted, no characteristics are allowed\"",
+      "conformance": "SHALL",
+      "actor": "Implementer",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Extension constraint \"new-patients-characteristics\""
+    },
+    {
+      "requirement_text": "\"Extension.extension:acceptingPatients SHOULD be supported\"",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:acceptingPatients element definition (mustSupport flag)"
+    },
+    {
+      "requirement_text": "\"Extension.extension:fromNetwork SHOULD be supported\"",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:fromNetwork element definition (mustSupport flag)"
+    },
+    {
+      "requirement_text": "\"Extension.extension:characteristics SHOULD be supported\"",
+      "conformance": "SHOULD",
+      "actor": "Implementer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Extension.extension:characteristics element definition (mustSupport flag)"
+    },
+    {
+      "requirement_text": "\"HealthcareService.active [...] min: 1, patternBoolean: true\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.active"
+    },
+    {
+      "requirement_text": "\"HealthcareService.category [...] min: 1, max: 1\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.category"
+    },
+    {
+      "requirement_text": "\"HealthcareService.category [...] binding: { strength: 'extensible', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/HealthcareServiceCategoryVS' }\"",
+      "conformance": "SHOULD",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.category"
+    },
+    {
+      "requirement_text": "\"HealthcareService.type [...] binding: { strength: 'extensible', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/HealthcareServiceTypeVS' }\"",
+      "conformance": "SHOULD",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.type"
+    },
+    {
+      "requirement_text": "\"HealthcareService.specialty [...] binding: { strength: 'required', valueSet: 'http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/SpecialtiesVS' }\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.specialty"
+    },
+    {
+      "requirement_text": "\"HealthcareService.providedBy [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Organization'] }]\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.providedBy"
+    },
+    {
+      "requirement_text": "\"HealthcareService.location [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location'] }]\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.location"
+    },
+    {
+      "requirement_text": "\"HealthcareService.coverageArea [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location'] }]\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.coverageArea"
+    },
+    {
+      "requirement_text": "\"HealthcareService.endpoint [...] type: [{ code: 'Reference', targetProfile: ['http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Endpoint'] }]\"",
+      "conformance": "SHALL",
+      "actor": "System",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "HealthcareService.endpoint"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.meta.lastUpdated\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.meta.lastUpdated"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.active = true\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.active"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.organization only Reference(Plan-Net Organization)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.organization"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.participatingOrganization only Reference(Plan-Net Organization)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.participatingOrganization"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.network only Reference(Plan-Net Network)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.network"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.code from OrganizationAffiliation Roles (extensible)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.code"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.specialty from Specialties VS (required)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.specialty"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.location only Reference(Plan-Net Location)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.location"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.healthcareService only Reference(Plan-Net HealthcareService)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.healthcareService"
+    },
+    {
+      "requirement_text": "\"OrganizationAffiliation.endpoint only Reference(Plan-Net Endpoint)\"",
+      "conformance": "SHALL",
+      "actor": "OrganizationAffiliation Resource",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "OrganizationAffiliation.endpoint"
+    },
+    {
+      "requirement_text": "\"Updated Taxonomy Codes (Jira tickets [FHIR 31494](https://jira.hl7.org/browse/FHIR-33206?filter=14707)  - [FHIR 31499](https://jira.hl7.org/browse/FHIR-33206?filter=14707) )\"",
+      "conformance": "N/A (this is a change description, not a requirement)",
+      "actor": "Implementation Guide Maintainer",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Changes Since v1.0.0 section"
+    }
+  ],
+  "output_file": "requirements_claude_extracted.csv"
+}
