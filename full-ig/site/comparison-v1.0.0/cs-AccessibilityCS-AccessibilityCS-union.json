@@ -1,0 +1,50 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-5",
+  "url" : "http://hl7.org/fhir/comparison/CodeSystem/78f9ac66-3981-4249-8c30-651106a5c334-5",
+  "name" : "UnionAccessibilityCSAndAccessibilityCS",
+  "title" : "Union of Accessibility And Accessibility CS",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:49+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "concept" : [{
+    "code" : "cultcomp",
+    "display" : "Cultural competence",
+    "definition" : "Provides services that meet the social, cultural, and linguistic needs of persons."
+  },
+  {
+    "code" : "handiaccess",
+    "display" : "handicap accessible",
+    "definition" : "Provides access to persons with disabilities."
+  },
+  {
+    "code" : "adacomp",
+    "display" : "ADA compliant",
+    "definition" : "Provides access which complies with the Americans with Disabilities Act and/or amendments."
+  },
+  {
+    "code" : "pubtrans",
+    "display" : "public transit options",
+    "definition" : "Provides access using public transportation modes."
+  },
+  {
+    "code" : "anssrvc",
+    "display" : "answering service",
+    "definition" : "Provides capability to communicate when intended recipient is not immediately available."
+  },
+  {
+    "code" : "cognitive",
+    "display" : "cognitive",
+    "definition" : "Provides services for cognitively impaired persons."
+  },
+  {
+    "code" : "mobility",
+    "display" : "mobility",
+    "definition" : "Provides services for mobility impaired persons."
+  }]
+}

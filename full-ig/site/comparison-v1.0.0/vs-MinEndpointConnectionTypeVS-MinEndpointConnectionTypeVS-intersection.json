@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-147",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/78f9ac66-3981-4249-8c30-651106a5c334-147",
+  "name" : "IntersectionMinEndpointConnectionTypeVSAndMinEndpointConnectionTypeVS",
+  "title" : "Intersection of Minimum Endpoint Connection Types And Minimum Endpoint Connection Types VS",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:50+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "hl7-fhir-rest",
+        "display" : "HL7 FHIR"
+      },
+      {
+        "code" : "hl7-fhir-msg",
+        "display" : "HL7 FHIR Messaging"
+      },
+      {
+        "code" : "direct-project",
+        "display" : "Direct Project"
+      }]
+    },
+    {
+      "concept" : [{
+        "code" : "hl7-fhir-opn",
+        "display" : "HL7 FHIR Operation"
+      },
+      {
+        "code" : "rest-non-fhir",
+        "display" : "REST (not FHIR)"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-39",
+  "url" : "http://hl7.org/fhir/comparison/CodeSystem/78f9ac66-3981-4249-8c30-651106a5c334-39",
+  "name" : "IntersectionQualificationStatusCSAndQualificationStatusCS",
+  "title" : "Intersection of Qualification Status And Qualification Status",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:49+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "concept" : [{
+    "code" : "active",
+    "display" : "active",
+    "definition" : "The credential may be considered valid for use."
+  },
+  {
+    "code" : "inactive",
+    "display" : "inactive",
+    "definition" : "The credential may not be considered valid for use."
+  },
+  {
+    "code" : "issiner",
+    "display" : "issued in error",
+    "definition" : "The credential was mistakenly assigned and should not be considered valid for use."
+  },
+  {
+    "code" : "revoked",
+    "display" : "revoked",
+    "definition" : "The credential was revoked by the issuing organization and should not be considered valid for use."
+  },
+  {
+    "code" : "pending",
+    "display" : "pending",
+    "definition" : "The credential has not been officially assigned. It may or may not be considered valid for use."
+  },
+  {
+    "code" : "unknown",
+    "display" : "unknown",
+    "definition" : "The status of this credential is unknown. It may or may not be considered valid for use."
+  }]
+}

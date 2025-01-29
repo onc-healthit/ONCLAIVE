@@ -1,0 +1,25 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-9",
+  "url" : "http://hl7.org/fhir/comparison/CodeSystem/78f9ac66-3981-4249-8c30-651106a5c334-9",
+  "name" : "IntersectionDeliveryMethodCSAndDeliveryMethodCS",
+  "title" : "Intersection of Delivery Methods And Delivery Methods",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:49+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "concept" : [{
+    "code" : "virtual",
+    "display" : "Virtual",
+    "definition" : "Delivery not requiring provider and patient to be physically co-located, such as tele-medicine"
+  },
+  {
+    "code" : "physical",
+    "display" : "Physical",
+    "definition" : "Traditional delivery requiring provider and patient to be physically co-located."
+  }]
+}

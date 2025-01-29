@@ -1,0 +1,23 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-170",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/78f9ac66-3981-4249-8c30-651106a5c334-170",
+  "name" : "UnionSpecialtiesVSAndSpecialtiesVS",
+  "title" : "Union of Specialties And Specialties VS",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:51+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "compose" : {
+    "include" : [{
+      "valueSet" : ["http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/IndividualAndGroupSpecialtiesVS"]
+    },
+    {
+      "valueSet" : ["http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/NonIndividualSpecialtiesVS"]
+    }]
+  }
+}

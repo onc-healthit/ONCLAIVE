@@ -1,0 +1,2771 @@
+{
+  "resourceType": "SearchParameter",
+  "total": 51,
+  "entry": [
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-specialty",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-specialty\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-specialty</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_specialty</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-specialty\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-specialty</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select OrganizationAffiliations associated with the specified specialty</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: specialty</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: token</p><p><b>expression</b>: OrganizationAffiliation.specialty</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-specialty",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_specialty",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-specialty",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select OrganizationAffiliations associated with the specified specialty",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "specialty",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "token",
+      "expression": "OrganizationAffiliation.specialty",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-coverage-area",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-coverage-area\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-coverage-area</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_coverage_area</p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select products that are offered in the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: coverage-area</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: reference</p><p><b>expression</b>: InsurancePlan.coverageArea</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-coverage-area",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_coverage_area",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select products that are offered in the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "coverage-area",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "reference",
+      "expression": "InsurancePlan.coverageArea",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-period",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-period\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-period</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_period</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-date\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-date</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Organization Affiliations available in the specified period</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: period</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: date</p><p><b>expression</b>: OrganizationAffiliation.period</p><p><b>multipleOr</b>: true</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-period",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_period",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-date",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Organization Affiliations available in the specified period",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "period",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "date",
+      "expression": "OrganizationAffiliation.period",
+      "multipleOr": true
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-specialty",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-specialty\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-specialty</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_specialty</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-specialty\">http://hl7.org/fhir/SearchParameter/PractitionerRole-specialty</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles associated with the specified specialty</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: specialty</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: token</p><p><b>expression</b>: PractitionerRole.specialty</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-specialty",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_specialty",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-specialty",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles associated with the specified specialty",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "specialty",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "token",
+      "expression": "PractitionerRole.specialty",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-plan-type",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-plan-type\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-plan-type</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_plan_type</p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select plans of the specified type</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: plan-type</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: token</p><p><b>expression</b>: InsurancePlan.plan.type</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-plan-type",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_plan_type",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select plans of the specified type",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "plan-type",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "token",
+      "expression": "InsurancePlan.plan.type",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-role",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-role\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-role</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_role</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-role\">http://hl7.org/fhir/SearchParameter/PractitionerRole-role</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles with the specified role</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: role</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: token</p><p><b>expression</b>: PractitionerRole.code</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-role",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_role",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-role",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles with the specified role",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "role",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "token",
+      "expression": "PractitionerRole.code",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-service",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-service\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-service</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_service</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-service\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-service</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select OrganizationAffiliations providing the specified service</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: service</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.healthcareService</p><p><b>target</b>: HealthcareService</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: service-category, organization, location</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-service",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_service",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-service",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select OrganizationAffiliations providing the specified service",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "service",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.healthcareService",
+      "target": [
+        "HealthcareService"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "service-category",
+        "organization",
+        "location"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-location",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-location\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-location</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_location</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-location\">http://hl7.org/fhir/SearchParameter/HealthcareService-location</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices available at the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: location</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: reference</p><p><b>expression</b>: HealthcareService.location</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: address, address-postalcode, address-city, address-state, organization, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-location",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_location",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-location",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices available at the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "location",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "reference",
+      "expression": "HealthcareService.location",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "address",
+        "address-postalcode",
+        "address-city",
+        "address-state",
+        "organization",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-period",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-period\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-period</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_period</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-date\">http://hl7.org/fhir/SearchParameter/PractitionerRole-date</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles available in the specified period</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: period</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: date</p><p><b>expression</b>: PractitionerRole.period</p><p><b>multipleOr</b>: true</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-period",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_period",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-date",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles available in the specified period",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "period",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "date",
+      "expression": "PractitionerRole.period",
+      "multipleOr": true
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-address-state",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-address-state\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-state</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_address_state</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-address-state\">http://hl7.org/fhir/SearchParameter/Location-address-state</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations with the specified address.state</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: address-state</p><p><b>base</b>: Location</p><p><b>type</b>: string</p><p><b>expression</b>: Location.address.state</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-state",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_address_state",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-address-state",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations with the specified address.state",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "address-state",
+      "base": [
+        "Location"
+      ],
+      "type": "string",
+      "expression": "Location.address.state",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitioner-given-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitioner-given-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-given-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitioner_given_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/individual-given\">http://hl7.org/fhir/SearchParameter/individual-given</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Practitioners with the specified given name</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: given</p><p><b>base</b>: Practitioner</p><p><b>type</b>: string</p><p><b>expression</b>: Practitioner.name.given</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-given-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitioner_given_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/individual-given",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Practitioners with the specified given name",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "given",
+      "base": [
+        "Practitioner"
+      ],
+      "type": "string",
+      "expression": "Practitioner.name.given",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-identifier",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-identifier\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-identifier</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_identifier</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/InsurancePlan-identifier\">http://hl7.org/fhir/SearchParameter/InsurancePlan-identifier</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select products with the specified identifier</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: identifier</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: token</p><p><b>expression</b>: InsurancePlan.identifier</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text, ofType</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-identifier",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_identifier",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/InsurancePlan-identifier",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select products with the specified identifier",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "identifier",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "token",
+      "expression": "InsurancePlan.identifier",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text",
+        "ofType"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-endpoint",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-endpoint\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-endpoint</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_endpoint</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-endpoint\">http://hl7.org/fhir/SearchParameter/HealthcareService-endpoint</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices with the specified endpoint</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: endpoint</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: reference</p><p><b>expression</b>: HealthcareService.endpoint</p><p><b>target</b>: Endpoint</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-endpoint",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_endpoint",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-endpoint",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices with the specified endpoint",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "endpoint",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "reference",
+      "expression": "HealthcareService.endpoint",
+      "target": [
+        "Endpoint"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "endpoint-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"endpoint-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/endpoint-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_endpoint_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Endpoint-organization\">http://hl7.org/fhir/SearchParameter/Endpoint-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Endpoints managed by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: organization</p><p><b>base</b>: Endpoint</p><p><b>type</b>: reference</p><p><b>expression</b>: Endpoint.managingOrganization</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, partof, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/endpoint-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_endpoint_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Endpoint-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Endpoints managed by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "organization",
+      "base": [
+        "Endpoint"
+      ],
+      "type": "reference",
+      "expression": "Endpoint.managingOrganization",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "partof",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-administered-by",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-administered-by\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-administered-by</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_administered_by</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/InsurancePlan-administered-by\">http://hl7.org/fhir/SearchParameter/InsurancePlan-administered-by</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select products that are administered by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: administered-by</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: reference</p><p><b>expression</b>: InsurancePlan.administeredBy</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, partof</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-administered-by",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_administered_by",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/InsurancePlan-administered-by",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select products that are administered by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "administered-by",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "reference",
+      "expression": "InsurancePlan.administeredBy",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "partof"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-address",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-address\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-address</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organization_address</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Organization-address\">http://hl7.org/fhir/SearchParameter/Organization-address</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select organizations with the specified address (matches any of the string elements of an address)</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: address</p><p><b>base</b>: Organization</p><p><b>type</b>: string</p><p><b>expression</b>: Organization.address</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-address",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organization_address",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Organization-address",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select organizations with the specified address (matches any of the string elements of an address)",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "address",
+      "base": [
+        "Organization"
+      ],
+      "type": "string",
+      "expression": "Organization.address",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/InsurancePlan-name\">http://hl7.org/fhir/SearchParameter/InsurancePlan-name</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select products with the specified name</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: name</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: string</p><p><b>expression</b>: name | alias</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/InsurancePlan-name",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select products with the specified name",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "name",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "string",
+      "expression": "name | alias",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-coverage-area",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-coverage-area\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-coverage-area</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_coverage_area</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-coverage-area\">http://hl7.org/fhir/SearchParameter/HealthcareService-coverage-area</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select services available in a region described by the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: coverage-area</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: reference</p><p><b>expression</b>: HealthcareService.coverageArea</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-coverage-area",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_coverage_area",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-coverage-area",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select services available in a region described by the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "coverage-area",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "reference",
+      "expression": "HealthcareService.coverageArea",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-network",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-network\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-network</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_network</p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select roles where the practitioner is a member of the specified health insurance provider network</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: network</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference')</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, partof, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-network",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_network",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select roles where the practitioner is a member of the specified health insurance provider network",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "network",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference')",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "partof",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-specialty",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-specialty\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-specialty</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_specialty</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-specialty\">http://hl7.org/fhir/SearchParameter/HealthcareService-specialty</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select services associated with the specified specialty</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: specialty</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: token</p><p><b>expression</b>: HealthcareService.specialty</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-specialty",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_specialty",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-specialty",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select services associated with the specified specialty",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "specialty",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "token",
+      "expression": "HealthcareService.specialty",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-service-type",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-service-type\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-service-type</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_type</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-service-type\">http://hl7.org/fhir/SearchParameter/HealthcareService-service-type</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices of the specified type</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: service-type</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: token</p><p><b>expression</b>: HealthcareService.type</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-service-type",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_type",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-service-type",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices of the specified type",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "service-type",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "token",
+      "expression": "HealthcareService.type",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-type",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-type\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-type</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_type</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-type\">http://hl7.org/fhir/SearchParameter/Location-type</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations of the specified type</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: type</p><p><b>base</b>: Location</p><p><b>type</b>: token</p><p><b>expression</b>: Location.type</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-type",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_type",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-type",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations of the specified type",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "type",
+      "base": [
+        "Location"
+      ],
+      "type": "token",
+      "expression": "Location.type",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-organization\">http://hl7.org/fhir/SearchParameter/PractitionerRole-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles available at the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: organization</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.organization</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, partof, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles available at the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "organization",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.organization",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "partof",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-organization\">http://hl7.org/fhir/SearchParameter/Location-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations managed by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: organization</p><p><b>base</b>: Location</p><p><b>type</b>: reference</p><p><b>expression</b>: Location.managingOrganization</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, partof, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations managed by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "organization",
+      "base": [
+        "Location"
+      ],
+      "type": "reference",
+      "expression": "Location.managingOrganization",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "partof",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-type",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-type\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-type</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organization_type</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Organization-type\">http://hl7.org/fhir/SearchParameter/Organization-type</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Organizations of the specified type</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: type</p><p><b>base</b>: Organization</p><p><b>type</b>: token</p><p><b>expression</b>: Organization.type</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-type",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organization_type",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Organization-type",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Organizations of the specified type",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "type",
+      "base": [
+        "Organization"
+      ],
+      "type": "token",
+      "expression": "Organization.type",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-primary-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-primary-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-primary-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_primary_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-primary-organization\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-primary-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select roles offered by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: primary-organization</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.organization</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: type, address, name, partof</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-primary-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_primary_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-primary-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select roles offered by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "primary-organization",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.organization",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "type",
+        "address",
+        "name",
+        "partof"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-service",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-service\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-service</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_service</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-service\">http://hl7.org/fhir/SearchParameter/PractitionerRole-service</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles providing the specified service</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: service</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.healthcareService</p><p><b>target</b>: HealthcareService</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: service-category, organization, location</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-service",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_service",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-service",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles providing the specified service",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "service",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.healthcareService",
+      "target": [
+        "HealthcareService"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "service-category",
+        "organization",
+        "location"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-participating-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-participating-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-participating-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_participating_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-participating-organization\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-participating-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select roles filled by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: participating-organization</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.participatingOrganization</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: type, address, name, partof</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-participating-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_participating_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-participating-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select roles filled by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "participating-organization",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.participatingOrganization",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "type",
+        "address",
+        "name",
+        "partof"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitioner-family-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitioner-family-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-family-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitioner_family_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/individual-family\">http://hl7.org/fhir/SearchParameter/individual-family</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Practitioners with the specified family name</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: family</p><p><b>base</b>: Practitioner</p><p><b>type</b>: string</p><p><b>expression</b>: Practitioner.name.family</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-family-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitioner_family_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/individual-family",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Practitioners with the specified family name",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "family",
+      "base": [
+        "Practitioner"
+      ],
+      "type": "string",
+      "expression": "Practitioner.name.family",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-organization",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-organization\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-organization</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_organization</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-organization\">http://hl7.org/fhir/SearchParameter/HealthcareService-organization</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices provided by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: organization</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: reference</p><p><b>expression</b>: HealthcareService.providedBy</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, partof, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-organization",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_organization",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-organization",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices provided by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "organization",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "reference",
+      "expression": "HealthcareService.providedBy",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "partof",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-partof",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-partof\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-partof</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organization_partof</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Organization-partof\">http://hl7.org/fhir/SearchParameter/Organization-partof</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Organizations that are part of the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: partof</p><p><b>base</b>: Organization</p><p><b>type</b>: reference</p><p><b>expression</b>: Organization.partOf</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, address, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-partof",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organization_partof",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Organization-partof",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Organizations that are part of the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "partof",
+      "base": [
+        "Organization"
+      ],
+      "type": "reference",
+      "expression": "Organization.partOf",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "address",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-role",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-role\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-role</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_role</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-role\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-role</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select OrganizationAffiliations with the specified role</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: role</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: token</p><p><b>expression</b>: OrganizationAffiliation.code</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-role",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_role",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-role",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select OrganizationAffiliations with the specified role",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "role",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "token",
+      "expression": "OrganizationAffiliation.code",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-endpoint",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-endpoint\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-endpoint</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_endpoint</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-endpoint\">http://hl7.org/fhir/SearchParameter/PractitionerRole-endpoint</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles with the specified endpoint</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: endpoint</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.endpoint</p><p><b>target</b>: Endpoint</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-endpoint",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_endpoint",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-endpoint",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles with the specified endpoint",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "endpoint",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.endpoint",
+      "target": [
+        "Endpoint"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitioner-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitioner-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitioner_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Practitioner-name\">http://hl7.org/fhir/SearchParameter/Practitioner-name</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Practitioners with the specified name (matches against any of the elements in the HumanName data type)</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: name</p><p><b>base</b>: Practitioner</p><p><b>type</b>: string</p><p><b>expression</b>: Practitioner.name</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitioner-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitioner_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Practitioner-name",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Practitioners with the specified name (matches against any of the elements in the HumanName data type)",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "name",
+      "base": [
+        "Practitioner"
+      ],
+      "type": "string",
+      "expression": "Practitioner.name",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-address-postalcode",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-address-postalcode\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-postalcode</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_address_postalcode</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-address-postalcode\">http://hl7.org/fhir/SearchParameter/Location-address-postalcode</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations with the specified address</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: address-postalcode</p><p><b>base</b>: Location</p><p><b>type</b>: string</p><p><b>expression</b>: Location.address.postalCode</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-postalcode",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_address_postalcode",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-address-postalcode",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations with the specified address",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "address-postalcode",
+      "base": [
+        "Location"
+      ],
+      "type": "string",
+      "expression": "Location.address.postalCode",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-name\">http://hl7.org/fhir/SearchParameter/HealthcareService-name</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices with the specified name</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: name</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: string</p><p><b>expression</b>: HealthcareService.name</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-name",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices with the specified name",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "name",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "string",
+      "expression": "HealthcareService.name",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-endpoint",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-endpoint\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-endpoint</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organization_endpoint</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Organization-endpoint\">http://hl7.org/fhir/SearchParameter/Organization-endpoint</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Organizations with the specified endpoint</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: endpoint</p><p><b>base</b>: Organization</p><p><b>type</b>: reference</p><p><b>expression</b>: Organization.endpoint</p><p><b>target</b>: Endpoint</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-endpoint",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organization_endpoint",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Organization-endpoint",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Organizations with the specified endpoint",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "endpoint",
+      "base": [
+        "Organization"
+      ],
+      "type": "reference",
+      "expression": "Organization.endpoint",
+      "target": [
+        "Endpoint"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-location",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-location\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-location</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_location</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-location\">http://hl7.org/fhir/SearchParameter/PractitionerRole-location</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select PractitionerRoles available at the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: location</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.location</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: address, address-postalcode, address-city, address-state, organization, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-location",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_location",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-location",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select PractitionerRoles available at the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "location",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.location",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "address",
+        "address-postalcode",
+        "address-city",
+        "address-state",
+        "organization",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-coverage-area",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-coverage-area\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-coverage-area</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_network_coverage_area</p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select health insurance provider networks available in a region described by the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: coverage-area</p><p><b>base</b>: Organization</p><p><b>type</b>: reference</p><p><b>expression</b>: Organization.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference')</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-coverage-area",
+      "version": "1.1.0",
+      "name": "Plannet_sp_network_coverage_area",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select health insurance provider networks available in a region described by the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "coverage-area",
+      "base": [
+        "Organization"
+      ],
+      "type": "reference",
+      "expression": "Organization.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference')",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-type",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-type\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-type</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_type</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/InsurancePlan-type\">http://hl7.org/fhir/SearchParameter/InsurancePlan-type</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select insurance plans of the specified type</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: type</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: token</p><p><b>expression</b>: InsurancePlan.type</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-type",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_type",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/InsurancePlan-type",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select insurance plans of the specified type",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "type",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "token",
+      "expression": "InsurancePlan.type",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-address",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-address\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_address</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-address\">http://hl7.org/fhir/SearchParameter/Location-address</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations with the specified address</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: address</p><p><b>base</b>: Location</p><p><b>type</b>: string</p><p><b>expression</b>: Location.address</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_address",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-address",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations with the specified address",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "address",
+      "base": [
+        "Location"
+      ],
+      "type": "string",
+      "expression": "Location.address",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-location",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-location\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-location</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_location</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-location\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-location</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select OrganizationAffiliations available at the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: location</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.location</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: address, address-postalcode, address-city, address-state, organization, type</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-location",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_location",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-location",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select OrganizationAffiliations available at the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "location",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.location",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "address",
+        "address-postalcode",
+        "address-city",
+        "address-state",
+        "organization",
+        "type"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "practitionerrole-practitioner",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"practitionerrole-practitioner\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-practitioner</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_practitionerrole_practitioner</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner\">http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select roles filled by the specified practitioner</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: practitioner</p><p><b>base</b>: PractitionerRole</p><p><b>type</b>: reference</p><p><b>expression</b>: PractitionerRole.practitioner</p><p><b>target</b>: Practitioner</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/practitionerrole-practitioner",
+      "version": "1.1.0",
+      "name": "Plannet_sp_practitionerrole_practitioner",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select roles filled by the specified practitioner",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "practitioner",
+      "base": [
+        "PractitionerRole"
+      ],
+      "type": "reference",
+      "expression": "PractitionerRole.practitioner",
+      "target": [
+        "Practitioner"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-partof",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-partof\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-partof</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_partof</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-partof\">http://hl7.org/fhir/SearchParameter/Location-partof</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations that are part of the specified location</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: partof</p><p><b>base</b>: Location</p><p><b>type</b>: reference</p><p><b>expression</b>: Location.partOf</p><p><b>target</b>: Location</p><p><b>multipleOr</b>: true</p><p><b>chain</b>: type, address, organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-partof",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_partof",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-partof",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations that are part of the specified location",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "partof",
+      "base": [
+        "Location"
+      ],
+      "type": "reference",
+      "expression": "Location.partOf",
+      "target": [
+        "Location"
+      ],
+      "multipleOr": true,
+      "chain": [
+        "type",
+        "address",
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "healthcareservice-service-category",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"healthcareservice-service-category\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-service-category</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_healthcareservice_category</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/HealthcareService-service-category\">http://hl7.org/fhir/SearchParameter/HealthcareService-service-category</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select HealthcareServices providing the specified category of services</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: service-category</p><p><b>base</b>: HealthcareService</p><p><b>type</b>: token</p><p><b>expression</b>: HealthcareService.category</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: text</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/healthcareservice-service-category",
+      "version": "1.1.0",
+      "name": "Plannet_sp_healthcareservice_category",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/HealthcareService-service-category",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select HealthcareServices providing the specified category of services",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "service-category",
+      "base": [
+        "HealthcareService"
+      ],
+      "type": "token",
+      "expression": "HealthcareService.category",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "text"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-endpoint",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-endpoint\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-endpoint</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_endpoint</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-endpoint\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-endpoint</a></p><p><b>status</b>: draft</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select OrganizationAffiliations with the specified endpoint</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: endpoint</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.endpoint</p><p><b>target</b>: Endpoint</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-endpoint",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_endpoint",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-endpoint",
+      "status": "draft",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select OrganizationAffiliations with the specified endpoint",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "endpoint",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.endpoint",
+      "target": [
+        "Endpoint"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-endpoint",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-endpoint\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-endpoint</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_endpoint</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-endpoint\">http://hl7.org/fhir/SearchParameter/Location-endpoint</a></p><p><b>status</b>: draft</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations with the specified endpoint</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: endpoint</p><p><b>base</b>: Location</p><p><b>type</b>: reference</p><p><b>expression</b>: Location.endpoint</p><p><b>target</b>: Endpoint</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: organization</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-endpoint",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_endpoint",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-endpoint",
+      "status": "draft",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations with the specified endpoint",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "endpoint",
+      "base": [
+        "Location"
+      ],
+      "type": "reference",
+      "expression": "Location.endpoint",
+      "target": [
+        "Endpoint"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "organization"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organization-name",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organization-name\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-name</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organization_name</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Organization-name\">http://hl7.org/fhir/SearchParameter/Organization-name</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Organizations with the specified name</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: name</p><p><b>base</b>: Organization</p><p><b>type</b>: string</p><p><b>expression</b>: Organization.name | Organization.alias</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organization-name",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organization_name",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Organization-name",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Organizations with the specified name",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "name",
+      "base": [
+        "Organization"
+      ],
+      "type": "string",
+      "expression": "Organization.name | Organization.alias",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "organizationaffiliation-network",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"organizationaffiliation-network\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-network</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_organizationaffiliation_network</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-network\">http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-network</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select roles where the organization is a member of the specified health insurance provider network</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: network</p><p><b>base</b>: OrganizationAffiliation</p><p><b>type</b>: reference</p><p><b>expression</b>: OrganizationAffiliation.network</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, partof</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/organizationaffiliation-network",
+      "version": "1.1.0",
+      "name": "Plannet_sp_organizationaffiliation_network",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-network",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select roles where the organization is a member of the specified health insurance provider network",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "network",
+      "base": [
+        "OrganizationAffiliation"
+      ],
+      "type": "reference",
+      "expression": "OrganizationAffiliation.network",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "partof"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "insuranceplan-owned-by",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"insuranceplan-owned-by\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-owned-by</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_insuranceplan_owned_by</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/InsurancePlan-owned-by\">http://hl7.org/fhir/SearchParameter/InsurancePlan-owned-by</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select products that are owned by the specified organization</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: owned-by</p><p><b>base</b>: InsurancePlan</p><p><b>type</b>: reference</p><p><b>expression</b>: InsurancePlan.ownedBy</p><p><b>target</b>: Organization</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>chain</b>: name, partof</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/insuranceplan-owned-by",
+      "version": "1.1.0",
+      "name": "Plannet_sp_insuranceplan_owned_by",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/InsurancePlan-owned-by",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select products that are owned by the specified organization",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "owned-by",
+      "base": [
+        "InsurancePlan"
+      ],
+      "type": "reference",
+      "expression": "InsurancePlan.ownedBy",
+      "target": [
+        "Organization"
+      ],
+      "multipleOr": true,
+      "multipleAnd": true,
+      "chain": [
+        "name",
+        "partof"
+      ]
+    },
+    {
+      "resourceType": "SearchParameter",
+      "id": "location-address-city",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"location-address-city\" </p></div><p><b>url</b>: <code>http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-city</code></p><p><b>version</b>: 1.1.0</p><p><b>name</b>: Plannet_sp_location_address_city</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/SearchParameter/Location-address-city\">http://hl7.org/fhir/SearchParameter/Location-address-city</a></p><p><b>status</b>: active</p><p><b>date</b>: 2018-05-23 12:00:00+0000</p><p><b>publisher</b>: HL7 Financial Management Working Group</p><p><b>contact</b>: HL7 Financial Management Working Group: <a href=\"http://www.hl7.org/Special/committees/fm\">http://www.hl7.org/Special/committees/fm</a>,<a href=\"mailto:fm@lists.HL7.org\">fm@lists.HL7.org</a></p><p><b>description</b>: Select Locations with the specified address.city</p><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#US)</span></p><p><b>code</b>: address-city</p><p><b>base</b>: Location</p><p><b>type</b>: string</p><p><b>expression</b>: Location.address.city</p><p><b>multipleOr</b>: true</p><p><b>multipleAnd</b>: true</p><p><b>modifier</b>: exact, contains</p></div>"
+      },
+      "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/SearchParameter/location-address-city",
+      "version": "1.1.0",
+      "name": "Plannet_sp_location_address_city",
+      "derivedFrom": "http://hl7.org/fhir/SearchParameter/Location-address-city",
+      "status": "active",
+      "date": "2018-05-23T00:00:00+00:00",
+      "publisher": "HL7 Financial Management Working Group",
+      "contact": [
+        {
+          "name": "HL7 Financial Management Working Group",
+          "telecom": [
+            {
+              "system": "url",
+              "value": "http://www.hl7.org/Special/committees/fm"
+            },
+            {
+              "system": "email",
+              "value": "fm@lists.HL7.org"
+            }
+          ]
+        }
+      ],
+      "description": "Select Locations with the specified address.city",
+      "jurisdiction": [
+        {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:3166",
+              "code": "US"
+            }
+          ]
+        }
+      ],
+      "code": "address-city",
+      "base": [
+        "Location"
+      ],
+      "type": "string",
+      "expression": "Location.address.city",
+      "multipleOr": true,
+      "multipleAnd": true,
+      "modifier": [
+        "exact",
+        "contains"
+      ]
+    }
+  ]
+}

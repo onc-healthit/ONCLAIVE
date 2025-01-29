@@ -1,0 +1,35 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-2",
+  "url" : "http://hl7.org/fhir/comparison/CodeSystem/78f9ac66-3981-4249-8c30-651106a5c334-2",
+  "name" : "UnionAcceptingPatientsCSAndAcceptingPatientsCS",
+  "title" : "Union of Accepting Patients Codes And Accepting Patients Codes",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:49+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "concept" : [{
+    "code" : "nopt",
+    "display" : "Not Accepting",
+    "definition" : "Not accepting patients"
+  },
+  {
+    "code" : "newpt",
+    "display" : "Accepting",
+    "definition" : "Accepting patients"
+  },
+  {
+    "code" : "existptonly",
+    "display" : "Accepting existing patients",
+    "definition" : "Accepting existing patients"
+  },
+  {
+    "code" : "existptfam",
+    "display" : "Accepting existing patients and their families",
+    "definition" : "Accepting existing patients and members of their families"
+  }]
+}

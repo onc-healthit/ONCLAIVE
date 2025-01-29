@@ -1,0 +1,22 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-158",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/78f9ac66-3981-4249-8c30-651106a5c334-158",
+  "name" : "UnionOrgTypeVSAndOrgTypeVS",
+  "title" : "Union of Organization Type And Organization Type VS",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:50+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "compose" : {
+    "exclude" : [{
+      "concept" : [{
+        "code" : "ntwk"
+      }]
+    }]
+  }
+}

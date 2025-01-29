@@ -1,0 +1,45 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "78f9ac66-3981-4249-8c30-651106a5c334-42",
+  "url" : "http://hl7.org/fhir/comparison/CodeSystem/78f9ac66-3981-4249-8c30-651106a5c334-42",
+  "name" : "IntersectionVirtualModalitiesCSAndVirtualModalitiesCS",
+  "title" : "Intersection of Virtual Modalities And Virtual Modalities",
+  "status" : "active",
+  "date" : "2022-04-04T14:04:49+00:00",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "US"
+    }]
+  }],
+  "concept" : [{
+    "code" : "phone",
+    "display" : "phone",
+    "definition" : "Voice Telephone"
+  },
+  {
+    "code" : "video",
+    "display" : "video chat",
+    "definition" : "Video Chat"
+  },
+  {
+    "code" : "tdd",
+    "display" : "TDD",
+    "definition" : "Telecommunications Device for the Deaf"
+  },
+  {
+    "code" : "sms",
+    "display" : "SMS",
+    "definition" : "SMS Text Messaging"
+  },
+  {
+    "code" : "app",
+    "display" : "App",
+    "definition" : "Mobile Application"
+  },
+  {
+    "code" : "web",
+    "display" : "Website",
+    "definition" : "Website accessed through browser"
+  }]
+}
