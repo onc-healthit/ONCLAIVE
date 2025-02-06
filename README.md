@@ -8,7 +8,7 @@
 -  `meta-summarization.ipynb`: Prompt chaining notebook to process large context documents from IGs
 
 - `file_sorter.ipynb`: Helpful notebook to sort IG files 
-- `HTML_extractor.ipynb`: Experimental notebook exploring multiple HTML extraction methods
+- `HTML_extractor.ipynb`: Experimental notebook exploring multiple HTML extraction methods to convert to Markdown format
 - `LLM_IG.ipynb`: Initial exploratory notebook exploring IGs
 
 ### Resources for working with above scripts
