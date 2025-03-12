@@ -1,0 +1,126 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "\"server should not maintain any records that could associate the consumer with the entities that were queried\"",
+      "conformance": "SHOULD NOT",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Authentication section"
+    },
+    {
+      "requirement_text": "\"A conformant Plan-Net service SHALL NOT require a directory mobile application to send consumer identifying information in order to query content\"",
+      "conformance": "SHALL NOT",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Authentication section"
+    },
+    {
+      "requirement_text": "\"A directory mobile application SHALL NOT send consumer identifiable information when querying a Plan-Net service\"",
+      "conformance": "SHALL NOT",
+      "actor": "Client (Directory mobile application)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Authentication section"
+    },
+    {
+      "requirement_text": "\"Health Plan API actors SHALL be capable of populating all Must Support data elements as part of the query results\"",
+      "conformance": "SHALL",
+      "actor": "Server (Health Plan API)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Health Plan API Requirements section"
+    },
+    {
+      "requirement_text": "\"In situations where information on a particular Must Support data element is not present and the minimum cardinality is 0, the Health Plan API actors SHALL NOT include the data elements in the resource instance returned as part of the query results\"",
+      "conformance": "SHALL NOT",
+      "actor": "Server (Health Plan API)",
+      "conditional": "True (when cardinality is 0 and data not present)",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Health Plan API Requirements section"
+    },
+    {
+      "requirement_text": "\"In situations where information on a particular data element is not present and the minimum cardinality is >0 SHALL send the reason for the missing information using values (such as nullFlavors) from the value set where they exist or use the dataAbsentReason extension\"",
+      "conformance": "SHALL",
+      "actor": "Server (Health Plan API)",
+      "conditional": "True (when cardinality >0 and data not present)",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Health Plan API Requirements section"
+    },
+    {
+      "requirement_text": "\"Application actors SHALL be capable of processing resource instances containing the Must Support data elements without generating an error or causing the application to fail\"",
+      "conformance": "SHALL",
+      "actor": "Client (Application)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Application Requirements section"
+    },
+    {
+      "requirement_text": "\"Application actors SHOULD be capable of displaying the data elements for human use or storing the information for other purposes\"",
+      "conformance": "SHOULD",
+      "actor": "Client (Application)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Application Requirements section"
+    },
+    {
+      "requirement_text": "\"When querying Health Plan API actors, Application actors SHALL interpret missing Must Support data elements within resource instances as data not present in the Health Plan API actors system\"",
+      "conformance": "SHALL",
+      "actor": "Client (Application)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Application Requirements section"
+    },
+    {
+      "requirement_text": "\"Consumer App actors SHALL be able to process resource instances containing Must Support data elements asserting missing information\"",
+      "conformance": "SHALL",
+      "actor": "Client (Consumer App)",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Must Support/Application Requirements section"
+    },
+    {
+      "requirement_text": "\"If the service is provided at a location, then the location element SHALL be populated.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True (only if service has a physical location)",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/R4/healthcareservice.html#requirements"
+    },
+    {
+      "requirement_text": "\"If the service is provided by an organization, then the organization element SHALL be populated.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True (only if service has an associated organization)",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/R4/healthcareservice.html#requirements"
+    },
+    {
+      "requirement_text": "\"The telecom element SHALL contain contact details that are specific to the healthcare service being described.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/R4/healthcareservice.html#notes"
+    },
+    {
+      "requirement_text": "\"The active element SHALL be populated to indicate whether the healthcare service is currently accepting new patients.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "StructureDefinition-plannet-HealthcareService.html"
+    }
+  ],
+  "processed_files": [
+    "implementation.md",
+    "examples.md",
+    "profiles.md",
+    "ChangeHistory.md",
+    "artifacts.md",
+    "index.md",
+    "CapabilityStatement_plan_net.md"
+  ],
+  "output_file": "/Users/ceadams/Documents/onclaive/onclaive/reqs_extraction/processed_output/test_requirements_claude_markdown5.csv"
+}

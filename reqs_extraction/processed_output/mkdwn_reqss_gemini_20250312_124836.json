@@ -1,0 +1,1430 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "\"Updated Taxonomy Codes (Jira tickets [FHIR 31494](https://jira.hl7.org/browse/FHIR-33206?filter=14707)  - [FHIR 31499](https://jira.hl7.org/browse/FHIR-33206?filter=14707) )\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Make HealthcareService Delivery Method optional\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Change Organization.type binding from OrganizationType to NetworkType\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Added 'catastrophic' options to Insurance Plan Types\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Ability to manage Provider Directory List for incoming/outgoing providers\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Update Resource Relationships Diagram\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Fix Spelling\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"Transitioned IG to Sushi 1.0.0 directory structure\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/ChangeHistory.html#changes-since-v1-0-0"
+    },
+    {
+      "requirement_text": "\"The content-type of the POST SHALL match the MIME type on the Subscription (Subscription.channel.payload).\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "https://build.fhir.org/ig/HL7/davinci-pdex-plan-net/examples.html#examples"
+    },
+    {
+      "requirement_text": "\"each notification MAY include additional resources or references to resources (URLs or ids).\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "https://build.fhir.org/ig/HL7/davinci-pdex-plan-net/examples.html#examples"
+    },
+    {
+      "requirement_text": "\"A conformant Plan-Net service SHALL NOT require a directory mobile application to send consumer identifying information in order to query content.\"",
+      "conformance": "SHALL NOT",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#privacy-considerations"
+    },
+    {
+      "requirement_text": "\"A directory mobile application SHALL NOT send consumer identifiable information when querying a Plan-Net service.\"",
+      "conformance": "SHALL NOT",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#privacy-considerations"
+    },
+    {
+      "requirement_text": "\"When querying and reading the Plan-Net Profiles defined in this IG, Must Support on any profile data element SHALL be interpreted as follows\"",
+      "conformance": "SHALL",
+      "actor": "Client, Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"Health Plan API actors SHALL be capable of populating all Must Support data elements as part of the query results.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"In situations where information on a particular Must Support data element is not present and the minimum cardinality is 0, the Health Plan API actors SHALL NOT include the data elements in the resource instance returned as part of the query results.\"",
+      "conformance": "SHALL NOT",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"In situations where information on a particular data element is not present and the minimum cardinality is >0 SHALL send the reason for the missing information using values (such as nullFlavors) from the value set where they exist or use the dataAbsentReason extension.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"Application actors SHALL be capable of processing resource instances containing the Must Support data elements without generating an error or causing the application to fail.\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"Application actors SHOULD be capable of displaying the data elements for human use or storing the information for other purposes.\"",
+      "conformance": "SHOULD",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"When querying Health Plan API actors, Application actors SHALL interpret missing Must Support data elements within resource instances as data not present in the Health Plan API actors system.\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"Consumer App actors SHALL be able to process resource instances containing Must Support data elements asserting missing information.\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#must-support"
+    },
+    {
+      "requirement_text": "\"Each profile in this guide requires that the lastUpdate timestamp be provided as part of the profile's data content.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/Implementation.html#client-detection-of-updates-directory-content"
+    },
+    {
+      "requirement_text": "\"PractitionerRole and OrganizationAffiliation instances are what tie Practitioners and Organizations to HealthcareServices, Organizations, Networks and Locations.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Insurance Plan and Network section, paragraph 1"
+    },
+    {
+      "requirement_text": "\"Organization Affiliation instances describe a role, and link a participating organization that provides or performs the role, with an organization where that role is available, and also links the participating organization to a HealthcareServices and networks.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organizations and Organization Affiliations section"
+    },
+    {
+      "requirement_text": "\"OrganizationalAffiliation can also be used to associate a HealthcareService provided by an organization with networks.\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organizations and Organization Affiliations section"
+    },
+    {
+      "requirement_text": "\"An Endpoint instance provides  technical details of an endpoint that can be used for electronic services, such as a portal or FHIR REST services, messaging or operations, or DIRECT messaging.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Endpoints section"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Implement the RESTful behavior according to the FHIR specification.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Return the following response classes: [...] (Status 400): invalid parameter\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Return the following response classes: [...] (Status 401/4xx): unauthorized request\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Return the following response classes: [...] (Status 403): insufficient scope\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Return the following response classes: [...] (Status 404): unknown resource\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Return the following response classes: [...] (Status 410): deleted resource\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Support json source formats for all Plan-Net interactions.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Identify the Plan-Net profiles supported as part of the FHIR `meta.profile` attribute for each instance.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Support the searchParameters on each profile individually and in combination.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHALL** [...] Support forward and reverse chaining on all search parameters that specify the 'chain' property\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"The Plan-Net Server **SHOULD** [...] Support xml source formats for all Plan-Net interactions.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#fhir-restful-capabilities"
+    },
+    {
+      "requirement_text": "\"A server **SHALL** reject any unauthorized requests by returning an `HTTP 401` unauthorized response code.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/davinci-pdex-plan-net/CapabilityStatement/plan-net#security"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a Endpoint resource using: `GET [base]/Endpoint/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a Endpoint resource using: `GET [base]/Endpoint/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: Endpoint:organization - `GET [base]/Endpoint?[parameter=value]&_include=Endpoint:organization`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [organization](SearchParameter-endpoint-organization.html) ... `GET [base]/Endpoint?organization=[organization]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_id](http://hl7.org/fhir/R4/search.html) ... `GET [base]/Endpoint?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_lastUpdated](http://hl7.org/fhir/R4/search.html) ... `GET [base]/Endpoint?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-Endpoint.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL support ... `search-type`, `read`.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a HealthcareService resource using: `GET [base]/HealthcareService/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a HealthcareService resource using: `GET [base]/HealthcareService/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: HealthcareService:location - `GET [base]/HealthcareService?[parameter=value]&_include=HealthcareService:location`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: HealthcareService:coverage-area - `GET [base]/HealthcareService?[parameter=value]&_include=HealthcareService:coverage-area`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: HealthcareService:organization - `GET [base]/HealthcareService?[parameter=value]&_include=HealthcareService:organization`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: HealthcareService:endpoint - `GET [base]/HealthcareService?[parameter=value]&_include=HealthcareService:endpoint`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _revincludes: PractitionerRole:service - `GET [base]/HealthcareService?[parameter=value]&_revinclude=PractitionerRole:service`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _revincludes: OrganizationAffiliation:service - `GET [base]/HealthcareService?[parameter=value]&_revinclude=OrganizationAffiliation:service`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [location](SearchParameter-healthcareservice-location.html) ... `GET [base]/HealthcareService?location=[location]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [coverage-area](SearchParameter-healthcareservice-coverage-area.html) ... `GET [base]/HealthcareService?coverage-area=[coverage-area]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [organization](SearchParameter-healthcareservice-organization.html) ... `GET [base]/HealthcareService?organization=[organization]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [endpoint](SearchParameter-healthcareservice-endpoint.html) ... `GET [base]/HealthcareService?endpoint=[endpoint]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [name](SearchParameter-healthcareservice-name.html) ... `GET [base]/HealthcareService?name=[name]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [service-category](SearchParameter-healthcareservice-service-category.html) ... `GET [base]/HealthcareService?service-category=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [service-type](SearchParameter-healthcareservice-service-type.html) ... `GET [base]/HealthcareService?service-type=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [specialty](SearchParameter-healthcareservice-specialty.html) ... `GET [base]/HealthcareService?specialty=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_id](http://hl7.org/fhir/R4/search.html) ... `GET [base]/HealthcareService?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_lastUpdated](http://hl7.org/fhir/R4/search.html) ... `GET [base]/HealthcareService?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-HealthcareService.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL support ... `search-type`, `read`.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a InsurancePlan resource using: `GET [base]/InsurancePlan/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a InsurancePlan resource using: `GET [base]/InsurancePlan/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: InsurancePlan:administered-by - `GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:administered-by`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: InsurancePlan:owned-by - `GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:owned-by`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: InsurancePlan:coverage-area - `GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:coverage-area`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [administered-by](SearchParameter-insuranceplan-administered-by.html) ... `GET [base]/InsurancePlan?administered-by=[administered-by]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [owned-by](SearchParameter-insuranceplan-owned-by.html) ... `GET [base]/InsurancePlan?owned-by=[owned-by]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [coverage-area](SearchParameter-insuranceplan-coverage-area.html) ... `GET [base]/InsurancePlan?coverage-area=[coverage-area]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [name](SearchParameter-insuranceplan-name.html) ... `GET [base]/InsurancePlan?name=[name]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [plan-type](SearchParameter-insuranceplan-plan-type.html) ... `GET [base]/InsurancePlan?plan-type=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [identifier](SearchParameter-insuranceplan-identifier.html) ... `GET [base]/InsurancePlan?identifier=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_id](http://hl7.org/fhir/R4/search.html) ... `GET [base]/InsurancePlan?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [_lastUpdated](http://hl7.org/fhir/R4/search.html) ... `GET [base]/InsurancePlan?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [support search parameter] [type](SearchParameter-insuranceplan-type.html) ... `GET [base]/InsurancePlan?type=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/plannet/StructureDefinition-plannet-InsurancePlan.html - Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a Location resource using: `GET [base]/Location/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a Location resource using: `GET [base]/Location/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: Location:endpoint - `GET [base]/Location?[parameter=value]&_include=Location:endpoint` ... Location:organization - `GET [base]/Location?[parameter=value]&_include=Location:organization` ... Location:partof - `GET [base]/Location?[parameter=value]&_include=Location:partof`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _revincludes: ... HealthcareService:location - `GET [base]/Location?[parameter=value]&_revinclude=HealthcareService:location` ... InsurancePlan:coverage-area - `GET [base]/Location?[parameter=value]&_revinclude=InsurancePlan:coverage-area` ... OrganizationAffiliation:location - `GET [base]/Location?[parameter=value]&_revinclude=OrganizationAffiliation:location` ... PractitionerRole:location - `GET [base]/Location?[parameter=value]&_revinclude=PractitionerRole:location`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?partof=[partof]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/partof"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?organization=[organization]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/organization"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?endpoint=[endpoint]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/endpoint"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?address-city=[address-city]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/address-city"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?address-state=[address-state]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/address-state"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?address-postalcode=[address-postalcode]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/address-postalcode"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?address=[address]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/address"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?type=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/type"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/_id"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Location?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Location/Search Parameter Summary/_lastUpdated"
+    },
+    {
+      "requirement_text": "\"SHALL support ... `search-type`, `read`.\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`.\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a Organization resource using: `GET [base]/Organization/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a Organization resource using: `GET [base]/Organization/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: Organization:partof - `GET [base]/Organization?[parameter=value]&_include=Organization:partof` ... Organization:endpoint - `GET [base]/Organization?[parameter=value]&_include=Organization:endpoint` ... Organization:coverage-area - `GET [base]/Organization?[parameter=value]&_include=Organization:coverage-area`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _revincludes: ... Endpoint:organization - `GET [base]/Organization?[parameter=value]&_revinclude=Endpoint:organization` ... HealthcareService:organization - `GET [base]/Organization?[parameter=value]&_revinclude=HealthcareService:organization` ... InsurancePlan:administered-by - `GET [base]/Organization?[parameter=value]&_revinclude=InsurancePlan:administered-by` ... InsurancePlan:owned-by - `GET [base]/Organization?[parameter=value]&_revinclude=InsurancePlan:owned-by` ... OrganizationAffiliation:primary-organization - `GET [base]/Organization?[parameter=value]&_revinclude=OrganizationAffiliation:primary-organization` ... PractitionerRole:organization - `GET [base]/Organization?[parameter=value]&_revinclude=PractitionerRole:organization` ... PractitionerRole:network - `GET [base]/Organization?[parameter=value]&_revinclude=PractitionerRole:network` ... OrganizationAffiliation:participating-organization - `GET [base]/Organization?[parameter=value]&_revinclude=OrganizationAffiliation:participating-organization`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?partof=[partof]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/partof"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?endpoint=[endpoint]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/endpoint"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?address=[address]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/address"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?name=[name]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/name"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/_id"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/_lastUpdated"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?type=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/type"
+    },
+    {
+      "requirement_text": "\"`GET [base]/Organization?coverage-area=[coverage-area]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "Organization/Search Parameter Summary/coverage-area"
+    },
+    {
+      "requirement_text": "\"The content-type of the POST SHALL match the MIME type on the Subscription (Subscription.channel.payload).\"",
+      "conformance": "SHALL",
+      "actor": "Client",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/SubscriptionGuidance.html#payload"
+    },
+    {
+      "requirement_text": "\"support search-type\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"support read\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"be capable of returning a OrganizationAffiliation resource using: GET [base]/OrganizationAffiliation/[id]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:primary-organization - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:primary-organization\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:participating-organization - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:participating-organization\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:location - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:location\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:service - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:service\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:endpoint - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:endpoint\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _includes: OrganizationAffiliation:network - GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:network\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"support [primary-organization](SearchParameter-organizationaffiliation-primary-organization.html)   reference   GET [base]/OrganizationAffiliation?primary-organization=[primary-organization]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [participating-organization](SearchParameter-organizationaffiliation-participating-organization.html)   reference   GET [base]/OrganizationAffiliation?participating-organization=[participating-organization]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [location](SearchParameter-organizationaffiliation-location.html)   reference   GET [base]/OrganizationAffiliation?location=[location]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [service](SearchParameter-organizationaffiliation-service.html)   reference   GET [base]/OrganizationAffiliation?service=[service]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [network](SearchParameter-organizationaffiliation-network.html)   reference   GET [base]/OrganizationAffiliation?network=[network]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [endpoint](SearchParameter-organizationaffiliation-endpoint.html)   reference   GET [base]/OrganizationAffiliation?endpoint=[endpoint]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [role](SearchParameter-organizationaffiliation-role.html)   token   GET [base]/OrganizationAffiliation?role=[system] [code]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [specialty](SearchParameter-organizationaffiliation-specialty.html)   token   GET [base]/OrganizationAffiliation?specialty=[system] [code]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [_id](http://hl7.org/fhir/R4/search.html)   token   GET [base]/OrganizationAffiliation?_id=[id]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [_lastUpdated](http://hl7.org/fhir/R4/search.html)   date   GET [base]/OrganizationAffiliation?_lastUpdated=[_lastUpdated]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support vread\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"be capable of returning a OrganizationAffiliation resource using: GET [base]/OrganizationAffiliation/[id]/_history/vid\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/OrganizationAffiliation.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"support search-type\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"support read\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"be capable of returning a Practitioner resource using: GET [base]/Practitioner/[id]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"be capable of supporting the following _revincludes: PractitionerRole:practitioner - GET [base]/Practitioner?[parameter=value]&_revinclude=PractitionerRole:practitioner\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"support [name](SearchParameter-practitioner-name.html)   string   GET [base]/Practitioner?name=[name]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [_id](http://hl7.org/fhir/R4/search.html)   token   GET [base]/Practitioner?_id=[id]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [_lastUpdated](http://hl7.org/fhir/R4/search.html)   date   GET [base]/Practitioner?_lastUpdated=[_lastUpdated]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [family](SearchParameter-practitioner-family-name.html)   string   GET [base]/Practitioner?family=[family]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support [given](SearchParameter-practitioner-given-name.html)   string   GET [base]/Practitioner?given=[given]\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#search-parameter-summary"
+    },
+    {
+      "requirement_text": "\"support vread\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#profile-interaction-summary"
+    },
+    {
+      "requirement_text": "\"be capable of returning a Practitioner resource using: GET [base]/Practitioner/[id]/_history/vid\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://build.fhir.org/ig/HL7/fhir-directory-query/Practitioner.html#fetch-and-search-criteria"
+    },
+    {
+      "requirement_text": "\"SHOULD support ... `vread`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Profile Interaction Summary"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of returning a PractitionerRole resource using: `GET [base]/PractitionerRole/[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHOULD be capable of returning a PractitionerRole resource using: `GET [base]/PractitionerRole/[id]/_history/vid`\"",
+      "conformance": "SHOULD",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:practitioner - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:practitioner`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:organization - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:organization`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:location - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:location`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:service - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:service`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:network - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:network`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"A Server SHALL be capable of supporting the following _includes: PractitionerRole:endpoint - `GET [base]/PractitionerRole?[parameter=value]&_include=PractitionerRole:endpoint`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Fetch and Search Criteria"
+    },
+    {
+      "requirement_text": "\"SHALL ... [practitioner](SearchParameter-practitionerrole-practitioner.html) ... `GET [base]/PractitionerRole?practitioner=[practitioner]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [organization](SearchParameter-practitionerrole-organization.html) ... `GET [base]/PractitionerRole?organization=[organization]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [location](SearchParameter-practitionerrole-location.html) ... `GET [base]/PractitionerRole?location=[location]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [service](SearchParameter-practitionerrole-service.html) ... `GET [base]/PractitionerRole?service=[service]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [network](SearchParameter-practitionerrole-network.html) ... `GET [base]/PractitionerRole?network=[network]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [endpoint](SearchParameter-practitionerrole-endpoint.html) ... `GET [base]/PractitionerRole?endpoint=[endpoint]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [role](SearchParameter-practitionerrole-role.html) ... `GET [base]/PractitionerRole?role=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [specialty](SearchParameter-practitionerrole-specialty.html) ... `GET [base]/PractitionerRole?specialty=[system] [code]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [_id](http://hl7.org/fhir/R4/search.html) ... `GET [base]/PractitionerRole?_id=[id]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"SHALL ... [_lastUpdated](http://hl7.org/fhir/R4/search.html) ... `GET [base]/PractitionerRole?_lastUpdated=[_lastUpdated]`\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "PractitionerRole/Conformance Expectations/Search Parameter Summary"
+    },
+    {
+      "requirement_text": "\"Select services available in a region described by the specified location\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-coverage-area.html \"SearchParameter/healthcareservice-coverage-area\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices provided by the specified organization\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-organization.html \"SearchParameter/healthcareservice-organization\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices with the specified endpoint\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-endpoint.html \"SearchParameter/healthcareservice-endpoint\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices available at the specified location\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-location.html \"SearchParameter/healthcareservice-location\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices with the specified name\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-name.html \"SearchParameter/healthcareservice-name\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices providing the specified category of services\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-service-category.html \"SearchParameter/healthcareservice-service-category\""
+    },
+    {
+      "requirement_text": "\"Select HealthcareServices of the specified type\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-service-type.html \"SearchParameter/healthcareservice-service-type\""
+    },
+    {
+      "requirement_text": "\"Select services associated with the specified specialty\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-healthcareservice-specialty.html \"SearchParameter/healthcareservice-specialty\""
+    },
+    {
+      "requirement_text": "\"Select products that are administered by the specified organization\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-administered-by.html \"SearchParameter/insuranceplan-administered-by\""
+    },
+    {
+      "requirement_text": "\"Select products that are offered in the specified location\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-coverage-area.html \"SearchParameter/insuranceplan-coverage-area\""
+    },
+    {
+      "requirement_text": "\"Select products with the specified identifier\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-identifier.html \"SearchParameter/insuranceplan-identifier\""
+    },
+    {
+      "requirement_text": "\"Select products with the specified name\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-name.html \"SearchParameter/insuranceplan-name\""
+    },
+    {
+      "requirement_text": "\"Select products that are owned by the specified organization\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-owned-by.html \"SearchParameter/insuranceplan-owned-by\""
+    },
+    {
+      "requirement_text": "\"Select plans of the specified type\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-plan-type.html \"SearchParameter/insuranceplan-plan-type\""
+    },
+    {
+      "requirement_text": "\"Select insurance plans of the specified type\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-insuranceplan-type.html \"SearchParameter/insuranceplan-type\""
+    },
+    {
+      "requirement_text": "\"Select Locations with the specified address.city\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "NONE",
+      "source": "http://hl7.org/fhir/us/planetest/SearchParameter-location-address-city.html \"SearchParameter/location-address-city\""
+    }
+  ],
+  "processed_files": [
+    "ChangeHistory.md",
+    "profiles.md",
+    "index.md",
+    "examples.md",
+    "implementation.md",
+    "CapabilityStatement_plan_net.md",
+    "artifacts.md"
+  ],
+  "output_file": "/Users/ceadams/Documents/onclaive/onclaive/reqs_extraction/processed_output/mkdwn_reqs_gemini_20250312_124836.csv"
+}
