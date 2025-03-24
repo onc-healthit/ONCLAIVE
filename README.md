@@ -7,17 +7,20 @@
 - `local_HTML_narrative_extractor.ipynb`: Notebook to convert local HTML files to Markdown format
 - `markdown_cleaner.ipynb`: Notebook to clean unnecessary content from IG files converted to Markdown format
 
-### understanding_exps: Scripts to test LLM's baseline understanding of Plan Net IG with various levels of context
+### understanding_exps: 
+Scripts to test LLM's baseline understanding of Plan Net IG with various levels of context
 - `PlanNet_LLM_analysis_test1.ipynb`: Script to test baseline understanding of PlanNet IG on frontier LLM models 
 - `PlanNet_LLM_analysis_test1_AIP.ipynb`: Script to test baseline understanding of PlanNet IG on open source LLMs using MITRE's AIP
 - `PlanNet_LLM_analysis_test3.ipynb`: Script to test understanding of PlanNet IG using only critical .json files
 
-### reqs_extraction: Scripts to extract requirements using an LLM from the Plan Net IG
+### reqs_extraction: 
+Scripts to extract requirements using an LLM from the Plan Net IG
 - `markdown-only-v5-incose.ipynb`: Most recent experimental notebook to extract requirements from the Plan Net IG using an LLM, including a request in the prompt to align requirements with INCOSE standards
 - `reqs_reviewer.ipynb`: Notebook to review set of requirements using an LLM and output a refined set
 - `reqs_to_testplan.ipynb`: Experimental notebook to convert a list of requirements to a test plan, using an LLM
 
-### LLM Results: Output results from key experimental notebooks
+### LLM Results: 
+Output results from key experimental notebooks
 - `LLM_results`: Primarily contanins results from several LLMs and no context testing
 - `reqs_extraction/processed_output`: Contains results from meta-summarization and requirements extraction efforts
 
