@@ -33,14 +33,19 @@ The notebooks listed above work with the files saved in the full-ig folder, whic
 After cloning the repository: 
 
 1. Setup API keys: Individual API keys will need to be generated for each model in order to fully run each notebook (see below for instructions). API keys should be saved in a .env file in the root directory with the following format: 
+
 ANTHROPIC_API_KEY=your_anthropic_key_here
+
 GEMINI_API_KEY=your_gemini_key_here
+
 OPENAI_API_KEY=your_openai_key_here
 
 2. Install dependencies: This will install all necessary packages including API clients for Claude, Gemini, and GPT, as well as data processing libraries.
+
 In your working directory, using the command line, run the command `pip install -r requirements.txt`
 
 3. Start Jupyter: Start Jupyter to explore and run the notebooks.
+
 In the command line, run `jupyter notebook`
 This will open a web browser showing the Jupyter file explorer. Navigate to the notebook you want to run and click on it.
 
