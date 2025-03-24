@@ -10,7 +10,6 @@
 ### understanding_exps: 
 Scripts to test LLM's baseline understanding of Plan Net IG with various levels of context
 - `PlanNet_LLM_analysis_test1.ipynb`: Script to test baseline understanding of PlanNet IG on frontier LLM models 
-- `PlanNet_LLM_analysis_test1_AIP.ipynb`: Script to test baseline understanding of PlanNet IG on open source LLMs using MITRE's AIP
 - `PlanNet_LLM_analysis_test3.ipynb`: Script to test understanding of PlanNet IG using only critical .json files
 
 ### reqs_extraction: 
