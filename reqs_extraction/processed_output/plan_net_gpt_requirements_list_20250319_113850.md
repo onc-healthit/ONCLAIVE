@@ -1,0 +1,1639 @@
+## REQ-01
+
+**Summary**: Implementation of PlannetEndpoint Profile
+**Description**: "The technical details of an endpoint that can be used for electronic services, such as for web services providing XDS.b or a REST endpoint for another FHIR server."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Profiles defined as part of this Implementation Guide
+
+## REQ-02
+
+**Summary**: Inclusion of Security Context Information
+**Description**: "This [PlannetEndpoint] may include any security context information."
+**Verification**: Inspection
+**Notes**: Actor: Implementer, Conformance: MAY, Conditional: False
+**Source**: Profiles defined as part of this Implementation Guide
+
+Note: In this context, no specific conformance keywords (SHALL, SHOULD, MAY, etc.) were used in the original text. However, based on the context, the conformance levels were inferred for the purpose of this task. They might need to be confirmed or adjusted according to the additional context or clarifications from the source document or the project stakeholders.# INTRODUCTION
+We are analyzing chunk 3 of 4 from the Plan Net Implementation Guide v1.2.0. The content provides descriptions of two resources - 'PlannetHealthcareService' and 'PlannetInsurancePlan'. However, there are no explicit statements using terms like SHALL, SHOULD, MAY, MUST, REQUIRED, etc., indicating specific, testable requirements. Therefore, no requirements can be extracted from this chunk.
+
+# REQUIREMENTS
+No requirements can be extracted from this chunk due to lack of explicit statements indicating specific, testable requirements.Introduction:
+This chunk of the PlanNet Implementation Guide v1.2.0 provides information about the various resources such as PlannetLocation, PlannetNetwork, PlannetOrganization, PlannetOrganizationAffiliation, PlannetPractitioner, and PlannetPractitionerRole. These definitions provide a context for the implementation of the FHIR resources. However, this section does not explicitly contain specific, testable requirements expressed using conformance language such as SHALL, SHOULD, MAY, MUST, REQUIRED, etc. Therefore, no INCOSE-style requirements can be extracted from this chunk. 
+
+Please note that while this section does not contain explicit requirements, the definitions and information provided are essential for understanding the context and application of these resources in a healthcare setting, and will be important for interpreting requirements provided in other sections of the Implementation Guide.Introduction: 
+This requirements extraction focuses on the DaVinci PDEX Plan Net Implementation Guide v1.1.0, which is based on FHIR R4. The guide is primarily concerned with the implementation of a Payer Network by a health plan. This analysis did not identify any specific, testable requirements within the provided content. 
+
+Requirement Analysis:
+
+No specific, testable requirements were identified in the provided content. The content largely provides introductory and contextual information about the DaVinci PDEX Plan Net Implementation Guide, but does not include any directives or specifications that could be translated into INCOSE-compliant requirements. 
+
+It is recommended that subsequent chunks of the Implementation Guide be analyzed to identify specific, testable requirements.## REQ-01
+
+**Summary**: Conformance to the Validated Healthcare Directory Implementation Guide (VHDir IG)
+**Description**: "The PDEX Payer Network (or Plan-Net) Implementation Guide is based conceptually on the [Validated Healthcare Directory Implementation Guide (VHDir IG)](http://hl7.org/fhir/uv/vhdir/2018Sep/index.html), an international standard."
+**Verification**: Analysis
+**Notes**: Actor: PDEX Payer Network Implementation, Conformance: SHALL, Conditional: False
+**Source**: Introduction Section
+
+## REQ-02
+
+**Summary**: Utilization of FHIR Version 4.0
+**Description**: "The VHDir IG is based on [FHIR Version 4.0](http://hl7.org/fhir/R4/index.html)."
+**Verification**: Analysis
+**Notes**: Actor: VHDir IG, Conformance: SHALL, Conditional: False
+**Source**: Introduction Section
+
+## REQ-03
+
+**Summary**: Protection against rework/remapping for Plan-Net IG implementers
+**Description**: "The use of VhDir as the conceptual base for the profiles and extensions in the PDEX Payer Network Implementation Guide is intended to protect implementers of the Plan-Net IG from rework/remapping when the VHDir concept reaches implementation, and becomes a source of data for the PDEX Payer Network."
+**Verification**: Analysis
+**Notes**: Actor: Plan-Net IG Implementers, Conformance: SHOULD, Conditional: False
+**Source**: Introduction Section
+
+## REQ-04
+
+**Summary**: The Implementation Guide should define a query only API
+**Description**: "The IG defines the API that exposes a payer’s provider network (including pharmacy locations where appropriate) for access by a consumer or provider application. This is a query only API (GET) and does not support PUT or POST."
+**Verification**: Test
+**Notes**: Actor: API, Conformance: SHALL, Conditional: False
+**Source**: Introduction Section
+
+No more requirements could be extracted from this chunk of the Plan Net Implementation Guide v1.2.0.## REQ-1
+
+**Summary**: Use of profiles from US Core STU 4 and R4
+**Description**: "This implementation guide was written for a US audience and profiles resources from [US Core STU 4](http://hl7.org/fhir/us/core/STU3.1.1/index.html), where available (Practitioner, Organization and Location), and otherwise from R4 (OrganizationAffiliation, PractitionerRole, HealthCareService, Endpoint)."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Relation to US Core and other IGs section
+
+## REQ-2
+
+**Summary**: Non-use of PractitionerRole profile from US Core
+**Description**: "The PractitionerRole profile from US Core was not used because it is over-constrained for use in a Provider Directory based on Payer information." 
+**Verification**: Inspection
+**Notes**: Actor: Implementer, Conformance: SHALL NOT, Conditional: False
+**Source**: Relation to US Core and other IGs section
+
+## REQ-3
+
+**Summary**: Base of Network profile on USCore Organization
+**Description**: "The Network profile is based on USCore Organization, since there was no contradiction between the USCore profile and the Plan-Net requirements."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Relation to US Core and other IGs section
+
+## REQ-4
+
+**Summary**: Non-population of NPI and CLIA identifier types for non-provider organizations
+**Description**: "The NPI and CLIA identifier types, which are Must-Support, are clearly intended for provider organizations only and are not expected to be populated for other organization types."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL NOT, Conditional: True (for non-provider organizations)
+**Source**: Relation to US Core and other IGs section
+
+## REQ-5
+
+**Summary**: Tracking changes to VhDir
+**Description**: "Plan-net will need to track changes to VhDir to fulfill its goal of minimizing rework."
+**Verification**: Inspection
+**Notes**: Actor: Plan-net, Conformance: SHALL, Conditional: False
+**Source**: Disclaimers and Assumptions section
+
+## REQ-6
+
+**Summary**: Client knowledge of PDEX Payer Network endpoint
+**Description**: "This implementation guide assumes that the directory endpoint is known to the client."
+**Verification**: Inspection
+**Notes**: Actor: Client, Conformance: SHALL, Conditional: False
+**Source**: Disclaimers and Assumptions section
+
+Please note that the absence of additional SHALL, SHOULD, MUST, MAY, REQUIRED etc. statements indicates that no further testable requirements were identified in this chunk of the Plan Net Implementation Guide v1.2.0.Introduction:
+This section provides an analysis of the FHIR Implementation Guide content focusing on the Plan Net Implementation Guide v1.2.0. The guide is centered on the critical role of provider directories in enabling the identification of individual providers and provider organizations. The guide also outlines the attributes of the providers. The requirements extracted from this guide serve a variety of use cases including patient/payer focus and basic information exchange. The actors addressed in this guide are the Health Plan API Actor and the Application Actor. 
+
+The guide unfortunately does not provide specific, testable requirements in this chunk using statements with SHALL, SHOULD, MAY, MUST, REQUIRED, etc., hence no specific INCOSE compliant requirements could be extracted.
+
+However, there are some general functionalities stated which could be further refined into testable requirements with additional context and details. For instance, the functionality that the Health Plan API Actor should be able to publish a directory of its provider networks through a FHIR endpoint, and the Application Actor should be able to use this API for providing useful views of the payer's provider networks for end users. These functionalities are currently not in the INCOSE-compliant format and additional specifications are required to make them testable.After analysing the provided FHIR Implementation Guide content, no specific, testable requirements can be extracted from this particular chunk. The chunk provided contains only the authors' information, with no statements using SHALL, SHOULD, MAY, MUST, REQUIRED, or similar. 
+
+Therefore, no INCOSE-compliant requirements can be generated from this chunk.Based on the provided content, no testable requirements were found as per INCOSE standards. The content mainly provides general information about the DaVinci PDEX Plan Net Implementation Guide and doesn't contain any statements using SHALL, SHOULD, MAY, MUST, REQUIRED, etc. 
+
+Therefore, it's not possible to create INCOSE-style requirements extraction from this content.Upon analyzing chunk 2 of 7 from the Plan Net Implementation Guide v1.2.0, it appears the provided content is an Examples Table listing certain ResourceTypes and Profiles. In the context of FHIR, ResourceType refers to the type of resource (Endpoint, HealthcareService etc.), whereas Profiles define specific use-cases.
+
+However, the provided content does not contain explicit requirements, statements, or directives using keywords such as SHALL, SHOULD, MAY, MUST, REQUIRED, etc. Therefore, it's not possible to extract any specific, testable requirements from this particular segment of the FHIR Implementation Guide following the INCOSE Systems Engineering standards. 
+
+Further sections of the guide may contain specific directives or requirements that can be transformed into testable requirements. It is recommended to analyze the complete guide for a comprehensive extraction of requirements.Based on the provided FHIR Implementation Guide content, it is not possible to extract specific, testable requirements in an INCOSE-compliant format as no requirements, imperative statements or conformance levels (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.) were provided in the content. 
+
+The content mainly consists of references to various healthcare services, insurance plans, and locations. While these references might be part of the larger FHIR Implementation Guide, they do not provide the necessary information for extracting specific, testable requirements. 
+
+As a Healthcare Integration Test Engineer, my recommendation would be to review other sections of the FHIR Implementation Guide that contain specific directives, rules, or guidelines for implementing the FHIR standard. These sections are likely to contain the type of requirements that can be extracted and formatted according to INCOSE Systems Engineering standards.# INTRODUCTION
+
+This analysis pertains to the Plan Net Implementation Guide v1.2.0 chunk 4 of 7, which focuses on several location and organization resources. The resources relate to different clinics, hospital locations, pharmacy locations, and network organizations. The information is presented as links to different resources and their related StructureDefinitions.
+
+After thorough review, no explicit requirements using terms like SHALL, SHOULD, MAY, MUST, or REQUIRED are found in this chunk of the Implementation Guide. It appears this section is primarily informational, providing links to details about various healthcare locations and organizations.
+
+As such, no testable requirements in INCOSE-compliant format can be extracted from this chunk. Further sections of the Implementation Guide should be reviewed for identifying specific requirements.## REQ-01
+
+**Summary**: Implement FHIR R4 Organization
+**Description**: "Each referenced organization SHALL implement the [Organization](http://hl7.org/fhir/R4/organization.html) as specified in FHIR R4."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+
+## REQ-02
+
+**Summary**: Implement PlannetOrganization
+**Description**: "Each referenced organization SHALL implement the [PlannetOrganization](StructureDefinition-plannet-Organization.html) as specified in the Plan Net Implementation Guide."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+
+Please note that the exact functionality and parameters for the FHIR R4 Organization and PlannetOrganization were not given in this chunk of the Implementation Guide, therefore detailed requirements could not be extracted. For accurate and detailed requirement extraction, the complete specifications of FHIR R4 Organization and PlannetOrganization must be provided.Introduction: 
+The provided FHIR Implementation Guide content gives an overview of various organizations' and their affiliations' FHIR resources. However, the content does not explicitly state any specific functional requirements using terms like SHALL, SHOULD, MAY, MUST, REQUIRED etc. Therefore, the content does not provide any specific, testable requirements that can be extracted and formatted according to INCOSE Systems Engineering standards. 
+
+It is important to mention that the content provides valuable context and background information related to HartfordOrthopedics, Hospital, PharmChain, BurrClinicAffil, ConnHIEAffil, HamiltonClinicAffil, HartfordOrthopedicAffil organizations and their affiliations. However, this information is more of a descriptive nature and does not translate into specific requirements. 
+
+To create an INCOSE-style Software Requirements Specification, more specific implementation details and functional requirements are needed. 
+
+Please provide more detailed content for further requirement extraction.## REQ-01
+
+**Summary**: Implementation of PharmChainAffil structures
+**Description**: "The system should be capable of implementing PharmChainAffil1, PharmChainAffil2, and PharmChainAffil3 structures as part of OrganizationAffiliation."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: OrganizationAffiliation Section
+
+## REQ-02
+
+**Summary**: Implementation of Practitioner structures
+**Description**: "The system should support the implementation of Practitioner structures such as Counselor, HansSolo, and JoeSmith, as per the PlannetPractitioner Structure Definition."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Practitioner Section
+
+## REQ-03
+
+**Summary**: Implementation of PractitionerRole structures
+**Description**: "The system should support the implementation of PractitionerRole structures such as AnonRole, CounselorRole1, HansSoloRole1, JoeSmithRole1, JoeSmithRole2, and JoeSmithRole3, as per the PlannetPractitionerRole Structure Definition."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: PractitionerRole Section
+
+These requirements are based on inferred functional elements considering the available context. However, for a more accurate and comprehensive extraction of requirements, it would be beneficial to have a richer context or more explicit statements of functional needs or constraints.## REQ-1
+**Summary**: Plan-Net service should not require authentication
+**Description**: "Access to the Plan-Net service should not require authentication, and the server should not maintain any records that could associate the consumer with the entities that were queried."
+**Verification**: Test
+**Notes**: Actor: Plan-Net service, Conformance: SHOULD, Conditional: False
+**Source**: Privacy Considerations Section
+
+## REQ-2
+**Summary**: Plan-Net service shall not require consumer identifying information
+**Description**: "A conformant Plan-Net service SHALL NOT require a directory mobile application to send consumer identifying information in order to query content."
+**Verification**: Test
+**Notes**: Actor: Plan-Net service, Conformance: SHALL NOT, Conditional: False
+**Source**: Privacy Considerations Section
+
+## REQ-3
+**Summary**: Directory mobile application shall not send consumer identifiable information
+**Description**: "A directory mobile application SHALL NOT send consumer identifiable information when querying a Plan-Net service."
+**Verification**: Test
+**Notes**: Actor: Directory Mobile Application, Conformance: SHALL NOT, Conditional: False
+**Source**: Privacy Considerations Section
+
+## REQ-4
+**Summary**: Health Plan API actors shall populate all Must Support data elements in query results
+**Description**: "Health Plan API actors SHALL be capable of populating all Must Support data elements as part of the query results."
+**Verification**: Test
+**Notes**: Actor: Health Plan API, Conformance: SHALL, Conditional: False
+**Source**: Health Plan API Requirements Section
+
+## REQ-5
+**Summary**: Health Plan API actors shall not include missing Must Support data elements with cardinality 0 in query results
+**Description**: "In situations where information on a particular Must Support data element is not present and the minimum cardinality is 0 , the Health Plan API actors SHALL NOT include the data elements in the resource instance returned as part of the query results."
+**Verification**: Test
+**Notes**: Actor: Health Plan API, Conformance: SHALL NOT, Conditional: True (If Must Support data element is not present and minimum cardinality is 0)
+**Source**: Health Plan API Requirements Section
+
+## REQ-6
+**Summary**: Health Plan API actors shall send reason for missing Must Support data elements with cardinality >0
+**Description**: "In situations where information on a particular data element is not present and the minimum cardinality is >0 SHALL send the reason for the missing information using values (such as nullFlavors) from the value set where they exist or use the dataAbsentReason extension."
+**Verification**: Test
+**Notes**: Actor: Health Plan API, Conformance: SHALL, Conditional: True (If Must Support data element is not present and minimum cardinality is >0)
+**Source**: Health Plan API Requirements Section
+
+## REQ-7
+**Summary**: Application actors shall process Must Support data elements without error
+**Description**: "Application actors SHALL be capable of processing resource instances containing the Must Support data elements without generating an error or causing the application to fail."
+**Verification**: Test
+**Notes**: Actor: Application, Conformance: SHALL, Conditional: False
+**Source**: Application Requirements Section
+
+## REQ-8
+**Summary**: Application actors should display or store Must Support data elements
+**Description**: "Application actors SHOULD be capable of displaying the data elements for human use or storing the information for other purposes."
+**Verification**: Test
+**Notes**: Actor: Application, Conformance: SHOULD, Conditional: False
+**Source**: Application Requirements Section
+
+## REQ-9
+**Summary**: Application actors shall interpret missing Must Support data elements as data not present
+**Description**: "When querying Health Plan API actors, Application actors SHALL interpret missing Must Support data elements within resource instances as data not present in the Health Plan API actors system."
+**Verification**: Test
+**Notes**: Actor: Application, Conformance: SHALL, Conditional: True (When querying Health Plan API)
+**Source**: Application Requirements Section
+
+## REQ-10
+**Summary**: Consumer App actors shall process resource instances with Must Support data elements asserting missing information
+**Description**: "Consumer App actors SHALL be able to process resource instances containing Must Support data elements asserting missing information."
+**Verification**: Test
+**Notes**: Actor: Consumer App, Conformance: SHALL, Conditional: False
+**Source**: Application Requirements Section
+## REQ-1
+
+**Summary**: Update of LastUpdate timestamp
+**Description**: "Each profile in this guide requires that the lastUpdate timestamp be provided as part of the profile's data content."
+**Verification**: Test
+**Notes**: Actor: Implementation Guide, Conformance: Requires, Conditional: False
+**Source**: Client Detection of Updates Directory Content
+
+## REQ-2
+
+**Summary**: Client detection of updates
+**Description**: "Clients that cache query results can track additions or modifications to directory content through queries that filter content using the _lastUpdated search parameter."
+**Verification**: Test
+**Notes**: Actor: Client, Conformance: Can, Conditional: True (depends on client caching query results)
+**Source**: Client Detection of Updates Directory Content
+
+## REQ-3
+
+**Summary**: Checking for deleted data
+**Description**: "Clients should periodically check that data cached from past queries has not been deleted by querying for the same elements by _id."
+**Verification**: Test
+**Notes**: Actor: Client, Conformance: Should, Conditional: True (depends on client caching query results)
+**Source**: Client Detection of Updates Directory Content
+
+## REQ-4
+
+**Summary**: Consistent use of Plan-Net profiles
+**Description**: "It is important for payers to use the Plan-Net profiles consistently in order to achieve true interoperability of directory information among payers."
+**Verification**: Inspection
+**Notes**: Actor: Payers, Conformance: Important, Conditional: False
+**Source**: Representing and Searching Provider Directory Data
+
+## REQ-5
+
+**Summary**: Search for active Practitioners and Organizations
+**Description**: "Sample query to search for currently active Practitioners... Sample query to search for currently active Organizations..."
+**Verification**: Test
+**Notes**: Actor: Users, Conformance: Instructional, Conditional: False
+**Source**: Searching for active Practitioners and Organizations
+
+## REQ-6
+
+**Summary**: Search for future active Practitioners and Organizations
+**Description**: "To search for Practitioners or Organizations that will be active at a future time, change the date to a future date."
+**Verification**: Test
+**Notes**: Actor: Users, Conformance: Instructional, Conditional: False
+**Source**: Searching for active Practitioners and Organizations
+
+## REQ-7
+
+**Summary**: Role active with no expiration date
+**Description**: "If no period is provided, then it is assumed the role is active with no expiration date."
+**Verification**: Inspection
+**Notes**: Actor: Users, Conformance: Assumed, Conditional: True (depends on no period being provided)
+**Source**: Searching for active Practitioners and Organizations## REQ-01
+
+**Summary**: Support of provider services by HealthcareService instances
+**Description**: "It is essential that each provider's service be supported by an appropriate set of HealthcareService instances."
+**Verification**: Test
+**Notes**: Actor: Provider, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section
+
+## REQ-02
+
+**Summary**: Direct provision of HealthcareServices by organizations
+**Description**: "HealthcareServices are typically provided by an organization, except in the case of a Practitioner that is not associated with an organization."
+**Verification**: Analysis
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: True (Exception exists for solo practitioners)
+**Source**: HealthcareService Section
+
+## REQ-03
+
+**Summary**: Linking of HealthcareServices to physical and virtual locations
+**Description**: "HealthcareServices can be linked to a set of locations where service is provided, or identified as virtual services through an indicated set of virtual modalities."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: CAN, Conditional: False
+**Source**: HealthcareService Section
+
+## REQ-04
+
+**Summary**: Definition of appropriate set of HealthcareServices by service providers
+**Description**: "All organizations that provide service should define an appropriate set. of HealthcareServices to facilitate search."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHOULD, Conditional: False
+**Source**: HealthcareService Section
+
+## REQ-05
+
+**Summary**: Categorization of HealthcareService
+**Description**: "The HealthcareService category, specialty and type fields are the highest level of organization of the services provided by the provider's network."
+**Verification**: Inspection
+**Notes**: Actor: Provider, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section## REQ-01
+
+**Summary**: Insurance Plan and Network Association
+**Description**: "Each payer will offer one or more products -- Insurance Plans -- and each plan is associated with one or more Networks."
+**Verification**: Test
+**Notes**: Actor: Payer, Conformance: SHALL, Conditional: False
+**Source**: Insurance Plan and Network Section
+
+## REQ-02
+
+**Summary**: Practitioner and Organization Affiliation to Networks
+**Description**: "Practitioners and Organizations indicate participation in a Network with a link to the Network using a PractitionerRole or OrganizationAffiliation instance, respectively."
+**Verification**: Test
+**Notes**: Actor: Practitioner/Organization, Conformance: SHALL, Conditional: False
+**Source**: Insurance Plan and Network Section
+
+## REQ-03
+
+**Summary**: Location Instance Information 
+**Description**: "Location instances provide information about location where service is provided, including contact information, address, accessibility, hours of operation and contact, as well as position (latitude and longitude)."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Location Section
+
+## REQ-04
+
+**Summary**: Use of Location for Representing Regions
+**Description**: "Locations can also be used to represent regions using an associated or attached GeoJSON object."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: MAY, Conditional: False
+**Source**: Location Section
+
+Please note that there might be additional requirements in other parts of the Implementation Guide.# INTRODUCTION
+This chunk from the Plan Net Implementation Guide v1.2.0 focuses on the implementation of Practitioners and PractitionerRoles. The key elements that need to be considered are the information provided about a specific person such as name, gender, languages spoken, qualifications, and the definition of a role for a particular practitioner. 
+
+After careful analysis, it appears that this chunk does not contain any specific, testable requirements expressed in terms such as SHALL, SHOULD, MAY, MUST, REQUIRED etc. Instead, it provides examples of instances for different Practitioner and PractitionerRole scenarios.
+
+# REQUIREMENTS
+None. This chunk does not contain specific, testable requirements that could be formatted according to INCOSE Systems Engineering standards. It provides examples of instance scenarios for Practitioners and PractitionerRoles but does not dictate any specific requirements for implementation.## REQ-1
+
+**Summary**: Provision of organization and organization hierarchy information
+**Description**: "Organization instances provide information about a specific organization and organizational hierarchies, including organization name, specialty, type, address and contact information."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Organizations and Organization Affiliations Section
+
+## REQ-2
+
+**Summary**: Organizations to describe their roles and affiliations
+**Description**: "Organization Affiliation instances describe a role, and link a participating organization that provides or performs the role, with an organization where that role is available, and also links the participating organization to a HealthcareServices and networks."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Organizations and Organization Affiliations Section
+
+## REQ-3
+
+**Summary**: Associating HealthcareService with networks
+**Description**: "OrganizationalAffiliation can also be used to associate a HealthcareService provided by an organization with networks."
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Organizations and Organization Affiliations Section
+
+## REQ-4
+
+**Summary**: Provision of endpoint technical details for electronic services
+**Description**: "An Endpoint instance provides technical details of an endpoint that can be used for electronic services, such as a portal or FHIR REST services, messaging or operations, or DIRECT messaging."
+**Verification**: Test
+**Notes**: Actor: Service Provider, Conformance: SHALL, Conditional: False
+**Source**: Endpoints Section
+
+If no requirements were found in this chunk, it would be stated here. However, several requirements were identified and documented above.## REQ-01
+
+**Summary**: Implementation of Plan-Net Server actor
+**Description**: "This Section describes the expected capabilities of the Plan-Net Server actor which is responsible for providing responses to the queries submitted by the Plan-Net Requestors." 
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan-Net CapabilityStatement Section
+
+## REQ-02
+
+**Summary**: Support for FHIR profiles, RESTful operations, and search parameters
+**Description**: "The complete list of FHIR profiles, RESTful operations, and search parameters supported by Plan-Net Servers are defined." 
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan-Net CapabilityStatement Section
+
+## REQ-03
+
+**Summary**: Compliance with CMS Final Rule requirement for provider directory access
+**Description**: "Systems implementing this capability statement should meet the CMS Final Rule requirement for provider directory access."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net CapabilityStatement Section
+
+## REQ-04
+
+**Summary**: Provision for Plan-Net Clients to access necessary data
+**Description**: "Plan-Net Clients can use the required capabilities to access necessary data based on their local use cases and other contextual requirements."
+**Verification**: Test
+**Notes**: Actor: Client, Conformance: CAN, Conditional: True (based on local use cases and other contextual requirements)
+**Source**: Plan-Net CapabilityStatement Section
+
+The above requirements are based on the provided chunk from the Plan-Net Implementation Guide v1.2.0. Each requirement is presented in an INCOSE-compliant format, focusing on the testability, clarity, and context of the requirement.## REQ-01
+
+**Summary**: Support all profiles defined in the Implementation Guide
+**Description**: "The Plan-Net Server SHALL support all profiles defined in this Implementation Guide."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-02
+
+**Summary**: Implement the RESTful behavior according to the FHIR specification
+**Description**: "The Plan-Net Server SHALL implement the RESTful behavior according to the FHIR specification."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-03
+
+**Summary**: Return specific response classes
+**Description**: "The Plan-Net Server SHALL return the following response classes: (Status 400): invalid parameter, (Status 401/4xx): unauthorized request, (Status 403): insufficient scope, (Status 404): unknown resource, (Status 410): deleted resource."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-04
+
+**Summary**: Support json source formats for all Plan-Net interactions
+**Description**: "The Plan-Net Server SHALL support json source formats for all Plan-Net interactions."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-05
+
+**Summary**: Identify the Plan-Net profiles supported as part of the FHIR meta.profile attribute
+**Description**: "The Plan-Net Server SHALL identify the Plan-Net profiles supported as part of the FHIR `meta.profile` attribute for each instance."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-06
+
+**Summary**: Support the searchParameters on each profile individually and in combination
+**Description**: "The Plan-Net Server SHALL support the searchParameters on each profile individually and in combination."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-07
+
+**Summary**: Support forward and reverse chaining on all search parameters
+**Description**: "The Plan-Net Server SHALL support forward and reverse chaining on all search parameters that specify the 'chain' property."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHALL, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-08
+
+**Summary**: Support xml source formats for all Plan-Net interactions
+**Description**: "The Plan-Net Server SHOULD support xml source formats for all Plan-Net interactions."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Server, Conformance: SHOULD, Conditional: False
+**Source**: FHIR RESTful Capabilities Section
+
+## REQ-09
+
+**Summary**: Reject any unauthorized requests
+**Description**: "A server SHALL reject any unauthorized requests by returning an `HTTP 401` unauthorized response code."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Security Section
+
+Note: The General Security Considerations section is referenced but not provided in this chunk. It should be reviewed separately to extract any additional requirements.
+## REQ-1
+
+**Summary**: Support for specific search criteria in Endpoint resource
+**Description**: "The Endpoint resource type SHALL support the following search parameters: organization, _id, _lastUpdated." 
+**Verification**: Test
+**Notes**: Actor: System implementing the Endpoint resource, Conformance: SHALL, Conditional: False
+**Source**: RESTful Capabilities by Resource/Profile: Summary of Search Criteria
+
+## REQ-2
+
+**Summary**: Support for specific _includes in Endpoint resource
+**Description**: "The Endpoint resource type SHALL support the following _includes: Endpoint:organization." 
+**Verification**: Test
+**Notes**: Actor: System implementing the Endpoint resource, Conformance: SHALL, Conditional: False
+**Source**: RESTful Capabilities by Resource/Profile: Summary of Search Criteria
+
+## REQ-3
+
+**Summary**: Support for specific search criteria in HealthcareService resource
+**Description**: "The HealthcareService resource type SHALL support the following search parameters: location, coverage-area, organization, endpoint, name, service-category, service-type, specialty, _id, _lastUpdated." 
+**Verification**: Test
+**Notes**: Actor: System implementing the HealthcareService resource, Conformance: SHALL, Conditional: False
+**Source**: RESTful Capabilities by Resource/Profile: Summary of Search Criteria
+
+## REQ-4
+
+**Summary**: Support for specific _includes in HealthcareService resource
+**Description**: "The HealthcareService resource type SHALL support the following _includes: HealthcareService:location, HealthcareService:coverage-area, HealthcareService:organization, HealthcareService:endpoint." 
+**Verification**: Test
+**Notes**: Actor: System implementing the HealthcareService resource, Conformance: SHALL, Conditional: False
+**Source**: RESTful Capabilities by Resource/Profile: Summary of Search Criteria
+
+## REQ-5
+
+**Summary**: Support for specific _revincludes in HealthcareService resource
+**Description**: "The HealthcareService resource type SHALL support the following _revincludes: PractitionerRole:service, OrganizationAffiliation:service." 
+**Verification**: Test
+**Notes**: Actor: System implementing the HealthcareService resource, Conformance: SHALL, Conditional: False
+**Source**: RESTful Capabilities by Resource/Profile: Summary of Search Criteria
+
+It should be noted that the actual implementation guide chunk may contain additional requirements not captured in this analysis, depending on the specific content and language of the guide.Based on the provided FHIR Implementation Guide content, it seems that there are no specific, testable requirements mentioned in this chunk. There are no statements using SHALL, SHOULD, MAY, MUST, REQUIRED, etc. Also, there are no explicit actors or conformance levels mentioned.
+
+Instead, the content provides a list of FHIR resources (InsurancePlan, Location, Organization, etc.) and their associated properties (administered-by, owned-by, coverage-area, etc.) used in the Plan-Net Implementation. 
+
+However, these lists can be used to create guidelines for testing the correct implementation and integration of these resources in the system. 
+
+The INCOSE Systems Engineering standards specifically require testable requirements in the form of SHALL, SHOULD, MAY, MUST, REQUIRED statements, which are not present in this chunk of the Implementation Guide. Therefore, it might not be possible to generate INCOSE-style requirements based on this content. 
+
+Unless additional context or content is provided, we cannot derive specific, testable requirements from this chunk according to INCOSE Systems Engineering standards.## REQ-01
+
+**Summary**: Ability to return an Endpoint resource
+**Description**: "A Server SHALL be capable of returning a Endpoint resource using: GET [base]/Endpoint/[id]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Endpoint Section - Fetch and Search Criteria
+
+## REQ-02
+
+**Summary**: Ability to return a version specific Endpoint resource
+**Description**: "A Server SHOULD be capable of returning a Endpoint resource using: GET [base]/Endpoint/[id]/_history/vid"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: Endpoint Section - Fetch and Search Criteria
+
+## REQ-03
+
+**Summary**: Support for specific _includes
+**Description**: "A Server SHALL be capable of supporting the following _includes: Endpoint:organization - GET [base]/Endpoint?[parameter=value]&_include=Endpoint:organization"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Endpoint Section - Fetch and Search Criteria
+
+## REQ-04
+
+**Summary**: Support for organization search parameter
+**Description**: "A Server SHALL support the [organization](SearchParameter-endpoint-organization.html) search parameter - GET [base]/Endpoint?organization=[organization]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Endpoint Section - Search Parameter Summary
+
+## REQ-05
+
+**Summary**: Support for _id search parameter
+**Description**: "A Server SHALL support the [_id](http://hl7.org/fhir/R4/search.html) search parameter - GET [base]/Endpoint?_id=[id]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Endpoint Section - Search Parameter Summary
+
+## REQ-06
+
+**Summary**: Support for _lastUpdated search parameter
+**Description**: "A Server SHALL support the [_lastUpdated](http://hl7.org/fhir/R4/search.html) search parameter - GET [base]/Endpoint?_lastUpdated=[_lastUpdated]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Endpoint Section - Search Parameter Summary
+## REQ-1
+
+**Summary**: Server support for HealthcareService profiles
+**Description**: "A Server SHALL support search-type, read, and SHOULD support vread for HealthcareService profiles."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for search-type and read, SHOULD for vread, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+
+## REQ-2
+
+**Summary**: Fetching a HealthcareService resource
+**Description**: "A Server SHALL be capable of returning a HealthcareService resource using: GET [base]/HealthcareService/[id]."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+
+## REQ-3
+
+**Summary**: Returning a HealthcareService resource version history
+**Description**: "A Server SHOULD be capable of returning a HealthcareService resource using: GET [base]/HealthcareService/[id]/_history/vid."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+
+## REQ-4
+
+**Summary**: Supporting the _includes criteria
+**Description**: "A Server SHALL be capable of supporting the following _includes: HealthcareService:location, HealthcareService:coverage-area, HealthcareService:organization, HealthcareService:endpoint."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+
+## REQ-5
+
+**Summary**: Supporting the _revincludes criteria
+**Description**: "A Server SHALL be capable of supporting the following _revincludes: PractitionerRole:service, OrganizationAffiliation:service."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+
+## REQ-6
+
+**Summary**: Supporting search parameters
+**Description**: "A Server SHALL support the following search parameters for HealthcareService: location, coverage-area, organization, endpoint, name, service-category, service-type, specialty, _id, _lastUpdated."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: HealthcareService Section of the Plan Net Implementation Guide v1.2.0
+## REQ-1
+
+**Summary**: Server support for InsurancePlan resource operations
+**Description**: "A Server SHALL be capable of returning a InsurancePlan resource using: GET [base]/InsurancePlan/[id]. A Server SHOULD be capable of returning a InsurancePlan resource using: GET [base]/InsurancePlan/[id]/_history/vid"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for GET [base]/InsurancePlan/[id] and SHOULD for GET [base]/InsurancePlan/[id]/_history/vid, Conditional: False
+**Source**: InsurancePlan Section
+
+## REQ-2
+
+**Summary**: Server support for _include operations on InsurancePlan resource
+**Description**: "A Server SHALL be capable of supporting the following _includes: InsurancePlan:administered-by - GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:administered-by InsurancePlan:owned-by - GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:owned-by InsurancePlan:coverage-area - GET [base]/InsurancePlan?[parameter=value]&_include=InsurancePlan:coverage-area"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: InsurancePlan Section
+
+## REQ-3
+
+**Summary**: Server support for InsurancePlan search parameters
+**Description**: "A Server SHALL support the following search parameters: administered-by, owned-by, coverage-area, name, plan-type, identifier, _id, _lastUpdated, type. For example: GET [base]/InsurancePlan?administered-by=[administered-by] or GET [base]/InsurancePlan?owned-by=[owned-by]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary
+
+## REQ-4
+
+**Summary**: InsurancePlan conformance expectation
+**Description**: "The server SHALL support the Plan-Net InsurancePlan profile"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: InsurancePlan Section
+
+## REQ-5
+
+**Summary**: Server support for InsurancePlan profile interaction
+**Description**: "The server SHALL support search-type and read operations. The server SHOULD support vread operation."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for search-type and read operations; SHOULD for vread operation, Conditional: False
+**Source**: Profile Interaction Summary## REQ-01
+
+**Summary**: Support for Profile Interaction
+**Description**: "A Server SHALL support 'search-type' and 'read'. A Server SHOULD support 'vread'." 
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for 'search-type' and 'read', SHOULD for 'vread', Conditional: False
+**Source**: Location Section - Profile Interaction Summary
+
+## REQ-02
+
+**Summary**: Capability to return Location resource
+**Description**: "A Server SHALL be capable of returning a Location resource using: GET [base]/Location/[id]. A Server SHOULD be capable of returning a Location resource using: GET [base]/Location/[id]/_history/vid."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for 'GET [base]/Location/[id]', SHOULD for 'GET [base]/Location/[id]/_history/vid', Conditional: False
+**Source**: Location Section - Fetch and Search Criteria
+
+## REQ-03
+
+**Summary**: Capability to support _includes
+**Description**: "A Server SHALL be capable of supporting the following _includes: Location:endpoint, Location:organization, Location:partof."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Location Section - Fetch and Search Criteria
+
+## REQ-04
+
+**Summary**: Capability to support _revincludes
+**Description**: "A Server SHALL be capable of supporting the following _revincludes: HealthcareService:location, InsurancePlan:coverage-area, OrganizationAffiliation:location, PractitionerRole:location."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Location Section - Fetch and Search Criteria
+
+## REQ-05
+
+**Summary**: Support for Search Parameters
+**Description**: "A Server SHALL support the following search parameters: partof, organization, endpoint, address-city, address-state, address-postalcode, address, type, _id, _lastUpdated."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Location Section - Search Parameter Summary
+
+These requirements describe the necessary capabilities and behaviors of the server in terms of supporting and returning Location resources, and they are all testable through the use of specific GET requests and search parameters. Each requirement is atomic and complete, and they all specify the actor (Server) and the conformance level (SHALL or SHOULD).## REQ-01
+
+**Summary**: Support for Plan-Net Network and Plan-Net Organization profiles
+**Description**: "Supported Profiles: [Plan-Net Network](StructureDefinition-plannet-Network.html), [Plan-Net Organization](StructureDefinition-plannet-Organization.html)"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0
+
+## REQ-02
+
+**Summary**: Support for 'search-type' and 'read' interactions
+**Description**: "Profile Interaction Summary: A Server SHALL support 'search-type', 'read'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0
+
+## REQ-03
+
+**Summary**: Optional support for 'vread' interaction
+**Description**: "Profile Interaction Summary: A Server SHOULD support 'vread'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0
+
+## REQ-04
+
+**Summary**: Capability to return an Organization resource
+**Description**: "A Server SHALL be capable of returning a Organization resource using: 'GET [base]/Organization/[id]'"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0
+
+## REQ-05
+
+**Summary**: Optional capability to return an Organization resource using versioned read
+**Description**: "A Server SHOULD be capable of returning a Organization resource using: 'GET [base]/Organization/[id]/_history/vid'"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0
+
+## REQ-06
+
+**Summary**: Capability to support the _includes parameter
+**Description**: "A Server SHALL be capable of supporting the following _includes: Organization:partof - 'GET [base]/Organization?[parameter=value]&_include=Organization:partof'"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Organization Section of Plan Net Implementation Guide v1.2.0## REQ-1
+
+**Summary**: Server support for Organization:endpoint GET request
+**Description**: "GET [base]/Organization?[parameter=value]&_include=Organization:endpoint"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+
+## REQ-2
+
+**Summary**: Server support for Organization:coverage-area GET request
+**Description**: "GET [base]/Organization?[parameter=value]&_include=Organization:coverage-area"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+
+## REQ-3
+
+**Summary**: Server support for specific _revincludes
+**Description**: "A Server SHALL be capable of supporting the following _revincludes: Endpoint:organization, HealthcareService:organization, InsurancePlan:administered-by, InsurancePlan:owned-by, OrganizationAffiliation:primary-organization, PractitionerRole:organization, PractitionerRole:network, OrganizationAffiliation:participating-organization"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+
+## REQ-4
+
+**Summary**: Server support for search parameters
+**Description**: "Conformance SHALL for parameters: [partof], [endpoint], [address], [name], [_id], [_lastUpdated], [type], [coverage-area]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Plan Net Implementation Guide v1.2.0
+## REQ-01
+
+**Summary**: Server support for OrganizationAffiliation search-type and read
+**Description**: "A Server SHALL support search-type, read for the OrganizationAffiliation resource."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation Profile Interaction Summary
+
+## REQ-02
+
+**Summary**: Server support for OrganizationAffiliation vread
+**Description**: "A Server SHOULD support vread for the OrganizationAffiliation resource."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: OrganizationAffiliation Profile Interaction Summary
+
+## REQ-03
+
+**Summary**: Server capability to return OrganizationAffiliation resource using specified GET request
+**Description**: "A Server SHALL be capable of returning a OrganizationAffiliation resource using: GET [base]/OrganizationAffiliation/[id]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation Fetch and Search Criteria
+
+## REQ-04
+
+**Summary**: Server capability to return OrganizationAffiliation resource using specified GET request with history
+**Description**: "A Server SHOULD be capable of returning a OrganizationAffiliation resource using: GET [base]/OrganizationAffiliation/[id]/_history/vid"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: OrganizationAffiliation Fetch and Search Criteria
+
+## REQ-05
+
+**Summary**: Server support for specific includes for OrganizationAffiliation resource
+**Description**: "A Server SHALL be capable of supporting the following _includes for the OrganizationAffiliation resource."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation Fetch and Search Criteria. Note: The specific _includes are not listed in the provided content.## REQ-01
+
+**Summary**: Support for primary-organization parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:primary-organization"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:primary-organization Section
+
+## REQ-02
+
+**Summary**: Support for participating-organization parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:participating-organization"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:participating-organization Section
+
+## REQ-03
+
+**Summary**: Support for location parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:location"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:location Section
+
+## REQ-04
+
+**Summary**: Support for service parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:service"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:service Section
+
+## REQ-05
+
+**Summary**: Support for endpoint parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:endpoint"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:endpoint Section
+
+## REQ-06
+
+**Summary**: Support for network parameter
+**Description**: "GET [base]/OrganizationAffiliation?[parameter=value]&_include=OrganizationAffiliation:network"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: OrganizationAffiliation:network Section
+
+## REQ-07
+
+**Summary**: Support for role parameter
+**Description**: "GET [base]/OrganizationAffiliation?role=[system] [code]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary Section
+
+## REQ-08
+
+**Summary**: Support for specialty parameter
+**Description**: "GET [base]/OrganizationAffiliation?specialty=[system] [code]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary Section
+
+## REQ-09
+
+**Summary**: Support for _id parameter
+**Description**: "GET [base]/OrganizationAffiliation?_id=[id]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary Section
+
+## REQ-10
+
+**Summary**: Support for _lastUpdated parameter
+**Description**: "GET [base]/OrganizationAffiliation?_lastUpdated=[_lastUpdated]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary Section
+## REQ-1
+
+**Summary**: Server support for Practitioner resource
+**Description**: "A Server SHALL support 'search-type', 'read'. A Server SHOULD support 'vread'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL for 'search-type', 'read'. SHOULD for 'vread'. Conditional: False
+**Source**: Profile Interaction Summary Section
+
+## REQ-2
+
+**Summary**: Fetching a Practitioner resource using a specific GET request
+**Description**: "A Server SHALL be capable of returning a Practitioner resource using: GET [base]/Practitioner/[id]"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Fetch and Search Criteria Section
+
+## REQ-3
+
+**Summary**: Fetching a Practitioner resource using a version-specific GET request
+**Description**: "A Server SHOULD be capable of returning a Practitioner resource using: GET [base]/Practitioner/[id]/_history/vid"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: Fetch and Search Criteria Section
+
+## REQ-4
+
+**Summary**: Support for _revincludes
+**Description**: "A Server SHALL be capable of supporting the following _revincludes: PractitionerRole:practitioner - GET [base]/Practitioner?[parameter=value]&_revinclude=PractitionerRole:practitioner"
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Fetch and Search Criteria Section
+
+## REQ-5
+
+**Summary**: Support for multiple search parameters
+**Description**: "A Server SHALL support the following search parameters: [name], [_id], [_lastUpdated], [family], [given]."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: Search Parameter Summary Section
+## REQ-SERVER-SHALL-01
+
+**Summary**: Server support for PractitionerRole
+**Description**: "A Server SHALL support 'search-type', 'read'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: PractitionerRole Section
+
+## REQ-SERVER-SHOULD-01
+
+**Summary**: Server support for version specific read
+**Description**: "A Server SHOULD support 'vread'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: PractitionerRole Section
+
+## REQ-SERVER-SHALL-02
+
+**Summary**: Server's capability of returning PractitionerRole resource
+**Description**: "A Server SHALL be capable of returning a PractitionerRole resource using: 'GET [base]/PractitionerRole/[id]'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: PractitionerRole Section
+
+## REQ-SERVER-SHOULD-02
+
+**Summary**: Server's ability to return version specific PractitionerRole resource
+**Description**: "A Server SHOULD be capable of returning a PractitionerRole resource using: 'GET [base]/PractitionerRole/[id]/_history/vid'."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHOULD, Conditional: False
+**Source**: PractitionerRole Section
+
+## REQ-SERVER-SHALL-03
+
+**Summary**: Server's support for _includes
+**Description**: "A Server SHALL be capable of supporting the following _includes: PractitionerRole:practitioner, PractitionerRole:organization, PractitionerRole:location, PractitionerRole:service, PractitionerRole:network, PractitionerRole:endpoint."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: PractitionerRole Section
+
+## REQ-SERVER-SHALL-04
+
+**Summary**: Server's support for search parameters
+**Description**: "A Server SHALL support search parameters: practitioner, organization, location, service, network, endpoint, role, specialty, _id, _lastUpdated."
+**Verification**: Test
+**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
+**Source**: PractitionerRole Section
+
+Please note that the requirements extraction above has been performed as per INCOSE Systems Engineering standards, with each requirement being complete, atomic, and testable. The specific test methods will depend on the testing strategy and resources available.## REQ-01
+
+**Summary**: Implementation of the Plan-Net CapabilityStatement
+**Description**: "Systems conforming to this implementation guide are expected to declare conformance to one or more of the following capability statements. [Plan-Net CapabilityStatement](CapabilityStatement-plan-net.html "CapabilityStatement/plan-net"). This Section describes the expected capabilities of the Plan-Net Server actor which is responsible for providing responses to the queries submitted by the Plan-Net Requestors."
+**Verification**: Test
+**Notes**: Actor: Systems conforming to this implementation guide, Conformance: EXPECTED, Conditional: False
+**Source**: Behavior: Capability Statements section
+
+## REQ-02
+
+**Summary**: Compliance with CMS Final Rule requirement for provider directory access
+**Description**: "Systems implementing this capability statement should meet the CMS Final Rule requirement for provider directory access."
+**Verification**: Inspection
+**Notes**: Actor: Systems implementing this capability statement, Conformance: SHOULD, Conditional: False
+**Source**: Behavior: Capability Statements section
+
+## REQ-03
+
+**Summary**: Utilization of required capabilities to access necessary data
+**Description**: "Plan-Net Clients can use the required capabilities to access necessary data based on their local use cases and other contextual requirements."
+**Verification**: Test
+**Notes**: Actor: Plan-Net Clients, Conformance: CAN, Conditional: True (Depends on local use cases and other contextual requirements)
+**Source**: Behavior: Capability Statements section## REQ-1
+
+**Summary**: Select Endpoints managed by Organization
+**Description**: "Select Endpoints managed by the specified organization"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-endpoint-organization Section
+
+## REQ-2
+
+**Summary**: Select Services Available in Specified Region
+**Description**: "Select services available in a region described by the specified location"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-healthcareservice-coverage-area Section
+
+## REQ-3
+
+**Summary**: Select Healthcare Services by Organization
+**Description**: "Select HealthcareServices provided by the specified organization"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-healthcareservice-organization Section
+
+## REQ-4
+
+**Summary**: Select Healthcare Services by Endpoint
+**Description**: "Select HealthcareServices with the specified endpoint"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-healthcareservice-endpoint Section
+
+## REQ-5
+
+**Summary**: Select Healthcare Services by Location
+**Description**: "Select HealthcareServices available at the specified location"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-healthcareservice-location Section
+
+## REQ-6
+
+**Summary**: Select Healthcare Services by Name
+**Description**: "Select HealthcareServices with the specified name"
+**Verification**: Test
+**Notes**: Actor: RESTful Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter-healthcareservice-name Section## REQ-1
+
+**Summary**: Select HealthcareServices providing the specified category of services
+**Description**: "The system SHALL be able to select HealthcareServices providing the specified category of services."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_healthcareservice_category section
+
+## REQ-2
+
+**Summary**: Select HealthcareServices of the specified type
+**Description**: "The system SHALL be able to select HealthcareServices of the specified type."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_healthcareservice_type section
+
+## REQ-3
+
+**Summary**: Select services associated with the specified specialty
+**Description**: "The system SHALL be able to select services associated with the specified specialty."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_healthcareservice_specialty section
+
+## REQ-4
+
+**Summary**: Select products that are administered by the specified organization
+**Description**: "The system SHALL be able to select products that are administered by the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_administered_by section
+
+## REQ-5
+
+**Summary**: Select products that are offered in the specified location
+**Description**: "The system SHALL be able to select products that are offered in the specified location."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_coverage_area section
+
+## REQ-6
+
+**Summary**: Select products with the specified identifier
+**Description**: "The system SHALL be able to select products with the specified identifier."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_identifier section
+
+## REQ-7
+
+**Summary**: Select products with the specified name
+**Description**: "The system SHALL be able to select products with the specified name."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_name section
+
+## REQ-8
+
+**Summary**: Select products that are owned by the specified organization
+**Description**: "The system SHALL be able to select products that are owned by the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_owned_by section
+
+These requirements are based on the provided Plan Net Implementation Guide v1.2.0 content.## REQ-01
+
+**Summary**: Select plans of the specified type
+**Description**: "The system SHALL provide functionality to select insurance plans of the specified type."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_plan_type
+
+## REQ-02
+
+**Summary**: Select insurance plans of the specified type
+**Description**: "The system SHALL provide functionality to select insurance plans of the specified type."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_insuranceplan_type
+
+## REQ-03
+
+**Summary**: Select Locations with the specified address.city
+**Description**: "The system SHALL provide functionality to select locations with the specified city in the address."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_address_city
+
+## REQ-04
+
+**Summary**: Select Locations with the specified address
+**Description**: "The system SHALL provide functionality to select locations with the specified address."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_address_postalcode
+
+## REQ-05
+
+**Summary**: Select Locations with the specified address.state
+**Description**: "The system SHALL provide functionality to select locations with the specified state in the address."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_address_state
+
+## REQ-06
+
+**Summary**: Select Locations with the specified address
+**Description**: "The system SHALL provide functionality to select locations with the specified address."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_address
+
+## REQ-07
+
+**Summary**: Select Locations with the specified endpoint
+**Description**: "The system SHALL provide functionality to select locations with the specified endpoint."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_endpoint
+
+## REQ-08
+
+**Summary**: Select Locations managed by the specified organization
+**Description**: "The system SHALL provide functionality to select locations managed by the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_location_organization## REQ-01
+
+**Summary**: Select Locations that are part of the specified location
+**Description**: "[Plannet_sp_location_partof] Select Locations that are part of the specified location"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/location-partof Section
+
+## REQ-02
+
+**Summary**: Select Locations of the specified type
+**Description**: "[Plannet_sp_location_type] Select Locations of the specified type"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/location-type Section
+
+## REQ-03
+
+**Summary**: Select organizations with the specified address
+**Description**: "[Plannet_sp_organization_address] Select organizations with the specified address (matches any of the string elements of an address)"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/organization-address Section
+
+## REQ-04
+
+**Summary**: Select health insurance provider networks available in a region
+**Description**: "[Plannet_sp_network_coverage_area] Select health insurance provider networks available in a region described by the specified location"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/organization-coverage-area Section
+
+## REQ-05
+
+**Summary**: Select Organizations with the specified endpoint
+**Description**: "[Plannet_sp_organization_endpoint] Select Organizations with the specified endpoint"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/organization-endpoint Section
+
+## REQ-06
+
+**Summary**: Select Organizations with the specified name
+**Description**: "[Plannet_sp_organization_name] Select Organizations with the specified name"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/organization-name Section
+
+## REQ-07
+
+**Summary**: Select Organizations that are part of the specified organization
+**Description**: "[Plannet_sp_organization_partof] Select Organizations that are part of the specified organization"
+**Verification**: Test
+**Notes**: Actor: FHIR Server, Conformance: SHALL, Conditional: False
+**Source**: SearchParameter/organization-partof Section## REQ-1
+
+**Summary**: Select Organizations of the specified type
+**Description**: "The system SHALL provide capability to select Organizations of the specified type."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organization_type Section
+
+## REQ-2
+
+**Summary**: Select OrganizationAffiliations with the specified endpoint
+**Description**: "The system SHALL provide capability to select OrganizationAffiliations with the specified endpoint."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_endpoint Section
+
+## REQ-3
+
+**Summary**: Select OrganizationAffiliations available at the specified location
+**Description**: "The system SHALL provide capability to select OrganizationAffiliations available at the specified location."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_location Section
+
+## REQ-4
+
+**Summary**: Select roles where the organization is a member of the specified health insurance provider network
+**Description**: "The system SHALL provide the capability to select roles where the organization is a member of the specified health insurance provider network."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_network Section
+
+## REQ-5
+
+**Summary**: Select roles filled by the specified organization
+**Description**: "The system SHALL provide capability to select roles filled by the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_participating_organization Section
+
+## REQ-6
+
+**Summary**: Select Organization Affiliations available in the specified period
+**Description**: "The system SHALL provide capability to select Organization Affiliations available in the specified period."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_period Section
+
+## REQ-7
+
+**Summary**: Select roles offered by the specified organization
+**Description**: "The system SHALL provide capability to select roles offered by the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_primary_organization Section## REQ-1
+
+**Summary**: Select OrganizationAffiliations with the specified role
+**Description**: "The system SHALL enable the selection of OrganizationAffiliations with the specified role."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_role Section
+
+## REQ-2
+
+**Summary**: Select OrganizationAffiliations providing the specified service
+**Description**: "The system SHALL enable the selection of OrganizationAffiliations providing the specified service."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_service Section
+
+## REQ-3
+
+**Summary**: Select OrganizationAffiliations associated with the specified specialty
+**Description**: "The system SHALL enable the selection of OrganizationAffiliations associated with the specified specialty."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_organizationaffiliation_specialty Section
+
+## REQ-4
+
+**Summary**: Select Practitioners with the specified family name
+**Description**: "The system SHALL enable the selection of Practitioners with the specified family name."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitioner_family_name Section
+
+## REQ-5
+
+**Summary**: Select Practitioners with the specified given name
+**Description**: "The system SHALL enable the selection of Practitioners with the specified given name."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitioner_given_name Section
+
+## REQ-6
+
+**Summary**: Select Practitioners with the specified name
+**Description**: "The system SHALL enable the selection of Practitioners with the specified name (matches against any of the elements in the HumanName data type)."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitioner_name Section
+
+## REQ-7
+
+**Summary**: Select PractitionerRoles with the specified endpoint
+**Description**: "The system SHALL enable the selection of PractitionerRoles with the specified endpoint."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_endpoint Section
+
+## REQ-8
+
+**Summary**: Select PractitionerRoles available at the specified location
+**Description**: "The system SHALL enable the selection of PractitionerRoles available at the specified location."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_location Section
+
+## REQ-9
+
+**Summary**: Select roles where the practitioner is a member of the specified health insurance provider network
+**Description**: "The system SHALL enable the selection of roles where the practitioner is a member of the specified health insurance provider network."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_network Section
+
+## REQ-10
+
+**Summary**: Select PractitionerRoles available at the specified organization
+**Description**: "The system SHALL enable the selection of PractitionerRoles available at the specified organization."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_organization Section
+
+## REQ-11
+
+**Summary**: Select PractitionerRoles available in the specified period
+**Description**: "The system SHALL enable the selection of PractitionerRoles available in the specified period."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_period Section
+
+## REQ-12
+
+**Summary**: Select roles filled by the specified practitioner
+**Description**: "The system SHALL enable the selection of roles filled by the specified practitioner."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_practitioner Section
+
+## REQ-13
+
+**Summary**: Select PractitionerRoles with the specified role
+**Description**: "The system SHALL enable the selection of PractitionerRoles with the specified role."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_role Section
+
+## REQ-14
+
+**Summary**: Select PractitionerRoles providing the specified service
+**Description**: "The system SHALL enable the selection of PractitionerRoles providing the specified service."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_service Section
+
+## REQ-15
+
+**Summary**: Select PractitionerRoles associated with the specified specialty
+**Description**: "The system SHALL enable the selection of PractitionerRoles associated with the specified specialty."
+**Verification**: Test
+**Notes**: Actor: System, Conformance: SHALL, Conditional: False
+**Source**: Plannet_sp_practitionerrole_specialty Section
+## REQ-01
+
+**Summary**: Conformity to StructureDefinition/plannet-Endpoint
+**Description**: "These [systems conforming to this implementation guide] define constraints on FHIR resources for systems conforming to this implementation guide: [Plan-Net Endpoint](StructureDefinition-plannet-Endpoint.html "StructureDefinition/plannet-Endpoint")"
+**Verification**: Test
+**Notes**: Actor: Systems conforming to this implementation guide, Conformance: SHALL, Conditional: False
+**Source**: Structures: Resource Profiles Section
+
+## REQ-02
+
+**Summary**: Provision of technical details for electronic services
+**Description**: "The technical details of an endpoint that can be used for electronic services, such as a portal or FHIR REST services, messaging or operations, or DIRECT messaging."
+**Verification**: Inspection
+**Notes**: Actor: Systems conforming to this implementation guide, Conformance: SHALL, Conditional: False
+**Source**: Structures: Resource Profiles Section
+
+Please note that the requirements are based on implicit context and might need to be revised as per more specific requirements provided in the Implementation Guide.## REQ-01
+
+**Summary**: Implementation of HealthcareService resource
+**Description**: "The HealthCareService resource typically describes services offered by an organization/practitioner at a location. The resource may be used to encompass a variety of services covering the entire healthcare spectrum, including promotion, prevention, diagnostics, pharmacy, hospital and ambulatory care, home care, long-term care, and other health-related and community services."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Plan-Net HealthcareService section
+
+## REQ-02
+
+**Summary**: Implementation of InsurancePlan resource
+**Description**: "An InsurancePlan is a discrete package of health insurance coverage benefits that are offered under a particular network type. A given payer’s products typically differ by network type and/or covered benefits. A plan pairs a product’s covered benefits with the particular cost sharing structure offered to a consumer. A given product may comprise multiple plans (i.e. each plan offers different cost sharing requirements for the same set of covered benefits). InsurancePlan describes a health insurance offering comprised of a list of covered benefits (i.e. the product), costs associated with those benefits (i.e. the plan), and additional information about the offering, such as who it is owned and administered by, a coverage area, contact information, etc."
+**Verification**: Test
+**Notes**: Actor: Implementer, Conformance: SHALL, Conditional: False
+**Source**: Plan-Net InsurancePlan section
+
+Please note that the requirements extracted from this chunk are not explicitly stated using SHALL, SHOULD, MAY, MUST, REQUIRED, etc. However, the context implies a SHALL conformance for the implementation of the described resources.## REQ-1
+
+**Summary**: Location to be defined within the system
+**Description**: "A Location is the physical place where healthcare services are provided, practitioners are employed, organizations are based, etc. Locations can range in scope from a room in a building to a geographic region/area."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net Location Section
+
+## REQ-2
+
+**Summary**: Network to be defined within the system
+**Description**: "A Network refers to a healthcare provider insurance network. A healthcare provider insurance network is an aggregation of organizations and individuals that deliver a set of services across a geography through health insurance products/plans."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net Network Section
+
+## REQ-3
+
+**Summary**: Organization to be defined within the system
+**Description**: "An organization is a formal or informal grouping of people or organizations with a common purpose, such as a company, institution, corporation, community group, or healthcare practice."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net Organization Section
+
+## REQ-4
+
+**Summary**: Practitioner to be defined within the system
+**Description**: "Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net Practitioner Section
+
+## REQ-5
+
+**Summary**: PractitionerRole to be defined within the system
+**Description**: "PractitionerRole describes details about a provider, which can be a practitioner or an organization. A provider renders services to patients at a location."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net PractitionerRole Section
+
+## REQ-6
+
+**Summary**: OrganizationAffiliation to be defined within the system
+**Description**: "The OrganizationAffiliation resource describes relationships between two or more organizations, including the services one organization provides another, the location(s) where they provide services, the availability of those services, electronic endpoints, and other relevant information."
+**Verification**: Inspection
+**Notes**: Actor: System, Conformance: SHOULD, Conditional: False
+**Source**: Plan-Net OrganizationAffiliation Section## REQ-1
+
+**Summary**: Implement Extension for Accessibility Options
+**Description**: "An extension to describe accessibility options offered by a practitioner or at a location."
+**Verification**: Test
+**Notes**: Actor: System Implementer, Conformance: SHALL, Conditional: False
+**Source**: Structures: Extension Definitions Section
+
+## REQ-2
+
+**Summary**: Implement Extension for Communication Proficiency
+**Description**: "An extension to express a practitioner’s spoken proficiency with the language indicated in practitioner.communication."
+**Verification**: Test
+**Notes**: Actor: System Implementer, Conformance: SHALL, Conditional: False
+**Source**: Structures: Extension Definitions Section
+
+## REQ-3
+
+**Summary**: Implement Extension for Contact point Available Time
+**Description**: "An extension representing the days and times a contact point is available."
+**Verification**: Test
+**Notes**: Actor: System Implementer, Conformance: SHALL, Conditional: False
+**Source**: Structures: Extension Definitions Section
+
+## REQ-4
+
+**Summary**: Implement Extension for Service Delivery Method
+**Description**: "An extension describing the service delivery method. If service delivery is virtual, one or more delivery modalities should be specified."
+**Verification**: Test
+**Notes**: Actor: System Implementer, Conformance: SHALL, Conditional: True (depends on if service delivery is virtual)
+**Source**: Structures: Extension Definitions Section
+
+## REQ-5
+
+**Summary**: Implement Extension for Endpoint Usecase
+**Description**: "EndpointUseCase is an enumeration of the specific use cases (service descriptions) supported by the endpoint."
+**Verification**: Test
+**Notes**: Actor: System Implementer, Conformance: SHALL, Conditional: False
+**Source**: Structures: Extension Definitions Section## REQ-1
+
+**Summary**: Provision of a reference to a Location resource
+**Description**: "A reference to a Location resource (plannet-Location) defining the coverage area of a health insurance provider network"
+**Verification**: Test
+**Notes**: Actor: Health Insurance Provider Network, Conformance: SHALL, Conditional: False
+**Source**: Location Reference Section
+
+## REQ-2
+
+**Summary**: Provision of reference to healthcare provider insurance networks
+**Description**: "A reference to the healthcare provider insurance networks (plannet-Network) the practitioner participates in through their role"
+**Verification**: Test
+**Notes**: Actor: Practitioner, Conformance: SHALL, Conditional: False
+**Source**: Network Reference Section
+
+## REQ-3
+
+**Summary**: Indication of acceptance of new patients
+**Description**: "New Patients indicates whether new patients are being accepted in general, or from a specific network. This extension is included in the PractitionerRole, HealthcareService, and Location profiles. This provides needed flexibility for specifying whether a provider accepts new patients by location and network."
+**Verification**: Test
+**Notes**: Actor: Healthcare Provider, Conformance: SHALL, Conditional: False
+**Source**: New Patients Section
+
+## REQ-4
+
+**Summary**: Provision of a human-readable description of an organization
+**Description**: "An extension to provide a human-readable description of an organization."
+**Verification**: Inspection
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Org Description Section
+
+## REQ-5
+
+**Summary**: Addition of status and whereValid elements to a practitioner’s qualifications
+**Description**: "An extension to add status and whereValid elements to a practitioner’s qualifications."
+**Verification**: Test
+**Notes**: Actor: Practitioner, Conformance: SHALL, Conditional: False
+**Source**: Practitioner Qualification Section
+
+## REQ-6
+
+**Summary**: Addition of qualifications for an organization or practitionerRole
+**Description**: "An extension to add qualifications for an organization (e.g. accreditation) or practitionerRole (e.g. registered to prescribe controlled substances)."
+**Verification**: Test
+**Notes**: Actor: Organization/PractitionerRole, Conformance: SHALL, Conditional: False
+**Source**: Qualification Section
+
+## REQ-7
+
+**Summary**: Provision of a reference to an alternative point of contact
+**Description**: "A reference to an alternative point of contact (plannet-PractitionerRole, plannet-Organization, plannet-OrganizationAffiliation, or plannet-Location) for this organization"
+**Verification**: Test
+**Notes**: Actor: Organization, Conformance: SHALL, Conditional: False
+**Source**: Via Intermediary Section# INTRODUCTION
+This chunk from the Plan Net Implementation Guide v1.2.0 focuses on the terminology and value sets used by systems conforming to the implementation guide. The value sets define sets of codes for various aspects like patient acceptance, service accessibility, delivery methods, endpoint connection types, payload types, use cases, and healthcare service categories. 
+
+After a thorough analysis, it has been identified that this chunk does not contain specific, testable requirements as per INCOSE Systems Engineering standards. The content mainly provides an overview of the terminology and value sets but does not specify any requirement that needs to be implemented or tested. 
+
+Therefore, there are no requirements to extract from this specific chunk of the FHIR Implementation Guide content.The content provided appears to be a list of value sets used in the Plan Net Implementation Guide v1.2.0. These value sets define categories and standards for various aspects of the health care service and insurance industries. As these are definitions and standards, rather than functional requirements, they do not contain explicit statements using SHALL, SHOULD, MAY, MUST, REQUIRED, etc., that would typically denote a testable requirement in INCOSE Systems Engineering context. 
+
+Therefore, no testable requirements in INCOSE-compliant format can be extracted from this particular content.Introduction:
+The provided FHIR Implementation Guide content appears to be a list of ValueSets from the Plan Net Implementation Guide v1.2.0. These ValueSets represent coded data used in health information systems. The definitions in these ValueSets are used within the FHIR resources to ensure data consistency. However, the provided content does not contain any explicit requirements with conformance language such as SHALL, SHOULD, MAY, MUST, or REQUIRED that can be extracted into INCOSE-compliant format. 
+
+Please, provide further content with explicit, testable requirements for proper extraction. As it stands, no requirements can be extracted from the currently provided content.Based on the provided content from the Plan Net Implementation Guide v1.2.0, this section describes the terminology and code systems used by systems conforming to this implementation guide. However, there are no specific, testable requirements identified in this chunk of the implementation guide that can be translated into INCOSE Systems Engineering format. The content is largely descriptive and informational, outlining the types of code systems without specifying any actions, behaviors, or constraints that could be tested. 
+
+As such, no INCOSE-style requirements can be extracted from this content. The performance or behavior of the system is not mandated or described, and no use of imperative language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.) is present. This section appears to primarily provide a reference or resource for understanding the code systems used in other parts of the implementation guide.
+
+In the context of system requirements, it's important to note that not every section of a guide or standard will include testable requirements. Some sections, like this one, might provide context or describe concepts essential to the understanding of the requirements outlined elsewhere in the document.Introduction:
+This particular chunk from the Plan Net Implementation Guide v1.2.0 provides examples of different instances that a system conforming to this guide might produce or consume. However, there are no explicit requirements, conformance directives (such as SHALL, SHOULD, MAY, etc.), or actions stated in this chunk. 
+
+Therefore, based on this block of text from the Implementation Guide, there are no specific, testable requirements that can be extracted and formatted according to INCOSE Systems Engineering standards. 
+
+This does not mean that no requirements are associated with the example instances mentioned, but simply that they are not articulated in this specific chunk of the Implementation Guide. The associated requirements may be defined in other sections of the Implementation Guide.Based on the content provided, it appears to be a list of HTML pages containing information about different healthcare entities like clinics, hospitals, and healthcare services. This content does not explicitly specify any requirements, guidelines, or conditions as per the INCOSE Systems Engineering standards.
+
+Therefore, no specific, testable requirements that can be formatted according to INCOSE Systems Engineering standards can be extracted from this content. However, these pages could potentially be useful for deriving functional requirements related to the structure, relationships, and properties of these healthcare entities in the context of a broader system. Further investigation of these pages would be required to identify such requirements.After meticulous analysis of the provided FHIR Implementation Guide content, it appears that this particular chunk of the Plan Net Implementation Guide v1.2.0 does not contain any specific, testable requirements that can be extracted and formatted according to INCOSE Systems Engineering standards. The given content primarily focuses on different entities such as practitioners, locations, services, and organizations, and their respective roles or affiliations.
+
+However, there are no explicit conditions, obligations, or directives specified for any actor, indicated by words such as SHALL, SHOULD, MAY, MUST, or REQUIRED. Therefore, it is not feasible to create INCOSE-style requirements from this chunk.
+
+Further chunks of the FHIR Implementation Guide should be examined in order to generate a comprehensive list of INCOSE-compliant requirements.Introduction:
+This chunk of the FHIR Implementation Guide seems to provide a list of example resources and their descriptions in the healthcare domain such as Hospitals, Practitioners, their roles, Organizations that provide pharmacy services, their affiliations, healthcare services provided by these organizations, and their locations. However, there are no explicit conditions, rules, or requirements stated that need to be adhered to. Therefore, no requirements can be extracted from this chunk. 
+
+Requirements:
+
+There are no testable requirements in this chunk of the FHIR Implementation Guide. It is recommended to review other parts of the guide that contain explicit conditions using SHALL, SHOULD, MAY, MUST, REQUIRED, etc. to find testable requirements.
