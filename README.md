@@ -41,11 +41,9 @@ GEMINI_API_KEY=your_gemini_key_here
 OPENAI_API_KEY=your_openai_key_here
 
 2. Install dependencies: This will install all necessary packages including API clients for Claude, Gemini, and GPT, as well as data processing libraries.
-
 In your working directory, using the command line, run the command `pip install -r requirements.txt`
 
 3. Start Jupyter: Start Jupyter to explore and run the notebooks.
-
 In the command line, run `jupyter notebook`
 This will open a web browser showing the Jupyter file explorer. Navigate to the notebook you want to run and click on it.
 
