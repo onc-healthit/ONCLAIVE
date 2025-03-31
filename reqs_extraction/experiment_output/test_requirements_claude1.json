@@ -1,0 +1,189 @@
+{
+  "requirements": [
+    {
+      "requirement_text": "\"Search-style filters to be applied to narrow the subscription topic stream. Keys can be either search parameters appropriate to the filtering resource or keys defined within the subscription topic.\"",
+      "conformance": "MAY",
+      "actor": "Subscription Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Subscription.criteria.extension:filterCriteria.definition"
+    },
+    {
+      "requirement_text": "\"When multiple filters are applied, evaluates to true if all the conditions are met; otherwise it returns false. (i.e., logical AND).\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Server",
+      "conditional": "True (when multiple filters are applied)",
+      "sub-requirements": "None",
+      "source": "Subscription.criteria.extension:filterCriteria.comment"
+    },
+    {
+      "requirement_text": "\"If present, a 'hearbeat' notification (keepalive) is sent via this channel with an the interval period equal to this elements integer value in seconds. If not present, a heartbeat notification is not sent.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Server",
+      "conditional": "True (when heartbeatPeriod is present)",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.extension:heartbeatPeriod.definition"
+    },
+    {
+      "requirement_text": "\"If present, the maximum amount of time a server will allow before failing a notification attempt.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Server",
+      "conditional": "True (when timeout is present)",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.extension:timeout.definition"
+    },
+    {
+      "requirement_text": "\"If present, the maximum number of triggering resources that will be included in a notification bundle (e.g., a server will not include more than this number of trigger resources in a single notification). Note that this is not a strict limit on the number of entries in a bundle, as dependent resources can be included.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Server",
+      "conditional": "True (when maxCount is present)",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.extension:maxCount.definition"
+    },
+    {
+      "requirement_text": "\"The type of channel to send notifications on.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.type.extension:customChannelType.definition"
+    },
+    {
+      "requirement_text": "\"This extension allows for the use of additional channel types that were not defined in the FHIR R4 subscription definition.\"",
+      "conformance": "MAY",
+      "actor": "Subscription Creator, Subscription Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.type.extension:customChannelType.comment"
+    },
+    {
+      "requirement_text": "\"How much of the resource content to deliver in the notification payload. The choices are an empty payload, only the resource id, or the full resource content.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Creator",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.payload.extension:content.definition"
+    },
+    {
+      "requirement_text": "\"Sending the payload has obvious security implications. The server is responsible for ensuring that the content is appropriately secured.\"",
+      "conformance": "SHALL",
+      "actor": "Subscription Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Subscription.channel.payload.extension:content.comment"
+    },
+    {
+      "requirement_text": "\"Parameters SHALL contain a parameter named 'status' with the status of the subscription\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:status"
+    },
+    {
+      "requirement_text": "\"Parameters SHALL contain a parameter named 'type' with the type of event being conveyed\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:type"
+    },
+    {
+      "requirement_text": "\"Parameters MAY contain a parameter named 'topic' with the canonical reference to the SubscriptionTopic\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:topic"
+    },
+    {
+      "requirement_text": "\"Parameters MAY contain a parameter named 'events-since-subscription-start' with the total number of events generated since the Subscription was created\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:eventsSinceSubscriptionStart"
+    },
+    {
+      "requirement_text": "\"Parameters MAY contain one or more 'notification-event' parameters with details about each event\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:notificationEvent"
+    },
+    {
+      "requirement_text": "\"Each 'notification-event' parameter SHALL contain a part named 'event-number' with the sequential number of this event\"",
+      "conformance": "SHALL",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:notificationEvent.part:eventNumber"
+    },
+    {
+      "requirement_text": "\"Each 'notification-event' parameter MAY contain a part named 'timestamp' with the time the event occurred\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:notificationEvent.part:eventTimestamp"
+    },
+    {
+      "requirement_text": "\"Each 'notification-event' parameter MAY contain a part named 'focus' with a reference to the focus of the event\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:notificationEvent.part:eventFocus"
+    },
+    {
+      "requirement_text": "\"Each 'notification-event' parameter MAY contain one or more parts named 'additional-context' with references to additional context resources\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "True",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:notificationEvent.part:eventAdditionalContext"
+    },
+    {
+      "requirement_text": "\"Parameters MAY contain one or more 'error' parameters with CodeableConcepts describing any errors that occurred\"",
+      "conformance": "MAY",
+      "actor": "Server",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Parameters.parameter:error"
+    },
+    {
+      "requirement_text": "\"Bundle.type [...] MUST have a value of 'history'\"",
+      "conformance": "SHALL",
+      "actor": "Notification Bundle",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Bundle.type patternCode"
+    },
+    {
+      "requirement_text": "\"Bundle.entry [...] MUST have a minimum cardinality of 1\"",
+      "conformance": "SHALL",
+      "actor": "Notification Bundle",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Bundle.entry minimum cardinality"
+    },
+    {
+      "requirement_text": "\"Bundle.entry:subscriptionStatus [...] MUST have a cardinality of 1..1\"",
+      "conformance": "SHALL",
+      "actor": "Notification Bundle",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Bundle.entry:subscriptionStatus cardinality"
+    },
+    {
+      "requirement_text": "\"Bundle.entry:subscriptionStatus.resource [...] MUST be of type Parameters and conform to the profile 'http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription-status-r4'\"",
+      "conformance": "SHALL",
+      "actor": "Notification Bundle",
+      "conditional": "False",
+      "sub-requirements": "None",
+      "source": "Bundle.entry:subscriptionStatus.resource type and profile"
+    }
+  ],
+  "output_file": "processed_output/test_requirements_claude1.json"
+}
