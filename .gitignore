@@ -1,2 +1,5 @@
 .DS_Store
 .env
+test_kit_dev/test_plan_output/
+reqs_extraction/initial_reqs_output/
+reqs_extraction/revised_reqs_output/
