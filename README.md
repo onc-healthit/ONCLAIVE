@@ -18,7 +18,7 @@ Scripts to extract requirements using an LLM from the Plan Net IG
 - `reqs_extraction.ipynb`: Most recent experimental notebook to extract requirements from the Plan Net IG using an LLM, including a request in the prompt to align requirements with INCOSE standards
 - `reqs_reviewer.ipynb`: Notebook to review set of requirements using an LLM and output a refined set
 - `reqs_extraction/initial_reqs_outputs`: Contains results from reqs_extraction notebook
-- `reqs_extraction/initial_reqs_outputs`: Contains results from reqs_revision notebook
+- `reqs_extraction/revised_reqs_outputs`: Contains results from reqs_revision notebook
 
 ### test_kit_dev: 
 - `reqs_to_testplan_grouped.ipynb`: Notebook to convert a list of requirements to a test plan, using an LLM
