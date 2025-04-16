@@ -11,17 +11,19 @@
 Scripts to test LLM's baseline understanding of Plan Net IG with various levels of context
 - `PlanNet_LLM_analysis_test1.ipynb`: Script to test baseline understanding of PlanNet IG on frontier LLM models 
 - `PlanNet_LLM_analysis_test3.ipynb`: Script to test understanding of PlanNet IG using only critical .json files
+- `understanding_exps/LLM_results` and `understanding_exps/processed results`: Primarily contanins results from several LLMs and no context testing
 
 ### reqs_extraction: 
 Scripts to extract requirements using an LLM from the Plan Net IG
-- `markdown-only-v5-incose.ipynb`: Most recent experimental notebook to extract requirements from the Plan Net IG using an LLM, including a request in the prompt to align requirements with INCOSE standards
+- `reqs_extraction.ipynb`: Most recent experimental notebook to extract requirements from the Plan Net IG using an LLM, including a request in the prompt to align requirements with INCOSE standards
 - `reqs_reviewer.ipynb`: Notebook to review set of requirements using an LLM and output a refined set
-- `reqs_to_testplan.ipynb`: Experimental notebook to convert a list of requirements to a test plan, using an LLM
+- `reqs_extraction/initial_reqs_outputs`: Contains results from reqs_extraction notebook
+- `reqs_extraction/initial_reqs_outputs`: Contains results from reqs_revision notebook
 
-### LLM Results: 
-Output results from key experimental notebooks
-- `LLM_results`: Primarily contanins results from several LLMs and no context testing
-- `reqs_extraction/processed_output`: Contains results from meta-summarization and requirements extraction efforts
+### test_kit_dev: 
+- `reqs_to_testplan_grouped.ipynb`: Notebook to convert a list of requirements to a test plan, using an LLM
+- `plan_to_tests.ipynb`: Experimental notebook to take in a test plan and develop a set of tests to cover the testable IG requirements
+- `test_kit_dev/test_plan_output`: Contains results from reqs_to_testplan_grouped notebook
 
 ## Working with Above Scripts
 
@@ -51,9 +53,9 @@ This will open a web browser showing the Jupyter file explorer. Navigate to the 
 5. One current workflow of notebooks from the non-RAG approach is the following: 
 - `local_HTML_narrative_extractor.ipynb`
 - `markdown_cleaner.ipynb`
-- `markdown-only-v5-incose.ipynb`
+- `reqs_extraction.ipynb`
 - `reqs_reviewer.ipynb`
-- `reqs_to_testplan.ipynb`
+- `reqs_to_testplan_grouped.ipynb`
 
 
 ## LLM Set Up
