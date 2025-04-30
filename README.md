@@ -22,8 +22,10 @@ Scripts to extract requirements using an LLM from the Plan Net IG
 
 ### test_kit_dev: 
 - `reqs_to_testplan_grouped.ipynb`: Notebook to convert a list of requirements to a test plan, using an LLM
-- `plan_to_tests.ipynb`: Experimental notebook to take in a test plan and develop a set of tests to cover the testable IG requirements
+- `plan_to_tests.ipynb`: Notebook to take in a test plan and develop a set of tests to cover the testable IG requirements
 - `test_kit_dev/test_plan_output`: Contains results from reqs_to_testplan_grouped notebook
+- `test_kit_dev/test_output`: Contains results from plan_to_tests notebook
+
 
 ## Working with Above Scripts
 
@@ -48,14 +50,15 @@ In your working directory, using the command line, run the command `pip install 
 In the command line, run `jupyter notebook`
 This will open a web browser showing the Jupyter file explorer. Navigate to the notebook you want to run and click on it.
 
-4. If you encounter SSL certificate issues with API requests, modify the `verify_path` variable in the `setup_clients()` function in the notebooks.
+4. If you encounter SSL certificate issues with API requests, modify the `verify_path` variable in the `setup_clients()` function in llm_utils.py file.
 
-5. One current workflow of notebooks from the non-RAG approach is the following: 
+5. The current workflow of notebooks from the non-RAG approach is the following: 
 - `local_HTML_narrative_extractor.ipynb`
 - `markdown_cleaner.ipynb`
 - `reqs_extraction.ipynb`
 - `reqs_reviewer.ipynb`
 - `reqs_to_testplan_grouped.ipynb`
+- `plan_to_tests.ipynb`
 
 
 ## LLM Set Up
