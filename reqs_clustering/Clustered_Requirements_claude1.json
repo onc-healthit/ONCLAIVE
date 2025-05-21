@@ -1,0 +1,3274 @@
+[
+  {
+    "<PROFILE_2>": [
+      [
+        "Server SHALL support the CodeSystem 'DeliveryMethodCS' with URL 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/DeliveryMethodCS'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The DeliveryMethodCS CodeSystem SHALL include the code 'virtual' with display 'Virtual' and definition 'Delivery not requiring provider and patient to be physically co-located, such as tele-medicine'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The DeliveryMethodCS CodeSystem SHALL include the code 'physical' with display 'Physical' and definition 'Traditional delivery requiring provider and patient to be physically co-located.'",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by location using the 'location' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'location' search parameter for HealthcareService resources SHALL support chaining with the following parameters: address, address-postalcode, address-city, address-state, organization, type",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'location' search parameter for HealthcareService resources SHALL support multiple 'OR' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'location' search parameter for HealthcareService resources SHALL support multiple 'AND' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers supporting this guide SHALL support searching for HealthcareService resources using the 'endpoint' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL be of type 'reference'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support searching by reference to Endpoint resources.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support the 'organization' chain.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support multiple 'AND' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support multiple 'OR' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL define the following codes for HealthcareServiceCategory: behav, dent, dme, emerg, group, home, hosp, lab, other, outpat, prov, pharm, trans, urg, vis",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/HealthcareServiceCategoryCS'",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching HealthcareService resources by delivery method using the 'delivery-method' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter for HealthcareService resources SHALL be of type 'token'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter SHALL support both 'multipleOr' and 'multipleAnd' search modifiers.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter SHALL use the expression 'HealthcareService.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method').extension.where(url='type')' to extract the searchable token value.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by coverage area using the 'coverage-area' search parameter",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL have a type of 'reference'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL have a target of Location",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL support AND search (multipleAnd)",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL support OR search (multipleOr)",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers implementing this Implementation Guide SHALL support searching HealthcareService resources by specialty using the 'specialty' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'specialty' search parameter for HealthcareService resources SHALL support the 'text' modifier.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'specialty' search parameter for HealthcareService resources SHALL support multiple 'AND' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'specialty' search parameter for HealthcareService resources SHALL support multiple 'OR' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by service-type using the token search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The service-type search parameter for HealthcareService resources SHALL support the 'text' modifier.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The service-type search parameter for HealthcareService resources SHALL support multiple 'AND' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The service-type search parameter for HealthcareService resources SHALL support multiple 'OR' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL include the code 'nopt' with display 'Not Accepting' and definition 'Not accepting patients'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL include the code 'newpt' with display 'Accepting' and definition 'Accepting patients'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL include the code 'existptfam' with display 'Accepting existing patients and their families' and definition 'Accepting existing patients and members of their families'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AcceptingPatientsCS'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL have a status of 'active'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL have content marked as 'complete'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL be case sensitive",
+        "<PROFILE_2>"
+      ],
+      [
+        "The VirtualModalitiesVS value set SHALL include the following codes from the http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/VirtualModalitiesCS code system: phone, video, tdd, sms, app, web",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by organization using the 'organization' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL have a type of 'reference'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL support chaining to 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL support multiple 'OR' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL support multiple 'AND' values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by name using the 'name' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support multiple 'OR' values (comma-separated).",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support multiple 'AND' instances of the parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem 'DeliveryMethodCS' SHALL define the code 'virtual' with the display 'Virtual' and the definition 'Delivery not requiring provider and patient to be physically co-located, such as tele-medicine'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem 'DeliveryMethodCS' SHALL define the code 'physical' with the display 'Physical' and the definition 'Traditional delivery requiring provider and patient to be physically co-located.'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem 'DeliveryMethodCS' SHALL have the url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/DeliveryMethodCS'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem 'DeliveryMethodCS' SHALL have the status 'active'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem 'DeliveryMethodCS' SHALL have the content set to 'complete'",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources using the 'endpoint' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL have a type of 'reference'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support chaining to the 'organization' parameter of the target Endpoint resource.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'endpoint' search parameter for HealthcareService resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching HealthcareService resources by delivery method using the 'delivery-method' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter for HealthcareService resources SHALL be of type 'token'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter SHALL support both AND and OR search modifiers for multiple values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'delivery-method' search parameter SHALL use the expression 'HealthcareService.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/delivery-method').extension.where(url='type')' to extract values from HealthcareService resources.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by coverage area using the 'coverage-area' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL have a type of 'reference'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL support searching by references to Location resources.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'coverage-area' search parameter for HealthcareService resources SHALL support both AND and OR search modifiers for multiple values.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by service type using the 'service-type' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'service-type' search parameter for HealthcareService resources SHALL support multiple values combined with OR logic.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'service-type' search parameter for HealthcareService resources SHALL support multiple values combined with AND logic.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'service-type' search parameter for HealthcareService resources SHALL support the 'text' modifier.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL define the concept 'nopt' with display 'Not Accepting' and definition 'Not accepting patients'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL define the concept 'newpt' with display 'Accepting' and definition 'Accepting patients'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL define the concept 'existptonly' with display 'Accepting existing patients' and definition 'Accepting existing patients'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL define the concept 'existptfam' with display 'Accepting existing patients and their families' and definition 'Accepting existing patients and members of their families'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The CodeSystem SHALL have the url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/AcceptingPatientsCS'",
+        "<PROFILE_2>"
+      ],
+      [
+        "The daysOfWeek sub-extension value[x] SHALL be bound to the http://hl7.org/fhir/ValueSet/days-of-week value set with a required binding strength",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by organization using the 'organization' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL have a type of 'reference'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL support chaining with 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'organization' search parameter for HealthcareService resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The HealthcareServiceCategoryVS value set SHALL include all codes defined in the HealthcareServiceCategoryCS code system (http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/HealthcareServiceCategoryCS).",
+        "<PROFILE_2>"
+      ],
+      [
+        "The HealthcareServiceCategoryVS value set SHALL exclude the 'other' code from the HealthcareServiceCategoryCS code system.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support searching for HealthcareService resources by name using the 'name' search parameter.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support multiple 'OR' values (separated by comma).",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'name' search parameter for HealthcareService resources SHALL support multiple 'AND' values (repeated parameter).",
+        "<PROFILE_2>"
+      ],
+      [
+        "Servers SHALL support the VirtualModalitiesCS CodeSystem with the following properties: [url: http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/VirtualModalitiesCS, version: 1.2.0, name: VirtualModalitiesCS, title: Virtual Modalities, status: active, experimental: false, caseSensitive: true, content: complete]",
+        "<PROFILE_2>"
+      ],
+      [
+        "The VirtualModalitiesCS CodeSystem SHALL include the following codes: [phone, video, tdd, sms, app, web]",
+        "<PROFILE_2>"
+      ],
+      [
+        "The delivery-method extension SHALL have exactly one 'type' extension.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The delivery-method extension MAY have zero or more 'virtualModalities' extensions.",
+        "<PROFILE_2>"
+      ],
+      [
+        "If present, each 'virtualModalities' extension SHALL have a value[x] of type CodeableConcept.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The 'virtualModalities' extension's CodeableConcept SHALL be bound to the VirtualModalitiesVS value set (http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/VirtualModalitiesVS) with an extensible binding strength.",
+        "<PROFILE_2>"
+      ],
+      [
+        "The delivery-method extension SHALL NOT have a value[x] element.",
+        "<PROFILE_2>"
+      ],
+      [
+        "Extension:daysOfWeek SHALL have a value[x] of type code",
+        "<PROFILE_2>"
+      ],
+      [
+        "Extension:daysOfWeek.value[x] SHALL be bound to the DaysOfWeek value set (http://hl7.org/fhir/ValueSet/days-of-week) with a required binding strength",
+        "<PROFILE_2>"
+      ],
+      [
+        "Extension:allDay SHALL have a value[x] of type boolean",
+        "<PROFILE_2>"
+      ],
+      [
+        "Extension:availableStartTime SHALL have a value[x] of type time",
+        "<PROFILE_2>"
+      ],
+      [
+        "Extension:availableEndTime SHALL have a value[x] of type time",
+        "<PROFILE_2>"
+      ]
+    ],
+    "<PROFILE_7>": [
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by specialty using the 'specialty' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL have a type of 'token'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support the 'multipleOr' search behavior.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support the 'multipleAnd' search behavior.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support the 'text' modifier.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources using the 'period' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'period' search parameter for OrganizationAffiliation resources SHALL be of type 'date'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'period' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The OrganizationAffiliation resource SHALL support searching by service using the 'service' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter for OrganizationAffiliation SHALL have a type of 'reference'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter for OrganizationAffiliation SHALL support chaining to 'service-category', 'organization', and 'location'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter for OrganizationAffiliation SHALL support both AND and OR search modifiers.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter for OrganizationAffiliation SHALL reference HealthcareService resources.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by primary-organization using the following syntax: GET [base]/OrganizationAffiliation?primary-organization=[reference]",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support the 'primary-organization' search parameter on OrganizationAffiliation resources, which maps to the OrganizationAffiliation.organization element.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'primary-organization' search parameter on OrganizationAffiliation resources SHALL support searching by reference to Organization resources.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support AND search functionality for the 'primary-organization' parameter on OrganizationAffiliation resources, allowing multiple values that must all be true.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support OR search functionality for the 'primary-organization' parameter on OrganizationAffiliation resources, allowing multiple comma-separated values where at least one must be true.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support chained searches on the 'primary-organization' parameter for OrganizationAffiliation resources, allowing chaining to the following Organization search parameters: type, address, name, partof",
+        "<PROFILE_7>"
+      ],
+      [
+        "The Extension MAY have 0 or 1 'period' extension.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by participating-organization",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support searching by reference to Organization resources",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support chaining to Organization search parameters: type, address, name, partof",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support AND search (multiple parameter instances)",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support OR search (comma-separated values)",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by role using the 'role' search parameter",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL have a type of 'token'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support the 'text' modifier",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support multiple 'AND' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL be mapped to the OrganizationAffiliation.code element",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by location using the search parameter 'location'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'location' search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'location' search parameter for OrganizationAffiliation resources SHALL support chaining with: address, address-postalcode, address-city, address-state, organization, type",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'location' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'location' search parameter for OrganizationAffiliation resources SHALL support multiple 'AND' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'endpoint' search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'endpoint' search parameter for OrganizationAffiliation resources SHALL reference Endpoint resources.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'endpoint' search parameter for OrganizationAffiliation resources SHALL support chaining to 'organization'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'endpoint' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'endpoint' search parameter for OrganizationAffiliation resources SHALL support multiple 'AND' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The OrganizationAffiliationRoleVS value set SHALL include all codes defined in the http://hl7.org/fhir/organization-role code system.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The OrganizationAffiliationRoleVS value set SHALL include all codes defined in the http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrganizationAffiliationRoleCS code system.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The OrganizationAffiliationRoleVS value set SHALL exclude the code 'member' from the http://hl7.org/fhir/organization-role code system.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching for OrganizationAffiliation resources using the 'network' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support searching on the OrganizationAffiliation.network element.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support references to Organization resources.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support both 'AND' and 'OR' search modifiers for multiple values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support chained searches on the 'name' and 'partof' elements of the referenced Organization.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by specialty using the 'specialty' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL be of type 'token'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support the 'text' modifier.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support multiple 'AND' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'specialty' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching for OrganizationAffiliation resources using the 'period' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'period' search parameter for OrganizationAffiliation resources SHALL have a type of 'date'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'period' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'period' search parameter for OrganizationAffiliation resources SHALL use the expression 'OrganizationAffiliation.period' for filtering.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The OrganizationAffiliation resource SHALL support searching by service using the 'service' search parameter.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter on OrganizationAffiliation SHALL have a type of 'reference'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter on OrganizationAffiliation SHALL support chaining to 'service-category', 'organization', and 'location'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'service' search parameter on OrganizationAffiliation SHALL support both AND and OR search modifiers.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The primary-organization search parameter for OrganizationAffiliation resources SHALL be of type 'reference'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The primary-organization search parameter for OrganizationAffiliation resources SHALL reference Organization resources",
+        "<PROFILE_7>"
+      ],
+      [
+        "The primary-organization search parameter for OrganizationAffiliation resources SHALL support multipleOr searches",
+        "<PROFILE_7>"
+      ],
+      [
+        "The primary-organization search parameter for OrganizationAffiliation resources SHALL support multipleAnd searches",
+        "<PROFILE_7>"
+      ],
+      [
+        "The primary-organization search parameter for OrganizationAffiliation resources SHALL support chained searches on type, address, name, and partof",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by participating-organization reference",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support chaining to 'type', 'address', 'name', and 'partof'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support multipleOr searching",
+        "<PROFILE_7>"
+      ],
+      [
+        "The participating-organization search parameter for OrganizationAffiliation resources SHALL support multipleAnd searching",
+        "<PROFILE_7>"
+      ],
+      [
+        "Servers SHALL support searching OrganizationAffiliation resources by role using the 'role' search parameter",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL have a type of 'token'",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support multiple 'OR' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support multiple 'AND' values",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'role' search parameter for OrganizationAffiliation resources SHALL support the ':text' modifier",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL have a type of 'reference'.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support chaining to 'name' and 'partof' parameters of the target Organization resource.",
+        "<PROFILE_7>"
+      ],
+      [
+        "The 'network' search parameter for OrganizationAffiliation resources SHALL support both AND and OR search modifiers for multiple values.",
+        "<PROFILE_7>"
+      ]
+    ],
+    "<PROFILE_3>": [
+      [
+        "Servers SHALL support searching for InsurancePlan resources using the 'coverage-area' search parameter, which is of type 'reference' and targets Location resources.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'coverage-area' search parameter for InsurancePlan resources SHALL support both 'multipleOr' and 'multipleAnd' search modifiers.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources using the 'plan-type' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support the 'token' search parameter type.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support both 'multipleOr' and 'multipleAnd' search modifiers.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support the 'text' modifier.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support the InsurancePlanTypeCS CodeSystem with URL 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/InsurancePlanTypeCS'",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsurancePlanTypeCS CodeSystem SHALL include the following codes: platinum, gold, silver, bronze, catastrophic, lowdeductible, highdeductible, catastrophicplan",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsurancePlanTypeCS CodeSystem SHALL be case-sensitive",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching InsurancePlan resources by identifier",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support the 'identifier' search parameter of type 'token' for InsurancePlan resources",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support multiple 'AND' values for the 'identifier' search parameter on InsurancePlan resources",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support multiple 'OR' values for the 'identifier' search parameter on InsurancePlan resources",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support the 'text' and 'of-type' modifiers for the 'identifier' search parameter on InsurancePlan resources",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources by the 'administered-by' parameter, which is of type 'reference'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support searching by reference to Organization resources.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support the 'multipleOr' search parameter behavior.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support the 'multipleAnd' search parameter behavior.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support chaining to the 'name' and 'partof' parameters of the target Organization resource.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching InsurancePlan resources by name using the 'name' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'name' search parameter for InsurancePlan resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'name' search parameter for InsurancePlan resources SHALL support both AND and OR search parameter repetition.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The Extension MAY have 0 or 1 'issuer' extension.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The Extension SHALL have exactly 1 'status' extension.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The Extension MAY have 0 or more 'whereValid' extensions.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'issuer' extension, if present, SHALL have a Reference value that references a Plan-Net Organization.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'whereValid' extension's CodeableConcept value, if used, SHALL be bound to the US Core USPS State value set with required binding strength.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsuranceProductTypeCS CodeSystem SHALL define the code 'commppo' with display 'Commercial PPO' and definition 'Health insurance provided through a Preferred Provider Organization (PPO).'",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsuranceProductTypeCS CodeSystem SHALL define the code 'commhdhp' with display 'Commercial HDHP' and definition 'Health insurance provided through a High Deductible Health Plan (HDHP).'",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsuranceProductTypeCS CodeSystem SHALL define the code 'commpos' with display 'Commercial POS' and definition 'Health insurance provided through a Point-of-Service (POS) Plan.'",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsuranceProductTypeCS CodeSystem SHALL define the code 'commhmo' with display 'Commercial HMO' and definition 'Health insurance provided through a Health Maintenance Organization (HMO).'",
+        "<PROFILE_3>"
+      ],
+      [
+        "The InsuranceProductTypeCS CodeSystem SHALL define the code 'commepo' with display 'Commercial EPO' and definition 'Health insurance provided through a Exclusive Provider Organization(EPO).'",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching InsurancePlan resources by type using the 'type' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL have a type of 'token'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support the 'text' modifier.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support searching for multiple values using AND logic.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support searching for multiple values using OR logic.",
+        "<PROFILE_3>"
+      ],
+      [
+        "If the 'whereValid' extension uses a CodeableConcept, it SHALL be bound to the USPS Two Letter Alphabetic Codes value set.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources by coverage-area, which is a reference to a Location resource.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The coverage-area search parameter for InsurancePlan resources SHALL support multipleOr searches.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The coverage-area search parameter for InsurancePlan resources SHALL support multipleAnd searches.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources using the 'plan-type' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL have a type of 'token'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support the 'text' modifier.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support multiple 'AND' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'plan-type' search parameter for InsurancePlan resources SHALL support multiple 'OR' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching InsurancePlan resources by identifier using the 'identifier' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'identifier' search parameter for InsurancePlan resources SHALL support the 'text' and 'ofType' modifiers.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'identifier' search parameter for InsurancePlan resources SHALL support both AND and OR search modalities.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources using the 'administered-by' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL have a type of 'reference'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL have a target resource type of Organization.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support chaining with 'name' and 'partof'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support multiple 'OR' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'administered-by' search parameter for InsurancePlan resources SHALL support multiple 'AND' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Each InsurancePlan.plan should have a distinct plan.type.",
+        "<PROFILE_3>"
+      ],
+      [
+        "If an insuranceplan does not define a network, then each plan must define one",
+        "<PROFILE_3>"
+      ],
+      [
+        "InsurancePlan.meta.lastUpdated SHALL be present",
+        "<PROFILE_3>"
+      ],
+      [
+        "InsurancePlan.status SHALL be fixed to the code 'active'",
+        "<PROFILE_3>"
+      ],
+      [
+        "InsurancePlan.type SHALL be present",
+        "<PROFILE_3>"
+      ],
+      [
+        "InsurancePlan.ownedBy SHALL be present",
+        "<PROFILE_3>"
+      ],
+      [
+        "InsurancePlan.administeredBy SHALL be present",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching for InsurancePlan resources by type using the 'type' search parameter.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL have a type of 'token'.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support the 'text' modifier.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support multiple 'OR' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'type' search parameter for InsurancePlan resources SHALL support multiple 'AND' values.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'whereValid' extension SHALL have a value[x] of type CodeableConcept or Reference.",
+        "<PROFILE_3>"
+      ],
+      [
+        "If the 'whereValid' extension uses a CodeableConcept, it SHALL use a code from the US Core USPS State value set.",
+        "<PROFILE_3>"
+      ],
+      [
+        "Servers SHALL support searching InsurancePlan resources by the 'owned-by' parameter, which selects products that are owned by the specified organization.",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'owned-by' search parameter for InsurancePlan resources SHALL support multiple 'OR' values (separated by comma).",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'owned-by' search parameter for InsurancePlan resources SHALL support multiple 'AND' values (repeated parameter).",
+        "<PROFILE_3>"
+      ],
+      [
+        "The 'owned-by' search parameter for InsurancePlan resources SHALL support chaining to 'name' and 'partof' parameters of the target Organization resource.",
+        "<PROFILE_3>"
+      ]
+    ],
+    "<PROFILE_4>": [
+      [
+        "Extension.value[x] SHALL be a Reference to a Plan-Net Location resource.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching for Location resources by address-state using the SearchParameter 'location-address-state'",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'location-address-state' SearchParameter SHALL have a base resource type of Location",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'location-address-state' SearchParameter SHALL have a type of string",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'location-address-state' SearchParameter SHALL support the 'exact' and 'contains' modifiers",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'location-address-state' SearchParameter SHALL support multiple 'OR' values",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'location-address-state' SearchParameter SHALL support multiple 'AND' values",
+        "<PROFILE_4>"
+      ],
+      [
+        "An extension to describe accessibility options offered by a practitioner or at a location SHALL contain a value[x] element of type CodeableConcept.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The value[x] element of the accessibility extension SHALL be bound to the AccessibilityVS value set with an extensible binding strength.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The accessibility extension SHALL NOT contain any nested extensions.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The accessibility extension SHALL have a fixed URL of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/accessibility'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching Location resources by type using the 'type' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL be of type 'token'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support the 'text' modifier.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support multiple 'OR' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support multiple 'AND' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching Location resources by organization using the 'organization' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL have a type of 'reference'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support searching by references to Organization resources.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support the 'multipleOr' search modifier.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support the 'multipleAnd' search modifier.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support chained searches on the 'name', 'address', 'partof', and 'type' parameters of the target Organization resource.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching for Location resources using the 'address-postalcode' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL have a type of 'string'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support multiple 'OR' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support multiple 'AND' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching Location resources by address using the 'address' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support multiple 'OR' values (comma-separated).",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support multiple 'AND' instances of the parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching for Location resources using the 'partof' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'partof' search parameter for Location resources SHALL have a type of 'reference'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'partof' search parameter for Location resources SHALL have an expression of 'Location.partOf'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'partof' search parameter for Location resources SHALL support searching for Location resources as the target of the reference.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'partof' search parameter for Location resources SHALL support the 'multipleOr' search behavior.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'partof' search parameter for Location resources SHALL support chaining to the 'type', 'address', and 'organization' parameters.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching for Location resources using the 'endpoint' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support AND searches on the 'endpoint' parameter for Location resources.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support OR searches on the 'endpoint' parameter for Location resources.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support chained searches on the 'endpoint' parameter for Location resources, allowing chaining to the 'organization' field of the referenced Endpoint.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers supporting this guide SHALL support searching for Location resources using the 'type' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL have a type of 'token'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support the 'text' modifier.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support multiple 'OR' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'type' search parameter for Location resources SHALL support multiple 'AND' values.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching Location resources by organization using the 'organization' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL have a type of 'reference'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support chaining with 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'organization' search parameter for Location resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support the 'address-postalcode' search parameter for Location resources",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL have a type of string",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support multipleOr searching",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support multipleAnd searching",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support the 'exact' modifier",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-postalcode' search parameter for Location resources SHALL support the 'contains' modifier",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching Location resources by address using the 'address' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support multiple 'OR' values (separated by comma).",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address' search parameter for Location resources SHALL support multiple 'AND' instances of the parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'endpoint' search parameter for Location resources SHALL have a type of 'reference'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'endpoint' search parameter for Location resources SHALL support searching by reference to Endpoint resources.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'endpoint' search parameter for Location resources SHALL support the 'multipleOr' search behavior.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'endpoint' search parameter for Location resources SHALL support the 'multipleAnd' search behavior.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'endpoint' search parameter for Location resources SHALL support chaining with the 'organization' parameter of the Endpoint resource.",
+        "<PROFILE_4>"
+      ],
+      [
+        "Servers SHALL support searching for Location resources using the 'address-city' search parameter.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-city' search parameter for Location resources SHALL have a type of 'string'.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-city' search parameter for Location resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-city' search parameter for Location resources SHALL support multiple 'OR' values (separated by comma).",
+        "<PROFILE_4>"
+      ],
+      [
+        "The 'address-city' search parameter for Location resources SHALL support multiple 'AND' values (repeated parameters).",
+        "<PROFILE_4>"
+      ]
+    ],
+    "<PROFILE_1>": [
+      [
+        "Extension.value[x] SHALL be present.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension.value[x] element SHALL be present.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension SHALL NOT have any nested extensions (Extension.extension element has a max cardinality of 0).",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support all profiles defined in this Implementation Guide.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL implement the RESTful behavior according to the FHIR specification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL return the following response classes: (Status 400): invalid parameter, (Status 401/4xx): unauthorized request, (Status 403): insufficient scope, (Status 404): unknown resource, (Status 410): deleted resource.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support json source formats for all Plan-Net interactions.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support the searchParameters on each profile individually and in combination.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support forward and reverse chaining on all search parameters that specify the 'chain' property",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHOULD support xml source formats for all Plan-Net interactions.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL reject any unauthorized requests by returning an HTTP 401 unauthorized response code.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have a status of 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have content set to 'complete'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL be case-sensitive",
+        "<PROFILE_1>"
+      ],
+      [
+        "a conformant server [...] SHALL communicate all profile data elements that are mandatory by that profile's StructureDefinition [for the Plan-Net Endpoint profile]",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.meta.lastUpdated SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.status SHALL be fixed to the code 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.connectionType SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.connectionType SHALL be bound to the EndpointConnectionTypeVS value set (extensible)",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL have a maximum cardinality of 1",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL be bound to the EndpointPayloadTypeVS value set (extensible)",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.address SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have a status of 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL be case-sensitive",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have a content value of 'complete'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension MAY have 0 or more 'identifier' extensions.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension SHALL have exactly 1 'code' extension.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The value set SHALL include concepts from the v2-0360 code system version 2.1.0",
+        "<PROFILE_1>"
+      ],
+      [
+        "This value set contains 916 concepts",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem with url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS' SHALL define the code 'hl7-fhir-opn' with display 'HL7 FHIR Operation' and definition 'Interact with a FHIR server interface using FHIR's RESTful interface using an operation other than messaging. For details on its version/capabilities you should connect the value in Endpoint.address and retrieve the FHIR CapabilityStatement.'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem with url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS' SHALL define the code 'rest-non-fhir' with display 'REST (not FHIR)' and definition 'Interact with a server using HTTP/REST but not FHIR.  Should be used for web portals.'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem with url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS' SHALL have a status of 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem with url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS' SHALL have content marked as 'complete'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem with url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS' SHALL be case sensitive",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointPayloadTypeCS SHALL define the code 'NA' with display 'Not Applicable' and definition 'Not Applicable'.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointPayloadTypeCS SHALL have a URL of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointPayloadTypeCS'.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointPayloadTypeCS SHALL have a status of 'active'.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointPayloadTypeCS SHALL have content marked as 'complete'.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointPayloadTypeCS SHALL be case-sensitive.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Servers supporting this guide SHALL be able to generate a valid and correct R4 Backported R5 SubscriptionStatus resource for each notification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The status entry SHALL be the first entry of each notification bundle.",
+        "<PROFILE_1>"
+      ],
+      [
+        "When the content type is full-resource, notification bundles SHALL include references to the appropriate focus resources in the SubscriptionStatus.notificationEvent.focus element.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Notification bundles for full-resource subscriptions SHALL contain, in addition to the SubscriptionStatus, at least one Bundle.entry for each resource relevant to the notification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Each Bundle.entry for a full-resource notification SHALL contain a relevant resource in the entry.resource element. If a server cannot include the resource contents due to an issue with a specific notification, the server SHALL populate the entry.request and/or entry.response elements.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Extension.value[x] SHALL be present.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Extension.extension SHALL NOT be present.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL implement the RESTful behavior according to the FHIR specification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL return the following response classes: (Status 400): invalid parameter, (Status 401/4xx): unauthorized request, (Status 403): insufficient scope, (Status 404): unknown resource, (Status 410): deleted resource.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support json source formats for all Plan-Net interactions.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support the searchParameters on each profile individually and in combination.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHALL support forward and reverse chaining on all search parameters that specify the 'chain' property",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Plan-Net Server SHOULD support xml source formats for all Plan-Net interactions.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.meta.lastUpdated SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.status SHALL be fixed to the code 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.connectionType SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.connectionType SHALL be bound to the EndpointConnectionTypeVS ValueSet with an extensible binding strength",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL have a maximum cardinality of 1",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.payloadType SHALL be bound to the EndpointPayloadTypeVS ValueSet with an extensible binding strength",
+        "<PROFILE_1>"
+      ],
+      [
+        "Endpoint.address SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "The ValueSet MinEndpointConnectionTypeVS SHALL include the following codes from the system http://terminology.hl7.org/CodeSystem/endpoint-connection-type: hl7-fhir-rest (HL7 FHIR), hl7-fhir-msg (HL7 FHIR Messaging), direct-project (Direct Project)",
+        "<PROFILE_1>"
+      ],
+      [
+        "The ValueSet MinEndpointConnectionTypeVS SHALL include the following codes from the system http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS: hl7-fhir-opn (HL7 FHIR Operation), rest-non-fhir (REST (not FHIR))",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension SHALL have a value[x] of type string.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension.value[x] element SHALL be present.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension.value[x] element SHALL be supported.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have a status of 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL be case-sensitive",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL have a content value of 'complete'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem SHALL be case-sensitive",
+        "<PROFILE_1>"
+      ],
+      [
+        "The contactpoint-availabletime extension SHALL have a daysOfWeek sub-extension with a value[x] of type code",
+        "<PROFILE_1>"
+      ],
+      [
+        "The contactpoint-availabletime extension MAY have an allDay sub-extension with a value[x] of type boolean",
+        "<PROFILE_1>"
+      ],
+      [
+        "The contactpoint-availabletime extension MAY have an availableStartTime sub-extension with a value[x] of type time",
+        "<PROFILE_1>"
+      ],
+      [
+        "The contactpoint-availabletime extension MAY have an availableEndTime sub-extension with a value[x] of type time",
+        "<PROFILE_1>"
+      ],
+      [
+        "The contactpoint-availabletime extension SHALL NOT have a value[x] element",
+        "<PROFILE_1>"
+      ],
+      [
+        "The EndpointUsecaseVS value set SHALL include the following codes from the http://terminology.hl7.org/CodeSystem/v3-ActReason code system: TREAT, HPAYMT, COC, COVERAGE, HOPERAT, PUBHLTH, HRESCH, ETREAT, PATRQT",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointConnectionTypeCS SHALL define the code 'hl7-fhir-opn' with display 'HL7 FHIR Operation' and definition 'Interact with a FHIR server interface using FHIR's RESTful interface using an operation other than messaging. For details on its version/capabilities you should connect the value in Endpoint.address and retrieve the FHIR CapabilityStatement.'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointConnectionTypeCS SHALL define the code 'rest-non-fhir' with display 'REST (not FHIR)' and definition 'Interact with a server using HTTP/REST but not FHIR.  Should be used for web portals.'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointConnectionTypeCS SHALL have a URL of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/EndpointConnectionTypeCS'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointConnectionTypeCS SHALL have a status of 'active'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeSystem EndpointConnectionTypeCS SHALL have content set to 'complete'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The 'status' extension SHALL have a fixed code value of 'active'.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Servers supporting this guide SHALL be able to generate a valid and correct R4 Backported R5 SubscriptionStatus resource for each notification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "When the content type is full-resource, notification bundles SHALL include references to the appropriate focus resources in the SubscriptionStatus.notificationEvent.focus element.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Notification bundles for full-resource subscriptions SHALL contain, in addition to the SubscriptionStatus, at least one Bundle.entry for each resource relevant to the notification.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Each Bundle.entry for a full-resource notification SHALL contain a relevant resource in the entry.resource element. If a server cannot include the resource contents due to an issue with a specific notification, the server SHALL populate the entry.request and/or entry.response elements.",
+        "<PROFILE_1>"
+      ],
+      [
+        "When the content type is full-resource, notification bundles SHALL include references to the appropriate focus resources in the SubscriptionStatus.notificationEvent.focus element.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Notification bundles for full-resource subscriptions SHALL contain, in addition to the SubscriptionStatus, at least one Bundle.entry for each resource relevant to the notification. For example, a notification for a topic based on the Encounter resource SHALL include an Encounter [...]. Each Bundle.entry for a full-resource notification SHALL contain a relevant resource in the entry.resource element.",
+        "<PROFILE_1>"
+      ],
+      [
+        "If a server cannot include the resource contents due to an issue with a specific notification, the server SHALL populate the entry.request and/or entry.response elements.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The 'type' extension's CodeableConcept SHALL be bound to the DeliveryMethodVS value set (http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/DeliveryMethodVS) with a required binding strength.",
+        "<PROFILE_1>"
+      ],
+      [
+        "Extension.value[x] SHALL be present",
+        "<PROFILE_1>"
+      ],
+      [
+        "The EndpointUsecase extension SHALL have a 'type' extension.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The CodeableConcept value for the 'type' extension SHOULD be from the EndpointUsecaseVS value set.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The EndpointUsecase extension MAY have a 'standard' extension.",
+        "<PROFILE_1>"
+      ],
+      [
+        "If present, the 'standard' extension SHALL have a uri value.",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension SHALL have a fixed uri of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime'",
+        "<PROFILE_1>"
+      ],
+      [
+        "The Extension SHALL NOT have a value[x]",
+        "<PROFILE_1>"
+      ]
+    ],
+    "<PROFILE_6>": [
+      [
+        "Extension.value[x] SHALL be supported.",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching for Organization resources using the 'address' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support multiple 'OR' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support multiple 'AND' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The CodeSystem SHALL have a URL of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS'",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching for Organization resources by type using the 'type' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL have a type of 'token'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support the 'text' modifier.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support multiple 'OR' values (separated by comma).",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support multiple 'AND' values (by repeating the parameter).",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching for Organizations by endpoint using the 'endpoint' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL support chaining with the 'organization' parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL support multiple 'OR' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL support multiple 'AND' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL be implemented based on the expression: Organization.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference')",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL support searching for multiple values using AND logic.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL support searching for multiple values using OR logic.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL search both the Organization.name and Organization.alias fields.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support multiple 'AND' values (repeating the parameter).",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support multiple 'OR' values (comma-separated within a single parameter).",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching for Organization resources using the 'address' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL have a type of 'string'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support multiple 'OR' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'address' search parameter on Organization resources SHALL support multiple 'AND' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The Extension SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/org-description'",
+        "<PROFILE_6>"
+      ],
+      [
+        "The CodeSystem SHALL have a URL of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/OrgTypeCS'",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching Organization resources by type using the 'type' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL have a type of 'token'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support multiple 'OR' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support multiple 'AND' values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'type' search parameter for Organization resources SHALL support the 'text' modifier.",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching for Organization resources using the 'partof' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'partof' search parameter for Organization resources SHALL have a type of 'reference'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'partof' search parameter for Organization resources SHALL support chaining with 'name', 'address', and 'type'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'partof' search parameter for Organization resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'partof' search parameter for Organization resources SHALL be based on the Organization.partOf element.",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers supporting this guide SHALL support searching Organization resources using the 'endpoint' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL have a type of 'reference'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL support chaining to 'organization'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'endpoint' search parameter for Organization resources SHALL support both multipleOr and multipleAnd searches.",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers supporting this guide SHALL support searching for Organization resources using the 'coverage-area' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL be of type 'reference'.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL have a target resource type of Location.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL support both 'multipleOr' and 'multipleAnd' search modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'coverage-area' search parameter for Organization resources SHALL be implemented based on the expression: Organization.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/location-reference')",
+        "<PROFILE_6>"
+      ],
+      [
+        "Servers SHALL support searching Organization resources by name using the 'name' search parameter.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support searching by Organization.name and Organization.alias.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_6>"
+      ],
+      [
+        "The 'name' search parameter for Organization resources SHALL support both AND and OR search behavior for multiple values.",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.extension:location-reference MAY be present",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.identifier.type SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.active SHALL be fixed to true",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.type SHALL be present",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.type SHALL be bound to http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/NetworkTypeVS value set",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.telecom SHALL NOT be present",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.partOf SHALL be present",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.partOf SHALL reference a Plan-Net Organization",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.contact SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.contact.name SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.contact.telecom SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.contact.telecom.system SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.contact.telecom.value SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Organization.endpoint SHALL be supported",
+        "<PROFILE_6>"
+      ],
+      [
+        "Extension.value[x] SHALL be of type string",
+        "<PROFILE_6>"
+      ],
+      [
+        "Extension.url SHALL be fixed to the value 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/org-description'",
+        "<PROFILE_6>"
+      ]
+    ],
+    "<PROFILE_8>": [
+      [
+        "The CodeSystem QualificationStatusCS SHALL define the following codes: active, inactive, issiner, revoked, pending, unknown",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem QualificationStatusCS SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/QualificationStatusCS'",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem QualificationStatusCS SHALL be case-sensitive",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem QualificationStatusCS SHALL have a content value of 'complete'",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support searching for Practitioner resources by given name using the 'given' search parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter for Practitioner resources SHALL support the 'exact' modifier.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter for Practitioner resources SHALL support multiple 'AND' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter for Practitioner resources SHALL support multiple 'OR' values within a single parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'status' extension's code value SHALL be bound to the QualificationStatusVS value set with required binding strength.",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support searching for Practitioners using the 'family' search parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL have a type of 'string'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support the 'exact' modifier.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support multiple 'OR' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support multiple 'AND' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support searching for Practitioner resources using the 'name' search parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'name' search parameter for Practitioner resources SHALL be of type 'string'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'name' search parameter for Practitioner resources SHALL support both 'multipleOr' and 'multipleAnd' search behaviors.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'name' search parameter for Practitioner resources SHALL support the 'exact' and 'contains' modifiers.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'name' search parameter SHALL match against any of the elements in the HumanName data type of the Practitioner resource.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The practitioner-qualification extension SHALL contain at least one extension element.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The practitioner-qualification extension SHALL contain a 'status' extension with a cardinality of 1..1.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'status' extension within the practitioner-qualification extension SHALL have a fixed value of 'active'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The practitioner-qualification extension MAY contain one or more 'whereValid' extensions.",
+        "<PROFILE_8>"
+      ],
+      [
+        "If present, the 'whereValid' extension within the practitioner-qualification extension SHALL have a value[x] of type CodeableConcept or Reference(Plan-Net Location).",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support the CodeSystem 'QualificationStatusCS' with the url 'http://hl7.org/fhir/us/davinci-pdex-plan-net/CodeSystem/QualificationStatusCS'",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem 'QualificationStatusCS' SHALL include the following codes: active, inactive, issiner, revoked, pending, unknown",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem 'QualificationStatusCS' SHALL be case-sensitive",
+        "<PROFILE_8>"
+      ],
+      [
+        "The CodeSystem 'QualificationStatusCS' SHALL have a status of 'active'",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support searching for Practitioners by given name using the 'given' search parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter on Practitioner resources SHALL have a type of 'string'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter on Practitioner resources SHALL support the 'exact' modifier.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter on Practitioner resources SHALL support multiple 'OR' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'given' search parameter on Practitioner resources SHALL support multiple 'AND' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension SHALL have at least two sub-extensions.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension MAY include an 'identifier' sub-extension with 0..* cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension SHALL include a 'code' sub-extension with 1..1 cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'code' sub-extension of the Qualification extension SHALL have a CodeableConcept value that is bound to the SpecialtyAndDegreeLicenseCertificateVS ValueSet with extensible binding strength.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension MAY include an 'issuer' sub-extension with 0..1 cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'issuer' sub-extension of the Qualification extension, if present, SHALL have a Reference value that points to a Plan-Net Organization resource.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension SHALL include a 'status' sub-extension with 1..1 cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'status' sub-extension of the Qualification extension SHALL have a fixed code value of 'active'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension MAY include a 'period' sub-extension with 0..1 cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The Qualification extension MAY include a 'whereValid' sub-extension with 0..* cardinality.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'whereValid' sub-extension of the Qualification extension, if present, SHALL have either a CodeableConcept value bound to the US Core USPS State ValueSet or a Reference to a Plan-Net Location resource.",
+        "<PROFILE_8>"
+      ],
+      [
+        "Servers SHALL support searching for Practitioners by family name using the 'family' search parameter.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support the 'exact' modifier.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support multiple 'AND' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'family' search parameter for Practitioner resources SHALL support multiple 'OR' values.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The practitioner-qualification extension SHALL have a 'status' extension with cardinality 1..1.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The 'status' extension SHALL use a code from the QualificationStatusVS value set.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The practitioner-qualification extension MAY have 0 or more 'whereValid' extensions.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The communication-proficiency extension SHALL have a value[x] element of type CodeableConcept.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The communication-proficiency extension SHALL NOT have any nested extensions.",
+        "<PROFILE_8>"
+      ],
+      [
+        "The communication-proficiency extension's valueCodeableConcept SHALL be bound to the LanguageProficiencyVS value set (http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/LanguageProficiencyVS).",
+        "<PROFILE_8>"
+      ],
+      [
+        "The communication-proficiency extension SHALL have a url of 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/communication-proficiency'.",
+        "<PROFILE_8>"
+      ],
+      [
+        "Practitioner.active SHALL be present and have a value of true",
+        "<PROFILE_8>"
+      ],
+      [
+        "Practitioner.name.text, Practitioner.name.given, and Practitioner.name.family SHALL be supported",
+        "<PROFILE_8>"
+      ],
+      [
+        "Practitioner.qualification SHALL be supported",
+        "<PROFILE_8>"
+      ],
+      [
+        "Practitioner.communication SHALL be supported",
+        "<PROFILE_8>"
+      ],
+      [
+        "Practitioner.address.extension:geolocation MAY be supported",
+        "<PROFILE_8>"
+      ]
+    ],
+    "<PROFILE_9>": [
+      [
+        "Servers SHALL support searching PractitionerRole resources by specialty using the 'specialty' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL be of type 'token'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support the 'text' modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by role using the 'role' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL have a type of 'token'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL support the 'text' modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL have an expression of 'PractitionerRole.code'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "A server SHALL support searching for PractitionerRole resources using the 'period' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources SHALL have a type of 'date'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources MAY support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by the 'network' search parameter",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL have a type of 'reference'",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support searching for Organization resources as the target",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support the 'multipleOr' search modifier",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support the 'multipleAnd' search modifier",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support chaining to the 'name', 'address', 'partof', and 'type' parameters of the target Organization resource",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by organization using the 'organization' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL have a type of 'reference'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL have an expression of 'PractitionerRole.organization'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support searching for Organization resources.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support the 'multipleOr' search modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support the 'multipleAnd' search modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support chained searches on 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The AcceptingPatientsCS CodeSystem SHALL include the code 'existptonly' with display 'Accepting existing patients' and definition 'Accepting existing patients'",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by service using the 'service' search parameter",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL have a type of 'reference'",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL have an expression of 'PractitionerRole.healthcareService'",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support searching for HealthcareService resources",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support multiple 'OR' values",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support multiple 'AND' values",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support chained searches on 'service-category', 'organization', and 'location'",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'code' extension SHALL have a CodeableConcept value that is bound to the SpecialtyAndDegreeLicenseCertificateVS value set with extensible binding strength.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The value set SHALL include concepts from the provider-taxonomy code system version 22.1",
+        "<PROFILE_9>"
+      ],
+      [
+        "The value set SHALL include concepts from the IndividualAndGroupSpecialtiesVS value set version 1.2.0",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching for PractitionerRole resources by endpoint reference using the 'endpoint' search parameter",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter for PractitionerRole resources SHALL have a type of 'reference'",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter for PractitionerRole resources SHALL support searching by references to Endpoint resources",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter for PractitionerRole resources SHALL support chaining to the 'organization' parameter on the Endpoint resource",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter for PractitionerRole resources SHALL support AND search behavior when multiple values are provided",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter for PractitionerRole resources SHALL support OR search behavior when multiple values are provided separated by commas",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching for PractitionerRole resources by location using the 'location' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL have a type of 'reference'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL support chaining with 'address', 'address-postalcode', 'address-city', 'address-state', 'organization', and 'type'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by practitioner reference using the 'practitioner' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'practitioner' search parameter for PractitionerRole resources SHALL have a type of 'reference'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'practitioner' search parameter for PractitionerRole resources SHALL support chaining with the 'name' parameter of the target Practitioner resource.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'practitioner' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'practitioner' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by specialty using the 'specialty' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL be of type 'token'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support the 'text' modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'specialty' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by role using the 'role' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL have a type of 'token'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL be mapped to the PractitionerRole.code element.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL support both AND and OR search modifiers.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'role' search parameter for PractitionerRole resources SHALL support the ':text' modifier.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers implementing this guide SHALL support searching for PractitionerRole resources using the 'period' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources SHALL be of type 'date'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'period' search parameter for PractitionerRole resources SHALL correspond to the PractitionerRole.period element.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by network using the 'network' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL be of type 'reference'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL target Organization resources.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support both 'multipleOr' and 'multipleAnd' searches.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL support chained searches on the target Organization resource for 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'network' search parameter for PractitionerRole resources SHALL use the expression \"PractitionerRole.extension.where(url='http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference')\" to identify the relevant data.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers supporting this guide SHALL support searching for PractitionerRole resources by organization using the 'organization' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL have a type of 'reference'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support chaining to 'name', 'address', 'partof', and 'type'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'organization' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching PractitionerRole resources by service, which is defined as PractitionerRole.healthcareService",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support chaining to service-category, organization, and location",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL support both AND and OR search modifiers",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'service' search parameter for PractitionerRole resources SHALL reference HealthcareService resources",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter on PractitionerRole SHALL support searching by reference to Endpoint resources.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter on PractitionerRole SHALL support chaining to 'organization'.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter on PractitionerRole SHALL support searching for multiple values using AND logic.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'endpoint' search parameter on PractitionerRole SHALL support searching for multiple values using OR logic.",
+        "<PROFILE_9>"
+      ],
+      [
+        "Servers SHALL support searching for PractitionerRole resources by location using the 'location' search parameter.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL support chaining with the following parameters: address, address-postalcode, address-city, address-state, organization, type",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL support multiple 'OR' values.",
+        "<PROFILE_9>"
+      ],
+      [
+        "The 'location' search parameter for PractitionerRole resources SHALL support multiple 'AND' values.",
+        "<PROFILE_9>"
+      ]
+    ],
+    "<PROFILE_5>": [
+      [
+        "The Extension.value[x] element SHALL be a Reference to a Plan-Net Network resource.",
+        "<PROFILE_5>"
+      ],
+      [
+        "The Extension.url SHALL be fixed to the value 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference'",
+        "<PROFILE_5>"
+      ],
+      [
+        "The CodeSystem SHALL define the following codes: fac (Facility), prvgrp (Provider Group), payer (Payer), atyprv (Atypical Provider), bus (Non-Healthcare Business), ntwk (Network)",
+        "<PROFILE_5>"
+      ],
+      [
+        "The 'whereValid' extension, if present, SHALL have a value that is either a CodeableConcept or a Reference to a Plan-Net Location.",
+        "<PROFILE_5>"
+      ],
+      [
+        "Extension.value[x] SHALL be a Reference to a Plan-Net Network resource.",
+        "<PROFILE_5>"
+      ],
+      [
+        "Extension.url SHALL be 'http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/network-reference'",
+        "<PROFILE_5>"
+      ],
+      [
+        "The CodeSystem SHALL define the following codes: fac (Facility), prvgrp (Provider Group), payer (Payer), atyprv (Atypical Provider), bus (Non-Healthcare Business), ntwk (Network)",
+        "<PROFILE_5>"
+      ],
+      [
+        "The 'status' extension SHALL have a value[x] of type code.",
+        "<PROFILE_5>"
+      ],
+      [
+        "If the 'whereValid' extension uses a Reference, it SHALL reference a Plan-Net Location resource.",
+        "<PROFILE_5>"
+      ],
+      [
+        "The 'type' extension SHALL have a value[x] of type CodeableConcept.",
+        "<PROFILE_5>"
+      ],
+      [
+        "The 'type' extension SHALL have a CodeableConcept value.",
+        "<PROFILE_5>"
+      ]
+    ]
+  },
+  [
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_4>",
+    "<PROFILE_1>",
+    "<PROFILE_6>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_5>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_9>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_7>",
+    "<PROFILE_3>",
+    "<PROFILE_9>",
+    "<PROFILE_3>",
+    "<PROFILE_8>",
+    "<PROFILE_5>",
+    "<PROFILE_3>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_9>",
+    "<PROFILE_1>",
+    "<PROFILE_9>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_3>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_5>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_1>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_9>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_8>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_5>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_7>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_3>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_4>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_6>",
+    "<PROFILE_6>",
+    "<PROFILE_1>",
+    "<PROFILE_5>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_1>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_8>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_2>",
+    "<PROFILE_1>",
+    "<PROFILE_1>"
+  ]
+]
