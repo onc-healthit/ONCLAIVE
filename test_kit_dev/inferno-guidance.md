@@ -170,32 +170,26 @@ end
 
 ### 3. Inputs and Outputs
 Inputs and outputs provide a structured mechanism for passing information between tests. Consider these strategies:
-- Define inputs with descriptive titles and descriptions to improve user experience
 - Use appropriate input types (text, textarea, radio, checkbox, oauth_credentials) based on the data being collected
 - Set default values where appropriate to minimize user input
 - Lock inputs when you want to force values from previous outputs
 - Use the input_order method to control the display sequence of inputs in the UI
 
-For complex data passing between tests, implement JSON serialization:
-```ruby
-test do
-  output :capability_statement_json
-  
-  run do
-    fhir_get_capability_statement
-    output capability_statement_json: resource.to_json
-  end
-end
-
-test do
-  input :capability_statement_json
-  
-  run do
-    capability_statement = JSON.parse(capability_statement_json)
-    # Now analyze the capability statement
-  end
-end
-```
+The input method defines an input. input can take several arguments, but only the identifier is required:
+- identifier - (required) a name for this input. The input value is available in the run block using this name.
+- title: - a title which is displayed in the UI.
+- description: - a description which is displayed in the UI.
+- type: - controls the type of HTML input element used in the UI. Currently there are 5 possible values:
+  - 'text' - (default) a regular input field.
+  - 'textarea' - for a text area input field.
+  - 'radio' - for a radio button singular selection field.
+  - 'checkbox - for a checkbox field. In tests, a checkbox input is represented as an array of the selected values.
+  - 'oauth_credentials' - a complex type for storing OAuth2 credentials. When used by a FHIR client, the access token will automatically refresh if possible.
+- default: - default value for the input.
+- optional: - (default: false) whether the input is optional.
+- options: - possible input option formats based on input type.
+  - list_options: - options for input formats that require a list of possible values (radio and checkbox). An array of hashes with label and value keys.
+  - locked: - (default: false) whether the user can alter the input’s value. Locking an input can force it to use a value from a previous test’s output, or the default value.
 
 - **Inputs**: Define parameters required to run a test
 ```ruby
@@ -215,6 +209,26 @@ test do
   
   run do
     output patient_resource: fhir_read(:patient, '123').resource.to_json
+  end
+end
+```
+For complex data passing between tests, implement JSON serialization:
+```ruby
+test do
+  output :capability_statement_json
+  
+  run do
+    fhir_get_capability_statement
+    output capability_statement_json: resource.to_json
+  end
+end
+
+test do
+  input :capability_statement_json
+  
+  run do
+    capability_statement = JSON.parse(capability_statement_json)
+    # Now analyze the capability statement
   end
 end
 ```
@@ -245,6 +259,11 @@ Best practices for making requests:
 - Name requests that need to be referenced in later tests
 - Use tags to organize collections of related requests
 - Implement proper error handling for FHIR responses
+- When using 'uses_request', ensure a previous test has declared 'makes_request' with the same name
+  and has actually made a FHIR request
+- Never redefine the 'response' variable which is automatically created by the Inferno DSL.
+- Use the proper Inferno DSL methods for FHIR operations (fhir_search, fhir_read, etc.) rather than
+  calling methods directly on a client object
 
 2) When testing multiple endpoints or complex workflows:
 - Name different FHIR clients when testing multiple servers
@@ -322,6 +341,8 @@ Handle different result types appropriately:
 - Use skip when behavior cannot be verified (but may be correct)
 - Use omit when a test is not applicable based on implementation choices
 - Use conditional skipping/omitting with skip_if and omit_if to create adaptive tests
+- Tests that are just placeholders should use 'skip' instead of 'pass' with an appropriate message
+  indicating why the test is skipped or what needs to be implemented.
 
 ### 6. FHIR Resource Validation
 ```ruby
@@ -351,6 +372,14 @@ rubyfhir_resource_validator do
   end
 end
 ```
+## Additional Considerations
+Add specific guidance against using rescue blocks:
+- Do not use rescue blocks for error handling in tests. Use assertions to verify expected behavior.
+- Never rescue StandardError in test implementations as this interferes with Inferno's result tracking.
+- Be more explicit about resource limitations:
+- Only test resources explicitly mentioned in the test plan.
+- Always access response properties using hash syntax: response[:code], response[:body], etc.
+- Never try to access response.code, response.body, or other dot notation on the response object.
 
 ## Best Practices for Inferno Test Development
 1. **Follow Progressive Testing Pattern**:
