@@ -56,7 +56,7 @@ def setup_prompt_environment(project_root: Path) -> Dict[str, Any]:
         "requirements_extraction_path": os.path.join(prompt_dir, 'requirements_extraction.md'),
         "requirements_refinement_path": os.path.join(prompt_dir, 'requirements_refinement.md'),
         "requirements_grouping_path": os.path.join(prompt_dir, 'requirements_grouping.md'),
-        "test_plan_gen_path": os.path.join(prompt_dir, 'test_plan].md'),
+        "test_plan_gen_path": os.path.join(prompt_dir, 'test_plan.md'),
         "test_gen_path": os.path.join(prompt_dir, 'test_gen.md'),
         "requirement_grouping_path": os.path.join(prompt_dir, 'requirement_grouping.md')
     }

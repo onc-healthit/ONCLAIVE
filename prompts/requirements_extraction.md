@@ -12,7 +12,7 @@ Include ONLY requirements that:
 - Each requirement must be complete, atomic, and testable
 - Separate individual requirements
 - Identify the actor responsible for implementing each requirement
-- Preserve the original conformance level (SHALL, SHOULD, MAY, etc.)
+- Preserve the original conformance level (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
 - Mark conditional requirements (those that depend on optional features)
 - Use exact quotes with necessary context preserved
 
@@ -25,7 +25,9 @@ For each requirement you identify, format it as follows:
 **Summary**: Brief description of the requirement
 **Description**: "<exact quote with necessary [clarifications]>"
 **Verification**: Recommended verification method (Test/Analysis/Inspection/Demonstration)
-**Notes**: Actor responsible, conformance level, conditions, etc.
+**Actor**: Actor responsible, conformance level, conditions, etc.
+**Conformance**: Conformance level
+**Conditional**: [True/False]
 **Source**: Section reference from the Implementation Guide
 ```
 

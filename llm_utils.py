@@ -220,3 +220,34 @@ def make_llm_request(client, api_type: str, prompt: str, system_prompt: str, rat
     except Exception as e:
         logging.error(f"Error in {api_type} API request: {str(e)}")
         raise
+
+
+def count_tokens(text: str, api_type: str) -> int:
+    """
+    Count the number of tokens in a text string for the specified API.
+    
+    Args:
+        text: The text to count tokens for
+        api_type: The API type (claude, gemini, gpt)
+        
+    Returns:
+        Estimated token count
+    """
+    if api_type == "claude":
+        # Claude uses roughly 4 characters per token as a rough estimate
+        return len(text) // 4
+    elif api_type == "gemini":
+        # Gemini uses roughly 4 characters per token as a rough estimate
+        return len(text) // 4
+    elif api_type == "gpt":
+        # GPT uses tiktoken for accurate counts, but as a fallback:
+        try:
+            import tiktoken
+            enc = tiktoken.encoding_for_model("gpt-4")
+            return len(enc.encode(text))
+        except (ImportError, Exception):
+            # Fallback to rough estimate if tiktoken not available
+            return len(text) // 4
+    else:
+        # Default rough estimate
+        return len(text) // 4
