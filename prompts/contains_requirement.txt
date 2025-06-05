@@ -1,0 +1,150 @@
+<PROMPT>You will be given a task, marked with the <TASK> tag. Each task consists of a section of FHIR Implementation Guide (IG) text, marked with the <TEXT> tag, a question marked with the <QUESTION> tag, and a boolean value marked by the <ANSWER> tag. This boolean value represents the result of an expert determining the best response to the question (marked by the <QUESTION> tag) when only considering the input text (which is marked by the <TEXT> tag). You will be shown several example tasks, and then provide your expert determination for the <ANSWER> to the <QUESTION> given the input <TEXT> </PROMPT>.<EXAMPLES><TASK> <TEXT> ## OperationDefinition: Subscription Events Operation
+
+| *Official URL*: http://hl7.org/fhir/uv/subscriptions-backport/OperationDefinition/backport-subscription-events | | | | *Version*: 1.1.0 |
+| --- | --- | --- | --- | --- |
+| *Standards status:* [Trial-use](http://build.fhir.org/versions.html#std-process "Standard Status") | | | [Maturity Level](http://hl7.org/fhir/versions.html#maturity): 0 | *Computable Name*: R5SubscriptionEvents |
+
+This operation is used to search for and return notifications that have been previously triggered by a topic-based Subscription in R4.
+
+URL: [base]/Subscription/[id]/$events
+
+Parameters
+
+| **Use** | **Name** | **Cardinality** | **Type** | **Binding** | **Documentation** |
+| --- | --- | --- | --- | --- | --- |
+| IN | eventsSinceNumber | 0..1 | [string](http://hl7.org/fhir/R4B/datatypes.html#string) |  | The starting event number, inclusive of this event (lower bound). |
+| IN | eventsUntilNumber | 0..1 | [string](http://hl7.org/fhir/R4B/datatypes.html#string) |  | The ending event number, inclusive of this event (upper bound). |
+| IN | content | 0..1 | [code](http://hl7.org/fhir/R4B/datatypes.html#code) |  | Requested content style of returned data. Codes from backport-content-value-set (e.g., empty, id-only, full-resource). This is a hint to the server what a client would prefer, and MAY be ignored. |
+| OUT | return | 1..1 | [Bundle](http://hl7.org/fhir/R4B/bundle.html) |  | The operation returns a valid notification bundle, with the first entry being the subscription status information resource. The bundle type is "history". |</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> False </ANSWER> </TASK><TASK> <TEXT> ## OperationDefinition: Get WS Binding Token for Subscription Operation
+
+| *Official URL*: http://hl7.org/fhir/uv/subscriptions-backport/OperationDefinition/backport-subscription-get-ws-binding-token | | | | *Version*: 1.1.0 |
+| --- | --- | --- | --- | --- |
+| *Standards status:* [Trial-use](http://build.fhir.org/versions.html#std-process "Standard Status") | | | [Maturity Level](http://hl7.org/fhir/versions.html#maturity): 0 | *Computable Name*: R5SubscriptionGetWsBindingToken |
+
+This operation is used to get a token for a websocket client to use in order to bind to one or more subscriptions.
+
+URL: [base]/Subscription/$get-ws-binding-token
+
+URL: [base]/Subscription/[id]/$get-ws-binding-token
+
+Parameters
+
+| **Use** | **Name** | **Cardinality** | **Type** | **Binding** | **Documentation** |</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> False </ANSWER> </TASK><TASK> <TEXT> # CapabilityStatement: R4 Topic-Based Subscription Server Capability Statement
+
+## CapabilityStatement: R4 Topic-Based Subscription Server Capability Statement
+
+| *Official URL*: http://hl7.org/fhir/uv/subscriptions-backport/CapabilityStatement/backport-subscription-server-r4 | | | | *Version*: 1.1.0 |
+| --- | --- | --- | --- | --- |
+| Active as of 2020-11-30 | | | | *Computable Name*: BackportSubscriptionCapabilityStatementR4 |
+
+CapabilityStatement describing the required and optional capabilities of a FHIR Server supporting backported R5 Subscriptions in R4.
+
+This `CapabilityStatement` describes the expected capabilities of a FHIR R4 server supporting this Implementation Guide.
+
+[Raw OpenAPI-Swagger Definition file](backport-subscription-server-r4.openapi.json) | [Download](backport-subscription-server-r4.openapi.json)
+
+### FHIR RESTful Capabilities by Resource/Profile:
+
+#### Summary
+
+| Resource Type | Supported Profiles | Supported Searches | Supported `_includes` | Supported `_revincludes` | Supported Operations |
+| --- | --- | --- | --- | --- | --- |
+| [Subscription](#subscription) | [Backported R5 Subscription](StructureDefinition-backport-subscription.html) | url, status | - | - | $status, $events, $get-ws-binding-token |
+
+#### Subscription
+
+Conformance Expectation: **SHALL**
+
+Supported Profiles:
+
+* **SHALL** support: [Backported R5 Subscription](StructureDefinition-backport-subscription.html)
+
+Operation Summary:
+
+* **SHALL** support the [$status](OperationDefinition-backport-subscription-status.html) operation
+* **MAY** support the [$events](OperationDefinition-backport-subscription-events.html) operation , [$get-ws-binding-token](OperationDefinition-backport-subscription-get-ws-binding-token.html) operation
+
+Fetch and Search Criteria:
+
+* A Server **SHALL** be capable of returning a Subscription resource using: `GET [base]/Subscription/[id]`
+* A Server **SHOULD** be capable of creating a Subscription resource using either: `POST [base]/Subscription` or `PUT [base]/Subscription/[id]`
+* A Server **SHOULD** be capable of modifying a Subscription resource using either: `PUT [base]/Subscription/[id]` or `PATCH [base]/Subscription/[id]`
+* A Server **SHOULD** be capable of deleting a Subscription resource using: `DELETE [base]/Subscription/[id]`
+* A Server **SHOULD** be capable of searching for Subscription resources using: `GET [base]/Subscription/?[parameters]`
+
+Search Parameter Summary:
+
+| Conformance | Parameter | Type |
+| --- | --- | --- |
+| **SHOULD** | [url](http://hl7.org/fhir/subscription.html#search) | uri |
+| **SHOULD** | [status](http://hl7.org/fhir/subscription.html#search) | token |
+
+---
+
+| [<prev](CapabilityStatement-backport-subscription-server.ttl.html) | [top](#top) | [next>](CapabilityStatement-backport-subscription-server-r4-testing.html) |
+| --- | --- | --- |</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> True </ANSWER> </TASK><TASK> <TEXT> #### Subscription Topics in R4
+
+`SubscriptionTopic` resources contain information that is difficult to model without an appropriate resource to start from. There was an attempt to profile the `Basic` resource with extensions, but the complexity resulted in very low usability. Combined with use-case evaluation indicated that the most urgent and likely support of topic-based subscriptions would be relying on pre-defined topics with fixed canonical URLs (e.g., topics defined by an Implementation Guide), it was decided to leave topic definitions out-of-scope in R4.
+
+In order to allow for discovery of supported subscription topics, this guide defines the [CapabilityStatement SubscriptionTopic Canonical](StructureDefinition-capabilitystatement-subscriptiontopic-canonical.html) extension. The extension allows server implementers to advertise the canonical URLs of topics available to clients and allows clients to see the list of supported topics on a server. The extension is expected to appear, if supported, on the `Subscription` resource entry. Note that servers are NOT required to advertise supported topics via this extension. Supported topics can also be advertised, for example, by the `CapabilityStatement.instantiates` or `CapabilityStatement.implementationGuide` elements of a CapabilityStatement, as defined by another Implementation Guide. Finally, FHIR R4 servers MAY choose to leave topic discovery completely out-of-band and part of other steps, such as registration or integration.
+
+Full definitions of subscription topics are considered out-of-scope for FHIR R4 implementations. Since the full topic definitions are out-of-scope, FHIR R4 servers are not able to support custom topics submitted by clients. If that functionality is required, a server may choose to expose a limited R4B endpoint to enable such support.
+
+Implementers adding server-side support for topic-based subscriptions are encouraged (but not required) to use the R4B or R5 definitions internally, in order to ease the transition to future versions.</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> True </ANSWER> </TASK><TASK> <TEXT> ## Example Bundle: R4 Notification: Empty
+
+|  | |
+| --- | --- |
+
+This Bundle provides an example of an `empty` notification. This `Bundle` is typical of what may be posted to a notification endpoint (e.g., a listening HTTP server, etc.).
+
+Bundle r4-notification-empty of type history
+
+---
+
+Entry 1 - fullUrl = urn:uuid:9e41ff6d-5be6-4e6a-8b85-abd4e7f58400
+
+Request:
+
+```
+GET https://example.org/fhir/Subscription/admission/$status
+
+```
+
+Response:
+
+```
+200
+
+```
+
+Resource Parameters:
+
+> ## Parameters
+> 
+> | subscription | https://example.org/fhir/Subscription/admission |
+> | --- | --- |
+> | topic | <http://hl7.org/SubscriptionTopic/admission> |
+> | status | active |
+> | type | event-notification |
+> | events-since-subscription-start | 2 |
+> | notification-event |  |
+> | event-number | 2 |
+> | timestamp | 2020-05-29 11:44:13-0500 |
+
+### Notes:
+
+In order to satisfy the requirements of a `history` Bundle (specifically `bdl-3` and `bdl-4`), note that `Bundle.entry.request` must exist.
+
+For the status resource (`entry[0]`), the request is filled out to match a request to the `$status` operation.
+
+Since this is an `empty` notification and does not include additional entries, no additional constraints are imposed by `Bundle` requirements.</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> False </ANSWER> </TASK><TASK> <TEXT> ### Conformance in FHIR R4
+
+In order to claim conformance with this guide, a server:
+
+* SHALL support the `Subscription` resource (read/write).
+* SHALL support the `$status` operation on the `Subscription` resource.
+* SHOULD support topic discovery via the [CapabilityStatement SubscriptionTopic Canonical](StructureDefinition-capabilitystatement-subscriptiontopic-canonical.html) extension
+* SHALL support at least one channel type, and SHOULD include one from this guide
+* SHALL support at least one Payload Type
+
+Note that in FHIR R4, there is no representation of Subscription Topics. Detailed discussion can be found on the [Topic-Based Subscription Components](components.html#subscription-topics-in-r4) page.</TEXT><QUESTION> Does the provided IG text contain at least one specific, testable requirement for a behavior or capability that can be verified through software testing or attestation? Give your answer as a boolean (TRUE or FALSE) with no additional explanation or justification </QUESTION><ANSWER> True </ANSWER> </TASK></EXAMPLES>
