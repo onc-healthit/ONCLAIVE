@@ -286,7 +286,7 @@ def identify_requirement_group(
     logger,
     llm_clients,
     api_type,
-    requirement: Dict[str, str],
+    req,
 ) -> str:
     """
     Identify the appropriate group for a requirement using LLM only
@@ -300,8 +300,9 @@ def identify_requirement_group(
     Returns:
         Identified group name from LLM
     """
+    requirement = req['parsed']
     # use LLM to identify group based on prompt
-    logger.info(f"Identifying group for requirement {requirement.get('id', 'unknown')} using {api_type}...")
+    logger.info(f"Identifying group for requirement {req.get('id', 'unknown')} using {api_type}...")
     
     # Format requirement as markdown
     formatted_req = format_requirement_for_prompt(requirement)
@@ -323,7 +324,7 @@ def generate_test_specification_with_capability(
     logger,
     api_type,
     client, 
-    requirement: Dict[str, str],
+    req,
     capability_statement: Dict[str, Any],
 ) -> str:
     """
@@ -339,7 +340,8 @@ def generate_test_specification_with_capability(
     Returns:
         Test specification for the requirement
     """
-    logger.info(f"Generating test specification for {requirement.get('id', 'unknown')} using {api_type}...")
+    requirement = req['parsed']
+    logger.info(f"Generating test specification for {req.get('id', 'unknown')} using {api_type}...")
     
     # Format requirement as markdown
     formatted_req = format_requirement_for_prompt(requirement)
@@ -355,7 +357,7 @@ def generate_test_specification_with_capability(
 
 
 def generate_test_specification(req, llm_completion):
-    formatted_req = format_requirement_for_prompt(req)
+    formatted_req = format_requirement_for_prompt(req['parsed'])
     prompt = f"""
     Create a test specification for this FHIR Implementation Guide requirement:
     
@@ -453,7 +455,7 @@ def generate_consolidated_test_plan(
             test_plan += f"- [{group}](#{group.lower().replace(' ', '-')})\n"
             for req in grouped_requirements[group]:
                 req_id = req.get('id', 'UNKNOWN-ID')
-                req_summary = req.get('summary', 'No summary')
+                req_summary = req['parsed'].get('summary', 'No summary')
                 test_plan += f"  - [{req_id}: {req_summary}](#{req_id.lower()})\n"
         
         # Process each group and its requirements
