@@ -13,6 +13,10 @@ from collections import defaultdict
 import pandas as pd
 from dotenv import load_dotenv
 
+
+import prompt_utils
+
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -21,15 +25,16 @@ logger = logging.getLogger(__name__)
 
 # Constants
 CURRENT_DIR = Path.cwd()  # Current working directory
-OUTPUT_DIR = os.path.join(CURRENT_DIR, 'test_output')
-PROJECT_ROOT = Path.cwd().parent  # Go up one level to project root
+#OUTPUT_DIR = os.path.join(CURRENT_DIR, 'test_output')
+PROJECT_ROOT = CURRENT_DIR.parent  # Go up one level to project root
+TEST_GEN_PATH = PROJECT_ROOT / "prompts" / "test_gen.md"
 
 # System prompts for test generation
 INFERNO_TEST_SYSTEM_PROMPT = """You are a specialized FHIR testing engineer with expertise in healthcare interoperability.
 Your task is to convert test specifications from a test plan into executable Ruby tests using the Inferno testing framework.
-You will generate valid, working Ruby code that follows Inferno test patterns and best practices."""
+You will generate valid, working Ruby code that follows Inferno test patterns and best practices, and uses the Inferno domain specific language."""
 
-def get_inferno_test_generation_prompt(test_specification: str, requirement_id: str, module_name: str, inferno_guidance: str) -> str:
+def get_inferno_test_generation_prompt(test_specification: str, requirement_id: str, module_name: str, inferno_guidance: str, dsl_guidance: str) -> str:
     """
     Load the Inferno test generation prompt from file and format it with test details
     
@@ -47,7 +52,8 @@ def get_inferno_test_generation_prompt(test_specification: str, requirement_id: 
         test_specification=test_specification,
         requirement_id=requirement_id,
         module_name=module_name,
-        inferno_guidance=inferno_guidance
+        inferno_guidance=inferno_guidance, 
+        dsl_guidance=dsl_guidance
     )
 
 def parse_test_plan(file_path: str) -> Dict[str, Any]:
@@ -159,7 +165,7 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
                 assigned_to_section = True
                 break
         
-        # If we couldn't find the requirement in any of our sections,
+        # If can't find the requirement in any sections,
         # create a section based on the actor if it doesn't exist already
         if not assigned_to_section:
             actor = req_actor.strip()
@@ -197,40 +203,25 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
 
 def get_inferno_guidance() -> str:
     """
-    Load the Inferno guidance document
+    Load the Inferno test writing guidance document
     
     Returns:
         String containing Inferno test development guidance
     """
-    guidance_path = os.path.join(PROJECT_ROOT, 'inferno-guidance.md')
+    guidance_path = PROJECT_ROOT / "test_kit_dev" / "inferno-guidance.md"
     
-    # Use a default guidance if file not found
-    if not os.path.exists(guidance_path):
-        return """# Inferno Test Development Guidance
-        
-        Inferno is a Ruby-based testing framework for FHIR implementations. Tests should follow the structure:
-        
-        ```ruby
-        module YourTestKit
-          class YourTestGroup < Inferno::TestGroup
-            id :unique_id
-            title 'Test Group Title'
-            description 'Detailed description'
-            
-            test do
-              id :test_unique_id
-              title 'Test Title'
-              description 'Test description'
-              
-              run do
-                # Test implementation
-                assert condition, 'Failure message'
-              end
-            end
-          end
-        end
-        ```
-        """
+    with open(guidance_path, 'r') as f:
+        return f.read()
+    
+
+def get_dsl_guidance() -> str:
+    """
+    Load the Inferno dsl guidance document
+    
+    Returns:
+        String containing Inferno dsl guidance
+    """
+    guidance_path = PROJECT_ROOT / "test_kit_dev" / "dsl-guidance.md"
     
     with open(guidance_path, 'r') as f:
         return f.read()
@@ -291,7 +282,7 @@ def determine_test_groups(sections: Dict[str, Dict[str, Any]], expected_actors: 
     return result_groups
 
 
-def validate_test_with_llm(client, api_type, test_code, inferno_guidance, rate_limit_func):
+def validate_test_with_llm(llm_clients, api_type, test_code, inferno_guidance, dsl_guidance):
     """Use LLM to check and correct common issues in generated test code."""
     
     validation_prompt = f"""
@@ -347,25 +338,23 @@ def validate_test_with_llm(client, api_type, test_code, inferno_guidance, rate_l
     {test_code}
     ```
     Please ensure the code is valid Ruby and follows the below Inferno best practices, using the Inferno domain specific language.
-    {inferno_guidance}
+    {dsl_guidance}
     
     Return ONLY the corrected code without explanations.
     """
     # Add token counting
-    actual_tokens = llm_utils.count_tokens(validation_prompt, api_type)
+    actual_tokens = llm_clients.count_tokens(validation_prompt, api_type)
     logger.info(f"Validation for test: Sending {actual_tokens} tokens to {api_type} API")
     
-    # Check if we need to truncate the guidance to fit within token limits
-    if actual_tokens > 70000:  # Assuming a high limit for Claude
+    # Check if need to truncate the guidance to fit within token limits
+    if actual_tokens > 70000:  # Assuming a high limit
         logger.warning(f"Validation prompt exceeds token limit ({actual_tokens})")
         
     
-    corrected_code = llm_utils.make_llm_request(
-        client, 
+    corrected_code = llm_clients.make_llm_request(
         api_type, 
         validation_prompt, 
         "You are an expert Ruby developer specialized in FHIR Inferno testing.", 
-        rate_limit_func
     )
     
     # Clean up any markdown formatting
@@ -379,10 +368,11 @@ def validate_test_with_llm(client, api_type, test_code, inferno_guidance, rate_l
     return corrected_code
 
 def generate_tests_for_section(
-    clients, 
+    llm_clients, 
     api_type: str,
     section: Dict[str, Any],
     inferno_guidance: str,
+    dsl_guidance: str,
     module_name: str,
     max_input_token_limit: int = 16000
 ):
@@ -393,7 +383,7 @@ def generate_tests_for_section(
         client: The API client
         api_type: API type (claude, gemini, gpt)
         section: Section dictionary containing requirements
-        inferno_guidance: Inferno test development guidance
+        dsl_guidance: Inferno test development guidance
         module_name: Name of the module for the test
         rate_limit_func: Function to check rate limits
         max_input_token_limit: Maximum tokens for the model
@@ -421,20 +411,20 @@ def generate_tests_for_section(
         Module Name: {module_name}
         
         Follow this Inferno development guidance:
-        {inferno_guidance}
+        {dsl_guidance}
         
         Return the Ruby code for each test implementation, separated by clear markers indicating the requirement ID.
         """
         
         # Estimate token count (rough approximation)
         estimated_tokens = len(section_prompt) / 4  # Approximate 4 chars per token
-        actual_tokens = clients.count_tokens(section_prompt, api_type)
+        actual_tokens = llm_clients.count_tokens(section_prompt, api_type)
         logger.info(f"Sending {actual_tokens} tokens to {api_type} API (limit: {max_input_token_limit})")
         
         if estimated_tokens < max_input_token_limit:
             try:
                 logger.info(f"Attempting to generate tests for entire section: {section['name']}")
-                response = clients.make_llm_request( 
+                response = llm_clients.make_llm_request( 
                     api_type, 
                     section_prompt, 
                     sys_prompt=INFERNO_TEST_SYSTEM_PROMPT 
@@ -458,11 +448,10 @@ def generate_tests_for_section(
                     if current_req:
                         current_test.append(line)
                 
-                # Don't forget the last test
                 if current_req and current_test:
                     tests[current_req] = '\n'.join(current_test)
                 
-                # If we successfully parsed tests for all requirements, return them
+                # If successfully parsed tests for all requirements, return them
                 if len(tests) == len(section['requirements']):
                     logger.info(f"Successfully generated tests for all requirements in section: {section['name']}")
                     return tests
@@ -485,18 +474,17 @@ def generate_tests_for_section(
                 test_specification=requirement['full_content'],
                 requirement_id=requirement['id'],
                 module_name=module_name,
-                inferno_guidance=inferno_guidance
+                inferno_guidance=inferno_guidance,
+                dsl_guidance=dsl_guidance
             )
-            actual_tokens = llm_utils.count_tokens(req_prompt, api_type)
+            actual_tokens = llm_clients.count_tokens(req_prompt, api_type)
             logger.info(f"Requirement {requirement['id']}: Sending {actual_tokens} tokens to {api_type} API (limit: {max_input_token_limit})")
         
             # Generate the test
-            test_code = llm_utils.make_llm_request(
-                client, 
+            test_code = llm_clients.make_llm_request(
                 api_type, 
                 req_prompt, 
                 INFERNO_TEST_SYSTEM_PROMPT, 
-                rate_limit_func
             )
             
             # Clean up any markdown formatting
@@ -518,11 +506,11 @@ def generate_tests_for_section(
         try:
             logger.info(f"Validating test for requirement: {req_id}")
             validated_code = validate_test_with_llm(
-                client, 
+                llm_clients, 
                 api_type, 
                 test_code, 
-                inferno_guidance, 
-                rate_limit_func
+                inferno_guidance,
+                dsl_guidance
             )
             validated_tests[req_id] = validated_code
             logger.info(f"Successfully validated test for requirement: {req_id}")
@@ -671,7 +659,7 @@ def create_module_structure(test_data: Dict[str, Dict[str, Any]]) -> str:
 
 
 def generate_landing_file_with_llm(
-    clients,
+    llm_clients,
     api_type: str,
     module_name_camel: str,
     module_name_snake: str,
@@ -723,7 +711,7 @@ Return ONLY the Ruby code for the main module file, with no explanations.
 """
     
     # Call the LLM
-    landing_file_content = clients.make_llm_request(
+    landing_file_content = llm_clients.make_llm_request(
         api_type,
         user_prompt,
         sys_prompt=system_prompt
@@ -740,10 +728,9 @@ Return ONLY the Ruby code for the main module file, with no explanations.
     return landing_file_content
 
 def generate_inferno_test_kit(
-    clients,
+    llm_clients,
     api_type: str,
     test_plan_file: str,
-    guidance_file: str = None,
     module_name: str = "PlanNet",
     output_dir: str = OUTPUT_DIR,
     expected_actors: List[str] = None
@@ -765,7 +752,7 @@ def generate_inferno_test_kit(
     logger.info(f"Starting Inferno test generation with {api_type} for {module_name}")
     
     # Initialize API clients and rate limiters
-    config = clients.config[api_type]
+    #config = clients.config[api_type]
   
     # Create output directory
     os.makedirs(output_dir, exist_ok=True)
@@ -791,17 +778,23 @@ def generate_inferno_test_kit(
         total_requirements = sum(len(section['requirements']) for section in sections.values())
         logger.info(f"Found {total_requirements} total requirements")
         
-        # Get Inferno guidance
-        if guidance_file and os.path.exists(guidance_file):
-            with open(guidance_file, 'r') as f:
-                inferno_guidance = f.read()
-            logger.info(f"Loaded Inferno guidance from {guidance_file}")
-        else:
-            inferno_guidance = get_inferno_guidance()
-            logger.info("Using default Inferno guidance")
-            guidance_tokens = clients.count_tokens(inferno_guidance, api_type)
-            logger.info(f"Inferno guidance size: {guidance_tokens} tokens")
+        # Get Inferno test writing guidance
+        #if guidance_file and os.path.exists(guidance_file):
+            #with open(guidance_file, 'r') as f:
+                #inferno_guidance = f.read()
+            #logger.info(f"Loaded Inferno guidance from {guidance_file}")
+        #else:
+        #inferno_guidance = get_inferno_guidance()
+        #logger.info("Using default Inferno guidance")
+        #guidance_tokens = llm_clients.count_tokens(inferno_guidance, api_type)
+        #logger.info(f"Inferno guidance size: {guidance_tokens} tokens")
         
+        # Get DSL guidance
+        dsl_guidance = get_dsl_guidance()
+        logger.info("Loaded Inferno DSL guidance")
+        dsl_tokens = llm_clients.count_tokens(dsl_guidance, api_type)
+        
+
         # Generate tests by section
         all_tests = {}
         for section_name, section in sections.items():
@@ -813,10 +806,11 @@ def generate_inferno_test_kit(
                 
             # Generate tests for this section
             section_tests = generate_tests_for_section(
-                clients, 
+                llm_clients, 
                 api_type, 
                 section, 
-                inferno_guidance, 
+                #inferno_guidance, 
+                dsl_guidance,
                 module_name_camel, 
                 70000
             )
@@ -825,7 +819,7 @@ def generate_inferno_test_kit(
             all_tests.update(section_tests)
             
             # Add delay between sections
-            time.sleep(config["delay_between_batches"])
+            time.sleep(llm_clients.config[api_type]["delay_between_batches"])
             
         logger.info(f"Generated tests for {len(all_tests)} requirements")
         
@@ -897,7 +891,7 @@ def generate_inferno_test_kit(
         # Generate the module file using an LLM
         logger.info("Generating module file with LLM")
         module_content = generate_landing_file_with_llm(
-            clients,
+            llm_clients,
             api_type,
             module_name_camel,
             module_name_snake,

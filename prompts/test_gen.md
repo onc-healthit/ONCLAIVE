@@ -6,9 +6,10 @@ Test Specification:
 Create an Inferno test implementation that:
 1. Follows the Inferno structure (TestGroup containing one or more tests)
 2. Implements the test logic described in the specification
-3. Makes appropriate FHIR API calls
-4. Includes proper assertions to validate the requirements
-5. Handles both success and error cases appropriately
+3. Implements test for all components outlined in the test specification- do not develop tests for only one part
+4. Makes appropriate FHIR API calls
+5. Includes proper assertions to validate the requirements
+6. Handles both success and error cases appropriately
 
 Naming conventions:
 - Use underscored lowercase names for files (e.g., patient_read_test.rb)
@@ -53,9 +54,6 @@ CRITICAL REQUIREMENTS:
    - ALWAYS use the actual ID defined inside the file (e.g., what follows 'id :' in the file)
    - Example: If req_XX_test.rb defines `id :example_text`, use 'group from: :example_text'
 
-The test should also be developed in accordance with this guidance on Inferno test development (note: there are example tests in this guidance for use cases that should NOT be found in the IG you are reviewing. Do not use those use cases to develop tests for this IG- only use the test structure and example use of the Inferno dsl as context to inform your approach):
-{inferno_guidance}
-
 When developing the test:
 
 1. Define a TestGroup with a descriptive ID based on the requirement
@@ -65,6 +63,9 @@ When developing the test:
 5. Provide meaningful error and success messages
 6. Consider both positive and negative test scenarios
 7. Add appropriate inputs for configurable test parameters
+
+All tests should be written in accordance with this guidance on the Inferno domain specific language (note: there are example tests in this guidance for use cases that should NOT be found in the IG you are reviewing. Do not use those use cases to develop tests for this IG- only use the test structure and example use of the Inferno dsl as context to inform your approach):
+{dsl_guidance}
 
 Follow this pattern for the TestGroup structure:
 ```ruby
