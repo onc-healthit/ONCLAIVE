@@ -491,7 +491,7 @@ def generate_consolidated_test_plan(
                 
                 # Add delay between requests
                 if i < len(grouped_requirements[group]) - 1:  # No need to delay after the last request
-                    time.sleep(config["delay_between_chunks"])
+                    time.sleep(llm_clients.config[api_type]["delay_between_chunks"])
             
             # Add spacing between groups
             test_plan += "\n\n"

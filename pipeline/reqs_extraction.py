@@ -19,8 +19,8 @@ import prompt_utils
 
 # Get the current working directory and set up paths
 PROJECT_ROOT = Path.cwd().parent  # Go up one level from reqs_extraction to onclaive root
-DEFAULT_MARKDOWN_DIR = os.path.join(PROJECT_ROOT, 'full-ig', 'markdown_cleaned')
-DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'reqs_extraction', 'initial_reqs_output')
+#DEFAULT_MARKDOWN_DIR = os.path.join(PROJECT_ROOT, 'full-ig', 'markdown7_cleaned')
+#DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'reqs_extraction', 'initial_reqs_output')
 
 SYSTEM_PROMPTS = {
     "claude": """You are a seasoned Healthcare Integration Test Engineer with expertise in INCOSE Systems Engineering standards, 
@@ -35,8 +35,8 @@ SYSTEM_PROMPTS = {
 logging.basicConfig(level=logging.INFO)
 logging.info(f"Current working directory: {Path.cwd()}")
 logging.info(f"Project root: {PROJECT_ROOT}")
-logging.info(f"Default markdown directory: {DEFAULT_MARKDOWN_DIR}")
-logging.info(f"Default output directory: {DEFAULT_OUTPUT_DIR}")
+#logging.info(f"Default markdown directory: {DEFAULT_MARKDOWN_DIR}")
+#logging.info(f"Default output directory: {DEFAULT_OUTPUT_DIR}")
 
 # Basic setup
 load_dotenv(os.path.join(PROJECT_ROOT, '.env'))

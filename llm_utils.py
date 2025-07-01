@@ -31,7 +31,7 @@ API_CONFIGS = {
         "delay_between_requests": 0.1
     },
     "gemini": {
-        "model": "models/gemini-2.5-pro-preview-03-25",
+        "model": "models/gemini-2.5-flash-preview-05-20",
         "max_tokens": 8192,
         "temperature": 0.3,
         "batch_size": 5,
@@ -54,6 +54,22 @@ API_CONFIGS = {
         "delay_between_requests": 0.15
     }
 }
+
+# Gemini Safety Settings - ADD THIS NEW SECTION
+GEMINI_SAFETY_SETTINGS = [
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_NONE"
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH", 
+        "threshold": "BLOCK_NONE"
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_ONLY_HIGH"  # Keep some protection for truly dangerous content
+    }
+]
 
 
 # Rate Limiter Setup
@@ -132,7 +148,6 @@ def setup_clients():
             http_client=http_client
         )
         
-        # Gemini setup
         gemini_api_key = os.getenv('GEMINI_API_KEY')
         if not gemini_api_key:
             raise ValueError("GEMINI_API_KEY not found")
@@ -142,7 +157,8 @@ def setup_clients():
             generation_config={
                 "max_output_tokens": API_CONFIGS["gemini"]["max_tokens"],
                 "temperature": API_CONFIGS["gemini"]["temperature"]
-            }
+            },
+            safety_settings=GEMINI_SAFETY_SETTINGS  # ADD THIS LINE
         )
         
         # OpenAI setup
@@ -191,19 +207,47 @@ def make_llm_request(client, api_type: str, prompt: str, system_prompt: str, rat
             return response.content[0].text
             
         elif api_type == "gemini":
+            # Combine system prompt with user prompt for Gemini
+            combined_prompt = f"System: {system_prompt}\n\nUser: {prompt}"
+            
             response = client.generate_content(
-                prompt,
+                combined_prompt,
                 generation_config={
                     "max_output_tokens": config["max_tokens"],
                     "temperature": config["temperature"]
-                }
+                },
+                safety_settings=GEMINI_SAFETY_SETTINGS  # ADD THIS LINE
             )
-            if hasattr(response, 'text'):
+            
+            # Improved response handling
+            if hasattr(response, 'text') and response.text:
                 return response.text
-            elif response.candidates:
-                return response.candidates[0].content.parts[0].text
-            else:
-                raise ValueError("No response generated from Gemini API")
+            elif hasattr(response, 'candidates') and response.candidates:
+                # Try to extract text from candidates
+                for candidate in response.candidates:
+                    if hasattr(candidate, 'content') and candidate.content:
+                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                            for part in candidate.content.parts:
+                                if hasattr(part, 'text') and part.text:
+                                    return part.text
+                
+                # If we get here, check finish_reason
+                if response.candidates:
+                    finish_reason = getattr(response.candidates[0], 'finish_reason', None)
+                    if finish_reason == 2:  # SAFETY
+                        logging.warning(f"Gemini response blocked by safety filters. Finish reason: {finish_reason}")
+                        # Return a fallback response
+                        return "// Test generation was blocked by content filters. Please review the requirement manually."
+                    elif finish_reason == 3:  # RECITATION
+                        logging.warning(f"Gemini response blocked due to recitation. Finish reason: {finish_reason}")
+                        return "// Response blocked due to potential copyright content."
+                    else:
+                        logging.warning(f"Gemini response incomplete. Finish reason: {finish_reason}")
+                        return f"// Gemini response incomplete with finish reason: {finish_reason}"
+            
+            # If we get here, something went wrong
+            logging.error("Gemini response contained no valid text content")
+            return "// Gemini response contained no valid text content"
                     
         elif api_type == "gpt":
             response = client.chat.completions.create(
