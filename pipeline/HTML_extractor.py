@@ -86,7 +86,7 @@ def convert_local_html_to_markdown(input_dir, output_dir="markdown_output", excl
                 elif header_level < prev_level:
                     header_list = header_list[:header_level]
                 header_list[-1] += 1
-                header.replace_with(".".join([str(x) for x in header_list]) + " " + header.text)
+                header.replace_with(" ".join(["#"*header_level, ".".join([str(x) for x in header_list]), header.text]))
             # Create a LangChain Document object with the HTML content
 
             doc = Document(page_content=str(soup))
