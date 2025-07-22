@@ -20,6 +20,8 @@ SYSTEM_PROMPTS = {
     "gemini": """You are a Healthcare Integration Test Engineer with expertise in INCOSE Systems Engineering standards, analyzing FHIR 
     Implementation Guide content to identify and format testable requirements following INCOSE specifications.""",
     "gpt": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
+    Implementation Guide content to extract specific testable requirements in INCOSE-compliant format.""",
+     "aip": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
     Implementation Guide content to extract specific testable requirements in INCOSE-compliant format."""
 }
 
@@ -52,12 +54,15 @@ def first_pass(clients, api_type, source_dir):
             data = f.read()
             sections = md_sections(data)
             for i, section in enumerate(sections):
+                secnum = re.match(r'#+ ((?:\d+.)+\d+)', section).group(1)
                 response_entry = {
                     'filename': fname,
                     'total_sections': len(sections),
                     'section_id': i,
                     'text': section
                 }
+                if secnum:
+                    response_entry['ig_section'] = secnum
                 task_base = deepcopy(PROMPT_1)
                 task_base += "<TASK> <TEXT> " \
                     + section + "</TEXT>" \
