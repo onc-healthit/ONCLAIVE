@@ -27,6 +27,7 @@ CRITICAL REQUIREMENTS:
 1. INPUTS AND CLIENTS:
    - ALWAYS declare all inputs that a test will use
    - Always use valid input types (see inferno guidance; e.g., text, textarea, radio, checkbox, oauth_credentials)
+   - NEVER reference inputs outside the `run` block. All input validation must occur INSIDE the run block
 
 2. MAKING REQUESTS:
    - ALWAYS use the Inferno DSL methods (fhir_read, fhir_search, etc.)

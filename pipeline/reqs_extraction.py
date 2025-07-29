@@ -16,6 +16,7 @@ from openai import OpenAI
 from pathlib import Path
 import sys
 import prompt_utils
+from llm_utils import SafetyFilterException
 
 # Get the current working directory and set up paths
 PROJECT_ROOT = Path.cwd().parent  # Go up one level from reqs_extraction to onclaive root
@@ -71,9 +72,9 @@ def calculate_optimal_chunk_size(config, api_type: str, markdown_content: str) -
     
     # Base chunk sizes based on API token limits
     base_chunk_sizes = {
-        "claude": 8000,  # Claude has higher token limits
-        "gemini": 7000,  # Gemini is also capable of handling larger chunks
-        "gpt": 3000      # GPT-4 with smaller context
+        "claude": 25000,  # Claude has higher token limits
+        "gemini": 20000,  # Gemini is also capable of handling larger chunks
+        "gpt": 12000      # GPT-4 with smaller context
     }
     
     # Start with the base size for the API
@@ -82,27 +83,12 @@ def calculate_optimal_chunk_size(config, api_type: str, markdown_content: str) -
     # Adjust based on content characteristics
     content_length = len(markdown_content)
     
-    # For very small content, don't chunk at all
-    if content_length <= optimal_size / 2:
+    # For small content, don't chunk at all
+    if content_length <= optimal_size:
         return content_length
     
-    # For medium content, use the base size
-    if content_length <= optimal_size * 1.5:
-        return optimal_size
-    
-    # For larger content, adjust based on complexity 
-    code_blocks = markdown_content.count("```")
-    tables = markdown_content.count("|")
-    
-    # Adjust down if content has complex structures
-    complexity_factor = 1.0
-    if code_blocks > 5:
-        complexity_factor *= 0.9
-    if tables > 10:
-        complexity_factor *= 0.9
-    
-    # Avoid exceeding API token limits
-    return min(int(optimal_size * complexity_factor), base_chunk_sizes[api_type])
+    # For larger content, use the full chunk size
+    return optimal_size
 
 # Markdown Processing Functions
 def clean_markdown(text: str) -> str:
@@ -117,53 +103,34 @@ def clean_markdown(text: str) -> str:
 
 def split_markdown_dynamic(config, content: str, api_type: str) -> List[str]:
     """
-    Split markdown into dynamically sized chunks based on API type and content.
+    Optimized markdown splitting with larger chunks and fewer API calls.
     """
-    # If content is very small, don't split it
-    if len(content) < 1000:
+    # Don't split small files at all
+    if len(content) < 5000:  # Increased threshold
         return [content]
     
-    # Calculate optimal chunk size
     max_size = calculate_optimal_chunk_size(config, api_type, content)
     
+    # Try to split on major sections first (headers)
+    sections = re.split(r'\n(?=# )', content)
+    
     chunks = []
-    lines = content.split('\n')
-    current_chunk = []
-    current_size = 0
+    current_chunk = ""
     
-    # Try to split at meaningful boundaries like headers or blank lines
-    for i, line in enumerate(lines):
-        line_size = len(line)
-        
-        if current_size + line_size > max_size:
-            # Look back for a good splitting point (blank line or header)
-            split_index = find_good_split_point(current_chunk)
-            
-            if split_index > 0:
-                # Split at the good point
-                first_part = current_chunk[:split_index]
-                second_part = current_chunk[split_index:]
-                chunks.append('\n'.join(first_part))
-                current_chunk = second_part
-                current_size = sum(len(l) for l in second_part)
-            else:
-                # If no good splitting point, use the current chunk
-                chunks.append('\n'.join(current_chunk))
-                current_chunk = []
-                current_size = 0
-            
-            # Add the current line to the new chunk
-            current_chunk.append(line)
-            current_size += line_size
+    for section in sections:
+        if len(current_chunk) + len(section) <= max_size:
+            current_chunk += section + "\n"
         else:
-            current_chunk.append(line)
-            current_size += line_size
+            if current_chunk:
+                chunks.append(current_chunk.strip())
+            current_chunk = section + "\n"
     
-    # Add the last chunk if there's anything left
     if current_chunk:
-        chunks.append('\n'.join(current_chunk))
+        chunks.append(current_chunk.strip())
     
-    return chunks
+    return chunks if len(chunks) > 1 else [content]
+
+
 
 def find_good_split_point(lines: List[str]) -> int:
     """
@@ -338,9 +305,19 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
                         prompt_text = formatted_content
                     
                     # Use the utility function for API request
-                    response = clients.make_llm_request(api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
-                    
-                    all_incose_requirements.append(response)
+                    try:
+                        response = clients.make_llm_request(api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
+                        all_incose_requirements.append(response)
+                    except SafetyFilterException as e:
+                        clients.safety_blocked_count += 1
+                        print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{clients.safety_blocked_count}")
+                        print(f"📁 File: {group[0]} - Chunk {chunk_idx}/{len(chunks)}")
+                        print("=" * 60)
+                        print("BLOCKED CONTENT SAMPLE:")
+                        print(e.blocked_content)
+                        print("=" * 60)
+                        print("Skipping this chunk and continuing...\n")
+                        all_incose_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by Gemini safety filters]\n\n")
                     time.sleep(config["delay_between_chunks"])
                 
                 processed_files.append(group[0])
@@ -376,9 +353,19 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
                         prompt_text = formatted_content
                     
                     # Use the utility function for API request
-                    response = clients.make_llm_request(api_type, prompt_text, SYSTEM_PROMPTS[api_type])
-                    
-                    all_incose_requirements.append(response)
+                    try:
+                        response = clients.make_llm_request(api_type, prompt_text, SYSTEM_PROMPTS[api_type])
+                        all_incose_requirements.append(response)
+                    except SafetyFilterException as e:
+                        clients.safety_blocked_count += 1
+                        print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{clients.safety_blocked_count}")
+                        print(f"📁 Combined files: {', '.join(group)} - Chunk {chunk_idx}/{len(chunks)}")
+                        print("=" * 60)
+                        print("BLOCKED CONTENT SAMPLE:")
+                        print(e.blocked_content)
+                        print("=" * 60)
+                        print("Skipping this chunk and continuing...\n")
+                        all_incose_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by Gemini safety filters]\n\n")
                     time.sleep(config["delay_between_chunks"])
                 
                 processed_files.extend(group)
@@ -443,6 +430,7 @@ def run_requirements_extractor(markdown_dir, output_directory, api_type, clients
         print(f"Error: Directory not found at {markdown_dir}")
         return  # Exit the function if directory doesn't exist
 
+    clients.safety_blocked_count = 0
 
     try:
         logging.info(f"Processing with {api_type}...")

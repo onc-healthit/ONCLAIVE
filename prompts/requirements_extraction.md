@@ -7,7 +7,7 @@ You are analyzing chunk {chunk_index} of {total_chunks} from a FHIR Implementati
 # REQUIREMENT EXTRACTION GUIDELINES
 Include ONLY requirements that:
    - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
-   - Describe specific, verifiable behavior or capability
+   - Describe specific, testable, automatically verifiable behavior or capability
    - Could be objectively tested through software testing or attestation
 - Each requirement must be complete, atomic, and testable
 - Separate individual requirements
@@ -39,11 +39,11 @@ Here are two examples of properly formatted requirements from another implementa
 ```
 ## REQ-01
 
-**Summary**: Advertise supported subscription topics
-**Description**: "In order to allow for discovery of supported subscription topics, this guide defines the CapabilityStatement SubscriptionTopic Canonical extension. The extension allows server implementers to advertise the canonical URLs of topics available to clients."
-**Verification**: Test
-**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
-**Source**: Subscription Discovery Section
+**Summary**: Formulary server record maintenance
+**Description**: "The formulary server SHALL NOT maintain any records through the unauthenticated API that could associate the consumer with the medications queried."
+**Verification**: Attestation
+**Notes**: Actor: Server, Conformance: SHALL NOT, Conditional: False
+**Source**: [INSERT SECTION] Section
 ```
 
 ```
@@ -59,4 +59,4 @@ Here are two examples of properly formatted requirements from another implementa
 Content to analyze:
 {content}
 
-Generate your INCOSE-style requirements extraction now. For each chunk, list each requirement using the format specified above. If you find no requirements in this chunk, do not add any text and move to the next chunk. Do not include any introductory or conclusion/summary comments in your response. Only include the requirements as a list.
+Generate your INCOSE-style requirements extraction now. For each chunk, list each requirement using the format specified above. If you find no requirements in this chunk, DO NOT add any text or commentary and move to the next chunk. Do not include any introductory or conclusion/summary comments in your response. Only include the requirements as a list.

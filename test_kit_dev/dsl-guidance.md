@@ -178,6 +178,19 @@ test do
 end
 ```
 
+Input validation with `skip_if` MUST occur inside the `run` block, never outside it.
+
+Example:
+```ruby
+test do
+  input :parameter_name
+  
+  run do
+    skip_if !parameter_name.present?, 'Parameter not provided'
+    # test logic here
+  end
+end
+
 - **Outputs**: Store values for use in subsequent tests
 ```ruby
 test do

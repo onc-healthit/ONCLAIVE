@@ -20,41 +20,47 @@ except ImportError:
 # API Configuration
 API_CONFIGS = {
     "claude": {
-        "model_name": "claude-3-5-sonnet-20241022", 
+        "model_name": "claude-sonnet-4-20250514", 
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 1,
-        "delay_between_batches": 3,
-        "requests_per_minute": 900,
+        "batch_size": 10,  
+        "delay_between_chunks": 0.2, 
+        "delay_between_batches": 1.0,  
+        "requests_per_minute": 990,
         "max_requests_per_day": 20000,
-        "delay_between_requests": 0.1
+        "delay_between_requests": 0.05  
     },
     "gemini": {
-        "model": "models/gemini-2.5-pro-preview-03-25",
+        "model": "models/gemini-2.5-pro",
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 2,
-        "delay_between_batches": 5,
+        "batch_size": 8,  
+        "delay_between_chunks": 0.5,  
+        "delay_between_batches": 2.0,  
         "requests_per_minute": 900,
         "max_requests_per_day": 50000,
-        "delay_between_requests": 0.1,
+        "delay_between_requests": 0.05,  
         "timeout": 60
     },
     "gpt": {
         "model": "gpt-4o",
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 2,
-        "delay_between_batches": 5,
-        "requests_per_minute": 450,
+        "batch_size": 8,  
+        "delay_between_chunks": 0.5,   
+        "delay_between_batches": 2.0,  
+        "requests_per_minute": 3000,
         "max_requests_per_day": 20000,
-        "delay_between_requests": 0.15
+        "delay_between_requests": 0.08  
     }
 }
 
+# Custom exception for safety filter blocks
+class SafetyFilterException(Exception):
+    """Exception raised when content is blocked by safety filters"""
+    def __init__(self, message, blocked_content=None):
+        super().__init__(message)
+        self.blocked_content = blocked_content
 
 
 def format_content_for_api(content: Union[str, dict, list], api_type: str) -> Union[str, List[dict], dict]:
@@ -84,6 +90,8 @@ class LLMApiClient:
         self.config = config
         self.clients = {}
         self.system_prompt = system_prompt
+        self.safety_blocked_count = 0
+
         try:
             # Claude setup
             claude_api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -105,12 +113,22 @@ class LLMApiClient:
                 self.logger.warning("GEMINI_API_KEY not found. Gemini API client will not be loaded.")
             else:
                 gemini.configure(api_key=gemini_api_key)
+                
+                # Configure safety settings for technical content
+                safety_settings = [
+                    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+                    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+                    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
+                ]
+                
                 self.clients['gemini'] = gemini.GenerativeModel(
                     model_name=self.config["gemini"]["model"],
                     generation_config={
                         "max_output_tokens": self.config["gemini"]["max_tokens"],
                         "temperature": self.config["gemini"]["temperature"]
-                    }
+                    },
+                    safety_settings=safety_settings
                 )
             
             # OpenAI setup
@@ -182,6 +200,11 @@ class LLMApiClient:
         state['requests'].append(now)
         state['daily_requests'] += 1
 
+    def extract_problematic_content(self, prompt: str) -> str:
+        """Extract a sample of the content that might have triggered safety filters"""
+        return prompt
+
+
     # Make LLM Call
     @retry(
         wait=wait_exponential(multiplier=1, min=4, max=60),
@@ -206,19 +229,47 @@ class LLMApiClient:
                 return response.content[0].text
                 
             elif api_type == "gemini":
+                # Combine system prompt and user prompt for Gemini
+                if system_prompt:
+                    combined_prompt = f"System: {system_prompt}\n\nUser: {prompt}"
+                else:
+                    combined_prompt = prompt
+                
                 response = client.generate_content(
-                    prompt,
+                    combined_prompt,
                     generation_config={
                         "max_output_tokens": config["max_tokens"],
                         "temperature": config["temperature"]
                     }
                 )
-                if hasattr(response, 'text'):
-                    return response.text
-                elif response.candidates:
-                    return response.candidates[0].content.parts[0].text
-                else:
-                    raise ValueError("No response generated from Gemini API")
+                
+                # Check for safety filter blocks FIRST
+                if response.candidates and len(response.candidates) > 0:
+                    candidate = response.candidates[0]
+                    if candidate.finish_reason == 2:  # SAFETY
+                        problematic_content = combined_prompt[:500] + ("..." if len(combined_prompt) > 500 else "")
+                        raise SafetyFilterException(
+                            "Gemini blocked content for safety reasons.", 
+                            blocked_content=problematic_content
+                        )
+                
+                # Then try to get the text
+                try:
+                    if hasattr(response, 'text') and response.text:
+                        return response.text
+                    elif response.candidates and len(response.candidates) > 0:
+                        candidate = response.candidates[0]
+                        if candidate.content and candidate.content.parts:
+                            return candidate.content.parts[0].text
+                        else:
+                            raise ValueError(f"No content returned from Gemini")
+                    else:
+                        raise ValueError("No response generated from Gemini API")
+                except AttributeError:
+                    if response.candidates and len(response.candidates) > 0:
+                        return response.candidates[0].content.parts[0].text
+                    else:
+                        raise ValueError("Unable to extract text from Gemini response")
                         
             elif api_type == "gpt":
                 response = client.chat.completions.create(
@@ -232,6 +283,9 @@ class LLMApiClient:
                 )
                 return response.choices[0].message.content
                 
+        except SafetyFilterException:
+            # Re-raise safety filter exceptions without wrapping them
+            raise
         except Exception as e:
             logging.error(f"Error in {api_type} API request: {str(e)}")
             raise Exception(e)
@@ -252,7 +306,21 @@ class LLMApiClient:
                 query = format_content_for_api(prompt, api_type)
             else:
                 query = prompt
-            return self.make_one_llm_request(api_type, query, system_prompt)
+            try:
+                return self.make_one_llm_request(api_type, query, system_prompt)
+            except SafetyFilterException as e:
+                self.safety_blocked_count += 1
+                print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
+                print("=" * 60)
+                print("BLOCKED CONTENT SAMPLE:")
+                print(e.blocked_content)
+                print("=" * 60)
+                print("Skipping this chunk and continuing...\n")
+                
+                if raise_on_error:
+                    return "[CONTENT BLOCKED BY SAFETY FILTER - SKIPPED]"
+                else:
+                    return {'error': 'safety_filter_blocked', 'content_sample': e.blocked_content}
         else:
             responses = []
             for i,p in enumerate(prompt):
@@ -263,6 +331,19 @@ class LLMApiClient:
                     query = p
                 try:
                     responses.append(self.make_one_llm_request(api_type, query, system_prompt))
+                except SafetyFilterException as e:
+                    self.safety_blocked_count += 1
+                    print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
+                    print("=" * 60)
+                    print("BLOCKED CONTENT SAMPLE:")
+                    print(e.blocked_content)
+                    print("=" * 60)
+                    print("Skipping this chunk and continuing...\n")
+                    
+                    if raise_on_error:
+                        responses.append("[CONTENT BLOCKED BY SAFETY FILTER - SKIPPED]")
+                    else:
+                        responses.append({'error': 'safety_filter_blocked', 'content_sample': e.blocked_content})
                 except Exception as e:
                     if raise_on_error:
                         raise Exception(e)
