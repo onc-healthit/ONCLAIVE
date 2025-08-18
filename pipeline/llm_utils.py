@@ -119,7 +119,8 @@ class LLMApiClient:
                     {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}, 
+                    {"category": "HARM_CATEGORY_CIVIC_INTEGRITY", "threshold": "BLOCK_NONE"}
                 ]
                 
                 self.clients['gemini'] = gemini.GenerativeModel(
@@ -211,15 +212,20 @@ class LLMApiClient:
         stop=stop_after_attempt(5),
         retry=retry_if_exception_type((RateLimitError, TimeoutError))
     )
-    def make_one_llm_request(self, api_type: str, prompt: str, system_prompt):
+    def make_one_llm_request(self, api_type: str, prompt: str, system_prompt, max_tokens=None):
+        """Enhanced version with max_tokens parameter"""
         config = self.config[api_type]
         client = self.clients[api_type]
         self.check_rate_limits(api_type)
+        
+        # Use provided max_tokens or fall back to config
+        tokens_limit = max_tokens if max_tokens is not None else config["max_tokens"]
+        
         try:
             if api_type == "claude":
                 response = client.messages.create(
                     model=config["model_name"],
-                    max_tokens=config["max_tokens"],
+                    max_tokens=tokens_limit,  # Use the tokens_limit variable
                     messages=[{
                         "role": "user", 
                         "content": prompt
@@ -238,7 +244,7 @@ class LLMApiClient:
                 response = client.generate_content(
                     combined_prompt,
                     generation_config={
-                        "max_output_tokens": config["max_tokens"],
+                        "max_output_tokens": tokens_limit,  # Use the tokens_limit variable
                         "temperature": config["temperature"]
                     }
                 )
@@ -278,7 +284,7 @@ class LLMApiClient:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=config["max_tokens"],
+                    max_tokens=tokens_limit,  # Use the tokens_limit variable
                     temperature=config["temperature"]
                 )
                 return response.choices[0].message.content
@@ -289,25 +295,27 @@ class LLMApiClient:
         except Exception as e:
             logging.error(f"Error in {api_type} API request: {str(e)}")
             raise Exception(e)
+        
 
-    def make_llm_request(self, api_type: str, prompt: Union[str, List[str]], sys_prompt=None, raise_on_error=True, reformat=True) -> str:
-        """Make rate-limited API request with retries"""
+    def make_llm_request(self, api_type: str, prompt: Union[str, List[str]], sys_prompt=None, 
+                     raise_on_error=True, reformat=True, max_tokens=None) -> str:
+        """Make rate-limited API request with retries - enhanced with max_tokens"""
         
         if api_type not in self.clients:
             raise ValueError(f"Unknown API: {api_type}. Valid API types are: {','.join(self.clients.keys())}")
-        
         
         if not sys_prompt:
             system_prompt = self.system_prompt
         else:
             system_prompt = sys_prompt
+            
         if type(prompt) == str:
             if reformat:
                 query = format_content_for_api(prompt, api_type)
             else:
                 query = prompt
             try:
-                return self.make_one_llm_request(api_type, query, system_prompt)
+                return self.make_one_llm_request(api_type, query, system_prompt, max_tokens)
             except SafetyFilterException as e:
                 self.safety_blocked_count += 1
                 print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
@@ -330,7 +338,7 @@ class LLMApiClient:
                 else:
                     query = p
                 try:
-                    responses.append(self.make_one_llm_request(api_type, query, system_prompt))
+                    responses.append(self.make_one_llm_request(api_type, query, system_prompt, max_tokens))
                 except SafetyFilterException as e:
                     self.safety_blocked_count += 1
                     print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")

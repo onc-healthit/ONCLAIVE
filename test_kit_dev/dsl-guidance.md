@@ -223,6 +223,111 @@ test do
 end
 ```
 
+#### FHIR Client Inheritance (CRITICAL)
+
+**TestGroups and Tests automatically inherit FHIR client configuration from their parent TestSuite.** This is a fundamental principle of Inferno test organization.
+
+### DO NOT Repeat Client Configuration
+
+**WRONG - Causes duplicate input prompts:**
+```ruby
+# TestSuite level
+class MyTestSuite < Inferno::TestSuite
+  input :url, title: 'FHIR Server URL'
+  fhir_client do
+    url :url
+  end
+end
+
+# TestGroup level - WRONG!
+class MyTestGroup < Inferno::TestGroup
+  input :url, title: 'FHIR Server URL'  # Duplicate input!
+  fhir_client do                        # Unnecessary redefinition!
+    url :url
+  end
+end
+```
+
+**CORRECT - Single input, inherited by all:**
+```ruby
+# TestSuite level - Define once
+class MyTestSuite < Inferno::TestSuite
+  input :url, title: 'FHIR Server URL'
+  fhir_client do
+    url :url
+  end
+end
+
+# TestGroup level - Inherits automatically
+class MyTestGroup < Inferno::TestGroup
+  # No URL input needed - inherits from parent
+  # No fhir_client needed - inherits from parent
+  
+  input :patient_id,  # Only declare inputs specific to this group
+        title: 'Patient ID'
+end
+```
+
+### When to Define FHIR Client in TestGroup
+
+Only define a new `fhir_client` in a TestGroup when you need:
+- Different authentication credentials
+- Different base URL
+- Different headers or configuration
+
+Example of legitimate TestGroup client override:
+```ruby
+class SecureTestGroup < Inferno::TestGroup
+  input :admin_token, title: 'Admin Access Token'
+  
+  # Override client for admin-only tests
+  fhir_client do
+    url :url  # Still use inherited URL
+    bearer_token :admin_token  # But different auth
+  end
+end
+```
+
+### Input Declaration Rules
+
+1. **URL inputs**: Declare ONLY in TestSuite
+2. **OAuth credentials**: Declare ONLY in TestSuite unless specific tests need different credentials
+3. **Resource IDs**: Declare in TestGroup or Test as needed
+4. **Search parameters**: Declare in TestGroup or Test as needed
+
+### Template for Clean Test Organization
+
+```ruby
+# Main TestSuite file
+class MyTestSuite < Inferno::TestSuite
+  id :my_test_suite
+  
+  # Shared inputs declared once
+  input :url, title: 'FHIR Server URL'
+  input :credentials, type: :oauth_credentials, optional: true
+  
+  # Shared FHIR client
+  fhir_client do
+    url :url
+    oauth_credentials :credentials
+  end
+  
+  group from: :patient_tests
+  group from: :organization_tests
+end
+
+# Individual test group files
+class PatientTestGroup < Inferno::TestGroup
+  id :patient_tests
+  
+  # Only declare inputs specific to patient testing
+  input :patient_id, title: 'Patient ID'
+  
+  # No fhir_client block needed - inherits from suite
+end
+```
+
+
 ### 4. Making FHIR Requests
 Inferno provides support for making FHIR requests as well as generic HTTP requests. Always use Inferno's FHIR client methods instead of generic HTTP libraries like Net::HTTP or RestClient. The following methods are currently available for making FHIR requests:
 - fhir_read(resource_type, id, client: :default, name: nil) - Read operations
@@ -351,7 +456,31 @@ fhir_resource_validator do
   end
 end
 ```
+ ### 7. DSL Variable Usage
 
+ - Variables `request`, `response`, and `resource` only exist within test `run` blocks
+   - Helper methods CANNOT directly access these variables
+   - If helper methods need these variables, they must be passed as parameters
+   - Assertions in helper methods must receive context: assert_response_status(200, request: request, response: response)
+   - NEVER define helper methods that use `response`, `request`, or `resource` without parameters
+
+Examples of INCORRECT usage to fix:
+Incorrect:
+  def validate_search_results(expected_code)
+     assert_response_status(200)  # response not available here
+     assert_resource_type(:bundle)  # resource not available here
+   end
+
+Correct:
+  def validate_search_results(request, response, resource, expected_code)
+     assert_response_status(200, request: request, response: response)
+     assert_resource_type(:bundle, resource: resource)
+   end
+
+Incorrect:
+  Calling: validate_search_results(specialty_code)
+Correct:
+  Calling: validate_search_results(request, response, resource, specialty_code)
 
 ## Error Prevention
 

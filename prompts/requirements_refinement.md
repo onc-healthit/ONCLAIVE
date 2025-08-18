@@ -4,7 +4,7 @@ Your task is to review this list of FHIR Implementation Guide requirements and c
 
 2. Include ONLY requirements that:
    - Are atomic
-   - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
+   - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.) (applicable for most but not all requirements)
    - Describe specific, verifiable behavior or capability
    - Could be objectively tested through software testing or attestation
 

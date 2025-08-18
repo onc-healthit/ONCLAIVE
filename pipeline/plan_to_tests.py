@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 # Constants
 CURRENT_DIR = Path.cwd()  # Current working directory
-#OUTPUT_DIR = os.path.join(CURRENT_DIR, 'test_output')
+OUTPUT_DIR = os.path.join(CURRENT_DIR, 'test_output')
 PROJECT_ROOT = CURRENT_DIR.parent  # Go up one level to project root
 TEST_GEN_PATH = PROJECT_ROOT / "prompts" / "test_gen.md"
 
@@ -282,11 +282,19 @@ def determine_test_groups(sections: Dict[str, Dict[str, Any]], expected_actors: 
     return result_groups
 
 
+
 def validate_test_with_llm(llm_clients, api_type, test_code, inferno_guidance, dsl_guidance):
     """Use LLM to check and correct common issues in generated test code."""
     
     validation_prompt = f"""
     Review this Inferno test code for common issues and fix them:
+    
+    FHIR Client Inheritance (CRITICAL):
+       - TestGroups should NOT define their own fhir_client unless they need different authentication
+       - TestGroups should NOT declare URL inputs - they inherit from the parent TestSuite
+       - Only declare inputs that are specific to the test group (patient_id, specialty_code, etc.)
+       - Remove any duplicate fhir_client blocks in TestGroups
+       - Remove any duplicate URL input declarations in TestGroups
     
     Property usage:
        - The 'links' property can ONLY be used in a TestSuite, not in TestGroups or individual Tests
@@ -337,6 +345,12 @@ def validate_test_with_llm(llm_clients, api_type, test_code, inferno_guidance, d
     ```ruby
     {test_code}
     ```
+
+    SPECIFIC FIXES REQUIRED:
+    1. Remove any fhir_client blocks from TestGroups unless they need different authentication
+    2. Remove any URL input declarations from TestGroups
+    3. Ensure TestGroups only declare inputs specific to their testing needs
+
     Please ensure the code is valid Ruby and follows the below Inferno best practices, using the Inferno domain specific language.
     {dsl_guidance}
     
@@ -628,15 +642,17 @@ def extract_test_data(module_dir: str) -> Dict[str, Dict[str, Any]]:
     return test_data
 
 
-def create_module_structure(test_data: Dict[str, Dict[str, Any]]) -> str:
+def create_module_structure(test_data: Dict[str, Dict[str, Any]], module_name_snake: str) -> str:
     """
     Create a structured representation of the module for the LLM to use.
+    - Fixed to include proper require_relative paths with module folder
     
     Args:
         test_data: Dictionary of test file data
+        module_name_snake: The snake_case module name (e.g., 'plannet')
         
     Returns:
-        String describing the module structure
+        String describing the module structure with correct require_relative paths
     """
     structure = "Module Structure:\n"
     
@@ -646,14 +662,19 @@ def create_module_structure(test_data: Dict[str, Dict[str, Any]]) -> str:
         dir_name = os.path.dirname(file_path)
         dir_structure[dir_name].append((file_path, data))
     
-    # Create a hierarchical description
+    # Create a hierarchical description with corrected require_relative paths
     for dir_name, files in sorted(dir_structure.items()):
         structure += f"- Directory: {dir_name}\n"
         for file_path, data in sorted(files):
+            # Create the correct require_relative path (include module folder)
+            # Remove .rb extension for require_relative
+            require_path = f"{module_name_snake}/{file_path}".replace('.rb', '')
+            
             structure += f"  - File: {os.path.basename(file_path)}\n"
             structure += f"    - Type: {data['type']}\n"
             structure += f"    - ID: {data['id'] or 'None'}\n"
             structure += f"    - Title: {data['title']}\n"
+            structure += f"    - require_relative: '{require_path}'\n"
     
     return structure
 
@@ -668,44 +689,87 @@ def generate_landing_file_with_llm(
 ) -> str:
     """
     Use an LLM to generate the main module file with proper ID references.
-    
-    Args:
-        client: The API client
-        api_type: API type (claude, gemini, gpt)
-        module_name_camel: CamelCase module name
-        module_name_snake: snake_case module name
-        test_data: Dictionary of test file data
-        structure: String describing the module structure
-        rate_limit_func: Function to check rate limits
-        
-    Returns:
-        Generated module file content
+    - Updated prompt to emphasize correct require_relative paths
     """
     # Define a system prompt for the LLM
     system_prompt = """You are an expert Ruby developer specializing in FHIR Inferno test development.
-Your task is to create a main module file for an Inferno test suite that correctly references all test groups."""
+Your task is to create a main module file for an Inferno test suite that correctly references all test groups.
+CRITICAL: The TestSuite should declare inputs ONCE and all TestGroups will inherit them automatically.
+CRITICAL: require_relative paths must include the module folder name."""
     
-    # Create the user prompt
     user_prompt = f"""
 Generate a main module file for an Inferno test suite called '{module_name_camel}' with a snake_case name of '{module_name_snake}'.
 
 The test suite should have:
 1. A proper module definition with a TestSuite class
-2. Configuration for a FHIR client with a URL input
-3. All required imports for the test files
-4. A properly structured hierarchy of groups that reflects the directory structure
-5. Correct references to test groups using their actual IDs, not their filenames
+2. A mandatory ID declaration as the first property
+3. ONE declaration of the FHIR server URL input (all groups will inherit this)
+4. ONE FHIR client configuration (all groups will inherit this)
+5. Optional OAuth credentials input for authenticated endpoints
+6. All required imports for the test files
+7. A properly structured hierarchy of groups that reflects the directory structure
+8. Correct references to test groups using their actual IDs, not their filenames
 
-Here is the structure of the test files:
+CRITICAL REQUIREMENTS FOR INPUT MANAGEMENT:
+- Declare the URL input ONLY in the TestSuite
+- Declare OAuth credentials ONLY in the TestSuite
+- All TestGroups will automatically inherit these inputs
+- Do not repeat input declarations in the referenced test groups
+
+CRITICAL REQUIREMENTS FOR FILE REFERENCES:
+- ONLY include require_relative statements for files that actually exist
+- ONLY include group from: statements for IDs that exist in the referenced files
+- Each require_relative must include the module folder: require_relative '{module_name_snake}/path/to/file'
+- Each group from: must reference an actual ID defined in a test file
+
+Here is the structure of the test files with correct require_relative paths:
 {structure}
 
-CRITICAL REQUIREMENTS:
-1. Each 'require_relative' statement should reference the actual file path
+TEMPLATE TO FOLLOW:
+```ruby
+module {module_name_camel}
+  class TestSuite < Inferno::TestSuite
+    id :{module_name_snake}
+    title '{module_name_camel} Test Suite'
+    description 'Test suite for {module_name_camel} implementation'
+
+    # Declare shared inputs ONCE - all groups inherit these
+    input :url,
+          title: 'FHIR Server Base URL',
+          description: 'Base URL of the FHIR server to test'
+
+    input :credentials,
+          title: 'OAuth Credentials',
+          type: :oauth_credentials,
+          optional: true
+
+    # Configure FHIR client ONCE - all groups inherit this
+    fhir_client do
+      url :url
+      oauth_credentials :credentials
+    end
+
+    # Configure FHIR validator if needed
+    fhir_resource_validator do
+      igs 'relevant-ig-identifier#version'
+      exclude_message do |message|
+        message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
+      end
+    end
+
+    # Reference test groups by their actual IDs with correct require_relative paths
+    group from: :actual_group_id_1
+    group from: :actual_group_id_2
+    # ... more group references
+  end
+end
+```
+
+CRITICAL: 
+1. Each 'require_relative' statement should reference the actual file path INCLUDING the module folder
 2. When using 'group from:', ALWAYS use the actual ID from the file (what follows 'id :'), NOT the filename
-3. Organize the groups to match the directory structure
-4. Configure the FHIR client at the TestSuite level
-5. Do not require 'inferno/dsl/test_suite' or other non-existent libraries
-6. The main module file should be named '{module_name_snake}.rb'
+3. The TestSuite declares inputs once, TestGroups inherit them automatically
+4. The main module file should be named '{module_name_snake}.rb'
 
 Return ONLY the Ruby code for the main module file, with no explanations.
 """
@@ -726,6 +790,261 @@ Return ONLY the Ruby code for the main module file, with no explanations.
         landing_file_content = re.sub(r'\n```$', '', landing_file_content)
     
     return landing_file_content
+
+
+def collect_alignment_data(module_file_path: str, module_dir: str, module_name_snake: str) -> Dict[str, Any]:
+    """
+    Collect all alignment data for LLM review
+    - Updated to handle correct require_relative paths with module folder
+    """
+    
+    alignment_data = {
+        'module_file_content': '',
+        'module_file_path': module_file_path,
+        'test_files': {},
+        'require_statements': [],
+        'group_references': [],
+        'actual_files': [],
+        'actual_group_ids': {},
+        'module_name': module_name_snake
+    }
+    
+    # Read module file
+    try:
+        with open(module_file_path, 'r') as f:
+            alignment_data['module_file_content'] = f.read()
+    except Exception as e:
+        alignment_data['error'] = f"Cannot read module file: {str(e)}"
+        return alignment_data
+    
+    # Extract require_relative and group from: statements
+    alignment_data['require_statements'] = re.findall(
+        r"require_relative\s+['\"]([^'\"]+)['\"]", 
+        alignment_data['module_file_content']
+    )
+    alignment_data['group_references'] = re.findall(
+        r"group\s+from:\s*:([a-zA-Z0-9_]+)", 
+        alignment_data['module_file_content']
+    )
+    
+    # Collect all actual test files and their content
+    for root, dirs, files in os.walk(module_dir):
+        for file in files:
+            if file.endswith('.rb'):
+                file_path = os.path.join(root, file)
+                relative_path = os.path.relpath(file_path, module_dir)
+                
+                # Create the expected require_relative path format
+                expected_require_path = f"{module_name_snake}/{relative_path}".replace('.rb', '')
+                
+                alignment_data['actual_files'].append({
+                    'relative_path': relative_path,
+                    'expected_require_path': expected_require_path
+                })
+                
+                try:
+                    with open(file_path, 'r') as f:
+                        content = f.read()
+                        alignment_data['test_files'][relative_path] = content
+                        
+                        # Extract group IDs from this file
+                        group_ids = re.findall(r'id\s+:([a-zA-Z0-9_]+)', content)
+                        if group_ids:
+                            alignment_data['actual_group_ids'][relative_path] = group_ids
+                            
+                except Exception as e:
+                    alignment_data['test_files'][relative_path] = f"ERROR: {str(e)}"
+    
+    return alignment_data
+
+def llm_validate_alignment(llm_clients, api_type: str, alignment_data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Use LLM to validate and fix alignment issues
+    """
+    
+    # Prepare alignment summary for LLM
+    alignment_summary = f"""
+MODULE FILE: {alignment_data['module_file_path']}
+REQUIRE_RELATIVE STATEMENTS: {alignment_data['require_statements']}
+GROUP FROM REFERENCES: {alignment_data['group_references']}
+
+ACTUAL TEST FILES:
+{chr(10).join(f"- {file}" for file in alignment_data['actual_files'])}
+
+ACTUAL GROUP IDs FOUND:
+{chr(10).join(f"- {file}: {ids}" for file, ids in alignment_data['actual_group_ids'].items())}
+"""
+    
+    system_prompt = """You are an expert Ruby developer specializing in Inferno FHIR test suites. 
+You need to analyze alignment between a main module file and its test files, then fix any issues."""
+    
+    user_prompt = f"""
+Analyze this Inferno test suite for alignment issues between the main module file and test files:
+
+{alignment_summary}
+
+MAIN MODULE FILE CONTENT:
+```ruby
+{alignment_data['module_file_content']}
+```
+
+Check for these issues:
+1. require_relative statements pointing to non-existent files
+2. group from: references to non-existent group IDs  
+3. test files that exist but aren't required
+4. group IDs that exist but aren't referenced
+
+Provide a corrected version of the main module file that:
+- Only includes require_relative for files that actually exist
+- Only includes group from: for group IDs that actually exist in the test files
+- Adds any missing require_relative statements for existing test files
+- Adds any missing group from: statements for existing group IDs
+- Maintains proper Ruby syntax and structure
+- Preserves the existing TestSuite structure and configuration
+
+Return ONLY the corrected Ruby code for the main module file, with no explanations.
+"""
+    
+    try:
+        corrected_module_content = llm_clients.make_llm_request(
+            api_type,
+            user_prompt,
+            sys_prompt=system_prompt
+        )
+        
+        # Clean up any markdown formatting
+        if corrected_module_content.startswith('```ruby'):
+            corrected_module_content = re.sub(r'^```ruby\n', '', corrected_module_content)
+            corrected_module_content = re.sub(r'\n```$', '', corrected_module_content)
+        elif corrected_module_content.startswith('```'):
+            corrected_module_content = re.sub(r'^```\n', '', corrected_module_content)
+            corrected_module_content = re.sub(r'\n```$', '', corrected_module_content)
+        
+        return {
+            'success': True,
+            'corrected_content': corrected_module_content,
+            'original_content': alignment_data['module_file_content']
+        }
+        
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e),
+            'original_content': alignment_data['module_file_content']
+        }
+
+def detailed_llm_alignment_report(llm_clients, api_type: str, alignment_data: Dict[str, Any]) -> str:
+    """
+    Generate a detailed alignment report using LLM analysis
+    """
+    
+    alignment_summary = f"""
+REQUIRE_RELATIVE STATEMENTS: {alignment_data['require_statements']}
+GROUP FROM REFERENCES: {alignment_data['group_references']}
+ACTUAL TEST FILES: {alignment_data['actual_files']}
+ACTUAL GROUP IDs: {alignment_data['actual_group_ids']}
+"""
+    
+    report_prompt = f"""
+Analyze this Inferno test suite alignment data and create a detailed report:
+
+{alignment_summary}
+
+Provide a detailed analysis covering:
+1. Missing files (required but don't exist)
+2. Missing group IDs (referenced but don't exist)
+3. Orphaned files (exist but not required)
+4. Orphaned group IDs (exist but not referenced)
+5. Overall alignment status
+6. Recommendations for fixes
+
+Format as a clear, structured report with sections and bullet points.
+"""
+    
+    try:
+        report = llm_clients.make_llm_request(
+            api_type,
+            report_prompt,
+            "You are an expert at analyzing software project structure and dependencies."
+        )
+        return report
+    except Exception as e:
+        return f"Error generating alignment report: {str(e)}"
+
+def llm_validate_and_fix_alignment(llm_clients, api_type: str, output_dir: str, module_name: str) -> Dict[str, Any]:
+    """
+    Complete LLM-based alignment validation and fixing
+    - Updated to pass module_name to collect_alignment_data
+    """
+    
+    # Find the module file
+    module_file = None
+    for file in os.listdir(output_dir):
+        if file.endswith('.rb') and module_name.lower() in file.lower():
+            module_file = os.path.join(output_dir, file)
+            break
+    
+    if not module_file:
+        return {
+            'success': False,
+            'error': 'Module file not found',
+            'report': 'Could not locate main module file for alignment validation'
+        }
+    
+    module_dir = os.path.join(output_dir, module_name.lower())
+    
+    # Collect alignment data (UPDATED CALL)
+    logger.info("Collecting alignment data for LLM analysis...")
+    alignment_data = collect_alignment_data(module_file, module_dir, module_name)
+    
+    if 'error' in alignment_data:
+        return {
+            'success': False,
+            'error': alignment_data['error'],
+            'report': f"Failed to collect alignment data: {alignment_data['error']}"
+        }
+    
+    # Generate detailed report
+    logger.info("Generating LLM alignment report...")
+    detailed_report = detailed_llm_alignment_report(llm_clients, api_type, alignment_data)
+    
+    # Get LLM fixes
+    logger.info("Getting LLM alignment fixes...")
+    fix_result = llm_validate_alignment(llm_clients, api_type, alignment_data)
+    
+    if fix_result['success']:
+        # Write the corrected module file
+        try:
+            with open(module_file, 'w') as f:
+                f.write(fix_result['corrected_content'])
+            
+            logger.info("LLM-corrected module file written successfully")
+            
+            return {
+                'success': True,
+                'fixed': True,
+                'report': detailed_report,
+                'original_content': fix_result['original_content'],
+                'corrected_content': fix_result['corrected_content'],
+                'module_file_path': module_file
+            }
+            
+        except Exception as e:
+            return {
+                'success': False,
+                'error': f"Failed to write corrected module file: {str(e)}",
+                'report': detailed_report,
+                'fix_content': fix_result['corrected_content']
+            }
+    else:
+        return {
+            'success': False,
+            'error': f"LLM alignment fixing failed: {fix_result['error']}",
+            'report': detailed_report
+        }
+
+
+
 
 def generate_inferno_test_kit(
     llm_clients,
@@ -754,15 +1073,17 @@ def generate_inferno_test_kit(
     # Initialize API clients and rate limiters
     #config = clients.config[api_type]
   
-    # Create output directory
-    os.makedirs(output_dir, exist_ok=True)
+    # Create timestamped output directory with API name
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamped_output_dir = os.path.join(output_dir, f"{api_type}_testkit_{timestamp}")
+    os.makedirs(timestamped_output_dir, exist_ok=True)
     
     # Standardize module name for Ruby
     module_name_snake = module_name.lower().replace('-', '_').replace(' ', '_')
     module_name_camel = ''.join(word.capitalize() for word in module_name.split())
     
     # Create module subdirectory
-    module_subdir = os.path.join(output_dir, module_name_snake)
+    module_subdir = os.path.join(timestamped_output_dir, module_name_snake)
     os.makedirs(module_subdir, exist_ok=True)
     
     # Set default actors if none provided
@@ -824,68 +1145,111 @@ def generate_inferno_test_kit(
         logger.info(f"Generated tests for {len(all_tests)} requirements")
         
         # Group requirements by actor and section (original groups from test plan)
-        grouped_reqs = determine_test_groups(sections, expected_actors)
+        #grouped_reqs = determine_test_groups(sections, expected_actors)
         
-        # Write test files to the module subdirectory
-        file_paths = {}
-        for actor, section_groups in grouped_reqs.items():
-            # Skip actors with no tests
-            if not section_groups:
-                continue
+        # # Write test files to the module subdirectory
+        # file_paths = {}
+        # for actor, section_groups in grouped_reqs.items():
+        #     # Skip actors with no tests
+        #     if not section_groups:
+        #         continue
                 
-            actor_safe = re.sub(r'[^a-zA-Z0-9_]', '_', actor.lower())
-            actor_dir = os.path.join(module_subdir, actor_safe)
+        #     actor_safe = re.sub(r'[^a-zA-Z0-9_]', '_', actor.lower())
+        #     actor_dir = os.path.join(module_subdir, actor_safe)
             
-            # Only create actor directory if it has at least one test
-            has_tests = False
-            for section_name, reqs in section_groups.items():
-                for req in reqs:
-                    if req['id'] in all_tests:
-                        has_tests = True
-                        break
-                if has_tests:
-                    break
+        #     # Only create actor directory if it has at least one test
+        #     has_tests = False
+        #     for section_name, reqs in section_groups.items():
+        #         for req in reqs:
+        #             if req['id'] in all_tests:
+        #                 has_tests = True
+        #                 break
+        #         if has_tests:
+        #             break
             
-            if not has_tests:
-                continue
+        #     if not has_tests:
+        #         continue
                 
-            os.makedirs(actor_dir, exist_ok=True)
+        #     os.makedirs(actor_dir, exist_ok=True)
             
-            for section_name, reqs in section_groups.items():
-                # Skip empty sections or sections with no generated tests
-                has_section_tests = False
-                for req in reqs:
-                    if req['id'] in all_tests:
-                        has_section_tests = True
-                        break
+        #     for section_name, reqs in section_groups.items():
+        #         # Skip empty sections or sections with no generated tests
+        #         has_section_tests = False
+        #         for req in reqs:
+        #             if req['id'] in all_tests:
+        #                 has_section_tests = True
+        #                 break
                 
-                if not has_section_tests:
-                    continue
+        #         if not has_section_tests:
+        #             continue
                     
-                section_safe = re.sub(r'[^a-zA-Z0-9_]', '_', section_name.lower())
-                section_dir = os.path.join(actor_dir, section_safe)
-                os.makedirs(section_dir, exist_ok=True)
+        #         section_safe = re.sub(r'[^a-zA-Z0-9_]', '_', section_name.lower())
+        #         section_dir = os.path.join(actor_dir, section_safe)
+        #         os.makedirs(section_dir, exist_ok=True)
                 
-                for req in reqs:
-                    # Skip requirements we couldn't generate tests for
-                    if req['id'] not in all_tests:
-                        continue
+        #         for req in reqs:
+        #             # Skip requirements we couldn't generate tests for
+        #             if req['id'] not in all_tests:
+        #                 continue
                         
-                    file_name = f"{req['id'].lower().replace('-', '_')}_test.rb"
-                    file_path = os.path.join(section_dir, file_name)
+        #             file_name = f"{req['id'].lower().replace('-', '_')}_test.rb"
+        #             file_path = os.path.join(section_dir, file_name)
                     
-                    with open(file_path, 'w') as f:
-                        f.write(all_tests[req['id']])
+        #             with open(file_path, 'w') as f:
+        #                 f.write(all_tests[req['id']])
                     
-                    file_paths[req['id']] = file_path
-                    logger.info(f"Wrote test for {req['id']} to {file_path}")
+        #             file_paths[req['id']] = file_path
+        #             logger.info(f"Wrote test for {req['id']} to {file_path}")
+
+
+        # Write test files to the module subdirectory - SECTION-BASED ORGANIZATION
+        file_paths = {}
+        
+        # Group by sections instead of actors
+        for section_name, section in sections.items():
+            # Skip empty sections
+            if not section['requirements']:
+                continue
+            
+            # Create section directory
+            section_safe = re.sub(r'[^a-zA-Z0-9_]', '_', section_name.lower())
+            section_dir = os.path.join(module_subdir, section_safe)
+            os.makedirs(section_dir, exist_ok=True)
+            
+            # Write tests for each requirement in this section
+            section_has_tests = False
+            for req in section['requirements']:
+                # Skip requirements we couldn't generate tests for
+                if req['id'] not in all_tests:
+                    logger.warning(f"No test generated for {req['id']}")
+                    continue
+                
+                file_name = f"{req['id'].lower().replace('-', '_')}_test.rb"
+                file_path = os.path.join(section_dir, file_name)
+                
+                with open(file_path, 'w') as f:
+                    f.write(all_tests[req['id']])
+                
+                file_paths[req['id']] = file_path
+                section_has_tests = True
+                logger.info(f"Wrote test for {req['id']} to {file_path}")
+            
+            if section_has_tests:
+                logger.info(f"Created section directory: {section_safe} with {len([r for r in section['requirements'] if r['id'] in all_tests])} tests")
+            else:
+                # Remove empty directory
+                try:
+                    os.rmdir(section_dir)
+                    logger.info(f"Removed empty section directory: {section_safe}")
+                except:
+                    pass
         
         # Extract data from all test files for LLM-based module file generation
         logger.info("Collecting test data for module file generation")
         test_data = extract_test_data(module_subdir)
         
         # Create structured representation for the LLM
-        structure = create_module_structure(test_data)
+        structure = create_module_structure(test_data, module_name_snake)
         logger.info("Created structure representation of test files")
         
         # Generate the module file using an LLM
@@ -899,18 +1263,45 @@ def generate_inferno_test_kit(
             structure
         )
         
-        # Write the module file
-        module_file_path = os.path.join(output_dir, f"{module_name_snake}.rb")
+        # Write the module file with timestamped name
+        module_file_name = f"{api_type}_{module_name_snake}_{timestamp}.rb"
+        module_file_path = os.path.join(timestamped_output_dir, module_file_name)
         with open(module_file_path, 'w') as f:
             f.write(module_content)
         logger.info(f"Wrote module file to {module_file_path}")
+
+        # NEW: LLM-based alignment validation and fixing
+        logger.info("Starting LLM-based alignment validation...")
+        alignment_result = llm_validate_and_fix_alignment(
+            llm_clients, 
+            api_type, 
+            timestamped_output_dir, 
+            module_name_snake
+        )
         
+        # Log the results
+        if alignment_result['success']:
+            logger.info("✅ LLM alignment validation completed successfully")
+            if alignment_result.get('fixed'):
+                logger.info("🔧 LLM applied fixes to module file")
+        else:
+            logger.warning(f"❌ LLM alignment validation failed: {alignment_result['error']}")
+        
+        # Log the detailed report
+        logger.info("=== LLM ALIGNMENT REPORT ===")
+        for line in alignment_result['report'].split('\n'):
+            if line.strip():
+                logger.info(line)
+        
+
         return {
             "total_sections": len(sections),
             "total_requirements": total_requirements,
             "generated_tests": len(all_tests),
             "module_dir": module_subdir,
-            "module_file": module_file_path
+            "module_file": module_file_path,
+            "output_dir": timestamped_output_dir,
+            "timestamp": timestamp
         }
         
     except Exception as e:
