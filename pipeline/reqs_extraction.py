@@ -29,6 +29,8 @@ SYSTEM_PROMPTS = {
     "gemini": """You are a Healthcare Integration Test Engineer with expertise in INCOSE Systems Engineering standards, analyzing FHIR 
     Implementation Guide content to identify and format testable requirements following INCOSE specifications.""",
     "gpt": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
+    Implementation Guide content to extract specific testable requirements in INCOSE-compliant format.""",
+    "aip": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
     Implementation Guide content to extract specific testable requirements in INCOSE-compliant format."""
 }
 
@@ -53,16 +55,17 @@ REQUIREMENTS_EXTRACTION_PATH = prompt_env["requirements_extraction_path"]
 logging.info(f"Using prompts directory: {PROMPT_DIR}")
 logging.info(f"Requirements extraction prompt: {REQUIREMENTS_EXTRACTION_PATH}")
 
-def list_markdown_files(markdown_dir):
+def list_markdown_files(markdown_dir, verbose=False):
     """Debug function to list all markdown files"""
     if not os.path.exists(markdown_dir):
         logging.error(f"Directory does not exist: {markdown_dir}")
         return
     
     files = [f for f in os.listdir(markdown_dir) if f.endswith('.md')]
-    logging.info(f"Found {len(files)} markdown files:")
-    for file in files:
-        logging.info(f"  - {file}")
+    logging.info(f"Found {len(files)} markdown files")
+    if verbose:
+        for file in files:
+            logging.info(f"  - {file}")
     return files
 
 def calculate_optimal_chunk_size(config, api_type: str, markdown_content: str) -> int:
@@ -74,7 +77,8 @@ def calculate_optimal_chunk_size(config, api_type: str, markdown_content: str) -
     base_chunk_sizes = {
         "claude": 25000,  # Claude has higher token limits
         "gemini": 20000,  # Gemini is also capable of handling larger chunks
-        "gpt": 12000      # GPT-4 with smaller context
+        "gpt": 12000,      # GPT-4 with smaller context
+        "aip": 8000
     }
     
     # Start with the base size for the API
@@ -166,7 +170,8 @@ def should_combine_files(config, files: List[str], markdown_dir: str, api_type: 
     optimal_sizes = {
         "claude": 12000,
         "gemini": 10000,
-        "gpt": 6000
+        "gpt": 6000,
+        "aip": 6000,
     }
     
     optimal_size = optimal_sizes[api_type]
@@ -242,7 +247,7 @@ def format_content_for_api(content: Union[str, dict, list], api_type: str, chunk
     return base_prompt
 
 def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir: str, 
-                                           output_directory: str = None) -> Dict[str, Any]:
+                                           output_directory: str = None, max_files: int = None) -> Dict[str, Any]:
     """
     Process markdown content and generate INCOSE SRS document directly from LLM outputs.
     
@@ -274,7 +279,7 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
         processed_files = []
         
         # Group files for potential combination
-        file_groups = should_combine_files(config, markdown_files, markdown_dir, api_type)
+        file_groups = should_combine_files(config, markdown_files[:max_files], markdown_dir, api_type)
         logging.info(f"Organized {len(markdown_files)} files into {len(file_groups)} processing groups")
         
         for group in file_groups:
@@ -411,7 +416,7 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
         logging.error(f"Error processing content: {str(e)}")
         raise
 
-def run_requirements_extractor(markdown_dir, output_directory, api_type, clients):
+def run_requirements_extractor(markdown_dir, output_directory, api_type, clients, max_files: int = None):
     """
     Main function to run the requirements extraction process.
     Handles user input, processes markdown files, and generates INCOSE-formatted requirements.
@@ -432,27 +437,28 @@ def run_requirements_extractor(markdown_dir, output_directory, api_type, clients
 
     clients.safety_blocked_count = 0
 
-    try:
-        logging.info(f"Processing with {api_type}...")
-        print(f"\nProcessing Implementation Guide with {api_type.capitalize()}...")
-        print(f"This may take several minutes depending on the size of the Implementation Guide.")
+    # try:
+    logging.info(f"Processing with {api_type}...")
+    print(f"\nProcessing Implementation Guide with {api_type.capitalize()}...")
+    print(f"This may take several minutes depending on the size of the Implementation Guide.")
+    
+    # Process the markdown files and generate direct INCOSE SRS document
+    api_results = process_markdown_content_for_incose_srs(
+        clients=clients,
+        api_type=api_type, 
+        markdown_dir=markdown_dir,
+        output_directory=output_directory,
+        max_files=max_files
+    )
+    
+    # Output the results to the user
+    print("\n" + "="*80)
+    print(f"Processing complete!")
+    print(f"Generated requirements document: {api_results['output_file']}")
+    print(f"Processed {len(api_results['processed_files'])} files")
+    print("="*80)
         
-        # Process the markdown files and generate direct INCOSE SRS document
-        api_results = process_markdown_content_for_incose_srs(
-            clients=clients,
-            api_type=api_type, 
-            markdown_dir=markdown_dir,
-            output_directory=output_directory
-        )
-        
-        # Output the results to the user
-        print("\n" + "="*80)
-        print(f"Processing complete!")
-        print(f"Generated requirements document: {api_results['output_file']}")
-        print(f"Processed {len(api_results['processed_files'])} files")
-        print("="*80)
-        
-    except Exception as e:
-        logging.error(f"Error processing {api_type}: {str(e)}")
-        print(f"\nError occurred during processing: {str(e)}")
-        print("Check the log file for more details.")
+    # except Exception as e:
+    #     logging.error(f"Error processing {api_type}: {str(e)}")
+    #     print(f"\nError occurred during processing: {str(e)}")
+    #     print("Check the log file for more details.")

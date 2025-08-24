@@ -7,6 +7,7 @@ import time
 import logging
 import httpx
 from typing import Dict, Any, Callable, Union, List
+import dotenv
 
 try:
     from anthropic import Anthropic, RateLimitError
@@ -52,6 +53,17 @@ API_CONFIGS = {
         "requests_per_minute": 3000,
         "max_requests_per_day": 20000,
         "delay_between_requests": 0.08  
+    },
+    "aip": {
+        'model': 'nvidia/Llama-3_3-Nemotron-Super-49B-v1',
+        "max_tokens": 8192,
+        "temperature": 0.3,
+        "batch_size": 5,
+        "delay_between_chunks": 2,
+        "delay_between_batches": 5,
+        "requests_per_minute": 450,
+        "max_requests_per_day": 20000,
+        "delay_between_requests": 0.15
     }
 }
 
@@ -142,6 +154,13 @@ class LLMApiClient:
                     timeout=60.0
                 )
             
+            aip_api_key = os.getenv("AIP_API_KEY")
+            if aip_api_key:
+                self.clients['aip'] = OpenAI(
+                    base_url="https://models.k8s.aip.mitre.org/v1",
+                    api_key=aip_api_key,
+                    timeout=60.0
+                )
             
         except Exception as e:
             logging.error(f"Error setting up clients: {str(e)}")
@@ -276,7 +295,18 @@ class LLMApiClient:
                         return response.candidates[0].content.parts[0].text
                     else:
                         raise ValueError("Unable to extract text from Gemini response")
-                        
+        
+            elif api_type == "aip":
+                response = client.chat.completions.create(
+                    model=config["model"],
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": prompt}
+                    ],
+                    max_tokens=config["max_tokens"],
+                    temperature=config["temperature"]
+                )
+                return response.choices[0].message.content
             elif api_type == "gpt":
                 response = client.chat.completions.create(
                     model=config["model"],

@@ -27,7 +27,12 @@ def load_mdfile(mdfile):
         heading = headings[-1]
         req_dict[heading.group()[2:-3].lower()] = split[heading.span()[1]:]
         if 'description' in req_dict:
-            all_reqs.append({"text": req_dict['description'], "raw": split, "source": mdfile, 'parsed': req_dict, "id": str(uuid4())})
+            req = {"text": req_dict['description'], "raw": split, "source": mdfile, 'parsed': req_dict, "id": str(uuid4())}
+            if 'source' in req_dict:
+                secnum = re.findall(r'((?:\d+.)+\d+)',req_dict['source'])
+                if secnum:
+                    req['ig_section'] = secnum[0]
+            all_reqs.append()
 
     return all_reqs
 
