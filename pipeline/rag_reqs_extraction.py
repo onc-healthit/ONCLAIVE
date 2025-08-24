@@ -90,13 +90,13 @@ def postprocess_fp(first_pass):
             processed['unable_to_process'].append(deepcopy(section))
     return processed
 
-def instantiate_vectordb(sourcedir="../hl7.fhir.uv.subscriptions_1.1.0_requirements_with_text.csv"):
+def instantiate_vectordb(sourcedir="/Users/ceadams/Documents/onclaive/onclaive/pipeline/hl7.fhir.uv.subscriptions_1.1.0_requirements_with_reference_text.csv"):
     chroma_client = chromadb.Client()
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
             model_name="all-mpnet-base-v2"
         )
     if 'subscription_reqs' not in chroma_client.list_collections():
-        reqdf = pd.read_csv("../hl7.fhir.uv.subscriptions_1.1.0_requirements_with_text.csv", index_col=0)
+        reqdf = pd.read_csv("/Users/ceadams/Documents/onclaive/onclaive/pipeline/hl7.fhir.uv.subscriptions_1.1.0_requirements_with_reference_text.csv", index_col=0)
         obj = {}
         for t in reqdf.reference_text.unique():
             sub_df = reqdf[reqdf.reference_text == t]

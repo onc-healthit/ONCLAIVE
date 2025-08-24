@@ -24,32 +24,45 @@ Requirement ID: {requirement_id}
 Module Name: {module_name}
 
 CRITICAL REQUIREMENTS:
-1. INPUTS AND CLIENTS:
-   - ALWAYS declare all inputs that a test will use
-   - Always use valid input types (see inferno guidance; e.g., text, textarea, radio, checkbox, oauth_credentials)
+1. MODUlE AND CLASS NAMING:
+   - Use module {module_name}, NOT numeric modules like "module 70000"
+   - Use proper Ruby class names (CamelCase)
+   - Module name must start with uppercase letter
 
-2. MAKING REQUESTS:
+2. INPUTS AND CLIENTS:
+   - DO NOT declare URL inputs in TestGroups- they inherit from the parent TestSuite
+   - DO NOT define fhir_client blocks in TestGroups unless you need different credentials
+   - ALWAYS declare all OTHER inputs that a test will use (excluding URL which comes from parent)
+   - Always use valid input types (see inferno guidance; e.g., text, textarea, radio, checkbox, oauth_credentials)
+   - NEVER reference inputs outside the `run` block. All input validation must occur INSIDE the run block
+
+3. FHIR CLIENT INHERITANCE:
+   - TestGroups automatically inherit the fhir_client configuration from their parent TestSuite
+   - Only define a new fhir_client in a TestGRoup if you need different authentication/credentials
+   - The URL input is already available from the parent TestSuite
+
+4. MAKING REQUESTS:
    - ALWAYS use the Inferno DSL methods (fhir_read, fhir_search, etc.)
    - NEVER use direct HTTP methods like 'get', 'post'
    - NEVER redefine the 'response' variable
 
-3. HANDLING RESPONSES:
+5. HANDLING RESPONSES:
    - ALWAYS use hash syntax: response[:code], response[:body], response[:headers]
    - NEVER use dot notation: response.code, response.body, etc.
    - For header access, iterate through response[:headers]
 
-4. ERROR HANDLING:
+6. ERROR HANDLING:
    - NEVER use rescue blocks for test failures - use assertions
    - AVOID rescuing StandardError in test implementations
 
-5. REQUEST MANAGEMENT:
+7. REQUEST MANAGEMENT:
    - When using 'uses_request', ensure there is a corresponding 'makes_request'
    - For placeholder tests, use 'skip' instead of 'pass'
 
-6. RESOURCES:
+8. RESOURCES:
    - ONLY test resources explicitly mentioned in the test specification
 
-7. ID ALIGNMENT:
+9. ID ALIGNMENT:
    - NEVER reference a file by its filename in 'test from:' or 'group from:' statements
    - ALWAYS use the actual ID defined inside the file (e.g., what follows 'id :' in the file)
    - Example: If req_XX_test.rb defines `id :example_text`, use 'group from: :example_text'
@@ -79,6 +92,14 @@ module {module_name}
       - How the test works
       - What conformance is being verified
     )
+    
+    # DO NOT define fhir_client here - it inherits from TestSuite
+    # DO NOT declare :url input here - it comes from parent
+    
+    # Only declare inputs specific to this test group:
+    input :specific_parameter,
+          title: 'Parameter Title',
+          description: 'Parameter description'
     
     # Tests go here
   end

@@ -83,204 +83,258 @@ def get_requirement_grouping_prompt(requirement: str) -> str:
         requirement=requirement
     )
 
-def parse_capability_statement(file_path: str) -> Dict[str, Any]:
+def parse_capability_statement_by_chunks(file_path: str) -> Dict[str, Any]:
     """
-    Parse a FHIR Capability Statement markdown file into a structured dictionary
+    Parse a FHIR Capability Statement markdown file into resource chunks
     
     Args:
         file_path: Path to the Capability Statement markdown file
         
     Returns:
-        Dictionary containing structured Capability Statement information
+        Dictionary containing:
+        - 'general_capabilities': General server capabilities text
+        - 'resource_chunks': Dict mapping resource names to their full sections
+        - 'resource_list': List of all resource names found
     """
     with open(file_path, 'r') as f:
         content = f.read()
     
-    # Extract resource capabilities
-    resource_sections = {}
+    # Extract general capabilities section
+    general_capabilities = ""
+    general_section_match = re.search(
+        r'### FHIR RESTful Capabilities(.*?)(?=####|### |$)', 
+        content, 
+        re.DOTALL
+    )
+    if general_section_match:
+        general_capabilities = general_section_match.group(1).strip()
     
-    # Find resource sections - they typically start with "#### ResourceName"
-    resource_matches = re.finditer(r'#### ([A-Za-z]+)\n', content)
+    # Find all resource sections (#### ResourceName)
+    resource_chunks = {}
+    resource_list = []
     
-    for match in resource_matches:
+    # Pattern to match resource headers and capture the resource name
+    resource_pattern = r'#### ([A-Za-z][A-Za-z0-9]*)\s*\n'
+    resource_matches = list(re.finditer(resource_pattern, content))
+    
+    for i, match in enumerate(resource_matches):
         resource_name = match.group(1)
+        resource_list.append(resource_name)
+        
+        # Get the start position of this resource section
         start_pos = match.start()
         
-        # Find the next resource section or end of document
-        next_match = re.search(r'#### ([A-Za-z]+)\n', content[start_pos + len(match.group(0)):])
-        if next_match:
-            end_pos = start_pos + len(match.group(0)) + next_match.start()
-            resource_section = content[start_pos:end_pos]
+        # Find the end position (start of next resource section or end of document)
+        if i + 1 < len(resource_matches):
+            end_pos = resource_matches[i + 1].start()
         else:
-            resource_section = content[start_pos:]
+            # This is the last resource, go to end of document
+            end_pos = len(content)
         
-        # Extract specific capabilities
-        search_params = []
-        search_param_section = re.search(r'Search Parameter Summary:.*?\| Conformance \| Parameter \| Type \| Example \|\n\| --- \| --- \| --- \| --- \|(.*?)(?:\n\n---|\Z)', 
-                                       resource_section, re.DOTALL)
+        # Extract the full resource section
+        resource_section = content[start_pos:end_pos].strip()
         
-        if search_param_section:
-            param_lines = search_param_section.group(1).strip().split('\n')
-            for line in param_lines:
-                if '|' in line:
-                    parts = [p.strip() for p in line.split('|')]
-                    if len(parts) >= 5 and parts[1] and parts[2]:
-                        conformance = parts[1].replace('**', '')
-                        param_name = parts[2]
-                        param_type = parts[3]
-                        search_params.append({
-                            'name': param_name,
-                            'type': param_type,
-                            'conformance': conformance
-                        })
+        # Clean up any trailing separators
+        resource_section = re.sub(r'\n---\s*$', '', resource_section)
         
-        # Extract supported operations
-        operations = []
-        operations_section = re.search(r'Supported Operations:(.*?)(?:\n\n|\Z)', resource_section, re.DOTALL)
-        if operations_section:
-            op_lines = operations_section.group(1).strip().split('\n')
-            for line in op_lines:
-                if line.strip():
-                    operations.append(line.strip())
-        
-        # Extract includes and revincludes
-        includes = []
-        includes_section = re.search(r'A Server \*\*SHALL\*\* be capable of supporting the following \_includes:(.*?)(?:\n\n|\Z)', 
-                                   resource_section, re.DOTALL)
-        if includes_section:
-            include_lines = includes_section.group(1).strip().split('\n')
-            for line in include_lines:
-                if line.strip():
-                    include_match = re.search(r'([A-Za-z]+):([A-Za-z\-]+)', line)
-                    if include_match:
-                        includes.append(f"{include_match.group(1)}:{include_match.group(2)}")
-        
-        revincludes = []
-        revincludes_section = re.search(r'A Server \*\*SHALL\*\* be capable of supporting the following \_revincludes:(.*?)(?:\n\n|\Z)', 
-                                      resource_section, re.DOTALL)
-        if revincludes_section:
-            revinclude_lines = revincludes_section.group(1).strip().split('\n')
-            for line in revinclude_lines:
-                if line.strip():
-                    revinclude_match = re.search(r'([A-Za-z]+):([A-Za-z\-]+)', line)
-                    if revinclude_match:
-                        revincludes.append(f"{revinclude_match.group(1)}:{revinclude_match.group(2)}")
-        
-        resource_sections[resource_name] = {
-            'search_parameters': search_params,
-            'operations': operations,
-            'includes': includes,
-            'revincludes': revincludes
-        }
-    
-    # Extract general capabilities
-    general_capabilities = {}
-    general_section = re.search(r'### FHIR RESTful Capabilities(.*?)(?:###|$)', content, re.DOTALL)
-    if general_section:
-        shall_match = re.search(r'The Plan-Net Server \*\*SHALL\*\*:(.*?)(?:The Plan-Net Server \*\*SHOULD\*\*:|\n\n\*\*Security:\*\*|\Z)', 
-                              general_section.group(1), re.DOTALL)
-        should_match = re.search(r'The Plan-Net Server \*\*SHOULD\*\*:(.*?)(?:\n\n\*\*Security:\*\*|\Z)', 
-                               general_section.group(1), re.DOTALL)
-        
-        if shall_match:
-            shall_items = re.findall(r'\d+\.\s*(.*?)(?:\n\d+\.|\Z)', shall_match.group(1), re.DOTALL)
-            general_capabilities['SHALL'] = [item.strip() for item in shall_items]
-        
-        if should_match:
-            should_items = re.findall(r'\d+\.\s*(.*?)(?:\n\d+\.|\Z)', should_match.group(1), re.DOTALL)
-            general_capabilities['SHOULD'] = [item.strip() for item in should_items]
+        resource_chunks[resource_name] = resource_section
     
     return {
-        'resources': resource_sections,
-        'general_capabilities': general_capabilities
+        'general_capabilities': general_capabilities,
+        'resource_chunks': resource_chunks,
+        'resource_list': resource_list
     }
 
-def extract_relevant_capability_info(requirement: Dict[str, str], capability_statement: Dict[str, Any]) -> str:
+def extract_relevant_capability_chunks(
+    requirement: Dict[str, str], 
+    capability_statement: Dict[str, Any]
+) -> str:
     """
-    Extract relevant capability statement information for a specific requirement
+    Extract relevant capability statement chunks for a specific requirement
     
     Args:
         requirement: Requirement dictionary
-        capability_statement: Parsed capability statement
+        capability_statement: Parsed capability statement with chunks
         
     Returns:
         Formatted string with relevant capability information
-    TODO: This is rules-based and ultimately pretty brittle. Maybe introduce more modern NLP techniques?
     """
-    # Determine which resource types are relevant to this requirement
-    requirement_text = f"{requirement.get('description', '')} {requirement.get('summary', '')}"
-    resource_types = []
+    # Get the full text of the requirement for analysis
+    requirement_text = " ".join([
+        requirement.get('summary', ''),
+        requirement.get('description', ''),
+        requirement.get('verification', ''),
+        requirement.get('actor', '')
+    ]).lower()
     
-    # plan net resource types
-    fhir_resources = [
-        "Patient", "Practitioner", "Organization", "Location", "Endpoint", 
-        "HealthcareService", "PractitionerRole", "OrganizationAffiliation",
-        "InsurancePlan", "Network"
-    ]
-    
-    # Check if requirement mentions specific resources
-    for resource in fhir_resources:
-        if resource.lower() in requirement_text.lower():
-            resource_types.append(resource)
-    
-    # If no specific resources found, check for general requirements
-    if not resource_types:
-        # If it's a server requirement
-        if "Server" in requirement.get('actor', ''):
-            resource_types = ["General Server Capabilities"]
-        # If it's a client requirement
-        elif "Client" in requirement.get('actor', '') or "Application" in requirement.get('actor', ''):
-            resource_types = ["General Client Capabilities"]
-    
-    # Build relevant capability information
     relevant_info = "### Applicable Capability Statement Information\n\n"
     
-    # Add general capabilities
-    relevant_info += "#### General Capabilities\n"
-    if "general_capabilities" in capability_statement:
-        for level in ["SHALL", "SHOULD"]:
-            if level in capability_statement["general_capabilities"]:
-                relevant_info += f"\n**{level}**:\n"
-                for item in capability_statement["general_capabilities"][level]:
-                    relevant_info += f"- {item}\n"
+    # Always include general capabilities for server-related requirements
+    if ('server' in requirement_text or 
+        'shall' in requirement_text or 
+        'should' in requirement_text):
+        
+        if capability_statement.get('general_capabilities'):
+            relevant_info += "#### General Server Capabilities\n\n"
+            relevant_info += capability_statement['general_capabilities']
+            relevant_info += "\n\n"
     
-    # Add resource-specific capabilities
-    for resource_type in resource_types:
-        if resource_type in capability_statement.get("resources", {}):
-            resource_info = capability_statement["resources"][resource_type]
-            
-            relevant_info += f"\n#### {resource_type} Resource Capabilities\n"
-            
-            # Add search parameters
-            if resource_info.get("search_parameters"):
-                relevant_info += "\n**Supported Search Parameters**:\n"
-                for param in resource_info["search_parameters"]:
-                    relevant_info += f"- {param['name']} ({param['type']}): {param['conformance']}\n"
-            
-            # Add operations
-            if resource_info.get("operations"):
-                relevant_info += "\n**Supported Operations**:\n"
-                for op in resource_info["operations"]:
-                    relevant_info += f"- {op}\n"
-            
-            # Add includes
-            if resource_info.get("includes"):
-                relevant_info += "\n**Supported _includes**:\n"
-                for include in resource_info["includes"]:
-                    relevant_info += f"- {include}\n"
-            
-            # Add revincludes
-            if resource_info.get("revincludes"):
-                relevant_info += "\n**Supported _revincludes**:\n"
-                for revinclude in resource_info["revincludes"]:
-                    relevant_info += f"- {revinclude}\n"
+    # Find relevant resource chunks
+    resource_chunks = capability_statement.get('resource_chunks', {})
+    resource_list = capability_statement.get('resource_list', [])
+    
+    matched_resources = []
+    
+    # Direct resource name matching (case insensitive)
+    for resource_name in resource_list:
+        if resource_name.lower() in requirement_text:
+            matched_resources.append(resource_name)
+    
+    # If no direct matches, try partial matching for common variations
+    if not matched_resources:
+        # Check for plural forms and common variations
+        resource_variations = {
+            'practitioner': ['Practitioner'],
+            'practitioners': ['Practitioner'],
+            'organization': ['Organization'],
+            'organizations': ['Organization'],
+            'location': ['Location'],
+            'locations': ['Location'],
+            'endpoint': ['Endpoint'],
+            'endpoints': ['Endpoint'],
+            'healthcare service': ['HealthcareService'],
+            'healthcareservice': ['HealthcareService'],
+            'practitioner role': ['PractitionerRole'],
+            'practitionerrole': ['PractitionerRole'],
+            'organization affiliation': ['OrganizationAffiliation'],
+            'organizationaffiliation': ['OrganizationAffiliation'],
+            'insurance plan': ['InsurancePlan'],
+            'insuranceplan': ['InsurancePlan'],
+            'network': ['Organization'],  # Networks are a type of Organization
+        }
+        
+        for variation, resource_names in resource_variations.items():
+            if variation in requirement_text:
+                for resource_name in resource_names:
+                    if resource_name in resource_list and resource_name not in matched_resources:
+                        matched_resources.append(resource_name)
+    
+    # Add matched resource chunks
+    if matched_resources:
+        relevant_info += "#### Relevant Resource Capabilities\n\n"
+        for resource_name in matched_resources:
+            if resource_name in resource_chunks:
+                relevant_info += f"{resource_chunks[resource_name]}\n\n"
+                relevant_info += "---\n\n"
+    else:
+        # If no specific resources matched, this might be a general requirement
+        relevant_info += "#### Note\n\n"
+        relevant_info += "No specific FHIR resources were identified in this requirement. "
+        relevant_info += "This appears to be a general implementation requirement.\n\n"
     
     return relevant_info
 
+def identify_mentioned_resources(requirement: Dict[str, str]) -> List[str]:
+    """
+    Identify FHIR resources mentioned in a requirement
+    
+    Args:
+        requirement: Requirement dictionary
+        
+    Returns:
+        List of identified resource names
+    """
+    # Get the full text of the requirement
+    requirement_text = " ".join([
+        requirement.get('summary', ''),
+        requirement.get('description', ''),
+        requirement.get('verification', ''),
+    ]).lower()
+    
+    # FHIR resources in Plan-Net
+    fhir_resources = [
+        'Practitioner', 'Organization', 'Location', 'Endpoint', 
+        'HealthcareService', 'PractitionerRole', 'OrganizationAffiliation',
+        'InsurancePlan', 'Patient'
+    ]
+    
+    mentioned_resources = []
+    
+    # Direct matching
+    for resource in fhir_resources:
+        if resource.lower() in requirement_text:
+            mentioned_resources.append(resource)
+    
+    # Pattern matching for common variations
+    patterns = {
+        r'\bpractitioner\b': 'Practitioner',
+        r'\borganization\b': 'Organization',
+        r'\blocation\b': 'Location',
+        r'\bendpoint\b': 'Endpoint',
+        r'\bhealthcare\s*service\b': 'HealthcareService',
+        r'\bpractitioner\s*role\b': 'PractitionerRole',
+        r'\borganization\s*affiliation\b': 'OrganizationAffiliation',
+        r'\binsurance\s*plan\b': 'InsurancePlan',
+        r'\bnetwork\b': 'Organization',  # Networks are Organizations in Plan-Net
+        r'\bprovider\b': 'Practitioner',  # Providers are often Practitioners
+    }
+    
+    for pattern, resource in patterns.items():
+        if re.search(pattern, requirement_text) and resource not in mentioned_resources:
+            mentioned_resources.append(resource)
+    
+    return mentioned_resources
+
+def parse_requirements_file(file_path: str) -> List[Dict[str, str]]:
+    """
+    Parse an INCOSE requirements markdown file into a structured list of requirements
+    """
+    with open(file_path, 'r') as f:
+        content = f.read()
+    
+    # Split by requirement sections (separated by ---)
+    req_sections = content.split('---')
+    
+    requirements = []
+    for section in req_sections:
+        if not section.strip():
+            continue
+            
+        # Parse requirement data
+        req_data = {}
+        
+        # Extract ID from format "# REQ-XX"
+        id_match = re.search(r'#\s+([A-Z0-9\-]+)', section)
+        if id_match:
+            req_data['id'] = id_match.group(1)
+        
+        # Extract other fields
+        for field in ['Summary', 'Description', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
+            pattern = rf'\*\*{field}\*\*:\s*(.*?)(?:\n\*\*|\n---|\Z)'
+            field_match = re.search(pattern, section, re.DOTALL)
+            if field_match:
+                req_data[field.lower()] = field_match.group(1).strip()
+        
+        if req_data:
+            # Format to match expected structure (same as JSON format)
+            formatted_req = {
+                'id': req_data.get('id', 'UNKNOWN'),
+                'parsed': req_data
+            }
+            requirements.append(formatted_req)
+    
+    return requirements
+
 def load_requirements(req_file):
-    with open(req_file) as f:
-        data = json.load(f)
-    return data
+    if req_file.endswith('.json'):
+        with open(req_file) as f:
+            data = json.load(f)
+        return data
+    elif req_file.endswith('.md'):
+        # Use the markdown parser
+        return parse_requirements_file(req_file)
+    else:
+        raise ValueError(f"Unsupported file format: {req_file}. Must be .json or .md")
 
 def identify_requirement_group(
     logger,
@@ -347,7 +401,7 @@ def generate_test_specification_with_capability(
     formatted_req = format_requirement_for_prompt(requirement)
     
     # Extract relevant capability information
-    capability_info = extract_relevant_capability_info(requirement, capability_statement)
+    capability_info = extract_relevant_capability_chunks(requirement, capability_statement)
     
     # Create prompt with the requirement and capability information using external file
     prompt = get_test_plan_prompt(formatted_req, capability_info)
@@ -419,7 +473,7 @@ def generate_consolidated_test_plan(
         # Parse capability statement if provided
         capability_statement = None
         if capability_statement_file and os.path.exists(capability_statement_file):
-            capability_statement = parse_capability_statement(capability_statement_file)
+            capability_statement = parse_capability_statement_by_chunks(capability_statement_file)
             logger.info(f"Parsed capability statement from {capability_statement_file}")
         
         # Identify groups for each requirement

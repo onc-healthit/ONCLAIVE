@@ -20,38 +20,38 @@ except ImportError:
 # API Configuration
 API_CONFIGS = {
     "claude": {
-        "model_name": "claude-3-5-sonnet-20241022", 
+        "model_name": "claude-sonnet-4-20250514", 
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 1,
-        "delay_between_batches": 3,
-        "requests_per_minute": 900,
+        "batch_size": 10,  
+        "delay_between_chunks": 0.2, 
+        "delay_between_batches": 1.0,  
+        "requests_per_minute": 990,
         "max_requests_per_day": 20000,
-        "delay_between_requests": 0.1
+        "delay_between_requests": 0.05  
     },
     "gemini": {
-        "model": "models/gemini-2.5-flash-preview-05-20",
+        "model": "models/gemini-2.5-pro",
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 2,
-        "delay_between_batches": 5,
+        "batch_size": 8,  
+        "delay_between_chunks": 0.5,  
+        "delay_between_batches": 2.0,  
         "requests_per_minute": 900,
         "max_requests_per_day": 50000,
-        "delay_between_requests": 0.1,
+        "delay_between_requests": 0.05,  
         "timeout": 60
     },
     "gpt": {
         "model": "gpt-4o",
         "max_tokens": 8192,
         "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 2,
-        "delay_between_batches": 5,
-        "requests_per_minute": 450,
+        "batch_size": 8,  
+        "delay_between_chunks": 0.5,   
+        "delay_between_batches": 2.0,  
+        "requests_per_minute": 3000,
         "max_requests_per_day": 20000,
-        "delay_between_requests": 0.15
+        "delay_between_requests": 0.08  
     }
 }
 

@@ -120,7 +120,41 @@ def find_dupe_groups(scoreframe, threshhold):
     return dup_ids, to_keep
 
 
-def full_pass(md_files=[], rag_files=[], output_dir="checkpoints/requirements_downselect", threshhold=0.98):
+def convert_to_markdown(reqlist, output_dir):
+    """
+    Converts a list of requirements to a markdown file.
+
+    Args:
+        reqlist (list): A list of dictionaries, where each dictionary
+                          represents a requirement.
+        output_dir (str): The directory where the markdown file will be created.
+    """
+    output_filename = os.path.join(output_dir, 'filtered_requirements.md')
+    with open(output_filename, 'w') as md_file:
+        for i, req in enumerate(reqlist):
+            # Extract and write the details from the 'parsed' dictionary
+            parsed_data = req.get('parsed', {})
+            summary = parsed_data.get('summary', 'N/A').strip()
+            description = parsed_data.get('description', 'N/A').strip()
+            verification = parsed_data.get('verification', 'N/A').strip()
+            actor = parsed_data.get('actor', 'N/A').strip()
+            conformance = parsed_data.get('conformance', 'N/A').strip()
+            conditional = parsed_data.get('conditional', 'N/A').strip()
+            source = parsed_data.get('source', 'N/A').strip()
+
+            md_file.write(f"""
+# REQ-{i+1:02}
+**Summary**: {summary}
+**Description**: {description}
+**Verification**: {verification}
+**Actor**: {actor}
+**Conformance**: {conformance}
+**Conditional**: {conditional}
+**Source**: {source}
+""")
+
+
+def full_pass(md_files=[], rag_files=[], output_dir="checkpoints/requirements_downselect", threshhold=0.98, output_format='markdown'):
     all_reqs = []
     for md_file in md_files:
         all_reqs.extend(load_mdfile(md_file))
@@ -135,14 +169,22 @@ def full_pass(md_files=[], rag_files=[], output_dir="checkpoints/requirements_do
 
     filtered_allreqs = list(filter(lambda x: x['id'] not in dup_ids, all_reqs))
 
-    embeds_only = {}
-    for areq in filtered_allreqs:
-        embeds_only[areq['id']] = [float(x) for x in areq.pop('embedding')]
-
+    print(f"Final number of requirements: {len(filtered_allreqs)}")
+    
     os.makedirs(output_dir, exist_ok=True)
+    
+    if output_format == 'json':
+        embeds_only = {}
+        for areq in filtered_allreqs:
+            embeds_only[areq['id']] = [float(x) for x in areq.pop('embedding')]
 
-    with open(output_dir+'/ids_to_embeddings.json', 'w+') as f:
-        json.dump(embeds_only, f, indent=2)
+        with open(os.path.join(output_dir, 'ids_to_embeddings.json'), 'w+') as f:
+            json.dump(embeds_only, f, indent=2)
 
-    with open(output_dir+'/filtered_requirements.json', 'w+') as f:
-        json.dump(filtered_allreqs, f, indent=2)
+        with open(os.path.join(output_dir, 'filtered_requirements.json'), 'w+') as f:
+            json.dump(filtered_allreqs, f, indent=2)
+        print(f"Output saved in JSON format in directory: {output_dir}")
+        
+    elif output_format == 'markdown':
+        convert_to_markdown(filtered_allreqs, output_dir)
+        print(f"Output saved in Markdown format in directory: {output_dir}")

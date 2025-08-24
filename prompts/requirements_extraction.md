@@ -6,9 +6,9 @@ You are analyzing chunk {chunk_index} of {total_chunks} from a FHIR Implementati
 
 # REQUIREMENT EXTRACTION GUIDELINES
 Include ONLY requirements that:
-   - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
-   - Describe specific, verifiable behavior or capability
+   - Describe specific, testable, automatically verifiable behavior or capability
    - Could be objectively tested through software testing or attestation
+- Most requirements should have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
 - Each requirement must be complete, atomic, and testable
 - Separate individual requirements
 - Identify the actor responsible for implementing each requirement
@@ -33,30 +33,7 @@ For each requirement you identify, format it as follows:
 
 Where [ID] starts at 1 and follows in sequential order.
 
-# EXAMPLES FROM OTHER GUIDES
-Here are two examples of properly formatted requirements from another implementation guide- these should NOT be found in the IG you are reviewing:
-
-```
-## REQ-01
-
-**Summary**: Advertise supported subscription topics
-**Description**: "In order to allow for discovery of supported subscription topics, this guide defines the CapabilityStatement SubscriptionTopic Canonical extension. The extension allows server implementers to advertise the canonical URLs of topics available to clients."
-**Verification**: Test
-**Notes**: Actor: Server, Conformance: SHALL, Conditional: False
-**Source**: Subscription Discovery Section
-```
-
-```
-## REQ-02
-
-**Summary**: Leave topic discovery out-of-band
-**Description**: "FHIR R4 servers MAY choose to leave topic discovery completely out-of-band and part of other steps, such as registration or integration."
-**Verification**: Inspection
-**Notes**: Actor: Server, Conformance: MAY, Conditional: False
-**Source**: Subscription Configuration Section
-```
-
 Content to analyze:
 {content}
 
-Generate your INCOSE-style requirements extraction now. For each chunk, list each requirement using the format specified above. If you find no requirements in this chunk, do not add any text and move to the next chunk. Do not include any introductory or conclusion/summary comments in your response. Only include the requirements as a list.
+Generate your INCOSE-style requirements extraction now. For each chunk, list each requirement using the format specified above. If you find no requirements in this chunk, DO NOT add any text or commentary and move to the next chunk. Do not include any introductory or conclusion/summary comments in your response. Only include the extracted requirements as a list.

@@ -10,10 +10,10 @@ from collections import defaultdict
 import llm_utils
 import prompt_utils
 
-from sentence_transformers import SentenceTransformer
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-import pickle
+import chromadb
+from chromadb.utils import embedding_functions
+import pandas as pd
+from copy import deepcopy
 
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -21,143 +21,6 @@ logger = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = """You are a specialized FHIR testing engineer with expertise in healthcare interoperability.
 Your task is to analyze FHIR Implementation Guide requirements and generate practical, implementable test specifications."""
-
-
-class SimpleFHIRRAG:
-    """
-    Simple RAG system for FHIR capability statements using sentence transformers
-    No external dependencies like ChromaDB - just embeddings and cosine similarity
-    """
-    
-    def __init__(self):
-        # Use a lightweight, fast model that works well for technical text
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
-        self.documents = []
-        self.embeddings = None
-        
-    def chunk_capability_statement(self, capability_statement_file: str) -> List[str]:
-        """
-        Read and chunk the capability statement markdown file into searchable pieces
-        """
-        with open(capability_statement_file, 'r') as f:
-            content = f.read()
-        
-        chunks = []
-        
-        # Split by major sections and create contextual chunks
-        sections = content.split('\n---\n')
-        
-        for section in sections:
-            if not section.strip():
-                continue
-                
-            # Extract resource name if this is a resource section
-            resource_match = re.search(r'#### ([A-Za-z]+)', section)
-            resource_name = resource_match.group(1) if resource_match else "General"
-            
-            # Split section into logical chunks
-            paragraphs = section.split('\n\n')
-            
-            for paragraph in paragraphs:
-                if len(paragraph.strip()) < 50:  # Skip very short chunks
-                    continue
-                    
-                # Clean up the paragraph
-                clean_paragraph = re.sub(r'\n\s*\n', ' ', paragraph)
-                clean_paragraph = re.sub(r'\s+', ' ', clean_paragraph).strip()
-                
-                # Add context prefix for better retrieval
-                if resource_name != "General":
-                    contextual_chunk = f"FHIR {resource_name} Resource: {clean_paragraph}"
-                else:
-                    contextual_chunk = f"FHIR General Capability: {clean_paragraph}"
-                
-                chunks.append(contextual_chunk)
-        
-        # Add some FHIR-specific context chunks to help with semantic matching
-        fhir_context = [
-            "FHIR Must Support: Must Support data elements are required to be populated in profiles and indicated via meta.profile",
-            "FHIR JSON Format: JSON format support is required for all FHIR REST API interactions and content negotiation",
-            "FHIR Client Requirements: Client applications must process resources without errors and handle missing data indicators",
-            "FHIR Security Privacy: Applications should not send PII and servers must implement proper authorization controls",
-            "FHIR Profile Conformance: Resources must declare conformance to profiles via meta.profile element"
-        ]
-        
-        chunks.extend(fhir_context)
-        return chunks
-    
-    def create_embeddings(self, capability_statement_file: str):
-        """
-        Create embeddings for all capability statement chunks
-        """
-        logger.info("Creating RAG embeddings for capability statement...")
-        
-        # Chunk the capability statement
-        self.documents = self.chunk_capability_statement(capability_statement_file)
-        
-        # Create embeddings
-        self.embeddings = self.model.encode(self.documents)
-        
-        logger.info(f"Created embeddings for {len(self.documents)} capability chunks")
-        
-        if logger.isEnabledFor(logging.DEBUG):
-            logger.debug("Sample chunks:")
-            for i, chunk in enumerate(self.documents[:3]):
-                logger.debug(f"  {i}: {chunk[:100]}...")
-    
-    def retrieve_relevant_info(self, requirement: Dict[str, str], top_k: int = 5, verbose: bool = False) -> str:
-        """
-        Retrieve most relevant capability information for a requirement
-        """
-        if self.embeddings is None:
-            return "No capability statement information available."
-        
-        # Create query from requirement
-        query_parts = [
-            requirement.get('summary', ''),
-            requirement.get('description', ''),
-            requirement.get('actor', ''),
-            f"FHIR {requirement.get('conformance', '')}"
-        ]
-        query = " ".join(filter(None, query_parts))
-        
-        # Get query embedding
-        query_embedding = self.model.encode([query])
-        
-        # Calculate similarities
-        similarities = cosine_similarity(query_embedding, self.embeddings)[0]
-        
-        # Get top-k most similar chunks
-        top_indices = np.argsort(similarities)[::-1][:top_k]
-        
-        if verbose:
-            req_id = requirement.get('id', 'UNKNOWN-ID')
-            print(f"\n{'='*60}")
-            print(f"RAG RETRIEVAL FOR {req_id}")
-            print(f"{'='*60}")
-            print(f"Query: {query[:100]}...")
-            print(f"Retrieved {top_k} most relevant capability chunks:")
-        
-        # Format results
-        result = "### Relevant Capability Statement Information (RAG Retrieved)\n\n"
-        
-        for i, idx in enumerate(top_indices):
-            chunk = self.documents[idx]
-            similarity_score = similarities[idx]
-            
-            # Only include chunks with reasonable similarity
-            if similarity_score > 0.1:  # Threshold to filter noise
-                result += f"**Relevant Capability {i+1}** (similarity: {similarity_score:.3f}):\n"
-                result += f"{chunk}\n\n"
-                
-                if verbose:
-                    print(f"  {i+1}. (score: {similarity_score:.3f}) {chunk[:80]}...")
-        
-        if verbose:
-            print(f"{'='*60}\n")
-        
-        return result
-    
 
 # Constants
 PROJECT_ROOT = Path.cwd().parent  # Go up one level to project root
@@ -179,6 +42,133 @@ DEFAULT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 #     capability_files = list(directory.glob("*CapabilityStatement*.md"))
 #     capability_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
 #     return capability_files
+
+def chunk_capability_statement(capability_statement_file: str) -> List[str]:
+    """
+    Simpler version: Just split by headings, keep tables with their sections
+    """
+    with open(capability_statement_file, 'r') as f:
+        content = f.read()
+    
+    chunks = []
+    
+    # Split by markdown headings (# through ####)
+    heading_pattern = r'\n(?=#{1,4}\s)'
+    sections = re.split(heading_pattern, content)
+    
+    for section in sections:
+        section = section.strip()
+        
+        # Skip very small sections
+        if len(section) < 50:
+            continue
+        
+        # Determine the context type
+        heading_match = re.match(r'(#{1,4})\s+(.+?)(?:\n|$)', section)
+        if heading_match:
+            heading_level = len(heading_match.group(1))
+            heading_title = heading_match.group(2).strip()
+            
+            # Categorize by heading level and content
+            if heading_level == 1:
+                context_type = "Document Title"
+            elif heading_level == 2:
+                context_type = "Major Section"
+            elif heading_level == 3:
+                context_type = "Resource/Component"
+            elif heading_level == 4:
+                context_type = "Resource Detail"
+            else:
+                context_type = "Section"
+        else:
+            context_type = "Document Header"
+        
+        # Clean up the section content
+        clean_section = re.sub(r'\n\s*\n', '\n\n', section)
+        clean_section = clean_section.strip()
+        
+        # Add with appropriate context
+        chunks.append(f"FHIR {context_type}: {clean_section}")
+    
+    return chunks
+
+def instantiate_capability_vectordb(capability_statement_file: str, collection_name: str = "capability_statements"):
+    """
+    Create ChromaDB collection from capability statement chunks
+    """
+    chroma_client = chromadb.Client()
+    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
+        model_name="all-mpnet-base-v2"
+    )
+    
+    # Check if collection already exists
+    if collection_name in [c.name for c in chroma_client.list_collections()]:
+        collection = chroma_client.get_collection(collection_name, embedding_function=sentence_transformer_ef)
+        logger.info(f"Using existing collection: {collection_name}")
+    else:
+        # Create new collection
+        chunks = chunk_capability_statement(capability_statement_file)
+        logger.info(f"Created {len(chunks)} capability chunks")
+        
+        collection = chroma_client.create_collection(name=collection_name, embedding_function=sentence_transformer_ef)
+        
+        # Add chunks to collection
+        collection.add(
+            documents=chunks,
+            ids=[str(x) for x in range(len(chunks))]
+        )
+        logger.info(f"Created new collection: {collection_name} with {len(chunks)} documents")
+    
+    return collection
+
+
+def retrieve_relevant_capability_info(requirement: Dict[str, str], collection, n_examples: int = 5, verbose: bool = False) -> str:
+    """
+    Retrieve most relevant capability information for a requirement using ChromaDB
+    """
+    # Create query from requirement
+    query_parts = [
+        requirement.get('summary', ''),
+        requirement.get('description', ''),
+        requirement.get('actor', ''),
+        f"FHIR {requirement.get('conformance', '')}"
+    ]
+    query = " ".join(filter(None, query_parts))
+    
+    if verbose:
+        req_id = requirement.get('id', 'UNKNOWN-ID')
+        print(f"\n{'='*80}")
+        print(f"RAG RETRIEVAL FOR {req_id}")
+        print(f"{'='*80}")
+        print(f"Query: {query}")
+        print(f"Searching for {n_examples} most relevant capability chunks...")
+    
+    # Query the collection
+    results = collection.query(
+        query_texts=[query],
+        n_results=n_examples
+    )
+    
+    if verbose:
+        print(f"\nFound {len(results['documents'][0])} matching chunks:")
+        for i, doc in enumerate(results['documents'][0]):
+            distance = results.get('distances', [[]])[0][i] if results.get('distances') else 'N/A'
+            print(f"\n  Match {i+1} (distance: {distance}):")
+            print(f"  Length: {len(doc)} chars")
+            print(f"  Preview: {doc[:100]}...")
+            if len(doc) > 100:
+                print(f"  ...{doc[-50:]}")
+        print(f"{'='*80}\n")
+    
+    # Format results
+    capability_info = "### Relevant Capability Statement Information\n\n"
+    
+    for i, doc in enumerate(results['documents'][0]):
+        capability_info += f"**Relevant Capability {i+1}**:\n"
+        capability_info += f"{doc}\n\n"
+    
+    return capability_info
+
 
 
 def get_test_plan_prompt(requirement: str, capability_info: str) -> str:
@@ -334,16 +324,16 @@ def identify_requirement_group(
     return group_name
 
 
-def generate_test_specification_with_capability_rag(
+def generate_test_specification_with_capability(
     logger,
     api_type: str,
     llm_clients,
     requirement: Dict[str, str],
-    rag_system: SimpleFHIRRAG,
+    capability_collection,
     verbose: bool = False
 ) -> str:
     """
-    Generate a comprehensive test specification using RAG-retrieved capability info
+    Generate a comprehensive test specification using capability info from ChromaDB
     """
     req_id = requirement.get('id', 'unknown')
     req_parsed = requirement.get('parsed', {})
@@ -355,9 +345,9 @@ def generate_test_specification_with_capability_rag(
     # Format requirement as markdown
     formatted_req = format_requirement_for_prompt(req_parsed)
     
-    # Extract relevant capability information using RAG
-    capability_info = rag_system.retrieve_relevant_info(req_parsed, verbose=verbose)
-    
+    # Extract relevant capability information using ChromaDB
+    capability_info = retrieve_relevant_capability_info(req_parsed, capability_collection, verbose=verbose)
+
     # Create prompt with the requirement and capability information
     prompt = get_test_plan_prompt(formatted_req, capability_info)
     
@@ -385,26 +375,12 @@ def generate_consolidated_test_plan(
     verbose: bool = True
 ) -> Dict[str, Any]:
     """
-    Process requirements and generate a consolidated test plan using RAG
-    
-    Args:
-        llm_clients: LLM client configuration
-        api_type: API type (claude, gemini, gpt)
-        logger: Logger instance
-        requirements_file: Path to requirements markdown file
-        capability_statement_file: Path to capability statement markdown file (optional)
-        ig_name: Name of the Implementation Guide
-        output_dir: Directory for output files
-        verbose: Whether to show detailed capability extraction information
-        
-    Returns:
-        Dictionary containing path to output file
+    Process requirements and generate a consolidated test plan using ChromaDB
     """
     # Use default output directory if none provided
     if output_dir is None:
         output_dir = DEFAULT_OUTPUT_DIR
     else:
-        # Ensure output_dir is a Path object
         if not isinstance(output_dir, Path):
             output_dir = Path(output_dir)
     
@@ -418,10 +394,9 @@ def generate_consolidated_test_plan(
         requirements = load_requirements(requirements_file)
         logger.info(f"Parsed {len(requirements)} requirements from {requirements_file}")
         
-        # Initialize RAG system instead of parsing capability statement dictionary
-        rag_system = SimpleFHIRRAG()
-        rag_system.create_embeddings(capability_statement_file)
-        logger.info(f"Initialized RAG system with capability statement from {capability_statement_file}")
+        # Initialize ChromaDB collection for capability statements
+        capability_collection = instantiate_capability_vectordb(capability_statement_file)
+        logger.info(f"Initialized capability collection from {capability_statement_file}")
         
         # Identify groups for each requirement
         req_groups = {}
@@ -475,8 +450,8 @@ def generate_consolidated_test_plan(
                 req_id = req.get('id', 'UNKNOWN-ID')
                 logger.info(f"Processing requirement for group '{group}': {req_id}")
                 
-                test_spec = generate_test_specification_with_capability_rag(
-                    logger, api_type, llm_clients, req, rag_system, verbose=verbose
+                test_spec = generate_test_specification_with_capability(
+                    logger, api_type, llm_clients, req, capability_collection, verbose=verbose
                 )
                 
                 # Add to test plan content with proper anchor for TOC linking
@@ -509,3 +484,21 @@ def generate_consolidated_test_plan(
     except Exception as e:
         logger.error(f"Error processing requirements: {str(e)}")
         raise
+
+
+def clear_capability_collection(collection_name: str = "capability_statements"):
+    """
+    Delete the existing ChromaDB collection so it can be recreated with new chunking
+    """
+    chroma_client = chromadb.Client()
+    
+    try:
+        # Check if collection exists and delete it
+        existing_collections = [c.name for c in chroma_client.list_collections()]
+        if collection_name in existing_collections:
+            chroma_client.delete_collection(collection_name)
+            print(f"Deleted existing collection: {collection_name}")
+        else:
+            print(f"No existing collection found: {collection_name}")
+    except Exception as e:
+        print(f"Error clearing collection: {e}")

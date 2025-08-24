@@ -1,10 +1,10 @@
 Your task is to review this list of FHIR Implementation Guide requirements and create a refined, concise list of only the testable requirements. Follow these guidelines carefully:
 
-1. Identify a final list of (maximum 50) clear, testable requirements that a conformance testing tool could verify.
+1. Identify a final list of clear, testable requirements that a conformance testing tool could verify. Requirements should start with a header such as # REQ-XX and be followed by a list of characteristics. Ignore and move past text describing that a section does not contain a requirement- move to the next section to review for a requirement.
 
 2. Include ONLY requirements that:
    - Are atomic
-   - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.)
+   - Have explicit conformance language (SHALL, SHOULD, MAY, MUST, REQUIRED, etc.) (applicable for most but not all requirements)
    - Describe specific, verifiable behavior or capability
    - Could be objectively tested through software testing or attestation
 
