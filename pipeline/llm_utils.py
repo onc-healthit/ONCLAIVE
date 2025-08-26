@@ -27,9 +27,10 @@ API_CONFIGS = {
         "batch_size": 10,  
         "delay_between_chunks": 0.2, 
         "delay_between_batches": 1.0,  
-        "requests_per_minute": 990,
-        "max_requests_per_day": 20000,
-        "delay_between_requests": 0.05  
+        "requests_per_minute": 900,  
+        "input_tokens_per_minute": 425000,  
+        "output_tokens_per_minute": 85000,  
+        "delay_between_requests": 1  
     },
     "gemini": {
         "model": "models/gemini-2.5-pro",
@@ -38,21 +39,23 @@ API_CONFIGS = {
         "batch_size": 8,  
         "delay_between_chunks": 0.5,  
         "delay_between_batches": 2.0,  
-        "requests_per_minute": 900,
-        "max_requests_per_day": 50000,
-        "delay_between_requests": 0.05,  
-        "timeout": 60
+        "requests_per_minute": 140,  # 93% of 150 RPM
+        "tokens_per_minute": 1900000,  # 95% of 2M TPM (combined input+output)
+        "max_requests_per_day": 9500,  # 95% of 10k daily
+        "delay_between_requests": 1,  
+        "timeout": 900
     },
     "gpt": {
-        "model": "gpt-4o",
+        "model": "gpt-5",
         "max_tokens": 8192,
-        "temperature": 0.3,
+        "temperature": 1,
         "batch_size": 8,  
         "delay_between_chunks": 0.5,   
         "delay_between_batches": 2.0,  
-        "requests_per_minute": 3000,
-        "max_requests_per_day": 20000,
-        "delay_between_requests": 0.08  
+        "requests_per_minute": 4750,  # 95% of 5000 RPM
+        "tokens_per_minute": 760000,  # 95% of 800k TPM (combined input+output)
+        "max_requests_per_day": 95000000,  # 95% of 100M batch TPD (very high)
+        "delay_between_requests": 0.5 
     },
     "aip": {
         'model': 'nvidia/Llama-3_3-Nemotron-Super-49B-v1',
@@ -63,7 +66,7 @@ API_CONFIGS = {
         "delay_between_batches": 5,
         "requests_per_minute": 450,
         "max_requests_per_day": 20000,
-        "delay_between_requests": 0.15
+        "delay_between_requests": 0.15  
     }
 }
 
@@ -112,7 +115,8 @@ class LLMApiClient:
             else:
                 http_client = httpx.Client(
                     verify=verify_path if os.path.exists(verify_path) else True,
-                    timeout=60.0
+                    timeout=httpx.Timeout(900.0, connect=300.0),  # 15 minutes total, 5 minutes connect
+                    limits=httpx.Limits(max_keepalive_connections=5, max_connections=10),  # Reduced connections
                 )
                 self.clients['claude'] = Anthropic(
                     api_key=claude_api_key,
@@ -131,8 +135,8 @@ class LLMApiClient:
                     {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}, 
-                    {"category": "HARM_CATEGORY_CIVIC_INTEGRITY", "threshold": "BLOCK_NONE"}
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}#, 
+                    #{"category": "HARM_CATEGORY_CIVIC_INTEGRITY", "threshold": "BLOCK_NONE"}
                 ]
                 
                 self.clients['gemini'] = gemini.GenerativeModel(
@@ -151,7 +155,7 @@ class LLMApiClient:
             else:
                 self.clients['gpt'] = OpenAI(
                     api_key=openai_api_key,
-                    timeout=60.0
+                    timeout=900.0
                 )
             
             aip_api_key = os.getenv("AIP_API_KEY")
@@ -170,17 +174,27 @@ class LLMApiClient:
 
     def create_rate_limiter(self, config):
         """Create a rate limiter state dictionary for all APIs"""
-        return {
-            api: {
+        limiter = {}
+        for api in config.keys():
+            limiter[api] = {
                 'requests': [],
                 'daily_requests': 0,
                 'last_reset': time.time()
             }
-            for api in config.keys()
-        }
+            
+            # Add token tracking based on API type
+            if api == "claude":
+                # Claude has separate input/output limits
+                limiter[api]['input_tokens'] = []
+                limiter[api]['output_tokens'] = []
+            elif api in ["gemini", "gpt"]:
+                # Gemini and GPT have combined token limits
+                limiter[api]['tokens'] = []
+        
+        return limiter
 
-    def check_rate_limits(self, api: str):
-        """Check and wait if rate limits would be exceeded"""
+    def check_rate_limits(self, api: str, input_text: str = "", requested_output_tokens: int = None):
+        """Check and wait if rate limits would be exceeded - supports all models"""
         rate_limiter = self.rate_limiter
         if api not in rate_limiter:
             raise ValueError(f"Unknown API: {api}")
@@ -189,28 +203,99 @@ class LLMApiClient:
         state = rate_limiter[api]
         config = self.config[api]
         
+        # Estimate tokens based on API type
+        if api == "claude":
+            estimated_input_tokens = len(input_text) // 4
+            estimated_output_tokens = requested_output_tokens or config["max_tokens"]
+            estimated_total_tokens = estimated_input_tokens + estimated_output_tokens
+        elif api in ["gemini", "gpt"]:
+            # For Gemini/GPT, estimate total tokens (input + output)
+            estimated_input_tokens = len(input_text) // 4
+            estimated_output_tokens = requested_output_tokens or config["max_tokens"]
+            estimated_total_tokens = estimated_input_tokens + estimated_output_tokens
+        else:
+            estimated_input_tokens = 0
+            estimated_output_tokens = 0
+            estimated_total_tokens = 0
+        
         # Reset daily counts if needed
         day_seconds = 24 * 60 * 60
         if now - state['last_reset'] >= day_seconds:
             state['daily_requests'] = 0
             state['last_reset'] = now
         
-        # Check daily limit
-        if state['daily_requests'] >= config['max_requests_per_day']:
-            raise Exception(f"{api} daily request limit exceeded")
+        # Check daily request limit (Gemini only has this)
+        daily_limit = config.get('max_requests_per_day')
+        if daily_limit and state['daily_requests'] >= daily_limit:
+            raise Exception(f"{api} daily request limit ({daily_limit}) exceeded")
         
-        # Remove old requests outside the current minute
-        state['requests'] = [
-            req_time for req_time in state['requests']
-            if now - req_time < 60
-        ]
+        # Remove old entries outside the current minute
+        cutoff = now - 60
+        state['requests'] = [req_time for req_time in state['requests'] if req_time > cutoff]
         
-        # Wait if at rate limit
-        if len(state['requests']) >= config['requests_per_minute']:
-            sleep_time = 60 - (now - state['requests'][0])
-            if sleep_time > 0:
-                time.sleep(sleep_time)
-            state['requests'] = state['requests'][1:] 
+        # Clean token tracking based on API type
+        if api == "claude":
+            state['input_tokens'] = [(t, tokens) for t, tokens in state['input_tokens'] if t > cutoff]
+            state['output_tokens'] = [(t, tokens) for t, tokens in state['output_tokens'] if t > cutoff]
+        elif api in ["gemini", "gpt"]:
+            state['tokens'] = [(t, tokens) for t, tokens in state['tokens'] if t > cutoff]
+        
+        # Check limits and calculate wait times
+        wait_times = []
+        
+        # 1. Request limit (all APIs have this)
+        current_requests = len(state['requests'])
+        if current_requests >= config['requests_per_minute']:
+            wait_time = 60 - (now - state['requests'][0])
+            if wait_time > 0:
+                wait_times.append(("requests", wait_time))
+        
+        # 2. Token limits (API-specific)
+        if api == "claude":
+            # Claude: separate input/output limits
+            current_input = sum(tokens for _, tokens in state['input_tokens'])
+            current_output = sum(tokens for _, tokens in state['output_tokens'])
+            
+            if current_input + estimated_input_tokens > config.get('input_tokens_per_minute', float('inf')):
+                oldest_input = min((t for t, _ in state['input_tokens']), default=now)
+                wait_time = 60 - (now - oldest_input)
+                if wait_time > 0:
+                    wait_times.append(("input_tokens", wait_time))
+            
+            if current_output + estimated_output_tokens > config.get('output_tokens_per_minute', float('inf')):
+                oldest_output = min((t for t, _ in state['output_tokens']), default=now)
+                wait_time = 60 - (now - oldest_output)
+                if wait_time > 0:
+                    wait_times.append(("output_tokens", wait_time))
+        
+        elif api in ["gemini", "gpt"]:
+            # Gemini/GPT: combined token limit
+            current_tokens = sum(tokens for _, tokens in state['tokens'])
+            token_limit = config.get('tokens_per_minute', float('inf'))
+            
+            if current_tokens + estimated_total_tokens > token_limit:
+                oldest_token = min((t for t, _ in state['tokens']), default=now)
+                wait_time = 60 - (now - oldest_token)
+                if wait_time > 0:
+                    wait_times.append(("tokens", wait_time))
+        
+        # Wait for the longest required time
+        if wait_times:
+            limit_type, max_wait = max(wait_times, key=lambda x: x[1])
+            self.logger.info(f"{api} rate limit hit ({limit_type}), waiting {max_wait:.1f}s")
+            
+            # Log current usage for debugging
+            if api == "claude":
+                current_input = sum(tokens for _, tokens in state['input_tokens'])
+                current_output = sum(tokens for _, tokens in state['output_tokens'])
+                self.logger.info(f"Usage: {current_requests} req, {current_input} in_tokens, {current_output} out_tokens")
+            elif api in ["gemini", "gpt"]:
+                current_tokens = sum(tokens for _, tokens in state['tokens'])
+                self.logger.info(f"Usage: {current_requests} req, {current_tokens} tokens")
+            
+            time.sleep(max_wait)
+            # Recursive call to re-check
+            return self.check_rate_limits(api, input_text, requested_output_tokens)
         
         # Add minimum delay between requests
         if state['requests'] and now - state['requests'][-1] < config['delay_between_requests']:
@@ -219,6 +304,24 @@ class LLMApiClient:
         # Record this request
         state['requests'].append(now)
         state['daily_requests'] += 1
+        
+        # Record token usage based on API type
+        if api == "claude":
+            state['input_tokens'].append((now, estimated_input_tokens))
+            state['output_tokens'].append((now, estimated_output_tokens))
+        elif api in ["gemini", "gpt"]:
+            state['tokens'].append((now, estimated_total_tokens))
+        
+        # Periodic usage logging
+        if len(state['requests']) % 20 == 0:
+            if api == "claude":
+                current_input = sum(tokens for _, tokens in state['input_tokens'])
+                current_output = sum(tokens for _, tokens in state['output_tokens'])
+                self.logger.info(f"{api} usage: {current_requests + 1} req, {current_input} in, {current_output} out")
+            elif api in ["gemini", "gpt"]:
+                current_tokens = sum(tokens for _, tokens in state['tokens'])
+                self.logger.info(f"{api} usage: {current_requests + 1} req, {current_tokens} tokens")
+
 
     def extract_problematic_content(self, prompt: str) -> str:
         """Extract a sample of the content that might have triggered safety filters"""
@@ -227,19 +330,39 @@ class LLMApiClient:
 
     # Make LLM Call
     @retry(
-        wait=wait_exponential(multiplier=1, min=4, max=60),
-        stop=stop_after_attempt(5),
-        retry=retry_if_exception_type((RateLimitError, TimeoutError))
+        wait=wait_exponential(multiplier=2, min=60, max=7200),
+        stop=stop_after_attempt(100),
+        retry=(retry_if_exception_type(RateLimitError) | 
+               retry_if_exception_type(TimeoutError) | 
+               retry_if_exception_type(Exception))
     )
     def make_one_llm_request(self, api_type: str, prompt: str, system_prompt, max_tokens=None):
         """Enhanced version with max_tokens parameter"""
         config = self.config[api_type]
         client = self.clients[api_type]
-        self.check_rate_limits(api_type)
-        
-        # Use provided max_tokens or fall back to config
         tokens_limit = max_tokens if max_tokens is not None else config["max_tokens"]
         
+        # AUTO-STREAMING LOGIC: Decide if should stream
+        # if api_type == "claude":
+        #     # Estimate request size
+        #     full_input = f"{system_prompt or ''}\n{prompt}"
+        #     estimated_input_tokens = len(full_input) // 4
+        #     estimated_output_tokens = tokens_limit
+
+        #     should_stream = (
+        #         estimated_input_tokens > 30000 or  # Large input
+        #         estimated_output_tokens > 8000 or  # Large output  
+        #         (estimated_input_tokens + estimated_output_tokens) > 40000  # Large combined
+        #     )
+            
+        #     if should_stream:
+        #         logging.info(f" Auto-streaming: {estimated_input_tokens} input + {estimated_output_tokens} output tokens")
+        #         return self.make_one_llm_request_streaming(api_type, prompt, system_prompt, max_tokens)
+    
+        
+        full_input = f"{system_prompt or ''}\n{prompt}"
+        self.check_rate_limits(api_type, full_input, tokens_limit)
+
         try:
             if api_type == "claude":
                 response = client.messages.create(
@@ -308,16 +431,42 @@ class LLMApiClient:
                 )
                 return response.choices[0].message.content
             elif api_type == "gpt":
-                response = client.chat.completions.create(
-                    model=config["model"],
-                    messages=[
+                # Prepare the request parameters
+                request_params = {
+                    "model": config["model"],
+                    "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=tokens_limit,  # Use the tokens_limit variable
-                    temperature=config["temperature"]
-                )
+                    "temperature": config["temperature"]
+                }
+                
+                # Use the correct token parameter based on the model
+                #model_name = config["model"]
+                #if "gpt-4o" in model_name or "gpt-4-turbo" in model_name or "gpt-5" in model_name:
+                    # Newer models use max_completion_tokens
+                request_params["max_completion_tokens"] = tokens_limit
+                #else:
+                    # Older models use max_tokens
+                    #request_params["max_tokens"] = tokens_limit
+                
+                #try:
+                response = client.chat.completions.create(**request_params)
                 return response.choices[0].message.content
+                #except Exception as e:
+                    # If we get the parameter error, try switching the parameter
+                    #if "max_tokens" in str(e) and "max_completion_tokens" in str(e):
+                        #logging.info("Switching GPT token parameter due to API error")
+                        #if "max_tokens" in request_params:
+                            #request_params["max_completion_tokens"] = request_params.pop("max_tokens")
+                        #elif "max_completion_tokens" in request_params:
+                            #request_params["max_tokens"] = request_params.pop("max_completion_tokens")
+                        
+                        # Retry with the corrected parameter
+                        #response = client.chat.completions.create(**request_params)
+                        #return response.choices[0].message.content
+                    #else:
+                        #raise e
                 
         except SafetyFilterException:
             # Re-raise safety filter exceptions without wrapping them
@@ -326,6 +475,56 @@ class LLMApiClient:
             logging.error(f"Error in {api_type} API request: {str(e)}")
             raise Exception(e)
         
+
+    def make_one_llm_request_streaming(self, api_type: str, prompt: str, system_prompt, max_tokens=None):
+        """Streaming version of make_one_llm_request (Claude only)"""
+        
+        if api_type != "claude":
+            # Fall back to regular method for non-Claude APIs
+            return self.make_one_llm_request(api_type, prompt, system_prompt, max_tokens)
+        
+        config = self.config[api_type]
+        client = self.clients[api_type]
+        tokens_limit = max_tokens if max_tokens is not None else config["max_tokens"]
+        
+        full_input = f"{system_prompt or ''}\n{prompt}"
+        self.check_rate_limits(api_type, full_input, tokens_limit)
+        
+        try:
+            logging.info("🌊 Using streaming for large request...")
+            
+            # Use Anthropic SDK's built-in streaming
+            with client.messages.stream(
+                model=config["model_name"],
+                max_tokens=tokens_limit,
+                messages=[{
+                    "role": "user", 
+                    "content": prompt
+                }],
+                system=system_prompt
+            ) as stream:
+                # Collect all text chunks
+                full_response = ""
+                chunk_count = 0
+                
+                for text in stream.text_stream:
+                    full_response += text
+                    chunk_count += 1
+                    
+                    # Progress indicator every 100 chunks
+                    if chunk_count % 100 == 0:
+                        logging.info(f"📥 Received {len(full_response)} characters so far...")
+                
+                logging.info(f"✅ Streaming complete: {len(full_response)} characters, {chunk_count} chunks")
+                return full_response
+                
+        except Exception as e:
+            logging.error(f"Streaming error in {api_type}: {e}")
+            # Fall back to regular request if streaming fails
+            logging.info("🔄 Falling back to regular request...")
+            return self.make_one_llm_request(api_type, prompt, system_prompt, max_tokens)
+
+
 
     def make_llm_request(self, api_type: str, prompt: Union[str, List[str]], sys_prompt=None, 
                      raise_on_error=True, reformat=True, max_tokens=None) -> str:
