@@ -1,0 +1,67 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Location/hospital> a fhir:Location ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "hospital"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Location hospital</b></p><a name=\"hospital\"> </a><a name=\"hchospital\"> </a><a name=\"hospital-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-location.html\">US Core Location Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <a href=\"http://terminology.hl7.org/5.5.0/NamingSystem-npi.html\" title=\"National Provider Identifier\">United States National Provider Identifier</a>/1234567893</p><p><b>status</b>: Active</p><p><b>name</b>: Holy Family Hospital</p><p><b>type</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-RoleCode HOSP}, {http://snomed.info/sct 22232009}, {https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html 1120-5}\">Hospital</span></p><p><b>telecom</b>: ph: 9786870156</p><p><b>address</b>: 70 EAST ST METHUEN MA 01844 US </p><p><b>managingOrganization</b>: <a href=\"Organization-holy-healthcare.html\">Holy Healthcare</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://hl7.org/fhir/sid/us-npi"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1234567893" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:name [ fhir:v "Holy Family Hospital"] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "HOSP" ] ;
+       fhir:display [ fhir:v "Hospital" ]
+     ] [
+       a sct:22232009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:code [ fhir:v "22232009" ] ;
+       fhir:display [ fhir:v "Hospital" ]
+     ] [
+       fhir:system [ fhir:v "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1120-5" ] ;
+       fhir:display [ fhir:v "Medical Clinic" ]
+     ] ) ;
+     fhir:text [ fhir:v "Hospital" ]
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "9786870156" ]
+  ] ) ; # 
+  fhir:address [
+     fhir:line ( [ fhir:v "70 EAST ST" ] ) ;
+     fhir:city [ fhir:v "METHUEN" ] ;
+     fhir:state [ fhir:v "MA" ] ;
+     fhir:postalCode [ fhir:v "01844" ] ;
+     fhir:country [ fhir:v "US" ]
+  ] ; # 
+  fhir:managingOrganization [
+     fhir:link <http://hl7.org/fhir/us/core/Organization/holy-healthcare> ;
+     fhir:reference [ fhir:v "Organization/holy-healthcare" ] ;
+     fhir:display [ fhir:v "Holy Healthcare" ]
+  ] . # 
+
+<http://hl7.org/fhir/us/core/Organization/holy-healthcare> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

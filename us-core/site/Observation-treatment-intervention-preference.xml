@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="treatment-intervention-preference"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation treatment-intervention-preference</b></p><a name="treatment-intervention-preference"> </a><a name="hctreatment-intervention-preference"> </a><a name="treatment-intervention-preference-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-treatment-intervention-preference.html">US Core Treatment Intervention Preference Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://hl7.org/fhir/us/core/CodeSystem/us-core-category treatment-intervention-preference}">Treatment Intervention Preference</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 75773-2}">preferences for medical treatment</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>effective</b>: 2023-08-30</p><p><b>performer</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>value</b>: If I am having significant pain or suffering, I would like my doctors to consult a Supportive and Palliative Care Team to help treat my physical, emotional and spiritual discomfort, and to support my family.</p></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://hl7.org/fhir/us/core/CodeSystem/us-core-category"/>
+      <code value="treatment-intervention-preference"/>
+      <display value="Treatment Intervention preference"/>
+    </coding>
+    <text value="Treatment Intervention Preference"/>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="75773-2"/>
+      <display value="Goals, preferences, and priorities for medical treatment Narrative - Reported"/>
+    </coding>
+    <text value="preferences for medical treatment"/>
+  </code>
+  <subject>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </subject>
+  <effectiveDateTime value="2023-08-30"/>
+  <performer>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </performer>
+  <valueString value="If I am having significant pain or suffering, I would like my doctors to consult a Supportive and Palliative Care Team to help treat my physical, emotional and spiritual discomfort, and to support my family."/>
+</Observation>

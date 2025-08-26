@@ -1,0 +1,40 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-pharmacist> a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "practitioner-pharmacist"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Practitioner practitioner-pharmacist</b></p><a name=\"practitioner-pharmacist\"> </a><a name=\"hcpractitioner-pharmacist\"> </a><a name=\"practitioner-pharmacist-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-practitioner.html\">US Core Practitioner Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <a href=\"http://terminology.hl7.org/5.5.0/NamingSystem-npi.html\" title=\"National Provider Identifier\">United States National Provider Identifier</a>/3412549073</p><p><b>name</b>: Dispenser Douglas </p><p><b>address</b>: 1015 HEALTHCARE DR AMHERST MA 01002 (work)</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://hl7.org/fhir/sid/us-npi"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "3412549073" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "Douglas" ] ;
+     fhir:given ( [ fhir:v "Dispenser" ] ) ;
+     fhir:prefix ( [ fhir:v "PharmD" ] )
+  ] ) ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "work" ] ;
+     fhir:line ( [ fhir:v "1015 HEALTHCARE DR" ] ) ;
+     fhir:city [ fhir:v "AMHERST" ] ;
+     fhir:state [ fhir:v "MA" ] ;
+     fhir:postalCode [ fhir:v "01002" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

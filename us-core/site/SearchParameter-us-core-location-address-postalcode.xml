@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="us-core-location-address-postalcode"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">    <!-- <h2>SearchParameter: USCoreLocationAddressPostalcode</h2>
+				<b> description</b> : <p><strong>A postal code specified in an address</strong><br />
+NOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the <a href="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">Conformance expectation extension</a> to define additional expectations for the following SearchParameter elements:</p>
+<ul>
+<li><code>multipleAnd</code></li>
+<li><code>multipleOr</code></li>
+<li><code>comparator</code></li>
+<li><code>modifier</code></li>
+<li><code>chain</code></li>
+</ul>
+<p>For search operations, Servers and Clients <strong>SHOULD</strong> use standard FHIR SearchParameter.</p>
+
+			<br/> --><p><b> id</b> us-core-location-address-postalcode</p><p><b> url</b> : <b> http://hl7.org/fhir/us/core/SearchParameter/us-core-location-address-postalcode</b>
+			</p><p><b> name</b> : USCoreLocationAddressPostalcode</p><p><b> derivedFrom</b> : http://hl7.org/fhir/SearchParameter/Location-address-postalcode</p><p><b> status</b> : active</p><p><b> date</b> : 11/17/2024</p><p><b> publisher</b> : HL7 International - Cross-Group Projects</p><p><b> contact</b> : http://www.hl7.org/Special/committees/cgp</p>    <!-- <p>
+				<b> useContext</b> : </p> --><p><b> jurisdiction</b> : United States of America (the) <span> (Details : {urn:iso:std:iso:3166 code 'US' = 'United States of America', given as 'United
+           States of America (the)'})</span>
+			</p>    <!-- <p>
+		<b> purpose</b> : Need to search by identifier for various infrastructural cases - mainly retrieving packages,
+         and matching as part of a chain</p> --><p><b> code</b> : <code>address-postalcode</code>
+			</p><p><b> base</b> :Location</p><p><b> type</b> : string</p><p><b> expression</b> : <code>Location.address.postalCode</code>
+			</p><p><b> xpath</b> : <code>f:Location/f:address/f:postalCode</code>
+			</p><p><b> xpathUsage</b> : normal</p><p><b> multipleOr</b> : True   (Conformance Expectation = MAY)</p><p><b> multipleAnd</b> : True  ( Conformance Expectation = MAY)</p></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="cgp"/>
+  </extension>
+  <url value="http://hl7.org/fhir/us/core/SearchParameter/us-core-location-address-postalcode"/>
+  <version value="8.0.0"/>
+  <name value="USCoreLocationAddressPostalcode"/>
+  <derivedFrom value="http://hl7.org/fhir/SearchParameter/Location-address-postalcode"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2024-11-17"/>
+  <publisher value="HL7 International / Cross-Group Projects"/>
+  <contact>
+    <name value="HL7 International / Cross-Group Projects"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.hl7.org/Special/committees/cgp"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="cgp@lists.HL7.org"/>
+    </telecom>
+  </contact>
+  <description value="**A postal code specified in an address**  &#xA;NOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the [Conformance expectation extension](http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation) to define additional expectations for the following SearchParameter elements:&#xA;- `multipleAnd`&#xA;- `multipleOr`&#xA;- `comparator`&#xA;- `modifier`&#xA;- `chain`&#xA;&#xA;It **SHALL NOT** be used as a search parameter for search. Servers and Clients **SHOULD** use the standard FHIR SearchParameter.&#xA;"/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+    </coding>
+  </jurisdiction>
+  <code value="address-postalcode"/>
+  <base value="Location"/>
+  <type value="string"/>
+  <expression value="Location.address.postalCode"/>
+  <xpathUsage value="normal"/>
+  <multipleOr value="true">
+    <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+      <valueCode value="MAY"/>
+    </extension>
+  </multipleOr>
+  <multipleAnd value="true">
+    <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+      <valueCode value="MAY"/>
+    </extension>
+  </multipleAnd>
+</SearchParameter>

@@ -1,0 +1,86 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Condition/health-concern-example> a fhir:Condition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "health-concern-example"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2007-12-14T07:15:07-08:00"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Condition health-concern-example</b></p><a name=\"health-concern-example\"> </a><a name=\"hchealth-concern-example\"> </a><a name=\"health-concern-example-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Last updated: 2007-12-14 07:15:07-0800</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-condition-problems-health-concerns.html\">US Core Condition Problems and Health Concerns Profileversion: null8.0.0)</a></p></div><p><b>Condition Asserted Date</b>: 2007-12-14</p><p><b>clinicalStatus</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/condition-clinical active}\">Active</span></p><p><b>verificationStatus</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/condition-ver-status confirmed}\">Confirmed</span></p><p><b>category</b>: <span title=\"Codes:{http://hl7.org/fhir/us/core/CodeSystem/condition-category health-concern}\">Health Concern</span></p><p><b>code</b>: <span title=\"Codes:{http://snomed.info/sct 247824007}\">Fear of becoming fat</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw</a></p><p><b>onset</b>: 2007-12-14</p><p><b>recordedDate</b>: 2007-12-14 07:15:07-0800</p><p><b>recorder</b>: <a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/condition-assertedDate"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:dateTime ;
+       fhir:v "2007-12-14"^^xsd:date
+     ]
+  ] ) ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "active" ] ;
+       fhir:display [ fhir:v "Active" ]
+     ] ) ;
+     fhir:text [ fhir:v "Active" ]
+  ] ; # 
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ] ;
+       fhir:display [ fhir:v "Confirmed" ]
+     ] ) ;
+     fhir:text [ fhir:v "Confirmed" ]
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/condition-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "health-concern" ] ;
+       fhir:display [ fhir:v "Health Concern" ]
+     ] ) ;
+     fhir:text [ fhir:v "Health Concern" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:247824007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:code [ fhir:v "247824007" ] ;
+       fhir:display [ fhir:v "Fear of becoming fat" ]
+     ] ) ;
+     fhir:text [ fhir:v "Fear of becoming fat" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:onset [
+     a fhir:dateTime ;
+     fhir:v "2007-12-14"^^xsd:date
+  ] ; # 
+  fhir:recordedDate [ fhir:v "2007-12-14T07:15:07-08:00"^^xsd:dateTime] ; # 
+  fhir:recorder [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+     fhir:display [ fhir:v "Dr Ronald Bone" ]
+  ] . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

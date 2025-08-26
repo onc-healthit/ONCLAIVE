@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="10-minute-apgar-respiratory-effort"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation 10-minute-apgar-respiratory-effort</b></p><a name="10-minute-apgar-respiratory-effort"> </a><a name="hc10-minute-apgar-respiratory-effort"> </a><a name="10-minute-apgar-respiratory-effort-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-observation-screening-assessment.html">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}">Survey</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 32405-3}">Apgar respiratory effort score</span></p><p><b>subject</b>: <a href="Patient-infant-example.html">Infant Example  (no stated gender), DoB: 2020-06-02 ( Medical Record Number: 1032703 (use: usual, ))</a></p><p><b>effective</b>: 2016-05-18 22:33:22+0000</p><p><b>performer</b>: <a href="Practitioner-practitioner-1.html">Ronald Bone</a></p><p><b>value</b>: <span title="Codes:{http://loinc.org LA6727-7}">2. Good, strong cry; normal rate and effort of breathing</span></p></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="survey"/>
+      <display value="Survey"/>
+    </coding>
+    <text value="Survey"/>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="32405-3"/>
+      <display value="10 minute Apgar Respiratory effort"/>
+    </coding>
+    <text value="Apgar respiratory effort score"/>
+  </code>
+  <subject>
+    <reference value="Patient/infant-example"/>
+  </subject>
+  <effectiveDateTime value="2016-05-18T22:33:22Z"/>
+  <performer>
+    <reference value="Practitioner/practitioner-1"/>
+    <display value="Ronald Bone"/>
+  </performer>
+  <valueCodeableConcept>
+    <coding>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+        <valueDecimal value="2"/>
+      </extension>
+      <system value="http://loinc.org"/>
+      <code value="LA6727-7"/>
+      <display value="Good, strong cry; normal rate and effort of breathing"/>
+    </coding>
+    <text value="2. Good, strong cry; normal rate and effort of breathing"/>
+  </valueCodeableConcept>
+</Observation>

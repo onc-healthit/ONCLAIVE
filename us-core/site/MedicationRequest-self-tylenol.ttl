@@ -1,0 +1,109 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/MedicationRequest/self-tylenol> a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "self-tylenol"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationRequest self-tylenol</b></p><a name=\"self-tylenol\"> </a><a name=\"hcself-tylenol\"> </a><a name=\"self-tylenol-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-medicationrequest.html\">US Core MedicationRequest Profileversion: null8.0.0)</a></p></div><blockquote><p><b>US Core Medication Adherence Extension</b></p><ul><li>medicationAdherence: <span title=\"Codes:{http://snomed.info/sct 275928001}\">Drugs - partial non-compliance (finding)</span></li><li>dateAsserted: 2023-08-11 08:15:49+0000</li><li>informationSource: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-RoleCode SPS}\">Spouse</span></li></ul></blockquote><p><b>identifier</b>: <code>http://acme.org/prescriptions</code>/12345689 (use: official, )</p><p><b>status</b>: Active</p><p><b>intent</b>: Plan</p><p><b>reported</b>: true</p><p><b>medication</b>: <span title=\"Codes:{http://www.nlm.nih.gov/research/umls/rxnorm 1187314}\">Tylenol PM Pill</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Shaw</a></p><p><b>encounter</b>: <a href=\"Encounter-example-1.html\">Office Visit</a></p><p><b>authoredOn</b>: 2019-06-24</p><p><b>requester</b>: <a href=\"Patient-example.html\">**self-prescribed**</a></p><p><b>reasonCode</b>: <span title=\"Codes:{http://snomed.info/sct 25064002}\">Headache</span></p><h3>DosageInstructions</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Text</b></td></tr><tr><td style=\"display: none\">*</td><td>Takes 1-2 tablets once daily at bedtime as needed for restless legs</td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:extension ( [
+     fhir:extension ( [
+       fhir:url [ fhir:v "medicationAdherence"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:275928001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "275928001" ] ;
+           fhir:display [ fhir:v "Drugs - partial non-compliance (finding)" ]
+         ] )
+       ]
+     ] [
+       fhir:url [ fhir:v "dateAsserted"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:dateTime ;
+         fhir:v "2023-08-11T08:15:49.449Z"^^xsd:dateTime
+       ]
+     ] [
+       fhir:url [ fhir:v "informationSource"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "SPS" ] ;
+           fhir:display [ fhir:v "Spouse" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:url [ fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://acme.org/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "plan"] ; # 
+  fhir:reported [
+     a fhir:boolean ;
+     fhir:v true
+  ] ; # 
+  fhir:medication [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1187314" ] ;
+       fhir:display [ fhir:v "Tylenol PM Pill" ]
+     ] ) ;
+     fhir:text [ fhir:v "Tylenol PM Pill" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy V. Shaw" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:link <http://hl7.org/fhir/us/core/Encounter/example-1> ;
+     fhir:reference [ fhir:v "Encounter/example-1" ] ;
+     fhir:display [ fhir:v "Office Visit" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2019-06-24"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "**self-prescribed**" ]
+  ] ; # 
+  fhir:reasonCode ( [
+     fhir:coding ( [
+       a sct:25064002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:code [ fhir:v "25064002" ] ;
+       fhir:display [ fhir:v "Headache (finding)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Headache" ]
+  ] ) ; # 
+  fhir:dosageInstruction ( [
+     fhir:text [ fhir:v "Takes 1-2 tablets once daily at bedtime as needed for restless legs" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Encounter/example-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

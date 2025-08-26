@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="average-blood-pressure"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation average-blood-pressure</b></p><a name="average-blood-pressure"> </a><a name="hcaverage-blood-pressure"> </a><a name="average-blood-pressure-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-average-blood-pressure.html">US Core Average Blood Pressure Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}">Vital Signs</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 96607-7}">Avg Blood pressure systolic and diastolic</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>effective</b>: 2023-08-03 01:06:52+0000 --&gt; 2023-08-06 13:07:01+0000</p><p><b>performer</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>note</b>: Average blood pressure is calculated from 12 measurements taken by the patient over 3 days.</p><blockquote><p><b>component</b></p><p><b>code</b>: <span title="Codes:{http://loinc.org 96608-5}">Average systolic blood pressure</span></p><p><b>value</b>: 109 mm[Hg]<span style="background: LightGoldenRodYellow"> (Details: UCUM  codemm[Hg] = 'mm[Hg]')</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: <span title="Codes:{http://loinc.org 96609-3}">Average diastolic blood pressure</span></p><p><b>value</b>: 72 mm[Hg]<span style="background: LightGoldenRodYellow"> (Details: UCUM  codemm[Hg] = 'mm[Hg]')</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: <span title="Codes:{http://snomed.info/sct 246432004}">Number of measurements</span></p><p><b>value</b>: 3 #</p></blockquote></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="vital-signs"/>
+      <display value="Vital Signs"/>
+    </coding>
+    <text value="Vital Signs"/>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="96607-7"/>
+      <display value="Blood pressure panel mean systolic and mean diastolic"/>
+    </coding>
+    <text value="Avg Blood pressure systolic and diastolic"/>
+  </code>
+  <subject>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </subject>
+  <effectivePeriod>
+    <start value="2023-08-03T01:06:52.480Z"/>
+    <end value="2023-08-06T13:07:01.166Z"/>
+  </effectivePeriod>
+  <performer>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </performer>
+  <note>
+    <text value="Average blood pressure is calculated from 12 measurements taken by the patient over 3 days."/>
+  </note>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="96608-5"/>
+        <display value="Systolic blood pressure mean"/>
+      </coding>
+      <text value="Average systolic blood pressure"/>
+    </code>
+    <valueQuantity>
+      <value value="109"/>
+      <unit value="mm[Hg]"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mm[Hg]"/>
+    </valueQuantity>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="96609-3"/>
+        <display value="Diastolic blood pressure mean"/>
+      </coding>
+      <text value="Average diastolic blood pressure"/>
+    </code>
+    <valueQuantity>
+      <value value="72"/>
+      <unit value="mm[Hg]"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mm[Hg]"/>
+    </valueQuantity>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="246432004"/>
+        <display value="Number of occurrences (qualifier value)"/>
+      </coding>
+      <text value="Number of measurements"/>
+    </code>
+    <valueQuantity>
+      <value value="3"/>
+      <unit value="#"/>
+    </valueQuantity>
+  </component>
+</Observation>

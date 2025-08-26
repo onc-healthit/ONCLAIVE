@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="example-organization-2"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Organization example-organization-2</b></p><a name="example-organization-2"> </a><a name="hcexample-organization-2"> </a><a name="example-organization-2-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-organization.html">US Core Organization Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <a href="http://terminology.hl7.org/5.5.0/NamingSystem-npi.html" title="National Provider Identifier">United States National Provider Identifier</a>/1407071236, <code>http://example.org/fhir/sid/us-tin</code>/121111111</p><p><b>active</b>: true</p><p><b>type</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/organization-type prov}">Healthcare Provider</span></p><p><b>name</b>: Acme Clinic</p><p><b>telecom</b>: ph: (+1) 734-677-7777, <a href="mailto:customer-service@acme-clinic.org">customer-service@acme-clinic.org</a></p><p><b>address</b>: 3300 WASHTENAW AVE STE 227 AMHERST MA 01002 USA </p></div>
+  </text>
+  <identifier>
+    <system value="http://hl7.org/fhir/sid/us-npi"/>
+    <value value="1407071236"/>
+  </identifier>
+  <identifier>
+    <system value="http://example.org/fhir/sid/us-tin"/>
+    <value value="121111111"/>
+  </identifier>
+  <active value="true"/>
+  <type>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/organization-type"/>
+      <code value="prov"/>
+      <display value="Healthcare Provider"/>
+    </coding>
+  </type>
+  <name value="Acme Clinic"/>
+  <telecom>
+    <system value="phone"/>
+    <value value="(+1) 734-677-7777"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="customer-service@acme-clinic.org"/>
+  </telecom>
+  <address>
+    <line value="3300 WASHTENAW AVE STE 227"/>
+    <city value="AMHERST"/>
+    <state value="MA"/>
+    <postalCode value="01002"/>
+    <country value="USA"/>
+  </address>
+</Organization>

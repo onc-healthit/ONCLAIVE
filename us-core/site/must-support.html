@@ -1,0 +1,1396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Must Support - US Core Implementation Guide v8.0.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+    <link href="assets/css/hl7.css" rel="stylesheet"/>
+    <link href="assets/css/fhir-ig.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"2.2"}
+    h3,h4,h5,h6{--heading-prefix:"2.2.0"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+        <div id="hl7-nav">
+          <a id="hl7-logo" no-external="true" href="http://hl7.org">
+            <img height="50" alt="Visit the HL7 website" src="assets/images/hl7-logo-header.png"/>
+          </a>
+        </div>
+        <div id="family-nav">
+          <a id="family-logo" no-external="true" href="http://hl7.org/fhir"><img height="50" alt="Visit the FHIR website" src="assets/images/fhir-logo-www.png"/> </a>
+        </div>
+        <div id="hl7-search">
+          <a id="hl7-search-lnk" no-external="true" href="searchform.html"><img alt="Search FHIR" src="assets/images/search.png"/></a>
+        </div>
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">US Core Implementation Guide</span>
+            <br/>
+            <span style="display:inline-block;">8.0.0 - STU 8
+
+
+
+  <img alt="United States of America flag" src="assets/images/usa.svg" height="16" title="United States of America"/>
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Conformance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-requirements.html">General Requirements</a>
+      </li>
+      <li>
+        <a href="must-support.html">Must Support</a>
+      </li>
+      <li>
+        <a href="scopes.html">SMART on FHIR Obligations and Capabilities</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Guidance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="uscdi.html">USCDI</a>
+      </li>
+      <li>
+        <a href="general-guidance.html">General Guidance</a>
+      </li>
+      <li>
+        <a href="clinical-notes.html">Clinical Notes</a>
+      </li>
+      <li>
+        <a href="medication-list.html">Medication List</a>
+      </li>
+      <li>
+        <a href="basic-provenance.html">Basic Provenance</a>
+      </li>
+      <li>
+        <a href="screening-and-assessments.html">Screening and Assessments</a>
+      </li>
+      <li>
+        <a href="changes-between-versions.html">Changes Between Versions</a>
+      </li>
+      <li>
+        <a href="relationship-with-other-igs.html">Relationship With Other IGs</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="profiles-and-extensions.html#profiles">Profiles</a>
+      </li>
+      <li>
+        <a href="profiles-and-extensions.html#extensions">Extensions</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#search-parameters">Search Parameters</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#operations">Operations</a>
+      </li>
+      <li>
+        <a href="terminology.html">Terminology</a>
+      </li>
+      <li>
+        <a href="capability-statements.html">Capability Statements</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="security.html">Security</a>
+  </li>
+  <li>
+    <a href="examples.html">Examples</a>
+  </li>
+  <li>
+    <a href="downloads.html">Downloads</a>
+  </li>
+  <li>
+    <a href="changes.html">Change Log</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Looking Ahead
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="us-core-roadmap.html">US Core Roadmap</a>
+      </li>
+      <li>
+        <a href="writing-vital-signs.html">Writing Vital Signs</a>
+      </li>
+      <li>
+        <a href="patient-data-feed.html">Patient Data Feed</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='conformance.html'><b>Conformance</b></a></li><li><b>Must Support</b></li>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">US Core Implementation Guide, published by HL7 International / Cross-Group Projects. This guide is not an authorized publication; it is the continuous build for version 8.0.0  built by the FHIR (HL7&reg; FHIR&reg; Standard) CI Build. This version is based on the current content of <a href='https://github.com/HL7/US-Core/'>https://github.com/HL7/US-Core/</a> and changes regularly. See the <a href='http://hl7.org/fhir/us/core/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>Must Support</h2>
+  
+
+
+
+
+
+  <table class="colstu">
+    <tr>
+  
+      <td>
+        <i>Page standards status:</i> <a href="http://hl7.org/fhir/R4/versions.html#std-process" title="Standard Status">Trial-use</a>
+        
+      </td>
+  
+  
+    </tr>
+  </table>
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+<ul id="markdown-toc">
+  <li><a href="#mandatory-elements" id="markdown-toc-mandatory-elements">Mandatory Elements</a></li>
+  <li><a href="#must-support-elements" id="markdown-toc-must-support-elements">Must Support Elements</a></li>
+  <li><a href="#additional-uscdi-requirements" id="markdown-toc-additional-uscdi-requirements">Additional USCDI Requirements</a></li>
+  <li><a href="#presentation-of-must-support-mandatory-and-uscdi-requirement-elements-in-the-formal-profile-views" id="markdown-toc-presentation-of-must-support-mandatory-and-uscdi-requirement-elements-in-the-formal-profile-views">Presentation of Must Support, Mandatory, and USCDI Requirement Elements in the Formal Profile Views</a></li>
+</ul>
+
+</div>
+
+<p>The Profile elements consist of <em>Mandatory</em>, <em>Must Support</em>, and <em>Additional USCDI Requirements</em> elements. The sections below define the Server and Client expectations for processing these elements and illustrate how they are displayed and documented.</p>
+
+<h3 id="mandatory-elements">Mandatory Elements</h3>
+
+<p><em>Mandatory</em> elements have a minimum cardinality of 1 (min=1). When an element is Mandatory, the data is expected always to be present. However, very rarely it may be missing, and the <a href="general-requirements.html#missing-data">Missing Data</a> section and the next section provide guidance when the data is missing. The convention in this guide is to mark all min=1 elements as Must Support unless they are nested under an optional element. An example of this is <a href="http://hl7.org/fhir/R4/careplan.html"><code class="language-plaintext highlighter-rouge">CarePlan.status</code></a>.</p>
+
+<h3 id="must-support-elements">Must Support Elements</h3>
+
+<p>For querying and reading US Core Profiles, <em>Must Support</em> on any profile data element <strong>SHALL</strong> be interpreted as follows (see the <a href="us-core-roadmap.html#us-core-roadmap">US Core Roadmap</a> page for writing and updating US Core Profiles):</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of populating all data elements as part of the query results specified by the <a href="CapabilityStatement-us-core-server.html">US Core Server CapabilityStatement</a>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing resource instances containing the data elements without generating an error or causing the application to fail. This processing may result in a determination not to use the resource if the resource content does not meet business requirements.</li>
+  <li>When information on a particular data element is not present, and the reason for absence is unknown, US Core Responders <strong>SHALL NOT</strong> include the data elements in the resource instance returned as part of the query results.</li>
+  <li>When querying US Core Responders, US Core Requestors <strong>SHALL</strong> interpret missing data elements within resource instances as data not present in the US Core Responder's system.</li>
+  <li>When information on a particular data element is missing or suppressed, refer to the guidance for <a href="general-requirements.html#missing-data">Missing Data</a> and <a href="general-guidance.html#suppressed-data">Suppressed Data</a>. In cases where information on a specific data element is missing, <em>and</em> the US Core Responder knows the precise reason for the absence of data (other than suppressed data), US Core Responders <strong>SHOULD</strong> send the reason for the missing information. This is done by following the same methodology outlined in the <a href="general-requirements.html#missing-data">Missing Data</a> section but using the appropriate reason code instead of <code class="language-plaintext highlighter-rouge">unknown</code>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be able to process resource instances containing data elements asserting missing information.</li>
+</ul>
+
+<p>The terms <em>US Core Responder</em> Actor and <em>US Core Requestor Actor</em> are used throughout the guide and typically refer to a Server or a Client.</p>
+
+<p>Readers are advised to understand <a href="http://hl7.org/fhir/R4/terminologies.html">FHIR Terminology</a> requirements, <a href="http://hl7.org/fhir/R4/http.html">FHIR RESTful API</a> based on the HTTP protocol, <a href="http://hl7.org/fhir/R4/datatypes.html">FHIR Data Types</a>, <a href="http://hl7.org/fhir/R4/search.html">FHIR Search</a>, and <a href="http://hl7.org/fhir/R4/resource.html">FHIR Resource</a> formats before implementing US Core requirements.</p>
+
+<h4 id="us-core-must-support-summaries">US Core Must Support Summaries</h4>
+
+<p>The following summary tables  may be useful to testers and analysts to review the <em>Must Support</em> and <em>Mandatory</em> elements across profiles.</p>
+
+<ul>
+  <li>All the profile information for the US Core Implementation Guide is represented in a single CSV or Excel file.
+    <ul>
+      <li><a href="all-profiles.csv">CSV</a></li>
+      <li><a href="all-profiles.xlsx">Excel</a></li>
+    </ul>
+  </li>
+  <li>The <a href="observation-summary.html">Observation Summary Table</a> compares <em>Must Support</em> Elements across all the US Core Observation Profiles.</li>
+  <li>the <a href="#must-support---resource-references">Must Support - Resource References</a> section below lists all the <em>Must Support</em> references to other US Core Profiles and FHIR resources for each US Core Profile.</li>
+</ul>
+
+<h3 id="additional-uscdi-requirements">Additional USCDI Requirements</h3>
+
+<p>The US Core Profiles include requirements from the <a href="https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi">U.S. Core Data for Interoperability (USCDI)</a>. See the <a href="uscdi.html">USCDI</a> page for more information about the US Core and USCDI relationship and a mapping between US Core Profiles and the USCDI Data Classes and Elements. Some US Core Profile elements needed to represent USCDI Data Elements for <a href="https://www.healthit.gov/topic/certification-ehrs/about-onc-health-it-certification-program">ASTP Health IT Certification</a> (g(10) certification) are not <em>Mandatory</em> or <em>Must Support</em> because many non-certifying implementers do not need them for their use cases. US Core designates these elements as <em>Additional USCDI Requirements</em>.</p>
+
+<p>Implementers seeking ASTP certification <strong>SHALL</strong> interpret <em>Additional USCDI Requirements</em> as <em>Must Support</em> elements as documented above and below; otherwise, they are considered optional. All <em>Mandatory</em>, <em>Must Support</em>, or <em>Additional USCDI Requirements</em> are within the scope of ASTP Health IT Certification. Only simple and complex data elements are defined as <em>Additional USCDI Requirements</em>. The <em>Must Support</em> sections below document how the conformance rules are displayed and applied.</p>
+
+<p>The table below lists the <em>Additional USCDI Requirements</em> and their corresponding Profiles and FHIR elements.</p>
+
+<!--  liquid script for creating a markdown table from a csv file in the input/data folder source file = input/data/additional-uscdi-requirements.csv. columns:
+This table is updated with the Jupyter script : /Users/ehaas/Documents/Python/Jupyter/MyNotebooks/CapStatement/addl-uscdi-tabler.ipynb
+
+
+
+ 'Is_New' - new element for highlighting
+'AddlUSCDI:  USCDI DE
+'Profile': Profile name using markdown link brackets
+'FHIRElement': FHIR element that is add'l USCDI
+'combo' : column for unique matching
+
+NOTE THAT THE USCDI DE data needs to be manually mapped from the USCDI mapping table.
+ -->
+
+<table class="grid">
+  <thead>
+    <tr>
+      <th>Additional USCDI Requirements</th>
+      <th>Profile</th>
+      <th>FHIR Element</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A Communication Language</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.communication</code></td>
+    </tr>
+    <tr>
+      <td>An Interpreter Needed Flag</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.extension:interpreterRequired</code></td>
+    </tr>
+    <tr>
+      <td>An Interpreter Needed Flag</td>
+      <td>US Core Encounter Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Encounter.extension:interpreterRequired</code></td>
+    </tr>
+    <tr>
+      <td>A Race</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.extension:race</code></td>
+    </tr>
+    <tr>
+      <td>An Ethnicity</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.extension:ethnicity</code></td>
+    </tr>
+    <tr>
+      <td>A Tribal Affiliation</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.extension:tribalAffiliation</code></td>
+    </tr>
+    <tr>
+      <td>A Sex</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.extension:sex</code></td>
+    </tr>
+    <tr>
+      <td>Date Of Death</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.deceased[x]</code></td>
+    </tr>
+    <tr>
+      <td>Address Use</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.address.use</code></td>
+    </tr>
+    <tr>
+      <td>Address Period</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.address.period</code></td>
+    </tr>
+    <tr>
+      <td>Previous Name</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.name.use</code></td>
+    </tr>
+    <tr>
+      <td>Name Period</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.name.period</code></td>
+    </tr>
+    <tr>
+      <td>Suffix</td>
+      <td>US Core Patient Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Patient.name.suffix</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core ServiceRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">ServiceRequest.reasonCode</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core ServiceRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">ServiceRequest.reasonReference</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core Procedure Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Procedure.performer</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core Procedure Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Procedure.performer.actor</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core Procedure Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Procedure.reasonCode</code></td>
+    </tr>
+    <tr>
+      <td>A Reason Or Indication For Referral Or Consultation</td>
+      <td>US Core Procedure Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Procedure.reasonReference</code></td>
+    </tr>
+    <tr>
+      <td>The Reason Or Indication For The Prescription</td>
+      <td>US Core MedicationRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">MedicationRequest.reasonCode</code></td>
+    </tr>
+    <tr>
+      <td>The Reason Or Indication For The Prescription</td>
+      <td>US Core MedicationRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">MedicationRequest.reasonReference</code></td>
+    </tr>
+    <tr>
+      <td>Medication Adherence</td>
+      <td>US Core MedicationRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">MedicationRequest.extension:medicationAdherence</code></td>
+    </tr>
+    <tr>
+      <td>A Reference To The Request For The Procedure</td>
+      <td>US Core Procedure Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Procedure.basedOn</code></td>
+    </tr>
+    <tr>
+      <td>US Core Document Category</td>
+      <td>US Core DocumentReference Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">DocumentReference.category:uscore</code></td>
+    </tr>
+    <tr>
+      <td>References To An Associated Survey, Assessment, Or Screening Tool</td>
+      <td>US Core Simple Observation Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.derivedFrom</code></td>
+    </tr>
+    <tr>
+      <td>Specimen Source Site</td>
+      <td>US Core Specimen Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Specimen.collection</code></td>
+    </tr>
+    <tr>
+      <td>Specimen Source Site</td>
+      <td>US Core Specimen Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Specimen.collection.bodySite</code></td>
+    </tr>
+    <tr>
+      <td>Specimen Condition Acceptability</td>
+      <td>US Core Specimen Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Specimen.condition</code></td>
+    </tr>
+    <tr>
+      <td>Health Status Assessments</td>
+      <td>US Core Simple Observation Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.category:us-core</code></td>
+    </tr>
+    <tr>
+      <td>Health Status Assessments</td>
+      <td>US Core Observation Screening Assessment Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.category:screening-assessment</code></td>
+    </tr>
+    <tr>
+      <td>Health Status Assessments</td>
+      <td>US Core Condition Problems and Health Concerns Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Condition.category:screening-assessment</code></td>
+    </tr>
+    <tr>
+      <td>Pregnancy Status</td>
+      <td>US Core Observation Pregnancy Intent Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.performer</code></td>
+    </tr>
+    <tr>
+      <td>Pregnancy Status</td>
+      <td>US Core Observation Pregnancy Status Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.performer</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core AllergyIntolerance Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">AllergyIntolerance.recorder</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core Care Experience Preference Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.performer</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core CarePlan Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">CarePlan.contributor</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core Condition Encounter Diagnosis Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Condition.recorder</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core Condition Problems and Health Concerns Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Condition.recorder</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core Observation Occupation Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.performer</code></td>
+    </tr>
+    <tr>
+      <td>Provenance Author</td>
+      <td>US Core Treatment Intervention Preference Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.performer</code></td>
+    </tr>
+    <tr>
+      <td>Orders</td>
+      <td>US Core ServiceRequest Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">ServiceRequest.code.text</code></td>
+    </tr>
+    <tr>
+      <td>Laboratory Tests</td>
+      <td>US Core Laboratory Result Observation Profile</td>
+      <td><code class="language-plaintext highlighter-rouge">Observation.code.text</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="communicating-additional-uscdi-requirements-for-certifying-systems">Communicating Additional USCDI Requirements for Certifying Systems</h4>
+
+<p>Throughout the rest of the specification, the term "Certifying System" will be used consistently to refer to such systems seeking ASTP certification, distinguishing them from other implementers (e.g., non-certifying systems) that may treat Additional USCDI Requirements as optional.  To communicate when <em>Additional USCDI Requirements</em> elements are in a US Core profile:</p>
+
+<ol>
+  <li>The profiles page includes an "Additional USCDI Requirements" listing the elements under the "Mandatory and <em>Must Support</em> Data Elements" section.</li>
+  <li>The computable <a href="StructureDefinition-uscdi-requirement.html">US Core USCDI Requirement Extension</a> is added to each element in the profile's <a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a>.</li>
+  <li>The formal view of the profile content displays "<strong>ADDITIONAL USCDI:</strong>" in the element's short description (see below for examples).</li>
+</ol>
+
+<h3 id="presentation-of-must-support-mandatory-and-uscdi-requirement-elements-in-the-formal-profile-views">Presentation of Must Support, Mandatory, and USCDI Requirement Elements in the Formal Profile Views</h3>
+
+<p>On each profile page, several different formal views of the US Core Profile contents are displayed in a tree format under tabs labeled "Differential Table", "Snapshot Table", and "Key Elements Table". Several examples below illustrate the presentation of <em>Must Support</em> elements and their rules. 
+Except where noted, the same rules apply for the <em>Additional USCDI Requirements</em> for Certifying Systems.</p>
+
+<h4 id="differential-table-view">Differential Table View</h4>
+
+<p>Elements with a cardinality starting with "1"  under the column header, "Card." (e.g., 1..1) are <em>Mandatory</em> elements. Elements labeled <em>Must Support</em> in the "Differential Table" view are flagged with an <span style="padding-left: 3px; padding-right: 3px; color: white; background-color: red" title="This element must be supported">S</span>. Elements with the label "<strong>ADDITIONAL USCDI:</strong>" under the header "Description and Constraints" are <em>Additional USCDI Requirements</em>. Figure 1 illustrates an example of this:</p>
+
+<p><!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide --></p>
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 1: Differential Table View</strong></figcaption>
+  <img src="Must_Support_Differential_View.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Differential_View.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="key-elements-table-view">Key Elements Table View</h4>
+
+<p>The "Key Elements Table" view consists of:</p>
+<ol>
+  <li>All the <em>Mandatory</em>, <em>Must Support</em>, and <em>Additional USCDI Requirements</em> elements in the differential view</li>
+  <li>Any <em>Mandatory</em>, <em>Must Support</em>, and <em>Additional USCDI Requirements</em> elements inherited from a US Core Profile or other profile from which it is derived. (e.g., the <a href="StructureDefinition-us-core-body-height.html">US Core Body Height Profile</a> is based on the <a href="StructureDefinition-us-core-vital-signs.html">US Core Vital Signs Profile</a>, and the <a href="StructureDefinition-us-core-questionnaireresponse.html">US Core QuestionnaireResponse Profile</a> is based on the <a href="http://hl7.org/fhir/uv/sdc/StructureDefinition-sdc-questionnaireresponse.html">Structured Data Capture (SDC) Questionnaire Response Profile</a>)</li>
+  <li>any <em>Mandatory</em> or <a href="general-requirements.html#modifier-elements">modifier elements</a> not in 1. or 2.</li>
+</ol>
+
+<p>This view includes the same flags and labels described in Differential Table View:</p>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 2: Key Elements Table View</strong></figcaption>
+  <img src="Must_Support_Key_View.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Key_View.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="snapshot-table-view">Snapshot Table View</h4>
+
+<p>The "Snapshot Table" view in Figure 3 view consists of:</p>
+<ol>
+  <li>all the <em>Mandatory</em>, <em>Must Support</em>, and <em>Additional USCDI Requirements</em> elements in the differential view</li>
+  <li>any inherited <em>Mandatory</em>, <em>Must Support</em>, and <em>Additional USCDI Requirements</em> elements from a US Core or other profile upon which it is based. (e.g.,  <a href="StructureDefinition-us-core-body-height.html">US Core Body Height Profile</a> based on <a href="http://hl7.org/fhir/R4/observation-vitalsigns.html">Vital Signs Profile</a> or <a href="StructureDefinition-us-core-questionnaireresponse.html">US Core QuestionnaireResponse Profile</a> based on <a href="http://hl7.org/fhir/uv/sdc/StructureDefinition-sdc-questionnaireresponse.html">Structured Data Capture (SDC) Questionnaire Response Profile</a>)</li>
+  <li>any base FHIR elements not in 1. or 2.</li>
+</ol>
+
+<p>This view includes the same flags and labels as described in Differential Table View:</p>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 3: Snapshot Table View</strong></figcaption>
+  <img src="Must_Support_Snapshot_View.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Snapshot_View.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="defined-pattern-elements">Defined Pattern Elements</h4>
+
+<p>The StructureDefinitions define the US Core Profiles and the <a href="http://hl7.org/fhir/R4/elementdefinition-definitions.html#ElementDefinition.pattern_x_">ElementDefinition.pattern</a>, used almost exclusively for the CodeableConcept and Coding datatypes. If an element is marked as <em>Must Support</em> and defined by a pattern, then the pattern defines the elements <em>and</em> element values that the Server <strong>SHALL</strong> be capable of providing. If an element is marked as <em>Additional USCDI</em> and defined by a pattern, then the pattern defines the elements <em>and</em> element values that the Certifying System <strong>SHALL</strong> be capable of providing.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-diagnosticreport-lab.html">US Core DiagnosticReport Profile for Laboratory Results Reporting</a> category element is defined with a pattern requiring fixed values in <code class="language-plaintext highlighter-rouge">DiagnosticReport.category.coding.system</code>  and <code class="language-plaintext highlighter-rouge">DiagnosticReport.category.coding.code</code> for a Coding element. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> provide these values in a <code class="language-plaintext highlighter-rouge">DiagnosticReport.category</code></li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing these values in <code class="language-plaintext highlighter-rouge">DiagnosticReport.category</code></li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 4: US Core DiagnosticReport.category</strong></figcaption>
+  <img src="Must_Support_DiagnosticReport_category.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_DiagnosticReport_category.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="must-support---primitive-element">Must Support - Primitive Element</h4>
+
+<p>Primitive elements are single elements with a primitive value. If they are marked as <em>Must Support</em>, then the Server <strong>SHALL</strong> be capable of providing the element value to meet the <em>Must Support</em> requirement. If they are marked as <em>Additional USCDI</em>, then the Certifying System <strong>SHALL</strong> be capable of providing the element value to meet the <em>Additional USCDI</em> requirement.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-diagnosticreport-lab.html">US Core DiagnosticReport Profile for Laboratory Results Reporting</a> issued element is a primitive <code class="language-plaintext highlighter-rouge">instant</code> datatype. Therefore, when claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing a value in a <code class="language-plaintext highlighter-rouge">DiagnosticReport.issued</code></li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing the value in <code class="language-plaintext highlighter-rouge">DiagnosticReport.issued</code></li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 5: US Core DiagnosticReport.issued</strong></figcaption>
+  <img src="Must_Support_DiagnosticReport_issued.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_DiagnosticReport_issued.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="must-support---complex-elements">Must Support - Complex Elements</h4>
+
+<p>Complex elements are composed of primitive and other complex elements.   Note that coded elements (<code class="language-plaintext highlighter-rouge">CodeableConcept</code>, <code class="language-plaintext highlighter-rouge">Coding</code>, and <code class="language-plaintext highlighter-rouge">code</code> datatypes) also have additional binding rules documented in the <a href="general-requirements.html#using-codes-in-us-core-profiles">Coded Elements</a> section.</p>
+
+<p>For any complex element marked as <em>Must Support</em>, the Server <strong>SHALL</strong> be capable of providing at least one of the sub-element values. If any sub-element is marked as <em>Must Support</em>, it must also meet the <em>Must Support</em> requirements and satisfy the <em>Must Support</em> requirements for the parent element.</p>
+
+<p>For any complex element marked as <em>Additional USCDI</em>, the Certifying System <strong>SHALL</strong> be capable of providing at least one of the sub-element values. If any sub-element is marked as <em>Additional USCDI</em>, it must also meet the <em>Additional USCDI</em> requirements and satisfy the <em>Additional USCDI</em> requirements for the parent element.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-diagnosticreport-note.html">US Core DiagnosticReport Profile for Report and Note exchange</a> <code class="language-plaintext highlighter-rouge">presentedForm</code> element is labeled <em>Must Support</em> and has no <em>Must Support</em> sub-elements. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing a value in <code class="language-plaintext highlighter-rouge">DiagnosticReport.presentedForm</code> sub-element.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing the value in <code class="language-plaintext highlighter-rouge">DiagnosticReport.presentedForm</code>.</li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 6: US Core DiagnosticReport.presentedForm</strong></figcaption>
+  <img src="Must_Support_DiagnosticReport_presentedForm.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_DiagnosticReport_presentedForm.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>For example, the <a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a> <code class="language-plaintext highlighter-rouge">name</code> element is labeled <em>Must Support</em> and has <em>Must Support</em> sub-elements "family" and "given". When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing a value in <code class="language-plaintext highlighter-rouge">Patient.name.family</code> and <code class="language-plaintext highlighter-rouge">Patient.name.given</code>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing the value in <code class="language-plaintext highlighter-rouge">Patient.name.family</code> and <code class="language-plaintext highlighter-rouge">Patient.name.given</code>.</li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 7: US Core Patient.name</strong></figcaption>
+  <img src="Must_Support_Patient_name.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Patient_name.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>On the other hand, if any sub-element is marked as <em>Must Support</em> or  <em>Additional USCDI</em> and the parent element is not, there is <em>no expectation</em> that you must support the parent. However, if the parent element is represented in the structure, Servers <strong>SHALL</strong> support the sub-element(s) marked as <em>Must Support</em> and Certifying System  <strong>SHALL</strong> support the sub-elements labeled as <em>Additional USCDI</em>.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a> <code class="language-plaintext highlighter-rouge">telecom</code> element is not labeled <em>Must Support</em>, but <code class="language-plaintext highlighter-rouge">telecom.system</code>, <code class="language-plaintext highlighter-rouge">telecom.value</code>, <code class="language-plaintext highlighter-rouge">telecom.use</code> are. When claiming conformance to this profile:</p>
+
+<ul>
+  <li><em>If</em> US Core Responders support <code class="language-plaintext highlighter-rouge">Patient.telecom</code>, they <strong>SHALL</strong> be capable of providing values in <code class="language-plaintext highlighter-rouge">Patient.telecom.system</code> , <code class="language-plaintext highlighter-rouge">Patient.telecom.value</code>, and <code class="language-plaintext highlighter-rouge">Patient.telecom.use</code>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing the values in <code class="language-plaintext highlighter-rouge">Patient.telecom</code>.</li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 8: US Core Patient.telecom</strong></figcaption>
+  <img src="Must_Support_Patient_telecom.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Patient_telecom.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>Systems can support the other elements, but this is not a requirement of US Core. The <a href="https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi">U.S. Core Data for Interoperability (USCDI)</a> may require additional elements such as <code class="language-plaintext highlighter-rouge">Patient.suffix</code>.</p>
+
+<h4 id="must-support---resource-references">Must Support - Resource References</h4>
+
+<p>This section documents additional <em>Must Support</em> requirements for the <a href="http://hl7.org/fhir/R4/references.html">Reference</a> type element.</p>
+
+<h5 id="must-support-targets-for-us-core-profiles">Must Support Targets for US Core Profiles</h5>
+
+<p>When a Reference type element is labeled as <em>Must Support</em> and has a single target profile referenced, the target profile <strong>SHALL</strong> be supported. When a Reference type element is labeled as <em>Additional USCDI</em> and has a single target profile referenced, the target profile <strong>SHALL</strong> be supported for Certifying Systems.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-allergyintolerance.html">US Core AllergyIntolerance Profile</a> patient is labeled <em>Must Support</em>. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing an <code class="language-plaintext highlighter-rouge">AllergyIntolerance.patient</code> with a valid reference to a US Core Patient Profile.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing an <code class="language-plaintext highlighter-rouge">AllergyIntolerance.patient</code> with a valid reference to a US Core Patient Profile.</li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 9: US Core AllergyIntolerance.patient</strong></figcaption>
+  <img src="Must_Support_AllergyIntolerance.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_AllergyIntolerance.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>When a Reference type element is labeled as <em>Must Support</em>, has multiple target profiles referenced, and specific targets are labeled as <em>Must Support</em>, the <em>Must Support</em> target profile(s) <strong>SHALL</strong> be supported. When a Reference type element labeled as <em>Additional USCDI</em>, has multiple target profiles referenced, and specific targets are labeled as <em>Must Support</em>, the <em>Must Support</em> target profile(s) <strong>SHALL</strong> be supported by Certifying Systems.</p>
+
+<p>For example, the US Core DocumentReference Profile <code class="language-plaintext highlighter-rouge">DocumentReference.author</code> is a <em>Must Support</em> element, and six target profiles are displayed with only the US Core Practitioner Profile labeled <em>Must Support</em>. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing a DocumentReference.author with a valid reference to a US Core Practitioner Profile.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing a DocumentReference.author with a valid reference to a US Core Practitioner Profile.</li>
+</ul>
+
+<p>Systems can support other references, but this is not a requirement of US Core.</p>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 10: US Core DocumentReference.author</strong></figcaption>
+  <img src="Must_Support_DocumentReference.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_DocumentReference.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>The tables below list the <em>Must Support</em> target US Core Profiles and FHIR Resources for each US Core Profile.</p>
+
+<p><em>Must Support</em> Targets for <em>Must Support</em> US Core Elements</p>
+
+<!--   This liquid script creates a ms target table using input data from input/data/csv files
+
+This file is created with the python jupyter script: https://github.com/Healthedata1/MyNotebooks/blob/master/CapStatement/target_profile-tabler.ipynb 
+with the following columns:
+- profile: The US Core Profile that has Must Support Reference elements
+- target1..target7: The  Must Support target profiles or resources (up to 7 for now may be more in future)
+-  include parameters: file = "ms_refs","addl_uscdi_refs", "ms_choice_refs", "adl_uscdi_choice_refs"
+
+example usage for MS MS Targets: {% include ms-target-table-generator.md file="ms_refs" %}
+ -->
+
+<table class="grid" style="width: 75%">
+  <thead>
+    <tr>
+      <th>US Core Profile</th>
+      <th>Must Support Target Profiles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="StructureDefinition-head-occipital-frontal-circumference-percentile.html">US Core Pediatric Head Occipital Frontal Circumference Percentile Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-pediatric-bmi-for-age.html">US Core Pediatric BMI for Age Observation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-pediatric-weight-for-height.html">US Core Pediatric Weight for Height Observation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-adi-documentreference.html">US Core ADI DocumentReference Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-allergyintolerance.html">US Core AllergyIntolerance Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-average-blood-pressure.html">US Core Average Blood Pressure Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-blood-pressure.html">US Core Blood Pressure Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-bmi.html">US Core BMI Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-height.html">US Core Body Height Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-temperature.html">US Core Body Temperature Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-weight.html">US Core Body Weight Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-care-experience-preference.html">US Core Care Experience Preference Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-careplan.html">US Core CarePlan Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-practitionerrole.html">US Core PractitionerRole Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-condition-encounter-diagnosis.html">US Core Condition Encounter Diagnosis Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-condition-problems-health-concerns.html">US Core Condition Problems and Health Concerns Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-coverage.html">US Core Coverage Profile</a></td>
+      <td><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-diagnosticreport-lab.html">US Core DiagnosticReport Profile for Laboratory Results Reporting</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-observation-lab.html">US Core Laboratory Result Observation Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-diagnosticreport-note.html">US Core DiagnosticReport Profile for Report and Note Exchange</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-observation-clinical-result.html">US Core Observation Clinical Result Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-documentreference.html">US Core DocumentReference Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a></td>
+      <td><a href="StructureDefinition-us-core-condition-encounter-diagnosis.html">US Core Condition Encounter Diagnosis Profile</a><br /><a href="StructureDefinition-us-core-condition-problems-health-concerns.html">US Core Condition Problems and Health Concerns Profile</a><br /><a href="StructureDefinition-us-core-location.html">US Core Location Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-goal.html">US Core Goal Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-head-circumference.html">US Core Head Circumference Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-heart-rate.html">US Core Heart Rate Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-immunization.html">US Core Immunization Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-location.html">US Core Location Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-implantable-device.html">US Core Implantable Device Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-location.html">US Core Location Profile</a></td>
+      <td><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-medicationdispense.html">US Core MedicationDispense Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-medication.html">US Core Medication Profile</a><br /><a href="StructureDefinition-us-core-medicationrequest.html">US Core MedicationRequest Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-medicationrequest.html">US Core MedicationRequest Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-medication.html">US Core Medication Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-adi-documentation.html">US Core Observation ADI Documentation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-adi-documentreference.html">US Core ADI DocumentReference Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-clinical-result.html">US Core Observation Clinical Result Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-lab.html">US Core Laboratory Result Observation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-specimen.html">US Core Specimen Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-occupation.html">US Core Observation Occupation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-pregnancyintent.html">US Core Observation Pregnancy Intent Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-pregnancystatus.html">US Core Observation Pregnancy Status Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-screening-assessment.html">US Core Observation Screening Assessment Profile</a></td>
+      <td><a href="StructureDefinition-us-core-observation-screening-assessment.html">US Core Observation Screening Assessment Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-questionnaireresponse.html">US Core QuestionnaireResponse Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-sexual-orientation.html">US Core Observation Sexual Orientation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-practitionerrole.html">US Core PractitionerRole Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/endpoint.html">Endpoint</a><br /><a href="StructureDefinition-us-core-location.html">US Core Location Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-procedure.html">US Core Procedure Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-provenance.html">US Core Provenance Profile</a></td>
+      <td><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-pulse-oximetry.html">US Core Pulse Oximetry Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-questionnaireresponse.html">US Core QuestionnaireResponse Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-respiratory-rate.html">US Core Respiratory Rate Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-servicerequest.html">US Core ServiceRequest Profile</a></td>
+      <td><a href="StructureDefinition-us-core-encounter.html">US Core Encounter Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-simple-observation.html">US Core Simple Observation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-smokingstatus.html">US Core Smoking Status Observation Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-specimen.html">US Core Specimen Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-treatment-intervention-preference.html">US Core Treatment Intervention Preference Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-vital-signs.html">US Core Vital Signs Profile</a></td>
+      <td><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Additional <em>Must Support</em> Targets for Certifying Systems supporting <em>Additional USCDI</em> US Core Elements as <em>Must Support</em> (see <a href="#additional-uscdi-requirements">Additional USCDI Requirements</a> above).</p>
+
+<!--   This liquid script creates a ms target table using input data from input/data/csv files
+
+This file is created with the python jupyter script: https://github.com/Healthedata1/MyNotebooks/blob/master/CapStatement/target_profile-tabler.ipynb 
+with the following columns:
+- profile: The US Core Profile that has Must Support Reference elements
+- target1..target7: The  Must Support target profiles or resources (up to 7 for now may be more in future)
+-  include parameters: file = "ms_refs","addl_uscdi_refs", "ms_choice_refs", "adl_uscdi_choice_refs"
+
+example usage for MS MS Targets: {% include ms-target-table-generator.md file="ms_refs" %}
+ -->
+
+<table class="grid" style="width: 75%">
+  <thead>
+    <tr>
+      <th>US Core Profile</th>
+      <th>Choice of Target Profiles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="StructureDefinition-us-core-procedure.html">US Core Procedure Profile</a></td>
+      <td><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="choice-of-at-least-one-targets-for-us-core-profiles">Choice of At Least One Targets for US Core Profiles</h5>
+
+<p>When a Reference element is labeled as <em>Must Support</em> has multiple target profiles referenced, but none are labeled as <em>Must Support</em>, <em>at least one</em> target profile <strong>SHALL</strong> be supported. When a Reference element is labeled as <em>Additional USCDI</em> has multiple target profiles referenced, but none are labeled as <em>Must Support</em>, <em>at least one</em> target profile <strong>SHALL</strong> be supported by Certifying Systems.</p>
+
+<p>For example, the US Core Vital Signs Profile  <code class="language-plaintext highlighter-rouge">Observation.performer</code> is a <em>Must Support</em> element, and there are six target profiles displayed with none labeled as <em>Must Support</em>. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of supporting <code class="language-plaintext highlighter-rouge">Observation.performer</code> with a valid reference to <em>at least one</em> target profile.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing <code class="language-plaintext highlighter-rouge">Observation.performer</code> with a valid reference to <em>any</em> target profile.</li>
+</ul>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 11: US Core Vital Signs Profile `Observation.performer`</strong></figcaption>
+  <img src="Must_Support_vital_signs.performer.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_vital_signs.performer.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>The tables below list the <em>at least one</em> candidate target US Core Profiles and FHIR Resources for each US Core Profile.  Note that these targets may overlap with the <em>Must Support</em> Targets listed above.</p>
+
+<p>Choice of Targets for <em>Must Support</em> US Core Elements</p>
+
+<!--   This liquid script creates a ms target table using input data from input/data/csv files
+
+This file is created with the python jupyter script: https://github.com/Healthedata1/MyNotebooks/blob/master/CapStatement/target_profile-tabler.ipynb 
+with the following columns:
+- profile: The US Core Profile that has Must Support Reference elements
+- target1..target7: The  Must Support target profiles or resources (up to 7 for now may be more in future)
+-  include parameters: file = "ms_refs","addl_uscdi_refs", "ms_choice_refs", "adl_uscdi_choice_refs"
+
+example usage for MS MS Targets: {% include ms-target-table-generator.md file="ms_refs" %}
+ -->
+
+<table class="grid" style="width: 75%">
+  <thead>
+    <tr>
+      <th>US Core Profile</th>
+      <th>Must Support Target Profiles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="StructureDefinition-head-occipital-frontal-circumference-percentile.html">US Core Pediatric Head Occipital Frontal Circumference Percentile Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-pediatric-bmi-for-age.html">US Core Pediatric BMI for Age Observation Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-pediatric-weight-for-height.html">US Core Pediatric Weight for Height Observation Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-average-blood-pressure.html">US Core Average Blood Pressure Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-blood-pressure.html">US Core Blood Pressure Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-bmi.html">US Core BMI Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-height.html">US Core Body Height Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-temperature.html">US Core Body Temperature Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-body-weight.html">US Core Body Weight Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-head-circumference.html">US Core Head Circumference Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-heart-rate.html">US Core Heart Rate Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-pulse-oximetry.html">US Core Pulse Oximetry Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-respiratory-rate.html">US Core Respiratory Rate Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-vital-signs.html">US Core Vital Signs Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Choice of Targets for <em>Additional USCDI</em> US Core Elements</p>
+
+<!--   This liquid script creates a ms target table using input data from input/data/csv files
+
+This file is created with the python jupyter script: https://github.com/Healthedata1/MyNotebooks/blob/master/CapStatement/target_profile-tabler.ipynb 
+with the following columns:
+- profile: The US Core Profile that has Must Support Reference elements
+- target1..target7: The  Must Support target profiles or resources (up to 7 for now may be more in future)
+-  include parameters: file = "ms_refs","addl_uscdi_refs", "ms_choice_refs", "adl_uscdi_choice_refs"
+
+example usage for MS MS Targets: {% include ms-target-table-generator.md file="ms_refs" %}
+ -->
+
+<table class="grid" style="width: 75%">
+  <thead>
+    <tr>
+      <th>US Core Profile</th>
+      <th>Choice of Target Profiles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="StructureDefinition-us-core-allergyintolerance.html">US Core AllergyIntolerance Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-care-experience-preference.html">US Core Care Experience Preference Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-careplan.html">US Core CarePlan Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/device.html">Device</a><br /><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-condition-encounter-diagnosis.html">US Core Condition Encounter Diagnosis Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-condition-problems-health-concerns.html">US Core Condition Problems and Health Concerns Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-medicationrequest.html">US Core MedicationRequest Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/condition.html">Condition</a><br /><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-occupation.html">US Core Observation Occupation Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-pregnancyintent.html">US Core Observation Pregnancy Intent Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-observation-pregnancystatus.html">US Core Observation Pregnancy Status Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-procedure.html">US Core Procedure Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/condition.html">Condition</a><br /><a href="http://hl7.org/fhir/R4/diagnosticreport.html">DiagnosticReport</a><br /><a href="http://hl7.org/fhir/R4/documentreference.html">DocumentReference</a><br /><a href="http://hl7.org/fhir/R4/observation.html">Observation</a><br /><a href="http://hl7.org/fhir/R4/procedure.html">Procedure</a><br /><a href="StructureDefinition-us-core-careplan.html">US Core CarePlan Profile</a><br /><a href="StructureDefinition-us-core-servicerequest.html">US Core ServiceRequest Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-servicerequest.html">US Core ServiceRequest Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/condition.html">Condition</a><br /><a href="http://hl7.org/fhir/R4/diagnosticreport.html">DiagnosticReport</a><br /><a href="http://hl7.org/fhir/R4/documentreference.html">DocumentReference</a><br /><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-simple-observation.html">US Core Simple Observation Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/imagingstudy.html">ImagingStudy</a><br /><a href="http://hl7.org/fhir/R4/media.html">Media</a><br /><a href="http://hl7.org/fhir/R4/molecularsequence.html">MolecularSequence</a><br /><a href="http://hl7.org/fhir/R4/observation.html">Observation</a><br /><a href="StructureDefinition-us-core-documentreference.html">US Core DocumentReference Profile</a><br /><a href="StructureDefinition-us-core-questionnaireresponse.html">US Core QuestionnaireResponse Profile</a></td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-us-core-treatment-intervention-preference.html">US Core Treatment Intervention Preference Profile</a></td>
+      <td><a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a><br /><a href="StructureDefinition-us-core-careteam.html">US Core CareTeam Profile</a><br /><a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a><br /><a href="StructureDefinition-us-core-patient.html">US Core Patient Profile</a><br /><a href="StructureDefinition-us-core-practitioner.html">US Core Practitioner Profile</a><br /><a href="StructureDefinition-us-core-relatedperson.html">US Core RelatedPerson Profile</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- FHIR Core Resources -->
+
+<!-- IG Pages (Including IG Artifacts -->
+<!--
+WARNING: This file is auto-generated by the page-link-list script
+at https://github.com/Healthedata1/Healthedata1-Sandbox/blob/master/publish.sh
+It is created from temp/pages/_data/pages.json using jq to extract page titles and relative URLs
+to create a link-list file.
+DO NOT EDIT THIS FILE MANUALLY, as changes will be overwritten on the next build.
+To update links, modify the source data in the pages and sushi-config.yaml file and rebuild the site.
+-->
+
+<h4 id="must-support---choice-of-data-types">Must Support - Choice of Data Types</h4>
+
+<p>If a <em>Must Support</em> element has a choice of datatypes for its content, the datatypes the Server <strong>SHALL</strong> support are labeled as <em>Must Support</em>.  If an <em>Additional USCDI</em> element has a choice of datatypes for its content, the datatypes the Certifying System <strong>SHALL</strong> support are labeled as <em>Must Support</em>.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-observation-clinical-result.html">US Core Observation Clinical Result Profile</a> effectiveDateTime is labeled <em>Must Support</em>. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of populating <code class="language-plaintext highlighter-rouge">Observation.effectiveDateTime</code>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing <code class="language-plaintext highlighter-rouge">Observation.effectiveDateTime</code>.</li>
+</ul>
+
+<p>Systems <strong>MAY</strong> support populating and processing other choice elements (such as Observation.effectivePeriod), but this is not a requirement of US Core.</p>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure : US Core Observation.effectiveDateTime</strong></figcaption>
+  <img src="Must_Support_Observation.effective.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Observation.effective.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>For the <a href="StructureDefinition-us-core-observation-clinical-result.html">US Core Observation Clinical Result Profile</a> value element, multiple elements are labeled <em>Must Support</em>. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of populating <code class="language-plaintext highlighter-rouge">Observation.valueQuantity</code>, <code class="language-plaintext highlighter-rouge">Observation.valueCodeableConcept</code>, and <code class="language-plaintext highlighter-rouge">Observation.valueString</code>.</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing <code class="language-plaintext highlighter-rouge">Observation.valueQuantity</code>, <code class="language-plaintext highlighter-rouge">Observation.valueCodeableConcept</code>, and <code class="language-plaintext highlighter-rouge">Observation.valueString</code>.</li>
+</ul>
+
+<p>Systems can support the other elements, but this is not a requirement of US Core.</p>
+
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide -->
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 12: US Core `Observation.value[x]`</strong></figcaption>
+  <img src="Must_Support_Observation.value.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Observation.value.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="must-support---choice-of-profile-elements">Must Support - Choice of Profile Elements</h4>
+
+<p>There are several instances in this Guide where there is a choice of supporting one or another profile element to meet the <em>Must Support</em> or <em>Additional USCDI</em> requirements. In such cases, the Server or Certifying System <strong>SHALL</strong> support at least one element, and the Client application <strong>SHALL</strong> support all elements. Unfortunately, there is no way to define this in a computable way, but these instances are documented in the <em>Profile specific implementation guidance</em> sections.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li><a href="StructureDefinition-us-core-medicationrequest.html">US Core MedicationRequest Profile</a> can represent that information is from a secondary source using a boolean flag in <code class="language-plaintext highlighter-rouge">MedicationRequest.reportedBoolean</code> or a reference using <code class="language-plaintext highlighter-rouge">MedicationRequest.reportedReference</code>.
+    <ul>
+      <li>Although both are marked as <em>Must Support</em>, the Server system is not required to support both, but <strong>SHALL</strong> support at least one of these elements.</li>
+      <li>The Client application <strong>SHALL</strong> support both elements.
+7
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide --></li>
+    </ul>
+  </li>
+</ul>
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 13: US Core `MedicationRequest.reported[x]`</strong></figcaption>
+  <img src="Must_Support_MedicationRequest.reported.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_MedicationRequest.reported.png" />
+</figure>
+
+<p></p>
+</div>
+
+<h4 id="must-support---slices">Must Support - Slices</h4>
+
+<p>FHIR profiles use <a href="http://hl7.org/fhir/R4/profiling.html#slicing">slicing</a> to define repeating elements (elements that may occur more than once in an instance) by putting constraints on one or more of the repeating elements ("slices"). See Figure 14 below for how that is represented in the guide.</p>
+
+<p>The element that defines the slicing discriminator ("slicer") may define constraints that apply across all slices for the following element properties: max, type (code, profile, targetProfile, aggregation, and versioning), fixed[x], pattern[x], minValue[x], maxValue[x], maxLength, constraints, required and extensible bindings (including additional bindings), mustHaveValue, and valueAlternatives. However, the slicer's Must Support property <em>only</em> defines the element level <em>Must Support/Additional USCDI</em> property. In other words, the slicer's <em>Must Support/Additional USCDI</em> is not inherited by the slices, and each slice must be explicitly tagged with the <em>Must Support/Additional USCDI</em> property to define that slice's conformance strength. If no <em>Must Support/Additional USCDI</em> property is defined for the slice, then support for that slice's definition is optional.</p>
+
+<p>For example, the <a href="StructureDefinition-us-core-organization.html">US Core Organization Profile</a> <code class="language-plaintext highlighter-rouge">Organization.identifier</code> element is a Must Support slicer element and defines three slices, "NPI", "CLIA", and "NAIC". Only the "NPI" slice is labeled as a Must Support element. When claiming conformance to this profile:</p>
+
+<ul>
+  <li>US Core Responders <strong>SHALL</strong> be capable of providing an <code class="language-plaintext highlighter-rouge">Organization.identifier</code> that conforms to the slicer constraints and the "NPI" slice's constraints. (note that in this case, these conformance requirements are the same -  by conforming to the "NPI" slice's constraints, the slicer constraints are met as well).</li>
+  <li>US Core Requestors <strong>SHALL</strong> be capable of processing an <code class="language-plaintext highlighter-rouge">Organization.identifier</code> that conforms to slicer constraints and the "NPI" slice's constraints.</li>
+  <li>Systems <strong>MAY</strong> support the "CLIA" and "NAIC" slices, but this is not a requirement for US Core.
+<!-- all this Bootstrap html for getting an narrow image to fit nicely in text - 640 pix wide --></li>
+</ul>
+
+<div>
+<figure class="figure">
+<figcaption class="figure-caption"><strong>Figure 14: US Core Organization.identifier</strong></figcaption>
+  <img src="Must_Support_Organization_identifier.png" class="figure-img img-responsive img-rounded center-block" alt="Must_Support_Organization_identifier.png" />
+</figure>
+
+<p></p>
+</div>
+
+<p>Note that if a slice is labeled as <em>Must Support/Additional USCDI</em> and the slicer element is not labeled as <em>Must Support/Additional USCDI</em>, then if the server/certifying system supports the element, it must support the slice's definition. There are no examples of this structure in US Core.</p>
+
+<!-- FHIR Core Resources -->
+
+<!-- IG Pages (Including IG Artifacts -->
+<!--
+WARNING: This file is auto-generated by the page-link-list script
+at https://github.com/Healthedata1/Healthedata1-Sandbox/blob/master/publish.sh
+It is created from temp/pages/_data/pages.json using jq to extract page titles and relative URLs
+to create a link-list file.
+DO NOT EDIT THIS FILE MANUALLY, as changes will be overwritten on the next build.
+To update links, modify the source data in the pages and sushi-config.yaml file and rebuild the site.
+-->
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="http://www.hl7.org/Special/committees/cgp">HL7 International / Cross-Group Projects</a>.  Package hl7.fhir.us.core#8.0.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Jun 9, 2025 19:05+0000">2025-06-09</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+                 | <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir/us/core/history.html">Version History</a> |
+                 <a style="color: #81BEF7" rel="license" href="http://hl7.org/fhir/R4/license.html"><img style="border-style: none;" alt="CC0" src="cc0.png"/></a> |
+                 <!--<a style="color: #81BEF7" href="todo.html">Search</a> | --> 
+                 <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir-issues">Propose a change</a>
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="condition-category"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: CodeSystem condition-category</b></p><a name="condition-category"> </a><a name="hccondition-category"> </a><a name="condition-category-en-US"> </a><p><b>Properties</b></p><p><b>This code system defines the following properties for its concepts</b></p><table class="grid"><tr><td><b>Name</b></td><td><b>Code</b></td><td><b>URI</b></td><td><b>Type</b></td><td><b>Description</b></td></tr><tr><td>status</td><td>status</td><td>http://hl7.org/fhir/concept-properties#status</td><td>code</td><td>A property that indicates the status of the concept. One of active, experimental, deprecated, retired</td></tr></table><p><b>Concepts</b></p><p>This case-sensitive code system <code>http://hl7.org/fhir/us/core/CodeSystem/condition-category</code> defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td><td><b>status</b></td></tr><tr style="background-color: #ffeeee"><td style="white-space:nowrap">problem<a name="condition-category-problem"> </a></td><td>Problem</td><td>The patients problems as identified by the provider(s). Items on the provider's problem list. Note that this code has been deprecated and is replaced by the http://terminology.hl7.org/CodeSystem/condition-category concept &quot;problem-list-item&quot;.</td><td>deprecated</td></tr><tr><td style="white-space:nowrap">health-concern<a name="condition-category-health-concern"> </a></td><td>Health Concern</td><td>Additional health concerns from other stakeholders</td><td/></tr></table></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="cgp"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="3">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom">
+        <valueCanonical value="http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core"/>
+      </extension>
+    </valueInteger>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+    <valueCode value="trial-use">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom">
+        <valueCanonical value="http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core"/>
+      </extension>
+    </valueCode>
+  </extension>
+  <url value="http://hl7.org/fhir/us/core/CodeSystem/condition-category"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.40.2.16.2"/>
+  </identifier>
+  <version value="8.0.0"/>
+  <name value="USCoreConditionCategoryExtensionCodes"/>
+  <title value="US Core Condition Category Extension Codes"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2022-09-29T14:59:24-07:00"/>
+  <publisher value="HL7 International / Cross-Group Projects"/>
+  <contact>
+    <name value="HL7 International / Cross-Group Projects"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.hl7.org/Special/committees/cgp"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="cgp@lists.HL7.org"/>
+    </telecom>
+  </contact>
+  <description value="Set of codes that are needed for implementation of the US-Core Condition Profile. These codes are used as extensions to the FHIR and US Core value sets."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+    </coding>
+  </jurisdiction>
+  <copyright value="Used by permission of HL7 International, all rights reserved Creative Commons License"/>
+  <caseSensitive value="true"/>
+  <content value="complete"/>
+  <property>
+    <code value="status"/>
+    <uri value="http://hl7.org/fhir/concept-properties#status"/>
+    <description value="A property that indicates the status of the concept. One of active, experimental, deprecated, retired"/>
+    <type value="code"/>
+  </property>
+  <concept>
+    <code value="problem"/>
+    <display value="Problem"/>
+    <definition value="The patients problems as identified by the provider(s). Items on the provider's problem list. Note that this code has been deprecated and is replaced by the http://terminology.hl7.org/CodeSystem/condition-category concept &quot;problem-list-item&quot;."/>
+    <property>
+      <code value="status"/>
+      <valueCode value="deprecated"/>
+    </property>
+  </concept>
+  <concept>
+    <code value="health-concern"/>
+    <display value="Health Concern"/>
+    <definition value="Additional health concerns from other stakeholders"/>
+  </concept>
+</CodeSystem>

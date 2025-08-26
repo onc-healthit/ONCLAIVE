@@ -1,0 +1,106 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/serum-glucose> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "serum-glucose"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2005-07-05T15:29:58.597000+00:00"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation serum-glucose</b></p><a name=\"serum-glucose\"> </a><a name=\"hcserum-glucose\"> </a><a name=\"serum-glucose-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Last updated: 2005-07-05 15:29:58+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-lab.html\">US Core Laboratory Result Observation Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category laboratory}\">Laboratory</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 2345-7}\">Glucose, Blood</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw</a></p><p><b>effective</b>: 2005-07-05</p><p><b>performer</b>: <a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></p><p><b>value</b>: 76 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></p><p><b>interpretation</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></p><p><b>specimen</b>: <a href=\"Specimen-specimen-example-serum.html\">Serum specimen</a></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Low</b></td><td><b>High</b></td><td><b>Type</b></td></tr><tr><td style=\"display: none\">*</td><td>40 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>109 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] ) ;
+     fhir:text [ fhir:v "Laboratory" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2345-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2345-7" ] ;
+       fhir:display [ fhir:v "Glucose SerPl-mCnc" ]
+     ] ) ;
+     fhir:text [ fhir:v "Glucose, Blood" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2005-07-05"^^xsd:date
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+     fhir:display [ fhir:v "Dr Ronald Bone" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "76"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mg/dL" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "mg/dL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "N" ] ;
+       fhir:display [ fhir:v "Normal" ]
+     ] ) ;
+     fhir:text [ fhir:v "Normal" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:link <http://hl7.org/fhir/us/core/Specimen/specimen-example-serum> ;
+     fhir:reference [ fhir:v "Specimen/specimen-example-serum" ] ;
+     fhir:display [ fhir:v "Serum specimen" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "40"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mg/dL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mg/dL" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "109"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mg/dL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mg/dL" ]
+     ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/referencerange-meaning"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "normal" ] ;
+         fhir:display [ fhir:v "Normal Range" ]
+       ] ) ;
+       fhir:text [ fhir:v "Normal Range" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Specimen/specimen-example-serum> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

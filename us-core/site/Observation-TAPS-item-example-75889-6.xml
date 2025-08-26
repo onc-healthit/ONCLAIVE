@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="TAPS-item-example-75889-6"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation TAPS-item-example-75889-6</b></p><a name="TAPS-item-example-75889-6"> </a><a name="hcTAPS-item-example-75889-6"> </a><a name="TAPS-item-example-75889-6-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-observation-screening-assessment.html">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}">Survey</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 75889-6}">How often have you had four or more drinks in one day during the past year [Reported]</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2023-08-14 20:40:49+0000</p><p><b>performer</b>: <a href="Practitioner-practitioner-1.html">Practitioner Ronald Bone </a></p><p><b>value</b>: <span title="Codes:{http://loinc.org LA6270-8}">Never</span></p><p><b>note</b>: A question asked to determine if the patient is considered a 'risky drinker'. This term was created for, but not limited in use to, an electronic Clinical Quality Measure (eCQM) to be used in the CMS EHR Incentive Program for Meaningful Use. The eCQM allows for multiple ways to screen for alcohol misuse, including AUDIT-C [LOINC: 75626-2] or one of two questions that assess whether the patient consumes alcohol [LOINC: 75855-7] and the frequency of heavy drinking days (this LOINC). The LOINC for five (5) or more drinks per day is [LOINC: 88037-7].</p><p><b>derivedFrom</b>: <a href="QuestionnaireResponse-TAPS.html">Tobacco, Alcohol, Prescription medications, and other Substance use screen [TAPS] QuestionnaireResponse Example</a></p></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="survey"/>
+      <display value="Survey"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="75889-6"/>
+      <display value="How often have you had four or more drinks in one day during the past year [Reported]"/>
+    </coding>
+    <text value="How often have you had four or more drinks in one day during the past year [Reported]"/>
+  </code>
+  <subject>
+    <reference value="Patient/example"/>
+  </subject>
+  <effectiveDateTime value="2023-08-14T20:40:49.675000+00:00"/>
+  <performer>
+    <reference value="Practitioner/practitioner-1"/>
+  </performer>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="LA6270-8"/>
+      <display value="Never"/>
+    </coding>
+    <text value="Never"/>
+  </valueCodeableConcept>
+  <note>
+    <text value="A question asked to determine if the patient is considered a 'risky drinker'. This term was created for, but not limited in use to, an electronic Clinical Quality Measure (eCQM) to be used in the CMS EHR Incentive Program for Meaningful Use. The eCQM allows for multiple ways to screen for alcohol misuse, including AUDIT-C [LOINC: 75626-2] or one of two questions that assess whether the patient consumes alcohol [LOINC: 75855-7] and the frequency of heavy drinking days (this LOINC). The LOINC for five (5) or more drinks per day is [LOINC: 88037-7]."/>
+  </note>
+  <derivedFrom>
+    <reference value="QuestionnaireResponse/TAPS"/>
+    <display value="Tobacco, Alcohol, Prescription medications, and other Substance use screen [TAPS] QuestionnaireResponse Example"/>
+  </derivedFrom>
+</Observation>

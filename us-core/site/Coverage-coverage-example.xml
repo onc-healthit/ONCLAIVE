@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Coverage xmlns="http://hl7.org/fhir">
+  <id value="coverage-example"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Coverage coverage-example</b></p><a name="coverage-example"> </a><a name="hccoverage-example"> </a><a name="coverage-example-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-coverage.html">US Core Coverage Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: Member Number/88800933501</p><p><b>status</b>: Active</p><p><b>type</b>: <span title="Codes:{https://nahdo.org/sopt 3712}, {http://terminology.hl7.org/CodeSystem/v3-ActCode PPO}">PPO</span></p><p><b>subscriberId</b>: 888009335</p><p><b>beneficiary</b>: <a href="Patient-example.html">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>relationship</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/subscriber-relationship self}">Self</span></p><p><b>period</b>: 2020-01-01 --&gt; (ongoing)</p><p><b>payor</b>: <a href="Organization-acme-payer.html">Acme Health Plan</a></p><blockquote><p><b>class</b></p><p><b>type</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/coverage-class group}">An employee group</span></p><p><b>value</b>: xyz</p><p><b>name</b>: XYZ employee Group Plan</p></blockquote><blockquote><p><b>class</b></p><p><b>type</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/coverage-class plan}">A specific suite of benefits.</span></p><p><b>value</b>: gold</p><p><b>name</b>: Acme Gold Plan</p></blockquote></div>
+  </text>
+  <identifier>
+    <type>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+        <code value="MB"/>
+        <display value="Member Number"/>
+      </coding>
+    </type>
+    <system value="http://example.org/fhir/memberidentifier"/>
+    <value value="88800933501"/>
+  </identifier>
+  <status value="active"/>
+  <type>
+    <coding>
+      <system value="https://nahdo.org/sopt"/>
+      <code value="3712"/>
+      <display value="PPO"/>
+    </coding>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+      <code value="PPO"/>
+      <display value="preferred provider organization policy"/>
+    </coding>
+    <text value="PPO"/>
+  </type>
+  <subscriberId value="888009335"/>
+  <beneficiary>
+    <reference value="Patient/example"/>
+  </beneficiary>
+  <relationship>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/subscriber-relationship"/>
+      <code value="self"/>
+    </coding>
+    <text value="Self"/>
+  </relationship>
+  <period>
+    <start value="2020-01-01"/>
+  </period>
+  <payor>
+    <reference value="Organization/acme-payer"/>
+    <display value="Acme Health Plan"/>
+  </payor>
+  <class>
+    <type>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/coverage-class"/>
+        <code value="group"/>
+        <display value="Group"/>
+      </coding>
+      <text value="An employee group"/>
+    </type>
+    <value value="xyz"/>
+    <name value="XYZ employee Group Plan"/>
+  </class>
+  <class>
+    <type>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/coverage-class"/>
+        <code value="plan"/>
+        <display value="Plan"/>
+      </coding>
+      <text value="A specific suite of benefits."/>
+    </type>
+    <value value="gold"/>
+    <name value="Acme Gold Plan"/>
+  </class>
+</Coverage>

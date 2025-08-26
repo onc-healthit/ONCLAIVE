@@ -1,0 +1,95 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Coverage/coverage-example> a fhir:Coverage ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "coverage-example"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Coverage coverage-example</b></p><a name=\"coverage-example\"> </a><a name=\"hccoverage-example\"> </a><a name=\"coverage-example-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-coverage.html\">US Core Coverage Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: Member Number/88800933501</p><p><b>status</b>: Active</p><p><b>type</b>: <span title=\"Codes:{https://nahdo.org/sopt 3712}, {http://terminology.hl7.org/CodeSystem/v3-ActCode PPO}\">PPO</span></p><p><b>subscriberId</b>: 888009335</p><p><b>beneficiary</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>relationship</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/subscriber-relationship self}\">Self</span></p><p><b>period</b>: 2020-01-01 --&gt; (ongoing)</p><p><b>payor</b>: <a href=\"Organization-acme-payer.html\">Acme Health Plan</a></p><blockquote><p><b>class</b></p><p><b>type</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/coverage-class group}\">An employee group</span></p><p><b>value</b>: xyz</p><p><b>name</b>: XYZ employee Group Plan</p></blockquote><blockquote><p><b>class</b></p><p><b>type</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/coverage-class plan}\">A specific suite of benefits.</span></p><p><b>value</b>: gold</p><p><b>name</b>: Acme Gold Plan</p></blockquote></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MB" ] ;
+         fhir:display [ fhir:v "Member Number" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "http://example.org/fhir/memberidentifier"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "88800933501" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "https://nahdo.org/sopt"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "3712" ] ;
+       fhir:display [ fhir:v "PPO" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "PPO" ] ;
+       fhir:display [ fhir:v "preferred provider organization policy" ]
+     ] ) ;
+     fhir:text [ fhir:v "PPO" ]
+  ] ; # 
+  fhir:subscriberId [ fhir:v "888009335"] ; # 
+  fhir:beneficiary [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:relationship [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/subscriber-relationship"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "self" ]
+     ] ) ;
+     fhir:text [ fhir:v "Self" ]
+  ] ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2020-01-01"^^xsd:date ]
+  ] ; # 
+  fhir:payor ( [
+     fhir:link <http://hl7.org/fhir/us/core/Organization/acme-payer> ;
+     fhir:reference [ fhir:v "Organization/acme-payer" ] ;
+     fhir:display [ fhir:v "Acme Health Plan" ]
+  ] ) ; # 
+  fhir:class ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/coverage-class"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "group" ] ;
+         fhir:display [ fhir:v "Group" ]
+       ] ) ;
+       fhir:text [ fhir:v "An employee group" ]
+     ] ;
+     fhir:value [ fhir:v "xyz" ] ;
+     fhir:name [ fhir:v "XYZ employee Group Plan" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/coverage-class"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "plan" ] ;
+         fhir:display [ fhir:v "Plan" ]
+       ] ) ;
+       fhir:text [ fhir:v "A specific suite of benefits." ]
+     ] ;
+     fhir:value [ fhir:v "gold" ] ;
+     fhir:name [ fhir:v "Acme Gold Plan" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Organization/acme-payer> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

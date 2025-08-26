@@ -1,0 +1,89 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/HVS-panel-example-88121-9> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "HVS-panel-example-88121-9"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation HVS-panel-example-88121-9</b></p><a name=\"HVS-panel-example-88121-9\"> </a><a name=\"hcHVS-panel-example-88121-9\"> </a><a name=\"HVS-panel-example-88121-9-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-screening-assessment.html\">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://hl7.org/fhir/us/core/CodeSystem/us-core-category sdoh}\">SDOH</span>, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}\">Survey</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 88121-9}\">Hunger Vital Sign [HVS]</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2020-09-10 21:56:54+0000</p><p><b>performer</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>value</b>: 2 score</p><p><b>hasMember</b>: </p><ul><li><a href=\"Observation-HVS-item-example-88122-7.html\">Observation Within the past 12 months we worried whether our food would run out before we got money to buy more [U.S. FSS]</a></li><li><a href=\"Observation-HVS-item-example-88123-5.html\">Observation Within the past 12 months the food we bought just didn't last and we didn't have money to get more [U.S. FSS]</a></li><li><a href=\"Observation-HVS-item-example-88124-3.html\">Observation Food insecurity risk [HVS]</a></li></ul><p><b>derivedFrom</b>: <a href=\"QuestionnaireResponse-hunger-vital-sign-example.html\">Response to Questionnaire '-&gt;Hunger Vital Sign Example' about '-&gt;Amy V. Shaw'</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/us-core-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "sdoh" ] ;
+       fhir:display [ fhir:v "SDOH" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "survey" ] ;
+       fhir:display [ fhir:v "Survey" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:88121-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "88121-9" ] ;
+       fhir:display [ fhir:v "Hunger Vital Sign [HVS]" ]
+     ] ) ;
+     fhir:text [ fhir:v "Hunger Vital Sign [HVS]" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2020-09-10T21:56:54.671000+00:00"^^xsd:dateTime
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "score" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/HVS-item-example-88122-7> ;
+     fhir:reference [ fhir:v "Observation/HVS-item-example-88122-7" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/HVS-item-example-88123-5> ;
+     fhir:reference [ fhir:v "Observation/HVS-item-example-88123-5" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/HVS-item-example-88124-3> ;
+     fhir:reference [ fhir:v "Observation/HVS-item-example-88124-3" ]
+  ] ) ; # 
+  fhir:derivedFrom ( [
+     fhir:link <http://hl7.org/fhir/us/core/QuestionnaireResponse/hunger-vital-sign-example> ;
+     fhir:reference [ fhir:v "QuestionnaireResponse/hunger-vital-sign-example" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/HVS-item-example-88122-7> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/HVS-item-example-88123-5> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/HVS-item-example-88124-3> a fhir:us .
+
+<http://hl7.org/fhir/us/core/QuestionnaireResponse/hunger-vital-sign-example> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

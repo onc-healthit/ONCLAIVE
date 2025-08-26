@@ -1,0 +1,106 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/cbc-erythrocytes> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "cbc-erythrocytes"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2005-07-05T15:29:58.597000+00:00"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation cbc-erythrocytes</b></p><a name=\"cbc-erythrocytes\"> </a><a name=\"hccbc-erythrocytes\"> </a><a name=\"cbc-erythrocytes-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Last updated: 2005-07-05 15:29:58+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-lab.html\">US Core Laboratory Result Observation Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category laboratory}\">Laboratory</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 789-8}\">Red Blood Cell (RBC) Count, Blood</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw</a></p><p><b>effective</b>: 2005-07-05</p><p><b>performer</b>: <a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></p><p><b>value</b>: 4.58 10*6/uL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code10*6/uL = '10*6/uL')</span></p><p><b>interpretation</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></p><p><b>specimen</b>: <a href=\"Specimen-specimen-example-whole-blood.html\">Whole Blood Specimen Example</a></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Low</b></td><td><b>High</b></td><td><b>Type</b></td></tr><tr><td style=\"display: none\">*</td><td>4.1 10*6/uL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code10*6/uL = '10*6/uL')</span></td><td>6.1 10*6/uL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code10*6/uL = '10*6/uL')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] ) ;
+     fhir:text [ fhir:v "Laboratory" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:789-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "789-8" ] ;
+       fhir:display [ fhir:v "Erythrocytes [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Red Blood Cell (RBC) Count, Blood" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2005-07-05"^^xsd:date
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+     fhir:display [ fhir:v "Dr Ronald Bone" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v 4.58 ] ;
+     fhir:unit [ fhir:v "10*6/uL" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*6/uL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "N" ] ;
+       fhir:display [ fhir:v "Normal" ]
+     ] ) ;
+     fhir:text [ fhir:v "Normal" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:link <http://hl7.org/fhir/us/core/Specimen/specimen-example-whole-blood> ;
+     fhir:reference [ fhir:v "Specimen/specimen-example-whole-blood" ] ;
+     fhir:display [ fhir:v "Whole Blood Specimen Example" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v 4.1 ] ;
+       fhir:unit [ fhir:v "10*6/uL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*6/uL" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v 6.1 ] ;
+       fhir:unit [ fhir:v "10*6/uL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*6/uL" ]
+     ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/referencerange-meaning"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "normal" ] ;
+         fhir:display [ fhir:v "Normal Range" ]
+       ] ) ;
+       fhir:text [ fhir:v "Normal Range" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Specimen/specimen-example-whole-blood> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

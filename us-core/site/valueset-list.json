@@ -1,0 +1,272 @@
+{
+  "codeSystems" : [
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-note-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreClinicalNoteType",
+      "title" : "US Core Clinical Note Type",
+      "description" : "The US Core Clinical Note Type Value Set is a 'starter set' of types supported for fetching and storing clinical notes.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.1"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.1"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-result-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreClinicalResultObservationCategory",
+      "title" : "US Core Clinical Result Observation Category",
+      "description" : "Used to classify the context of clinical result observations.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/observation-category"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.2"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.2"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreConditionCodes",
+      "title" : "US Core Condition Codes",
+      "description" : "This describes the problem. Diagnosis/Problem List is broadly defined as a series of brief statements that catalog a patient's medical, nursing, dental, social, preventative and psychiatric events and issues that are relevant to that patient's healthcare (e.g., signs, symptoms, and defined conditions). ICD-10 is appropriate for Diagnosis information, and ICD-9 for historical information.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/icd9cm",
+        "http://hl7.org/fhir/sid/icd-10-cm",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.16"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.16"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code-current",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreConditionCodesCurrent",
+      "title" : "US Core Condition Codes Current",
+      "description" : "This valueset is defined the same as the [US Core Condition Codes](ValueSet-us-core-condition-code.html) value set except it excludes ICD-9-CM codes. It us used for encoding newly recorded, non-legacy problem list items, health concerns and diagnosis using SNOMED CT and ICD-10-CM per USCDI requirements.",
+      "systems" : ["http://hl7.org/fhir/sid/icd-10-cm", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.3"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.3"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDiagnosticReportCategory",
+      "title" : "US Core Diagnostic Report Category Codes",
+      "description" : "The US Core Diagnostic Report Category Value Set is a 'starter set' of categories supported for fetching and Diagnostic Reports and notes.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.4"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.4"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-report-and-note-codes",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreNonLaboratoryCodes",
+      "title" : "US Core Non Laboratory Codes",
+      "description" : "This value set includes All LOINC codes defined as type \"clinical,\" therefore excluding laboratory tests, survey instruments, and claims documents. This includes observables such as vital signs, hemodynamics, intake/output, EKG, obstetric ultrasound, and cardiac echo, and includes discrete and narrative diagnostic observations and reports.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.5"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.5"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDocumentReferenceCategory",
+      "title" : "US Core DocumentReference Category",
+      "description" : "The US Core DocumentReferences Category Value Set is a 'starter set' of categories supported for fetching and storing clinical notes.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.6"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.6"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDocumentReferenceType",
+      "title" : "US Core DocumentReference Type",
+      "description" : "The US Core DocumentReference Type Value Set includes all LOINC values whose SCALE is \"Doc\" in the LOINC database and the HL7 v3 Code System NullFlavor concept 'unknown'",
+      "systems" : [
+        "http://loinc.org",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.7"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.7"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-goal-description",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreGoalCodes",
+      "title" : "US Core Goal Codes",
+      "description" : "Concepts from SNOMED CT  and LOINC code systems that can be used to indicate the goal.",
+      "systems" : ["http://loinc.org", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.17"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.17"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-laboratory-test-codes",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreLaboratoryTestCodes",
+      "title" : "US Core Laboratory Test Codes",
+      "description" : "Laboratory LOINC codes: From the introduction to August 2022 LOINC Users' guide; \"The current scope of the existing laboratory portion of the LOINC  database includes all observations reported by clinical laboratories, including the specialty areas: chemistry, including therapeutic drug monitoring and toxicology; hematology; serology; blood bank; microbiology; cytology; surgical pathology; and fertility.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.18"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.18"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-narrative-status",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "NarrativeStatus",
+      "title" : "US Core Narrative Status",
+      "description" : "The US Core Narrative Status Value Set limits the text status for the resource narrative.",
+      "systems" : ["http://hl7.org/fhir/narrative-status"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.8"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.8"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreObservationSmokingStatusStatus",
+      "title" : "US Core Status for Smoking Status Observation",
+      "description" : "Codes providing the status of an observation for smoking status. Constrained to `final`and `entered-in-error`.",
+      "systems" : ["http://hl7.org/fhir/observation-status"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.9"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.9"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-problem-or-health-concern",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProblemOrHealthConcern",
+      "title" : "US Core Problem or Health Concern",
+      "description" : "Code set for category codes for *US Core Condition Problems and Health Concerns Profile* consisting of the concepts \"problem\" and \"health-concern\".",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/condition-category",
+        "http://terminology.hl7.org/CodeSystem/condition-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.19"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.19"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProcedureCodes",
+      "title" : "US Core Procedure Codes",
+      "description" : "Concepts from CPT, SNOMED CT, HCPCS Level II Alphanumeric Codes, ICD-10-PCS,CDT and LOINC code systems that can be used to indicate the type of procedure performed.",
+      "systems" : [
+        "http://www.ada.org/cdt",
+        "http://www.ama-assn.org/go/cpt",
+        "http://loinc.org",
+        "https://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets",
+        "http://www.cms.gov/Medicare/Coding/ICD10",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.20"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.20"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-provenance-participant-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProvenancePaticipantTypeCodes",
+      "title" : "US Core Provenance Participant Type Codes",
+      "description" : "The type of participation a provenance agent played for a given target.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type",
+        "http://terminology.hl7.org/CodeSystem/provenance-participant-type"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.10"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.10"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-condition-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentConditionCategory",
+      "title" : "US Core Screening Assessment Condition Category",
+      "description" : "This value set consists of the single code \"sdoh\". It is the minimum value set of category codes used in the US Core Condition Problems and Health Concerns Profile that any conformant system **SHALL** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : ["http://hl7.org/fhir/us/core/CodeSystem/us-core-category"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.11"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.11"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentObservationCategory",
+      "title" : "US Core Screening Assessment Observation Category",
+      "description" : "This value set is the minimum value set of category codes used in the US Core Observation Screening Assessment and Simple Observation Profiles that any conformant system **SHALL** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.12"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.12"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-observation-maximum-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentObservationMaximumCategory",
+      "title" : "US Core Screening Assessment Observation Maximum Category",
+      "description" : "This value set is a value set of category codes used in the US Core Observation Screening Assessment that any conformant system **SHOULD** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.13"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.13"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreServiceRequestCategoryCodes",
+      "title" : "US Core ServiceRequest Category Codes",
+      "description" : "A set of SNOMED CT and LOINC concepts to classify a requested service",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.21"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.21"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-simple-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreSimpleObservationCategory",
+      "title" : "US Core Simple Observation Category",
+      "description" : "This value set is a value set of category codes used in the US Core Simple Observation and Condition Problems and Health Concerns Profiles that any conformant system **SHOULD** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.14"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.14"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-specimen-condition",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreSpecimenCondition",
+      "title" : "US Core Specimen Condition",
+      "description" : "This value set contains concepts the provide information regarding a specimen, including the container, that does not meet a laboratory’s criteria for acceptability.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v2-0493",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.15"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.15"]
+    }
+  ]
+}

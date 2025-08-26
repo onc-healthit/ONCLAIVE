@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="us-core-condition-code"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">    <!-- <h2>SearchParameter: USCoreConditionCode</h2>
+				<b> description</b> : <p><strong>Code for the condition</strong><br />
+NOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the <a href="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">Conformance expectation extension</a> to define additional expectations for the following SearchParameter elements:</p>
+<ul>
+<li><code>multipleAnd</code></li>
+<li><code>multipleOr</code></li>
+<li><code>comparator</code></li>
+<li><code>modifier</code></li>
+<li><code>chain</code></li>
+</ul>
+<p>For search operations, Servers and Clients <strong>SHOULD</strong> use standard FHIR SearchParameter.</p>
+
+			<br/> --><p><b> id</b> us-core-condition-code</p><p><b> url</b> : <b> http://hl7.org/fhir/us/core/SearchParameter/us-core-condition-code</b>
+			</p><p><b> name</b> : USCoreConditionCode</p><p><b> derivedFrom</b> : http://hl7.org/fhir/SearchParameter/clinical-code</p><p><b> status</b> : active</p><p><b> date</b> : 11/17/2024</p><p><b> publisher</b> : HL7 International - Cross-Group Projects</p><p><b> contact</b> : http://www.hl7.org/Special/committees/cgp</p>    <!-- <p>
+				<b> useContext</b> : </p> --><p><b> jurisdiction</b> : United States of America (the) <span> (Details : {urn:iso:std:iso:3166 code 'US' = 'United States of America', given as 'United
+           States of America (the)'})</span>
+			</p>    <!-- <p>
+		<b> purpose</b> : Need to search by identifier for various infrastructural cases - mainly retrieving packages,
+         and matching as part of a chain</p> --><p><b> code</b> : <code>code</code>
+			</p><p><b> base</b> :Condition</p><p><b> type</b> : token</p><p><b> expression</b> : <code>Condition.code</code>
+			</p><p><b> xpath</b> : <code>f:AllergyIntolerance/f:code|f:AllergyIntolerance/f:reaction/f:substance|f:Condition/f:code|f:DeviceRequest/f:codeCodeableConcept|f:DiagnosticReport/f:code|f:FamilyMemberHistory/f:condition/f:code|f:List/f:code|f:Medication/f:code|f:MedicationAdministration/f:medicationCodeableConcept|f:MedicationDispense/f:medicationCodeableConcept|f:MedicationRequest/f:medicationCodeableConcept|f:MedicationStatement/f:medicationCodeableConcept|f:Observation/f:code|f:Procedure/f:code|f:ServiceRequest/f:code</code>
+			</p><p><b> xpathUsage</b> : normal</p><p><b> multipleOr</b> : True   (Conformance Expectation = MAY)</p><p><b> multipleAnd</b> : True  ( Conformance Expectation = MAY)</p></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="cgp"/>
+  </extension>
+  <url value="http://hl7.org/fhir/us/core/SearchParameter/us-core-condition-code"/>
+  <version value="8.0.0"/>
+  <name value="USCoreConditionCode"/>
+  <derivedFrom value="http://hl7.org/fhir/SearchParameter/clinical-code"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2024-11-17"/>
+  <publisher value="HL7 International / Cross-Group Projects"/>
+  <contact>
+    <name value="HL7 International / Cross-Group Projects"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.hl7.org/Special/committees/cgp"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="cgp@lists.HL7.org"/>
+    </telecom>
+  </contact>
+  <description value="**Code for the condition**  &#xA;NOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the [Conformance expectation extension](http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation) to define additional expectations for the following SearchParameter elements:&#xA;- `multipleAnd`&#xA;- `multipleOr`&#xA;- `comparator`&#xA;- `modifier`&#xA;- `chain`&#xA;&#xA;It **SHALL NOT** be used as a search parameter for search. Servers and Clients **SHOULD** use the standard FHIR SearchParameter.&#xA;"/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+    </coding>
+  </jurisdiction>
+  <code value="code"/>
+  <base value="Condition"/>
+  <type value="token"/>
+  <expression value="Condition.code"/>
+  <xpathUsage value="normal"/>
+  <multipleOr value="true">
+    <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+      <valueCode value="MAY"/>
+    </extension>
+  </multipleOr>
+  <multipleAnd value="true">
+    <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+      <valueCode value="MAY"/>
+    </extension>
+  </multipleAnd>
+</SearchParameter>

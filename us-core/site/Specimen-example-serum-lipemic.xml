@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Specimen xmlns="http://hl7.org/fhir">
+  <id value="example-serum-lipemic"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Specimen example-serum-lipemic</b></p><a name="example-serum-lipemic"> </a><a name="hcexample-serum-lipemic"> </a><a name="example-serum-lipemic-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-specimen.html">US Core Specimen Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <code>http://acme.com/labs/accession-ids</code>/20241105-00124</p><p><b>accessionIdentifier</b>: <code>http://acme.com/labs/accession-ids</code>/20241105-00124</p><p><b>type</b>: <span title="Codes:{http://snomed.info/sct 119364003}, {http://terminology.hl7.org/CodeSystem/v2-0487 SER}">Serum sample</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><h3>Containers</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Type</b></td></tr><tr><td style="display: none">*</td><td><span title="Codes:">Serum Separator Tube</span></td></tr></table><p><b>condition</b>: <span title="Codes:{http://snomed.info/sct 118127007}">Lipemic</span></p></div>
+  </text>
+  <identifier>
+    <system value="http://acme.com/labs/accession-ids"/>
+    <value value="20241105-00124"/>
+  </identifier>
+  <accessionIdentifier>
+    <system value="http://acme.com/labs/accession-ids"/>
+    <value value="20241105-00124"/>
+  </accessionIdentifier>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/731000124108"/>
+      <code value="119364003"/>
+      <display value="Serum sample"/>
+    </coding>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/v2-0487"/>
+      <code value="SER"/>
+      <display value="Serum"/>
+    </coding>
+  </type>
+  <subject>
+    <reference value="Patient/example"/>
+  </subject>
+  <container>
+    <type>
+      <text value="Serum Separator Tube"/>
+    </type>
+  </container>
+  <condition>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="118127007"/>
+      <display value="Specimen lipemic"/>
+    </coding>
+    <text value="Lipemic"/>
+  </condition>
+</Specimen>

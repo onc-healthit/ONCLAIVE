@@ -1,0 +1,990 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Questionnaire/prapare-example> a fhir:Questionnaire ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "prapare-example"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Questionnaire prapare-example</b></p><a name=\"prapare-example\"> </a><a name=\"hcprapare-example\"> </a><a name=\"prapare-example-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"http://hl7.org/fhir/uv/sdc/STU3/StructureDefinition-sdc-questionnaire.html\">SDCBaseQuestionnaire</a></p></div><b>Structure</b><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" style=\"border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;\"><tr style=\"border: 2px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top\"><th style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"The linkID for the item\">LinkID</a></th><th style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"Text for the item\">Text</a></th><th style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"Minimum and Maximum # of times the item can appear in the instance\">Cardinality</a></th><th style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"The type of the item\">Type</a></th><th style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"Additional information about the item\">Description &amp; Constraints</a><span style=\"float: right\"><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"Legend for this format\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3goXBCwdPqAP0wAAAldJREFUOMuNk0tIlFEYhp9z/vE2jHkhxXA0zJCMitrUQlq4lnSltEqCFhFG2MJFhIvIFpkEWaTQqjaWZRkp0g26URZkTpbaaOJkDqk10szoODP//7XIMUe0elcfnPd9zsfLOYplGrpRwZaqTtw3K7PtGem7Q6FoidbGgqHVy/HRb669R+56zx7eRV1L31JGxYbBtjKK93cxeqfyQHbehkZbUkK20goELEuIzEd+dHS+qz/Y8PTSif0FnGkbiwcAjHaU1+QWOptFiyCLp/LnKptpqIuXHx6rbR26kJcBX3yLgBfnd7CxwJmflpP2wUg0HIAoUUpZBmKzELGWcN8nAr6Gpu7tLU/CkwAaoKTWRSQyt89Q8w6J+oVQkKnBoblH7V0PPvUOvDYXfopE/SJmALsxnVm6LbkotrUtNowMeIrVrBcBpaMmdS0j9df7abpSuy7HWehwJdt1lhVwi/J58U5beXGAF6c3UXLycw1wdFklArBn87xdh0ZsZtArghBdAA3+OEDVubG4UEzP6x1FOWneHh2VDAHBAt80IbdXDcesNoCvs3E5AFyNSU5nbrDPZpcUEQQTFZiEVx+51fxMhhyJEAgvlriadIJZZksRuwBYMOPBbO3hePVVqgEJhFeUuFLhIPkRP6BQLIBrmMenujm/3g4zc398awIe90Zb5A1vREALqneMcYgP/xVQWlG+Ncu5vgwwlaUNx+3799rfe96u9K0JSDXcOzOTJg4B6IgmXfsygc7/Bvg9g9E58/cDVmGIBOP/zT8Bz1zqWqpbXIsd0O9hajXfL6u4BaOS6SeWAAAAAElFTkSuQmCC\" alt=\"doco\" style=\"background-color: inherit\"/></a></span></th></tr><tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon_q_root.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"QuestionnaireRoot\" class=\"hierarchy\"/> PRAPAREExample</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Questionnaire</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">http://hl7.org/fhir/us/core/Questionnaire/prapare-example#8.0.0</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01.png)\" id=\"item./93025-5\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93025-5</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\" id=\"item./93043-8\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93043-8</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Personal characteristics</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93043-8/56051-6\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93043-8/56051-6</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Hispanic or Latino</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93043-8/56051-6\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93043-8/32624-9\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93043-8/32624-9</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Race</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..*</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93043-8/32624-9\">8 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93043-8/93035-4\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93043-8/93035-4</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93043-8/93035-4\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93043-8/93034-7\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93043-8/93034-7</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Discharged from the U.S. Armed Forces</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93043-8/93034-7\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\" id=\"item./93043-8/54899-0\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93043-8/54899-0</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Preferred language</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93043-8/54899-0\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\" id=\"item./93042-0\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93042-0</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Family and home</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93042-0/63512-8\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-integer.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"integer\" class=\"hierarchy\"/> /93042-0/63512-8</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">How many people are living or staying at this address [#]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-integer\">integer</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0111.png)\" id=\"item./93042-0/71802-3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93042-0/71802-3</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Housing status</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93042-0/71802-3\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01100.png)\" id=\"item./93042-0/71802-3-help\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-display.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"display\" class=\"hierarchy\"/> /93042-0/71802-3-help</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Describes patients living arrangement</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-display\">display</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93042-0/93033-9\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93042-0/93033-9</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Are you worried about losing your housing [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93042-0/93033-9\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\" id=\"item./93042-0/56799-0\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-string.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"string\" class=\"hierarchy\"/> /93042-0/56799-0</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Address</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-string\">string</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\" id=\"item./93041-2\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93041-2</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Money and resources</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93041-2/82589-3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93041-2/82589-3</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Highest level of educ</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93041-2/82589-3\">4 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93041-2/67875-5\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93041-2/67875-5</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Employment status current</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93041-2/67875-5\">5 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93041-2/76437-3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93041-2/76437-3</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Primary insurance</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93041-2/76437-3\">7 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93041-2/63586-2\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-decimal.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"decimal\" class=\"hierarchy\"/> /93041-2/63586-2</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-decimal\">decimal</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93041-2/93031-3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93041-2/93031-3</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..*</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93041-2/93031-3\">8 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\" id=\"item./93041-2/93030-5\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93041-2/93030-5</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..*</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93041-2/93030-5\">4 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\" id=\"item./93040-4\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93040-4</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Social and emotional health</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\" id=\"item./93040-4/93029-7\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93040-4/93029-7</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">How often do you see or talk to people that you care about and feel close to [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93040-4/93029-7\">5 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\" id=\"item./93040-4/93038-8\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93040-4/93038-8</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Stress is when someone feels tense, nervous, anxious or can't sleep at night because their mind is troubled. How stressed are you?</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93040-4/93038-8\">6 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck001.png)\" id=\"item./93039-6\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"group\" class=\"hierarchy\"/> /93039-6</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Optional additional questions</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item./93039-6/93028-9\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93039-6/93028-9</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93039-6/93028-9\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item./93039-6/93027-1\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93039-6/93027-1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Are you a refugee</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93039-6/93027-1\">3 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item./93039-6/93026-3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93039-6/93026-3</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Do you feel physically and emotionally safe where you currently live [PRAPARE]</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93039-6/93026-3\">4 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0000.png)\" id=\"item./93039-6/76501-6\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"coding\" class=\"hierarchy\"/> /93039-6/76501-6</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Within the last year, have you been afraid of your partner or ex-partner</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item./93039-6/76501-6\">2 options</a></td></tr>\r\n<tr><td colspan=\"5\" class=\"hierarchy\"><br/><a href=\"https://hl7.org/fhir/R4/formats.html#table\" title=\"Legend for this format\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3goXBCwdPqAP0wAAAldJREFUOMuNk0tIlFEYhp9z/vE2jHkhxXA0zJCMitrUQlq4lnSltEqCFhFG2MJFhIvIFpkEWaTQqjaWZRkp0g26URZkTpbaaOJkDqk10szoODP//7XIMUe0elcfnPd9zsfLOYplGrpRwZaqTtw3K7PtGem7Q6FoidbGgqHVy/HRb669R+56zx7eRV1L31JGxYbBtjKK93cxeqfyQHbehkZbUkK20goELEuIzEd+dHS+qz/Y8PTSif0FnGkbiwcAjHaU1+QWOptFiyCLp/LnKptpqIuXHx6rbR26kJcBX3yLgBfnd7CxwJmflpP2wUg0HIAoUUpZBmKzELGWcN8nAr6Gpu7tLU/CkwAaoKTWRSQyt89Q8w6J+oVQkKnBoblH7V0PPvUOvDYXfopE/SJmALsxnVm6LbkotrUtNowMeIrVrBcBpaMmdS0j9df7abpSuy7HWehwJdt1lhVwi/J58U5beXGAF6c3UXLycw1wdFklArBn87xdh0ZsZtArghBdAA3+OEDVubG4UEzP6x1FOWneHh2VDAHBAt80IbdXDcesNoCvs3E5AFyNSU5nbrDPZpcUEQQTFZiEVx+51fxMhhyJEAgvlriadIJZZksRuwBYMOPBbO3hePVVqgEJhFeUuFLhIPkRP6BQLIBrmMenujm/3g4zc398awIe90Zb5A1vREALqneMcYgP/xVQWlG+Ncu5vgwwlaUNx+3799rfe96u9K0JSDXcOzOTJg4B6IgmXfsygc7/Bvg9g9E58/cDVmGIBOP/zT8Bz1zqWqpbXIsd0O9hajXfL6u4BaOS6SeWAAAAAElFTkSuQmCC\" alt=\"doco\" style=\"background-color: inherit\"/> Documentation for this format</a></td></tr></table><hr/><p><b>Options Sets</b></p><a name=\"opt-item./93043-8/56051-6\"> </a><p><b>Answer options for /93043-8/56051-6 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93043-8/32624-9\"> </a><p><b>Answer options for /93043-8/32624-9 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA6156-9 (&quot;Asian&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA14045-1 (&quot;Native Hawaiian&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30187-1 (&quot;Pacific Islander&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA14042-8 (&quot;Black/African American&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA4457-3 (&quot;White&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA4-4 (&quot;American Indian/Alaskan Native&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA46-8 (&quot;Other&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93043-8/93035-4\"> </a><p><b>Answer options for /93043-8/93035-4 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93043-8/93034-7\"> </a><p><b>Answer options for /93043-8/93034-7 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93043-8/54899-0\"> </a><p><b>Answer options for /93043-8/54899-0 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA43-5 (&quot;English&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30188-9 (&quot;Language other than English&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93042-0/71802-3\"> </a><p><b>Answer options for /93042-0/71802-3 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA30189-7 (&quot;I have housing&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30190-5 (&quot;I do not have housing (staying with others, in a hotel, in a shelter, living outside on the street, on a beach, in a car, or in a park)&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93042-0/93033-9\"> </a><p><b>Answer options for /93042-0/93033-9 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93041-2/82589-3\"> </a><p><b>Answer options for /93041-2/82589-3 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA30191-3 (&quot;Less than high school degree&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30192-1 (&quot;High school diploma or GED&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30193-9 (&quot;More than high school&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93041-2/67875-5\"> </a><p><b>Answer options for /93041-2/67875-5 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA17956-6 (&quot;Unemployed&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30138-4 (&quot;Part-time or temporary work&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30136-8 (&quot;Full-time work&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30137-6 (&quot;Otherwise unemployed but not seeking work (ex: student, retired, disabled, unpaid primary care giver)&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93041-2/76437-3\"> </a><p><b>Answer options for /93041-2/76437-3 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA30194-7 (&quot;None/uninsured&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA17849-3 (&quot;Medicaid&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30195-4 (&quot;CHIP Medicaid&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA15652-3 (&quot;Medicare&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30196-2 (&quot;Other public insurance (not CHIP)&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30197-0 (&quot;Other public insurance (CHIP)&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA6350-8 (&quot;Private insurance&quot;)</li></ul><a name=\"opt-item./93041-2/93031-3\"> </a><p><b>Answer options for /93041-2/93031-3 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA30125-1 (&quot;Food&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30126-9 (&quot;Clothing&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30124-4 (&quot;Utilities&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30127-7 (&quot;Child care&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30128-5 (&quot;Medicine or Any Health Care (Medical, Dental, Mental Health, Vision)&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30129-3 (&quot;Phone&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA46-8 (&quot;Other&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93041-2/93030-5\"> </a><p><b>Answer options for /93041-2/93030-5 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA30133-5 (&quot;Yes, it has kept me from medical appointments or from getting my medications&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30134-3 (&quot;Yes, it has kept me from non-medical meetings, appointments, work, or from getting things that I need&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30257-2 (&quot;Patient unable to respond&quot;)</li></ul><a name=\"opt-item./93040-4/93029-7\"> </a><p><b>Answer options for /93040-4/93029-7 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA27722-0 (&quot;Less than once a week&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30130-1 (&quot;1 or 2 times a week&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30131-9 (&quot;3 to 5 times a week&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30132-7 (&quot;5 or more times a week&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93040-4/93038-8\"> </a><p><b>Answer options for /93040-4/93038-8 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA6568-5 (&quot;Not at all&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA13863-8 (&quot;A little bit&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA13909-9 (&quot;Somewhat&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA13902-4 (&quot;Quite a bit&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA13914-9 (&quot;Very much&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93039-6/93028-9\"> </a><p><b>Answer options for /93039-6/93028-9 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93039-6/93027-1\"> </a><p><b>Answer options for /93039-6/93027-1 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93039-6/93026-3\"> </a><p><b>Answer options for /93039-6/93026-3 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA14072-5 (&quot;Unsure&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA30122-8 (&quot;I choose not to answer this question&quot;)</li></ul><a name=\"opt-item./93039-6/76501-6\"> </a><p><b>Answer options for /93039-6/76501-6 </b></p><ul><li style=\"font-size: 11px\">http://loinc.org#LA33-6 (&quot;Yes&quot;)</li><li style=\"font-size: 11px\">http://loinc.org#LA32-8 (&quot;No&quot;)</li></ul></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/us/core/Questionnaire/prapare-example"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.40.2.35.6" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "8.0.0"] ; # 
+  fhir:name [ fhir:v "PRAPAREExample"] ; # 
+  fhir:title [ fhir:v "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2023-03-31"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 International / Cross-Group Projects"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "HL7 International / Cross-Group Projects" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/cgp" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "cgp@lists.HL7.org" ]
+     ] )
+  ] ) ; # 
+  fhir:useContext ( [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "focus" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/us-core-category"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "sdoh" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ]
+     ] )
+  ] ) ; # 
+  fhir:copyright [ fhir:v "This material contains content from LOINC® (http://loinc.org). LOINC is copyright © 1995-2024, Regenstrief Institute, Inc. and the LOINC Committee, and is available at no cost under the license at http://loinc.org/license. Copyright © 2019. This item comes from the national PRAPARE social determinants of health assessment protocol, developed and owned by the National Association of Community Health Centers (NACHC), in partnership with the Association of Asian Pacific Community Health Organization (AAPCHO), the Oregon Primary Care Association (OPCA), and the Institute for Alternative Futures (IAF). For more information, visit www.nachc.org/prapare. Used with permission."] ; # 
+  fhir:code ( [
+     a loinc:93025-5 ;
+     fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "93025-5" ] ;
+     fhir:display [ fhir:v "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]" ]
+  ] ) ; # 
+  fhir:item ( [
+     fhir:linkId [ fhir:v "/93025-5" ] ;
+     fhir:text [ fhir:v "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]" ] ;
+     fhir:type [ fhir:v "group" ] ;
+     fhir:required [ fhir:v false ] ;
+     fhir:item ( [
+       fhir:linkId [ fhir:v "/93043-8" ] ;
+       fhir:code ( [
+         a loinc:93043-8 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "93043-8" ] ;
+         fhir:display [ fhir:v "Personal characteristics [PRAPARE]" ]
+       ] ) ;
+       fhir:text [ fhir:v "Personal characteristics" ] ;
+       fhir:type [ fhir:v "group" ] ;
+       fhir:required [ fhir:v false ] ;
+       fhir:item ( [
+         fhir:linkId [ fhir:v "/93043-8/56051-6" ] ;
+         fhir:code ( [
+           a loinc:56051-6 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "56051-6" ] ;
+           fhir:display [ fhir:v "Hispanic or Latino" ]
+         ] ) ;
+         fhir:text [ fhir:v "Hispanic or Latino" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93043-8/32624-9" ] ;
+         fhir:code ( [
+           a loinc:32624-9 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "32624-9" ] ;
+           fhir:display [ fhir:v "Race" ]
+         ] ) ;
+         fhir:text [ fhir:v "Race" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:repeats [ fhir:v true ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA6156-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA6156-9" ] ;
+             fhir:display [ fhir:v "Asian" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA14045-1 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA14045-1" ] ;
+             fhir:display [ fhir:v "Native Hawaiian" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30187-1 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30187-1" ] ;
+             fhir:display [ fhir:v "Pacific Islander" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA14042-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA14042-8" ] ;
+             fhir:display [ fhir:v "Black/African American" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA4457-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA4457-3" ] ;
+             fhir:display [ fhir:v "White" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA4-4 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA4-4" ] ;
+             fhir:display [ fhir:v "American Indian/Alaskan Native" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA46-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA46-8" ] ;
+             fhir:display [ fhir:v "Other" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93043-8/93035-4" ] ;
+         fhir:code ( [
+           a loinc:93035-4 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93035-4" ] ;
+           fhir:display [ fhir:v "Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93043-8/93034-7" ] ;
+         fhir:code ( [
+           a loinc:93034-7 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93034-7" ] ;
+           fhir:display [ fhir:v "Discharged from the U.S. Armed Forces" ]
+         ] ) ;
+         fhir:text [ fhir:v "Discharged from the U.S. Armed Forces" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93043-8/54899-0" ] ;
+         fhir:code ( [
+           a loinc:54899-0 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "54899-0" ] ;
+           fhir:display [ fhir:v "Preferred language" ]
+         ] ) ;
+         fhir:text [ fhir:v "Preferred language" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA43-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA43-5" ] ;
+             fhir:display [ fhir:v "English" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30188-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30188-9" ] ;
+             fhir:display [ fhir:v "Language other than English" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:linkId [ fhir:v "/93042-0" ] ;
+       fhir:code ( [
+         a loinc:93042-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "93042-0" ] ;
+         fhir:display [ fhir:v "Family and home [PRAPARE]" ]
+       ] ) ;
+       fhir:text [ fhir:v "Family and home" ] ;
+       fhir:type [ fhir:v "group" ] ;
+       fhir:required [ fhir:v false ] ;
+       fhir:item ( [
+         fhir:linkId [ fhir:v "/93042-0/63512-8" ] ;
+         fhir:code ( [
+           a loinc:63512-8 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "63512-8" ] ;
+           fhir:display [ fhir:v "How many people are living or staying at this address [#]" ]
+         ] ) ;
+         fhir:text [ fhir:v "How many people are living or staying at this address [#]" ] ;
+         fhir:type [ fhir:v "integer" ] ;
+         fhir:required [ fhir:v false ]
+       ] [
+         fhir:linkId [ fhir:v "/93042-0/71802-3" ] ;
+         fhir:code ( [
+           a loinc:71802-3 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "71802-3" ] ;
+           fhir:display [ fhir:v "Housing status" ]
+         ] ) ;
+         fhir:text [ fhir:v "Housing status" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA30189-7 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30189-7" ] ;
+             fhir:display [ fhir:v "I have housing" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30190-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30190-5" ] ;
+             fhir:display [ fhir:v "I do not have housing (staying with others, in a hotel, in a shelter, living outside on the street, on a beach, in a car, or in a park)" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] ) ;
+         fhir:item ( [
+           fhir:linkId [ fhir:v "/93042-0/71802-3-help" ] ;
+           fhir:text [ fhir:v "Describes patients living arrangement" ] ;
+           fhir:type [ fhir:v "display" ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93042-0/93033-9" ] ;
+         fhir:code ( [
+           a loinc:93033-9 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93033-9" ] ;
+           fhir:display [ fhir:v "Are you worried about losing your housing [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "Are you worried about losing your housing [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93042-0/56799-0" ] ;
+         fhir:code ( [
+           a loinc:56799-0 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "56799-0" ] ;
+           fhir:display [ fhir:v "Address" ]
+         ] ) ;
+         fhir:text [ fhir:v "Address" ] ;
+         fhir:type [ fhir:v "string" ] ;
+         fhir:required [ fhir:v false ]
+       ] )
+     ] [
+       fhir:linkId [ fhir:v "/93041-2" ] ;
+       fhir:code ( [
+         a loinc:93041-2 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "93041-2" ] ;
+         fhir:display [ fhir:v "Money and resources [PRAPARE]" ]
+       ] ) ;
+       fhir:text [ fhir:v "Money and resources" ] ;
+       fhir:type [ fhir:v "group" ] ;
+       fhir:required [ fhir:v false ] ;
+       fhir:item ( [
+         fhir:linkId [ fhir:v "/93041-2/82589-3" ] ;
+         fhir:code ( [
+           a loinc:82589-3 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "82589-3" ] ;
+           fhir:display [ fhir:v "Highest level of educ" ]
+         ] ) ;
+         fhir:text [ fhir:v "Highest level of educ" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA30191-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30191-3" ] ;
+             fhir:display [ fhir:v "Less than high school degree" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30192-1 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30192-1" ] ;
+             fhir:display [ fhir:v "High school diploma or GED" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30193-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30193-9" ] ;
+             fhir:display [ fhir:v "More than high school" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93041-2/67875-5" ] ;
+         fhir:code ( [
+           a loinc:67875-5 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "67875-5" ] ;
+           fhir:display [ fhir:v "Employment status current" ]
+         ] ) ;
+         fhir:text [ fhir:v "Employment status current" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA17956-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA17956-6" ] ;
+             fhir:display [ fhir:v "Unemployed" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30138-4 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30138-4" ] ;
+             fhir:display [ fhir:v "Part-time or temporary work" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30136-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30136-8" ] ;
+             fhir:display [ fhir:v "Full-time work" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30137-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30137-6" ] ;
+             fhir:display [ fhir:v "Otherwise unemployed but not seeking work (ex: student, retired, disabled, unpaid primary care giver)" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93041-2/76437-3" ] ;
+         fhir:code ( [
+           a loinc:76437-3 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "76437-3" ] ;
+           fhir:display [ fhir:v "Primary insurance" ]
+         ] ) ;
+         fhir:text [ fhir:v "Primary insurance" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA30194-7 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30194-7" ] ;
+             fhir:display [ fhir:v "None/uninsured" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA17849-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA17849-3" ] ;
+             fhir:display [ fhir:v "Medicaid" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30195-4 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30195-4" ] ;
+             fhir:display [ fhir:v "CHIP Medicaid" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA15652-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA15652-3" ] ;
+             fhir:display [ fhir:v "Medicare" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30196-2 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30196-2" ] ;
+             fhir:display [ fhir:v "Other public insurance (not CHIP)" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30197-0 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30197-0" ] ;
+             fhir:display [ fhir:v "Other public insurance (CHIP)" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA6350-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA6350-8" ] ;
+             fhir:display [ fhir:v "Private insurance" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93041-2/63586-2" ] ;
+         fhir:code ( [
+           a loinc:63586-2 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "63586-2" ] ;
+           fhir:display [ fhir:v "What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]" ]
+         ] ) ;
+         fhir:text [ fhir:v "What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]" ] ;
+         fhir:type [ fhir:v "decimal" ] ;
+         fhir:required [ fhir:v false ]
+       ] [
+         fhir:linkId [ fhir:v "/93041-2/93031-3" ] ;
+         fhir:code ( [
+           a loinc:93031-3 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93031-3" ] ;
+           fhir:display [ fhir:v "Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:repeats [ fhir:v true ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA30125-1 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30125-1" ] ;
+             fhir:display [ fhir:v "Food" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30126-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30126-9" ] ;
+             fhir:display [ fhir:v "Clothing" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30124-4 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30124-4" ] ;
+             fhir:display [ fhir:v "Utilities" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30127-7 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30127-7" ] ;
+             fhir:display [ fhir:v "Child care" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30128-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30128-5" ] ;
+             fhir:display [ fhir:v "Medicine or Any Health Care (Medical, Dental, Mental Health, Vision)" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30129-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30129-3" ] ;
+             fhir:display [ fhir:v "Phone" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA46-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA46-8" ] ;
+             fhir:display [ fhir:v "Other" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93041-2/93030-5" ] ;
+         fhir:code ( [
+           a loinc:93030-5 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93030-5" ] ;
+           fhir:display [ fhir:v "Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living" ]
+         ] ) ;
+         fhir:text [ fhir:v "Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:repeats [ fhir:v true ] ;
+         fhir:answerOption ( [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "A"
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA30133-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30133-5" ] ;
+             fhir:display [ fhir:v "Yes, it has kept me from medical appointments or from getting my medications" ]
+           ]
+         ] [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "B"
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA30134-3 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30134-3" ] ;
+             fhir:display [ fhir:v "Yes, it has kept me from non-medical meetings, appointments, work, or from getting things that I need" ]
+           ]
+         ] [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "C"
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "X"
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA30257-2 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30257-2" ] ;
+             fhir:display [ fhir:v "Patient unable to respond" ]
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:linkId [ fhir:v "/93040-4" ] ;
+       fhir:code ( [
+         a loinc:93040-4 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "93040-4" ] ;
+         fhir:display [ fhir:v "Social and emotional health [PRAPARE]" ]
+       ] ) ;
+       fhir:text [ fhir:v "Social and emotional health" ] ;
+       fhir:type [ fhir:v "group" ] ;
+       fhir:required [ fhir:v false ] ;
+       fhir:item ( [
+         fhir:linkId [ fhir:v "/93040-4/93029-7" ] ;
+         fhir:code ( [
+           a loinc:93029-7 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93029-7" ] ;
+           fhir:display [ fhir:v "How often do you see or talk to people that you care about and feel close to [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "How often do you see or talk to people that you care about and feel close to [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA27722-0 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA27722-0" ] ;
+             fhir:display [ fhir:v "Less than once a week" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30130-1 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30130-1" ] ;
+             fhir:display [ fhir:v "1 or 2 times a week" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30131-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30131-9" ] ;
+             fhir:display [ fhir:v "3 to 5 times a week" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30132-7 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30132-7" ] ;
+             fhir:display [ fhir:v "5 or more times a week" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93040-4/93038-8" ] ;
+         fhir:code ( [
+           a loinc:93038-8 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93038-8" ] ;
+           fhir:display [ fhir:v "Stress level" ]
+         ] ) ;
+         fhir:text [ fhir:v "Stress is when someone feels tense, nervous, anxious or can't sleep at night because their mind is troubled. How stressed are you?" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA6568-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA6568-5" ] ;
+             fhir:display [ fhir:v "Not at all" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA13863-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA13863-8" ] ;
+             fhir:display [ fhir:v "A little bit" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA13909-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA13909-9" ] ;
+             fhir:display [ fhir:v "Somewhat" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA13902-4 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA13902-4" ] ;
+             fhir:display [ fhir:v "Quite a bit" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA13914-9 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA13914-9" ] ;
+             fhir:display [ fhir:v "Very much" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:linkId [ fhir:v "/93039-6" ] ;
+       fhir:code ( [
+         a loinc:93039-6 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "93039-6" ] ;
+         fhir:display [ fhir:v "Optional additional questions [PRAPARE]" ]
+       ] ) ;
+       fhir:text [ fhir:v "Optional additional questions" ] ;
+       fhir:type [ fhir:v "group" ] ;
+       fhir:required [ fhir:v false ] ;
+       fhir:item ( [
+         fhir:linkId [ fhir:v "/93039-6/93028-9" ] ;
+         fhir:code ( [
+           a loinc:93028-9 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93028-9" ] ;
+           fhir:display [ fhir:v "Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93039-6/93027-1" ] ;
+         fhir:code ( [
+           a loinc:93027-1 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93027-1" ] ;
+           fhir:display [ fhir:v "Are you a refugee" ]
+         ] ) ;
+         fhir:text [ fhir:v "Are you a refugee" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93039-6/93026-3" ] ;
+         fhir:code ( [
+           a loinc:93026-3 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "93026-3" ] ;
+           fhir:display [ fhir:v "Do you feel physically and emotionally safe where you currently live [PRAPARE]" ]
+         ] ) ;
+         fhir:text [ fhir:v "Do you feel physically and emotionally safe where you currently live [PRAPARE]" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA14072-5 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA14072-5" ] ;
+             fhir:display [ fhir:v "Unsure" ]
+           ]
+         ] [
+           fhir:value [
+             a fhir:Coding, loinc:LA30122-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA30122-8" ] ;
+             fhir:display [ fhir:v "I choose not to answer this question" ]
+           ]
+         ] )
+       ] [
+         fhir:linkId [ fhir:v "/93039-6/76501-6" ] ;
+         fhir:code ( [
+           a loinc:76501-6 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "76501-6" ] ;
+           fhir:display [ fhir:v "Within the last year, have you been afraid of your partner or ex-partner" ]
+         ] ) ;
+         fhir:text [ fhir:v "Within the last year, have you been afraid of your partner or ex-partner" ] ;
+         fhir:type [ fhir:v "choice" ] ;
+         fhir:required [ fhir:v false ] ;
+         fhir:answerOption ( [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "1"
+             ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/ordinalValue"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:decimal ;
+               fhir:v "1"^^xsd:decimal
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA33-6 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA33-6" ] ;
+             fhir:display [ fhir:v "Yes" ]
+           ]
+         ] [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:string ;
+               fhir:v "0"
+             ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/ordinalValue"^^xsd:anyURI ] ;
+             fhir:value [
+               a fhir:decimal ;
+               fhir:v "0"^^xsd:decimal
+             ]
+           ] ) ;
+           fhir:value [
+             a fhir:Coding, loinc:LA32-8 ;
+             fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "LA32-8" ] ;
+             fhir:display [ fhir:v "No" ]
+           ]
+         ] )
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

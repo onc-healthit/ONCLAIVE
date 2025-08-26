@@ -1,0 +1,67 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Condition/encounter-diagnosis-example1> a fhir:Condition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "encounter-diagnosis-example1"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Condition encounter-diagnosis-example1</b></p><a name=\"encounter-diagnosis-example1\"> </a><a name=\"hcencounter-diagnosis-example1\"> </a><a name=\"encounter-diagnosis-example1-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-condition-encounter-diagnosis.html\">US Core Condition Encounter Diagnosis Profileversion: null8.0.0)</a></p></div><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/condition-category encounter-diagnosis}\">Encounter Diagnosis</span></p><p><b>code</b>: <span title=\"Codes:{http://snomed.info/sct 39065001}, {http://hl7.org/fhir/sid/icd-10-cm T20.21}\">Burnt Ear</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw</a></p><p><b>encounter</b>: <a href=\"Encounter-example-1.html\">Encounter: extension = Yes (qualifier value) (SNOMED CT#373066001); status = finished; class = ambulatory (ActCode#AMB); type = Office or other outpatient visit for the evaluation and management of an established patient that may not require the presence of a physician or other qualified health care professional; period = 2015-11-01 17:00:14-0500 --&gt; 2015-11-01 18:00:14-0500</a></p><p><b>recordedDate</b>: 2015-11-01</p><p><b>recorder</b>: <a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "encounter-diagnosis" ] ;
+       fhir:display [ fhir:v "Encounter Diagnosis" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:39065001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:code [ fhir:v "39065001" ] ;
+       fhir:display [ fhir:v "Burn of ear" ]
+     ] [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/icd-10-cm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "T20.21" ] ;
+       fhir:display [ fhir:v "Burn of second degree of ear [any part, except ear drum]" ]
+     ] ) ;
+     fhir:text [ fhir:v "Burnt Ear" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:link <http://hl7.org/fhir/us/core/Encounter/example-1> ;
+     fhir:reference [ fhir:v "Encounter/example-1" ]
+  ] ; # 
+  fhir:recordedDate [ fhir:v "2015-11-01"^^xsd:date] ; # 
+  fhir:recorder [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+     fhir:display [ fhir:v "Dr Ronald Bone" ]
+  ] . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Encounter/example-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,101 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/CareTeam/example> a fhir:CareTeam ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CareTeam example</b></p><a name=\"example\"> </a><a name=\"hcexample\"> </a><a name=\"example-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-careteam.html\">US Core CareTeam Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Active</p><p><b>name</b>: US-Core example CareTeam</p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Shaw</a></p><blockquote><p><b>participant</b></p><p><b>role</b>: <span title=\"Codes:{http://snomed.info/sct 17561000}\">Cardiologist</span></p><p><b>member</b>: <a href=\"Practitioner-practitioner-1.html\">Ronald Bone, MD</a></p></blockquote><blockquote><p><b>participant</b></p><p><b>role</b>: <span title=\"Codes:{http://snomed.info/sct 453231000124104}\">Primary care provider</span></p><p><b>member</b>: <a href=\"Practitioner-practitioner-2.html\">Kathy Fielding, MD</a></p></blockquote><blockquote><p><b>participant</b></p><p><b>role</b>: <span title=\"Codes:{http://snomed.info/sct 116154003}\">Patient (person)</span></p><p><b>member</b>: <a href=\"Patient-example.html\">Amy V. Shaw</a></p></blockquote><blockquote><p><b>participant</b></p><p><b>role</b>: <span title=\"Codes:{http://snomed.info/sct 133932002}\">Caregiver (person)</span></p><p><b>member</b>: <a href=\"RelatedPerson-shaw-niece.html\">Sarah van Putten</a></p></blockquote></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:name [ fhir:v "US-Core example CareTeam"] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy V. Shaw" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:role ( [
+       fhir:coding ( [
+         a sct:17561000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+         fhir:code [ fhir:v "17561000" ] ;
+         fhir:display [ fhir:v "Cardiologist" ]
+       ] )
+     ] ) ;
+     fhir:member [
+       fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+       fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+       fhir:display [ fhir:v "Ronald Bone, MD" ]
+     ]
+  ] [
+     fhir:role ( [
+       fhir:coding ( [
+         a sct:453231000124104 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+         fhir:code [ fhir:v "453231000124104" ] ;
+         fhir:display [ fhir:v "Primary care provider" ]
+       ] )
+     ] ) ;
+     fhir:member [
+       fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-2> ;
+       fhir:reference [ fhir:v "Practitioner/practitioner-2" ] ;
+       fhir:display [ fhir:v "Kathy Fielding, MD" ]
+     ]
+  ] [
+     fhir:role ( [
+       fhir:coding ( [
+         a sct:116154003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+         fhir:code [ fhir:v "116154003" ] ;
+         fhir:display [ fhir:v "Patient (person)" ]
+       ] )
+     ] ) ;
+     fhir:member [
+       fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+       fhir:reference [ fhir:v "Patient/example" ] ;
+       fhir:display [ fhir:v "Amy V. Shaw" ]
+     ]
+  ] [
+     fhir:role ( [
+       fhir:coding ( [
+         a sct:133932002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+         fhir:code [ fhir:v "133932002" ] ;
+         fhir:display [ fhir:v "Caregiver (person)" ]
+       ] )
+     ] ) ;
+     fhir:member [
+       fhir:link <http://hl7.org/fhir/us/core/RelatedPerson/shaw-niece> ;
+       fhir:reference [ fhir:v "RelatedPerson/shaw-niece" ] ;
+       fhir:display [ fhir:v "Sarah van Putten" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-2> a fhir:us .
+
+<http://hl7.org/fhir/us/core/RelatedPerson/shaw-niece> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

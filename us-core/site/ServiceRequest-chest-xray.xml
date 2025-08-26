@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ServiceRequest xmlns="http://hl7.org/fhir">
+  <id value="chest-xray"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ServiceRequest chest-xray</b></p><a name="chest-xray"> </a><a name="hcchest-xray"> </a><a name="chest-xray-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-servicerequest.html">US Core ServiceRequest Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Active</p><p><b>intent</b>: Order</p><p><b>category</b>: <span title="Codes:{http://snomed.info/sct 363679005}">Imaging Order</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 30746-2}">Portable XR Chest Views</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>encounter</b>: <a href="Encounter-1036.html">inpatient encounter</a></p><p><b>occurrence</b>: 2024-10-13</p><p><b>authoredOn</b>: 2024-10-13 10:59:38-0800</p><p><b>requester</b>: <a href="Practitioner-practitioner-1.html">Practitioner Ronald Bone </a></p><p><b>reasonCode</b>: <span title="Codes:{http://snomed.info/sct 386663009}">Bicycle accident</span></p></div>
+  </text>
+  <status value="active"/>
+  <intent value="order"/>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/731000124108"/>
+      <code value="363679005"/>
+      <display value="Imaging (procedure)"/>
+    </coding>
+    <text value="Imaging Order"/>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="30746-2"/>
+      <display value="Portable XR Chest Views"/>
+    </coding>
+    <text value="Portable XR Chest Views"/>
+  </code>
+  <subject>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </subject>
+  <encounter>
+    <reference value="Encounter/1036"/>
+    <display value="inpatient encounter"/>
+  </encounter>
+  <occurrenceDateTime value="2024-10-13"/>
+  <authoredOn value="2024-10-13T10:59:38-08:00"/>
+  <requester>
+    <reference value="Practitioner/practitioner-1"/>
+  </requester>
+  <reasonCode>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/731000124108"/>
+      <code value="386663009"/>
+      <display value="Bicycle accident (event)"/>
+    </coding>
+    <text value="Bicycle accident"/>
+  </reasonCode>
+</ServiceRequest>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="acme-payer"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Organization acme-payer</b></p><a name="acme-payer"> </a><a name="hcacme-payer"> </a><a name="acme-payer-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-organization.html">US Core Organization Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <a href="http://terminology.hl7.org/6.4.0/NamingSystem-NAICCompanyCodes.html" title="NAIC company codes, also referred to as NAIC numbers, are five-digit identification codes assigned by the National Association of Insurance Commissioners (NAIC) to every insurance company to identify them. NAIC maintains a list of all lines of insurance the company sells and a list of all jurisdictions in which the company is licensed.
+
+For more information, see [https://content.naic.org/cis_consumer_information.htm](https://content.naic.org/cis_consumer_information.htm)">National Association of Insurance Commissioners (NAIC) Company Codes</a>/55555</p><p><b>active</b>: true</p><p><b>type</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/organization-type pay}">Payer</span></p><p><b>name</b>: Acme Health Plan</p><p><b>telecom</b>: ph: (+1) 555-555-5555, <a href="mailto:hq@acme.org">hq@acme.org</a></p><p><b>address</b>: 100 INSURANCE AVE AMHERST MA 01002 USA </p></div>
+  </text>
+  <identifier>
+    <system value="urn:oid:2.16.840.1.113883.6.300"/>
+    <value value="55555"/>
+  </identifier>
+  <active value="true"/>
+  <type>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/organization-type"/>
+      <code value="pay"/>
+    </coding>
+    <text value="Payer"/>
+  </type>
+  <name value="Acme Health Plan"/>
+  <telecom>
+    <system value="phone"/>
+    <value value="(+1) 555-555-5555"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="hq@acme.org"/>
+  </telecom>
+  <address>
+    <line value="100 INSURANCE AVE"/>
+    <city value="AMHERST"/>
+    <state value="MA"/>
+    <postalCode value="01002"/>
+    <country value="USA"/>
+  </address>
+</Organization>

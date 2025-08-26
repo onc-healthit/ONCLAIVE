@@ -1,0 +1,1472 @@
+{
+  "codeSystems" : [
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1010.4",
+      "version" : "20240606",
+      "status" : "active",
+      "name" : "MedicationClinicalDrug",
+      "title" : "Medication Clinical Drug",
+      "description" : null,
+      "systems" : ["http://www.nlm.nih.gov/research/umls/rxnorm"],
+      "oids" : ["2.16.840.1.113762.1.4.1010.4"],
+      "sources" : ["2.16.840.1.113762.1.4.1010.4"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medication.html" : "US Core Medication Profile",
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile",
+      "StructureDefinition-us-core-medicationdispense.html" : "US Core MedicationDispense Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1010.6",
+      "version" : "20250411",
+      "status" : "active",
+      "name" : "CVXVaccinesAdministeredVaccineSet",
+      "title" : "CVX Vaccines Administered Vaccine Set",
+      "description" : null,
+      "systems" : ["http://hl7.org/fhir/sid/cvx"],
+      "oids" : ["2.16.840.1.113762.1.4.1010.6"],
+      "sources" : ["2.16.840.1.113762.1.4.1010.6"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-immunization.html" : "US Core Immunization Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121",
+      "version" : "20250228",
+      "status" : "active",
+      "name" : "FederalAdministrativeSex",
+      "title" : "Federal Administrative Sex",
+      "description" : "Name changed to align with federal administrative requirements in 2025",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1021.121"],
+      "sources" : ["2.16.840.1.113762.1.4.1021.121"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-sex.html" : "US Core Sex Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.24",
+      "version" : "20240330",
+      "status" : "active",
+      "name" : "BirthSex",
+      "title" : "Birth Sex",
+      "description" : null,
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1021.24"],
+      "sources" : ["2.16.840.1.113762.1.4.1021.24"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-birthsex.html" : "US Core Birth Sex Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.32",
+      "version" : "20240215",
+      "status" : "active",
+      "name" : "GenderIdentity",
+      "title" : "Gender Identity",
+      "description" : "2024-02-14: New version to adjust null values and  allow DAR, and addition of non-binary in the contained snomed set",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://snomed.info/sct",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1021.32"],
+      "sources" : ["2.16.840.1.113762.1.4.1021.32"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-genderIdentity.html" : "US Core Gender Identity Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1099.30",
+      "version" : "20240605",
+      "status" : "active",
+      "name" : "CareTeamMemberFunction",
+      "title" : "Care Team Member Function",
+      "description" : "Created to group the old value set from HL7 code system with the new value set using SNOMEDCT and containing the extended set of care team member roles.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-ParticipationFunction",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1099.30"],
+      "sources" : ["2.16.840.1.113762.1.4.1099.30"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-practitionerrole.html" : "US Core PractitionerRole Profile",
+      "StructureDefinition-us-core-careteam.html" : "US Core CareTeam Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1099.54",
+      "version" : "20240606",
+      "status" : "active",
+      "name" : "SpecimenType",
+      "title" : "Specimen type",
+      "description" : null,
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1099.54"],
+      "sources" : ["2.16.840.1.113762.1.4.1099.54"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-specimen.html" : "US Core Specimen Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1115.41",
+      "version" : "20250407",
+      "status" : "active",
+      "name" : "AdvanceHealthcareDirectiveDocumentTypesGrouper",
+      "title" : "Advance Healthcare Directive Document Types Grouper",
+      "description" : null,
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113762.1.4.1115.41"],
+      "sources" : ["2.16.840.1.113762.1.4.1115.41"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-adi-documentreference.html" : "US Core ADI DocumentReference Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1166.22",
+      "version" : "20230802",
+      "status" : "active",
+      "name" : "PregnancyIntention",
+      "title" : "Pregnancy Intention",
+      "description" : "Value set used in family planning annual report (FPAR).",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1166.22"],
+      "sources" : ["2.16.840.1.113762.1.4.1166.22"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-pregnancyintent.html" : "US Core Observation Pregnancy Intent Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1186.8",
+      "version" : "20240625",
+      "status" : "active",
+      "name" : "CommonSubstancesForAllergyAndIntoleranceDocumentationIncludingRefutations",
+      "title" : "Common substances for allergy and intolerance documentation including refutations",
+      "description" : "As noted in https://jira.hl7.org/browse/FHIR-32953, Drug class value set changed 2021-06-21 to align with C-CDA member value set 2.16.840.1.113762.1.4.1114.14",
+      "systems" : [
+        "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1186.8"],
+      "sources" : ["2.16.840.1.113762.1.4.1186.8"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-allergyintolerance.html" : "US Core AllergyIntolerance Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1240.11",
+      "version" : "20231129",
+      "status" : "active",
+      "name" : "SexualOrientationIncludingNullsAndDataAbsentReason",
+      "title" : "Sexual Orientation Including nulls and Data Absent Reason",
+      "description" : null,
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://snomed.info/sct",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1240.11"],
+      "sources" : ["2.16.840.1.113762.1.4.1240.11"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-sexual-orientation.html" : "US Core Observation Sexual Orientation Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1240.12",
+      "version" : "20240906",
+      "status" : "active",
+      "name" : "PregnancyStatusObservation",
+      "title" : "Pregnancy Status Observation",
+      "description" : null,
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1240.12"],
+      "sources" : ["2.16.840.1.113762.1.4.1240.12"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-pregnancystatus.html" : "US Core Observation Pregnancy Status Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1240.8",
+      "version" : "20231025",
+      "status" : "active",
+      "name" : "MedicationAdherence",
+      "title" : "Medication Adherence",
+      "description" : "This value set may change until publication of USCDI V4 representation in US Core and C-CDA is published in 2024",
+      "systems" : [
+        "http://snomed.info/sct",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1240.8"],
+      "sources" : ["2.16.840.1.113762.1.4.1240.8"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medication-adherence.html" : "US Core Medication Adherence Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1247.71",
+      "version" : "20241214",
+      "status" : "active",
+      "name" : "SocialDeterminantsOfHealthGoals",
+      "title" : "Social Determinants of Health Goals",
+      "description" : null,
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1247.71"],
+      "sources" : ["2.16.840.1.113762.1.4.1247.71"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-goal.html" : "US Core Goal Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.11",
+      "version" : "20240329",
+      "status" : "active",
+      "name" : "InformationSourceForMedicationAdherence",
+      "title" : "Information Source for Medication Adherence",
+      "description" : null,
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+        "http://terminology.hl7.org/CodeSystem/v3-ParticipationFunction",
+        "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1267.11"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.11"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medication-adherence.html" : "US Core Medication Adherence Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.13",
+      "version" : "20241008",
+      "status" : "active",
+      "name" : "ScreeningAndAssessmentSurveyCodes",
+      "title" : "Screening and Assessment Survey Codes",
+      "description" : "All LOINC survey codes",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113762.1.4.1267.13"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.13"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-screening-assessment.html" : "US Core Observation Screening Assessment Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.16",
+      "version" : "20241005",
+      "status" : "active",
+      "name" : "AnswerSetWithYesNoAndUnknowns",
+      "title" : "Answer Set with Yes No and Unknowns",
+      "description" : null,
+      "systems" : [
+        "http://snomed.info/sct",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1267.16"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.16"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-adi-documentation.html" : "US Core Observation ADI Documentation Profile",
+      "StructureDefinition-us-core-interpreter-needed.html" : "US Core Interpreter Needed Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.22",
+      "version" : "20241015",
+      "status" : "active",
+      "name" : "RouteOfAdministrationOfTherapeuticAgents",
+      "title" : "Route of Administration of Therapeutic Agents",
+      "description" : null,
+      "systems" : [
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1267.22"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.22"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile",
+      "StructureDefinition-us-core-medicationdispense.html" : "US Core MedicationDispense Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.23",
+      "version" : "20250510",
+      "status" : "active",
+      "name" : "EncounterType",
+      "title" : "Encounter Type",
+      "description" : null,
+      "systems" : ["http://www.ama-assn.org/go/cpt", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1267.23"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.23"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-encounter.html" : "US Core Encounter Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.24",
+      "version" : "20241105",
+      "status" : "active",
+      "name" : "SpecimenConditionSCT",
+      "title" : "Specimen Condition SCT",
+      "description" : "This Specimen Condition SCT value set is an enumerated list created by the HL7 Orders and Observation WG’s lab subgroup to complement, without overlapping, the HL7 Specimen Condition value set (http://terminology.hl7.org/ValueSet/v2-0493). It is designed for use with the FHIR R4 Specimen Resource (https://hl7.org/fhir/R4/specimen.html), which has an extensible binding to the HL7 Specimen Condition value set. It can be used elsewhere and will be used in C-CDA.\nCAVEAT: 20 Additional codes will be added to this set (keeping the same scope) after the next publication of SCT in March 2025",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1267.24"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.24"],
+      "uses" : {
+      },
+      "ValueSet-us-core-specimen-condition.html" : "US Core Specimen Condition"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.25",
+      "version" : "20250419",
+      "status" : "active",
+      "name" : "DetailedRaceIncludingAbsenceReasons",
+      "title" : "Detailed race including absence reasons.",
+      "description" : "This value set is based on the US Core Detailed Race value set (http://hl7.org/fhir/us/core/ValueSet/detailed-race) but assigned a new OID due to its slightly different scope. It includes the CDCREC code 2131-1 (Other Race) in place of the HL7 nullFlavor code \"OTH\" (Other)",
+      "systems" : [
+        "urn:oid:2.16.840.1.113883.6.238",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1267.25"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.25"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-race.html" : "US Core Race Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.3",
+      "version" : "20240217",
+      "status" : "active",
+      "name" : "SmokingStatusComprehensive",
+      "title" : "Smoking status comprehensive",
+      "description" : null,
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1267.3"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.3"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-smokingstatus.html" : "US Core Smoking Status Observation Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.31",
+      "version" : "20250516",
+      "status" : "active",
+      "name" : "HealthcareServiceLocationTypeCombined",
+      "title" : "Healthcare Service Location Type Combined",
+      "description" : "This value set consolidates encounter type codes from the two code systems permitted by USCDI for representing encounter location, as specified in USCDI v5.(https://www.healthit.gov/isp/taxonomy/term/1336/uscdi-v5)",
+      "systems" : [
+        "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113762.1.4.1267.31"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.31"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-location.html" : "US Core Location Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.6",
+      "version" : "20240222",
+      "status" : "active",
+      "name" : "SmokingStatusType",
+      "title" : "Smoking Status Type",
+      "description" : null,
+      "systems" : ["http://loinc.org", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113762.1.4.1267.6"],
+      "sources" : ["2.16.840.1.113762.1.4.1267.6"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-smokingstatus.html" : "US Core Smoking Status Observation Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.11.20.9.69.4",
+      "version" : "20250402",
+      "status" : "active",
+      "name" : "AdvanceHealthcareDirectiveCategoriesLOINC",
+      "title" : "Advance Healthcare Directive Categories LOINC",
+      "description" : null,
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.11.20.9.69.4"],
+      "sources" : ["2.16.840.1.113883.11.20.9.69.4"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-adi-documentreference.html" : "US Core ADI DocumentReference Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.88.12.80.62",
+      "version" : "20240322",
+      "status" : "active",
+      "name" : "VitalSignResultType",
+      "title" : "Vital Sign Result Type",
+      "description" : null,
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.3.88.12.80.62"],
+      "sources" : ["2.16.840.1.113883.3.88.12.80.62"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-vital-signs.html" : "US Core Vital Signs Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.2.575",
+      "version" : "20250419",
+      "status" : "active",
+      "name" : "RaceCategories",
+      "title" : "Race Categories",
+      "description" : "The HL7 OID used in the US Core Implementation Guide value set (http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category) has been retained here, as the value set content is identical. However, the preferred reference is now the VSAC-hosted version, since both US Core and C-CDA will reference this set going forward",
+      "systems" : [
+        "urn:oid:2.16.840.1.113883.6.238",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.2.575"],
+      "sources" : ["2.16.840.1.113883.4.642.2.575"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-race.html" : "US Core Race Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.40.2.48.1",
+      "version" : "20250419",
+      "status" : "active",
+      "name" : "DetailedEthnicityIncludingAbsenceReasons",
+      "title" : "Detailed Ethnicity Including Absence Reasons",
+      "description" : "This value set was replicated from US Core's Detailed Ethnicity Set (http://hl7.org/fhir/us/core/ValueSet/detailed-ethnicity) and reuses the HL7 provided OID as it retains the same scope.",
+      "systems" : [
+        "urn:oid:2.16.840.1.113883.6.238",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.1"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.1"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-ethnicity.html" : "US Core Ethnicity Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.40.2.48.3",
+      "version" : "20250419",
+      "status" : "active",
+      "name" : "EthnicityCategories",
+      "title" : "Ethnicity Categories",
+      "description" : "The HL7 OID used in the US Core Implementation Guide value set (http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category) has been retained here, as the value set content is identical. However, the preferred reference is now the VSAC-hosted version, since both US Core and C-CDA will reference this set going forward. Additionally, the US Core IG-based value set does not currently support expansion, making the VSAC version more suitable for implementation.",
+      "systems" : [
+        "urn:oid:2.16.840.1.113883.6.238",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+        "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.3"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.3"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-ethnicity.html" : "US Core Ethnicity Extension"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.1066",
+      "version" : "20240606",
+      "status" : "active",
+      "name" : "HealthcareProviderTaxonomy",
+      "title" : "Healthcare Provider Taxonomy",
+      "description" : "Code system at http://www.nucc.org/index.php?option=com_content&view=article&id=14&Itemid=125",
+      "systems" : ["http://nucc.org/provider-taxonomy"],
+      "oids" : ["2.16.840.1.114222.4.11.1066"],
+      "sources" : ["2.16.840.1.114222.4.11.1066"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-practitionerrole.html" : "US Core PractitionerRole Profile"
+    },
+    {
+      "url" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591",
+      "version" : "20250419",
+      "status" : "active",
+      "name" : "PayerType",
+      "title" : "Payer Type",
+      "description" : "2025 April version was changed to reduce the amount of granular vs higher level categories of insurance (payer) types. Note that the code system from where these codes are drawn is now owned by the CDC and not owned by NAHDO. CDC Contact: sopt@cdc.gov",
+      "systems" : ["https://nahdo.org/sopt"],
+      "oids" : ["2.16.840.1.114222.4.11.3591"],
+      "sources" : ["2.16.840.1.114222.4.11.3591"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-coverage.html" : "US Core Coverage Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "AllergyIntoleranceClinicalStatusCodes",
+      "title" : "AllergyIntolerance Clinical Status Codes",
+      "description" : "Preferred value set for AllergyIntolerance Clinical Status.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.1372"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1372"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-allergyintolerance.html" : "US Core AllergyIntolerance Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/allergyintolerance-verification",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "AllergyIntoleranceVerificationStatusCodes",
+      "title" : "AllergyIntolerance Verification Status Codes",
+      "description" : "Preferred value set for AllergyIntolerance Verification Status.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.1370"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1370"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-allergyintolerance.html" : "US Core AllergyIntolerance Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/body-site",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "SNOMEDCTBodyStructures",
+      "title" : "SNOMED CT Body Structures",
+      "description" : "This value set includes all codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 442083009 (Anatomical or acquired body site (body structure)).",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.3.141"],
+      "sources" : ["2.16.840.1.113883.4.642.3.141"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-specimen.html" : "US Core Specimen Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+      "version" : "4.0.1",
+      "status" : "active",
+      "name" : "DocumentTypeValueSet",
+      "title" : "Document Type Value Set",
+      "description" : "This is the code specifying the precise type of document (e.g. Pulmonary History and  Physical, Discharge Summary, Ultrasound Report, etc.). The Document Type value set includes all LOINC  values listed in HITSP C80 Table 2-144 Document Class Value Set Definition above used for Document Class,  and all LOINC values whose SCALE is DOC in the LOINC database.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.3.88.12.80.47"],
+      "sources" : ["2.16.840.1.113883.3.88.12.80.47"],
+      "uses" : {
+      },
+      "OperationDefinition-docref.html" : "US Core Fetch DocumentReference"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/care-plan-intent",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "CarePlanIntent",
+      "title" : "Care Plan Intent",
+      "description" : "Codes indicating the degree of authority/intentionality associated with a care plan.",
+      "systems" : ["http://hl7.org/fhir/request-intent"],
+      "oids" : ["2.16.840.1.113883.4.642.3.150"],
+      "sources" : ["2.16.840.1.113883.4.642.3.150"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-careplan.html" : "US Core CarePlan Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/care-team-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "CareTeamStatus",
+      "title" : "CareTeamStatus",
+      "description" : "Indicates the status of the care team.",
+      "systems" : ["http://hl7.org/fhir/care-team-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.153"],
+      "sources" : ["2.16.840.1.113883.4.642.3.153"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-careteam.html" : "US Core CareTeam Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/clinical-findings",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "SNOMEDCTClinicalFindings",
+      "title" : "SNOMED CT Clinical Findings",
+      "description" : "This value set includes all the \"Clinical finding\" [SNOMED CT](http://snomed.info/sct) codes - concepts where concept is-a 404684003 (Clinical finding (finding)).",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.3.232"],
+      "sources" : ["2.16.840.1.113883.4.642.3.232"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-allergyintolerance.html" : "US Core AllergyIntolerance Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "ConditionClinicalStatusCodes",
+      "title" : "Condition Clinical Status Codes",
+      "description" : "Preferred value set for Condition Clinical Status.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/condition-clinical"],
+      "oids" : ["2.16.840.1.113883.4.642.3.164"],
+      "sources" : ["2.16.840.1.113883.4.642.3.164"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/condition-ver-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "ConditionVerificationStatus",
+      "title" : "ConditionVerificationStatus",
+      "description" : "The verification status to support or decline the clinical status of the condition or diagnosis.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/condition-ver-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.166"],
+      "sources" : ["2.16.840.1.113883.4.642.3.166"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/contact-point-system",
+      "version" : "4.0.1",
+      "status" : "active",
+      "name" : "ContactPointSystem",
+      "title" : "ContactPointSystem",
+      "description" : "Telecommunications form for contact point.",
+      "systems" : ["http://hl7.org/fhir/contact-point-system"],
+      "oids" : ["2.16.840.1.113883.4.642.3.71"],
+      "sources" : ["2.16.840.1.113883.4.642.3.71"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-patient.html" : "US Core Patient Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/contact-point-use",
+      "version" : "4.0.1",
+      "status" : "active",
+      "name" : "ContactPointUse",
+      "title" : "ContactPointUse",
+      "description" : "Use of contact point.",
+      "systems" : ["http://hl7.org/fhir/contact-point-use"],
+      "oids" : ["2.16.840.1.113883.4.642.3.73"],
+      "sources" : ["2.16.840.1.113883.4.642.3.73"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-patient.html" : "US Core Patient Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/device-kind",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "FHIRDeviceTypes",
+      "title" : "FHIR Device Types",
+      "description" : "Codes used to identify medical devices. Includes concepts from SNOMED CT (http://www.snomed.org/) where concept is-a 49062001 (Device)  and is provided as a suggestive example.",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.3.208"],
+      "sources" : ["2.16.840.1.113883.4.642.3.208"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-implantable-device.html" : "US Core Implantable Device Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/diagnostic-report-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "DiagnosticReportStatus",
+      "title" : "DiagnosticReportStatus",
+      "description" : "The status of the diagnostic report.",
+      "systems" : ["http://hl7.org/fhir/diagnostic-report-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.235"],
+      "sources" : ["2.16.840.1.113883.4.642.3.235"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-diagnosticreport-lab.html" : "US Core DiagnosticReport Profile for Laboratory Results Reporting",
+      "StructureDefinition-us-core-diagnosticreport-note.html" : "US Core DiagnosticReport Profile for Report and Note Exchange"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/document-reference-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "DocumentReferenceStatus",
+      "title" : "DocumentReferenceStatus",
+      "description" : "The status of the document reference.",
+      "systems" : ["http://hl7.org/fhir/document-reference-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.7"],
+      "sources" : ["2.16.840.1.113883.4.642.3.7"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-adi-documentreference.html" : "US Core ADI DocumentReference Profile",
+      "StructureDefinition-us-core-documentreference.html" : "US Core DocumentReference Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/event-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "EventStatus",
+      "title" : "EventStatus",
+      "description" : "Codes identifying the lifecycle stage of an event.",
+      "systems" : ["http://hl7.org/fhir/event-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.109"],
+      "sources" : ["2.16.840.1.113883.4.642.3.109"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-procedure.html" : "US Core Procedure Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/goal-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "GoalLifecycleStatus",
+      "title" : "GoalLifecycleStatus",
+      "description" : "Codes that reflect the current state of a goal and whether the goal is still being targeted.",
+      "systems" : ["http://hl7.org/fhir/goal-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.271"],
+      "sources" : ["2.16.840.1.113883.4.642.3.271"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-goal.html" : "US Core Goal Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/immunization-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "ImmunizationStatusCodes",
+      "title" : "Immunization Status Codes",
+      "description" : "The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the administered dose of vaccine.",
+      "systems" : ["http://hl7.org/fhir/event-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.295"],
+      "sources" : ["2.16.840.1.113883.4.642.3.295"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-immunization.html" : "US Core Immunization Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/immunization-status-reason",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "ImmunizationStatusReasonCodes",
+      "title" : "Immunization Status Reason Codes",
+      "description" : "The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose of vaccine was not administered. This value set is provided as a suggestive example.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.992"],
+      "sources" : ["2.16.840.1.113883.4.642.3.992"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-immunization.html" : "US Core Immunization Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/medicationrequest-category",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "medicationRequest Category Codes",
+      "title" : "Medication request  category  codes",
+      "description" : "MedicationRequest Category Codes",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/medicationrequest-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.1322"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1322"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/medicationrequest-intent",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "medicationRequest Intent",
+      "title" : "Medication request  intent",
+      "description" : "MedicationRequest Intent Codes",
+      "systems" : ["http://hl7.org/fhir/CodeSystem/medicationrequest-intent"],
+      "oids" : ["2.16.840.1.113883.4.642.3.1321"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1321"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/medicationrequest-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "medicationrequest Status",
+      "title" : "Medicationrequest  status",
+      "description" : "MedicationRequest Status Codes",
+      "systems" : ["http://hl7.org/fhir/CodeSystem/medicationrequest-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.1320"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1320"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/observation-interpretation",
+      "version" : "4.0.1",
+      "status" : "active",
+      "name" : "ObservationInterpretationCodes",
+      "title" : "Observation Interpretation Codes",
+      "description" : "A categorical assessment, providing a rough qualitative interpretation of the observation value,    such as “normal”/ “abnormal”,”low” / “high”, “better” / “worse”, “susceptible” / “resistant”, “expected”/ “not expected”.    The value set is intended to be for ANY use where coded representation of an interpretation is needed.   \r\n   \r\n   Notes:\r\n   \r\n   This is being communicated in v2.x in OBX-8 (Observation Interpretation), in v3 in ObservationInterpretation (CWE) in R1 (Representative Realm) and in FHIR in    Observation.interpretation. Historically these values come from the laboratory domain, and these codes are extensively    used. The value set binding is extensible, so codes outside the value set that are needed for interpretation concepts    (i.e. particular meanings) that are not included in the value set can be used, and these new codes may also be added to    the value set and published in a future version.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.399"],
+      "sources" : ["2.16.840.1.113883.4.642.3.399"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-lab.html" : "US Core Laboratory Result Observation Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/observation-status",
+      "version" : "4.0.1",
+      "status" : "active",
+      "name" : "ObservationStatus",
+      "title" : "ObservationStatus",
+      "description" : "Codes providing the status of an observation.",
+      "systems" : ["http://hl7.org/fhir/observation-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.400"],
+      "sources" : ["2.16.840.1.113883.4.642.3.400"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-sexual-orientation.html" : "US Core Observation Sexual Orientation Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "PatientRelationshipType",
+      "title" : "Patient relationship type",
+      "description" : "A set of codes that can be used to indicate the relationship between a Patient and a Related Person.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+        "http://terminology.hl7.org/CodeSystem/v2-0131"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.449"],
+      "sources" : ["2.16.840.1.113883.4.642.3.449"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-relatedperson.html" : "US Core RelatedPerson Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/request-status",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "RequestStatus",
+      "title" : "RequestStatus",
+      "description" : "Codes identifying the lifecycle stage of a request.",
+      "systems" : ["http://hl7.org/fhir/request-status"],
+      "oids" : ["2.16.840.1.113883.4.642.3.111"],
+      "sources" : ["2.16.840.1.113883.4.642.3.111"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-careplan.html" : "US Core CarePlan Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/servicerequest-category",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "ServiceRequestCategoryCodes",
+      "title" : "Service Request Category Codes",
+      "description" : "An example value set of SNOMED CT concepts that can classify a requested service",
+      "systems" : ["http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.3.434"],
+      "sources" : ["2.16.840.1.113883.4.642.3.434"],
+      "uses" : {
+      },
+      "ValueSet-us-core-servicerequest-category.html" : "US Core ServiceRequest Category Codes"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/subscriber-relationship",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "SubscriberRelationshipCodes",
+      "title" : "SubscriberPolicyholder Relationship Codes",
+      "description" : "This value set includes codes for the relationship between the Subscriber and the Beneficiary (insured/covered party/patient).",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.3.1385"],
+      "sources" : ["2.16.840.1.113883.4.642.3.1385"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-coverage.html" : "US Core Coverage Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/ucum-bodylength",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "BodyLengthUnits",
+      "title" : "Body Length Units",
+      "description" : "UCUM units for recording body length measures such as height and head circumference",
+      "systems" : ["http://unitsofmeasure.org"],
+      "oids" : ["2.16.840.1.113883.4.642.3.958"],
+      "sources" : ["2.16.840.1.113883.4.642.3.958"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-head-circumference.html" : "US Core Head Circumference Profile",
+      "StructureDefinition-us-core-body-height.html" : "US Core Body Height Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/ucum-bodytemp",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "BodyTemperatureUnits",
+      "title" : "Body Temperature Units",
+      "description" : "UCUM units for recording Body Temperature",
+      "systems" : ["http://unitsofmeasure.org"],
+      "oids" : ["2.16.840.1.113883.4.642.3.957"],
+      "sources" : ["2.16.840.1.113883.4.642.3.957"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-body-temperature.html" : "US Core Body Temperature Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/ucum-bodyweight",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "BodyWeightUnits",
+      "title" : "Body Weight Units",
+      "description" : "UCUM units for recording Body Weight",
+      "systems" : ["http://unitsofmeasure.org"],
+      "oids" : ["2.16.840.1.113883.4.642.3.956"],
+      "sources" : ["2.16.840.1.113883.4.642.3.956"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-body-weight.html" : "US Core Body Weight Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/ucum-common",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "Common UCUM units",
+      "title" : null,
+      "description" : "Commonly encountered UCUM units (for purposes of helping populate look ups.",
+      "systems" : ["http://unitsofmeasure.org"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile",
+      "StructureDefinition-us-core-medicationdispense.html" : "US Core MedicationDispense Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "VitalSignsUnits",
+      "title" : "Vital Signs Units",
+      "description" : "Common UCUM units for recording Vital Signs",
+      "systems" : ["http://unitsofmeasure.org"],
+      "oids" : ["2.16.840.1.113883.4.642.3.955"],
+      "sources" : ["2.16.840.1.113883.4.642.3.955"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-vital-signs.html" : "US Core Vital Signs Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-note-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreClinicalNoteType",
+      "title" : "US Core Clinical Note Type",
+      "description" : "The US Core Clinical Note Type Value Set is a 'starter set' of types supported for fetching and storing clinical notes.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.1"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.1"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-result-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreClinicalResultObservationCategory",
+      "title" : "US Core Clinical Result Observation Category",
+      "description" : "Used to classify the context of clinical result observations.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/observation-category"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.2"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.2"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-clinical-result.html" : "US Core Observation Clinical Result Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreConditionCodes",
+      "title" : "US Core Condition Codes",
+      "description" : "This describes the problem. Diagnosis/Problem List is broadly defined as a series of brief statements that catalog a patient's medical, nursing, dental, social, preventative and psychiatric events and issues that are relevant to that patient's healthcare (e.g., signs, symptoms, and defined conditions). ICD-10 is appropriate for Diagnosis information, and ICD-9 for historical information.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/icd9cm",
+        "http://hl7.org/fhir/sid/icd-10-cm",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.16"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.16"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-procedure.html" : "US Core Procedure Profile",
+      "StructureDefinition-us-core-medicationrequest.html" : "US Core MedicationRequest Profile",
+      "StructureDefinition-us-core-servicerequest.html" : "US Core ServiceRequest Profile",
+      "StructureDefinition-us-core-condition-encounter-diagnosis.html" : "US Core Condition Encounter Diagnosis Profile",
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code-current",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreConditionCodesCurrent",
+      "title" : "US Core Condition Codes Current",
+      "description" : "This valueset is defined the same as the [US Core Condition Codes](ValueSet-us-core-condition-code.html) value set except it excludes ICD-9-CM codes. It us used for encoding newly recorded, non-legacy problem list items, health concerns and diagnosis using SNOMED CT and ICD-10-CM per USCDI requirements.",
+      "systems" : ["http://hl7.org/fhir/sid/icd-10-cm", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.3"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.3"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-condition-encounter-diagnosis.html" : "US Core Condition Encounter Diagnosis Profile",
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDiagnosticReportCategory",
+      "title" : "US Core Diagnostic Report Category Codes",
+      "description" : "The US Core Diagnostic Report Category Value Set is a 'starter set' of categories supported for fetching and Diagnostic Reports and notes.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.4"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.4"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-diagnosticreport-note.html" : "US Core DiagnosticReport Profile for Report and Note Exchange"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-report-and-note-codes",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreNonLaboratoryCodes",
+      "title" : "US Core Non Laboratory Codes",
+      "description" : "This value set includes All LOINC codes defined as type \"clinical,\" therefore excluding laboratory tests, survey instruments, and claims documents. This includes observables such as vital signs, hemodynamics, intake/output, EKG, obstetric ultrasound, and cardiac echo, and includes discrete and narrative diagnostic observations and reports.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.5"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.5"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-diagnosticreport-note.html" : "US Core DiagnosticReport Profile for Report and Note Exchange"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDocumentReferenceCategory",
+      "title" : "US Core DocumentReference Category",
+      "description" : "The US Core DocumentReferences Category Value Set is a 'starter set' of categories supported for fetching and storing clinical notes.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.6"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.6"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-documentreference.html" : "US Core DocumentReference Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreDocumentReferenceType",
+      "title" : "US Core DocumentReference Type",
+      "description" : "The US Core DocumentReference Type Value Set includes all LOINC values whose SCALE is \"Doc\" in the LOINC database and the HL7 v3 Code System NullFlavor concept 'unknown'",
+      "systems" : [
+        "http://loinc.org",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.7"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.7"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-documentreference.html" : "US Core DocumentReference Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-goal-description",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreGoalCodes",
+      "title" : "US Core Goal Codes",
+      "description" : "Concepts from SNOMED CT  and LOINC code systems that can be used to indicate the goal.",
+      "systems" : ["http://loinc.org", "http://snomed.info/sct"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.17"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.17"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-goal.html" : "US Core Goal Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-laboratory-test-codes",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreLaboratoryTestCodes",
+      "title" : "US Core Laboratory Test Codes",
+      "description" : "Laboratory LOINC codes: From the introduction to August 2022 LOINC Users' guide; \"The current scope of the existing laboratory portion of the LOINC  database includes all observations reported by clinical laboratories, including the specialty areas: chemistry, including therapeutic drug monitoring and toxicology; hematology; serology; blood bank; microbiology; cytology; surgical pathology; and fertility.",
+      "systems" : ["http://loinc.org"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.18"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.18"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-lab.html" : "US Core Laboratory Result Observation Profile",
+      "StructureDefinition-us-core-diagnosticreport-lab.html" : "US Core DiagnosticReport Profile for Laboratory Results Reporting"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-narrative-status",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "NarrativeStatus",
+      "title" : "US Core Narrative Status",
+      "description" : "The US Core Narrative Status Value Set limits the text status for the resource narrative.",
+      "systems" : ["http://hl7.org/fhir/narrative-status"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.8"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.8"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-careplan.html" : "US Core CarePlan Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreObservationSmokingStatusStatus",
+      "title" : "US Core Status for Smoking Status Observation",
+      "description" : "Codes providing the status of an observation for smoking status. Constrained to `final`and `entered-in-error`.",
+      "systems" : ["http://hl7.org/fhir/observation-status"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.9"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.9"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-smokingstatus.html" : "US Core Smoking Status Observation Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-problem-or-health-concern",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProblemOrHealthConcern",
+      "title" : "US Core Problem or Health Concern",
+      "description" : "Code set for category codes for *US Core Condition Problems and Health Concerns Profile* consisting of the concepts \"problem\" and \"health-concern\".",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/condition-category",
+        "http://terminology.hl7.org/CodeSystem/condition-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.19"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.19"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProcedureCodes",
+      "title" : "US Core Procedure Codes",
+      "description" : "Concepts from CPT, SNOMED CT, HCPCS Level II Alphanumeric Codes, ICD-10-PCS,CDT and LOINC code systems that can be used to indicate the type of procedure performed.",
+      "systems" : [
+        "http://www.ada.org/cdt",
+        "http://www.ama-assn.org/go/cpt",
+        "http://loinc.org",
+        "https://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets",
+        "http://www.cms.gov/Medicare/Coding/ICD10",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.20"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.20"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-procedure.html" : "US Core Procedure Profile",
+      "StructureDefinition-us-core-servicerequest.html" : "US Core ServiceRequest Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-provenance-participant-type",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreProvenancePaticipantTypeCodes",
+      "title" : "US Core Provenance Participant Type Codes",
+      "description" : "The type of participation a provenance agent played for a given target.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type",
+        "http://terminology.hl7.org/CodeSystem/provenance-participant-type"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.10"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.10"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-provenance.html" : "US Core Provenance Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-condition-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentConditionCategory",
+      "title" : "US Core Screening Assessment Condition Category",
+      "description" : "This value set consists of the single code \"sdoh\". It is the minimum value set of category codes used in the US Core Condition Problems and Health Concerns Profile that any conformant system **SHALL** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : ["http://hl7.org/fhir/us/core/CodeSystem/us-core-category"],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.11"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.11"]
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentObservationCategory",
+      "title" : "US Core Screening Assessment Observation Category",
+      "description" : "This value set is the minimum value set of category codes used in the US Core Observation Screening Assessment and Simple Observation Profiles that any conformant system **SHALL** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.12"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.12"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-screening-assessment.html" : "US Core Observation Screening Assessment Profile",
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-screening-assessment-observation-maximum-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreScreeningAssessmentObservationMaximumCategory",
+      "title" : "US Core Screening Assessment Observation Maximum Category",
+      "description" : "This value set is a value set of category codes used in the US Core Observation Screening Assessment that any conformant system **SHOULD** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.13"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.13"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-screening-assessment.html" : "US Core Observation Screening Assessment Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreServiceRequestCategoryCodes",
+      "title" : "US Core ServiceRequest Category Codes",
+      "description" : "A set of SNOMED CT and LOINC concepts to classify a requested service",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.21"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.21"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-servicerequest.html" : "US Core ServiceRequest Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-simple-observation-category",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreSimpleObservationCategory",
+      "title" : "US Core Simple Observation Category",
+      "description" : "This value set is a value set of category codes used in the US Core Simple Observation and Condition Problems and Health Concerns Profiles that any conformant system **SHOULD** support to help identify the type of USCDI Health Status/Assessment data class being reported.",
+      "systems" : [
+        "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+        "http://terminology.hl7.org/CodeSystem/observation-category"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.14"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.14"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-treatment-intervention-preference.html" : "US Core Treatment Intervention Preference Profile",
+      "StructureDefinition-us-core-observation-adi-documentation.html" : "US Core Observation ADI Documentation Profile",
+      "StructureDefinition-us-core-simple-observation.html" : "US Core Simple Observation Profile",
+      "StructureDefinition-us-core-care-experience-preference.html" : "US Core Care Experience Preference Profile",
+      "StructureDefinition-us-core-condition-problems-health-concerns.html" : "US Core Condition Problems and Health Concerns Profile"
+    },
+    {
+      "url" : "http://hl7.org/fhir/us/core/ValueSet/us-core-specimen-condition",
+      "version" : "8.0.0",
+      "status" : "active",
+      "name" : "USCoreSpecimenCondition",
+      "title" : "US Core Specimen Condition",
+      "description" : "This value set contains concepts the provide information regarding a specimen, including the container, that does not meet a laboratory’s criteria for acceptability.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/v2-0493",
+        "http://snomed.info/sct"
+      ],
+      "oids" : ["2.16.840.1.113883.4.642.40.2.48.15"],
+      "sources" : ["2.16.840.1.113883.4.642.40.2.48.15"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-specimen.html" : "US Core Specimen Profile"
+    },
+    {
+      "url" : "http://phinvads.cdc.gov/fhir/ValueSet/2.16.840.1.114222.4.11.7900",
+      "version" : "1",
+      "status" : "active",
+      "name" : "PHVS_Industry_NAICS_Detail _ODH",
+      "title" : "Industry NAICS Detail (ODH)",
+      "description" : "The Industry NAICS Detail (ODH) value set is to be used to capture self-reported industry within electronic health information systems to support direct patient care, population health and public health activities.  Industry is described as the economic or business sector of a business or enterprise.  For more information, a mapping to 2012 Census Industry Codes, and tips on using this value set go to the Occupational Data for Health (ODH) Hot Topics section on the PHIN VADS home page.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/PHOccupationalDataForHealthODH"
+      ],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-occupation.html" : "US Core Observation Occupation Profile"
+    },
+    {
+      "url" : "http://phinvads.cdc.gov/fhir/ValueSet/2.16.840.1.114222.4.11.7901",
+      "version" : "1",
+      "status" : "active",
+      "name" : "PHVS_Occupation_ONETSOC_Detail_ODH",
+      "title" : "Occupation ONETSOC Detail (ODH)",
+      "description" : "The Occupation ONETSOC Detail (ODH) value set is to be used to capture self-reported occupation within electronic health information systems to support direct patient care, population health and public health activities.  Occupation is the type of work done by the subject.  It is based on the 2010 O*Net-SOC Classification System.  For more information, a mapping to 2010 Census Codes, and tips on using this value set go to the Occupational Data for Health (ODH) Hot Topics section on the PHIN VADS home page.",
+      "systems" : [
+        "http://terminology.hl7.org/CodeSystem/PHOccupationalDataForHealthODH"
+      ],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-observation-occupation.html" : "US Core Observation Occupation Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/CMSPlaceOfServiceCodes",
+      "version" : "1.0.0",
+      "status" : "active",
+      "name" : "CMSPlaceOfServiceCodes",
+      "title" : "CMS Place of Service Codes (POS)",
+      "description" : "This is the all codes value set for the CMS POS code system.",
+      "systems" : [
+        "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+      ],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-location.html" : "US Core Location Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/Languages",
+      "version" : "1.0.0",
+      "status" : "active",
+      "name" : "Languages",
+      "title" : "Languages",
+      "description" : "This value set defines a set of codes for the representation of the names of languages. It uses the list of ISO 639-2 concepts using the ISO 639-1 2-digit code for a concept where possible and the 3-digit terminological code where there is no  2-digit code.",
+      "systems" : ["urn:ietf:bcp:47"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-patient.html" : "US Core Patient Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/USPS-State",
+      "version" : "1.0.0",
+      "status" : "active",
+      "name" : "UspsTwoLetterAlphabeticCodes",
+      "title" : "USPS Two Letter Alphabetic Codes",
+      "description" : "This value set defines two letter USPS alphabetic codes.",
+      "systems" : ["https://www.usps.com/"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-location.html" : "US Core Location Profile",
+      "StructureDefinition-us-core-practitioner.html" : "US Core Practitioner Profile",
+      "StructureDefinition-us-core-patient.html" : "US Core Patient Profile",
+      "StructureDefinition-us-core-jurisdiction.html" : "US Core Jurisdiction Extension",
+      "StructureDefinition-us-core-organization.html" : "US Core Organization Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v2-0493",
+      "version" : "2.0.0",
+      "status" : "active",
+      "name" : "Hl7VSSpecimenCondition",
+      "title" : "hl7VS-specimenCondition",
+      "description" : "Concepts of modes or states of being that describe the nature of a specimen.  Used in Version 2 messaging in the SPM segment.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/v2-0493"],
+      "oids" : ["2.16.840.1.113883.21.333"],
+      "sources" : ["2.16.840.1.113883.21.333"],
+      "uses" : {
+      },
+      "ValueSet-us-core-specimen-condition.html" : "US Core Specimen Condition"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType",
+      "version" : "3.0.0",
+      "status" : "active",
+      "name" : "ActPharmacySupplyType",
+      "title" : "ActPharmacySupplyType",
+      "description" : "Identifies types of dispensing events",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/v3-ActCode"],
+      "oids" : ["2.16.840.1.113883.1.11.16208"],
+      "sources" : ["2.16.840.1.113883.1.11.16208"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-medicationdispense.html" : "US Core MedicationDispense Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-HL7FormatCodes",
+      "version" : "2.1.0",
+      "status" : "active",
+      "name" : "HL7FormatCodes",
+      "title" : "HL7 ValueSet of Format Codes for use with Document Sharing",
+      "description" : "The HL7-FormatCodes value set is defined to be the set of FormatCode(s) defined by implementation guides published by HL7 and other SDOs. The use of a formatCode from the FormatCodes value set specifies the technical format that a document conforms to. The formatCode is a further specialization more detailed than the mime-type. The formatCode provides sufficient information to allow any potential document content consumer to know if it can process and/or display the content of the document based on the document encoding, structure and template conformance indicated by the formatCode. The set of formatCodes is intended to be extensible. The Content Logical Description is defined intentionally to permit formatCodes defined by other Standards Development Organizations to be added by inclusion of additional formatCode Code Systems.",
+      "systems" : [
+        "http://ihe.net/fhir/ihe.formatcode.fhir/CodeSystem/formatcode",
+        "http://terminology.hl7.org/CodeSystem/v3-HL7DocumentFormatCodes"
+      ],
+      "oids" : ["2.16.840.1.113883.11.19752"],
+      "sources" : ["2.16.840.1.113883.11.19752"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-adi-documentreference.html" : "US Core ADI DocumentReference Profile",
+      "StructureDefinition-us-core-documentreference.html" : "US Core DocumentReference Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-ServiceDeliveryLocationRoleType",
+      "version" : "3.0.0",
+      "status" : "active",
+      "name" : "ServiceDeliveryLocationRoleType",
+      "title" : "ServiceDeliveryLocationRoleType",
+      "description" : "A role of a place that further classifies the setting (e.g., accident site, road side, work site, community location) in which services are delivered.",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/v3-RoleCode"],
+      "oids" : ["2.16.840.1.113883.1.11.17660"],
+      "sources" : ["2.16.840.1.113883.1.11.17660"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-location.html" : "US Core Location Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-TribalEntityUS",
+      "version" : "4.0.0",
+      "status" : "active",
+      "name" : "TribalEntityUS",
+      "title" : "TribalEntityUS",
+      "description" : "INDIAN ENTITIES RECOGNIZED AND ELIGIBLE TO RECEIVE SERVICES FROM THE UNITED STATES BUREAU OF INDIAN AFFAIRS",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/v3-TribalEntityUS"],
+      "oids" : ["2.16.840.1.113883.1.11.11631"],
+      "sources" : ["2.16.840.1.113883.1.11.11631"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-tribal-affiliation.html" : "US Core Tribal Affiliation Extension"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-USEncounterDischargeDisposition",
+      "version" : "3.0.0",
+      "status" : "active",
+      "name" : "USEncounterDischargeDisposition",
+      "title" : "USEncounterDischargeDisposition",
+      "description" : "***No description***",
+      "systems" : ["http://terminology.hl7.org/CodeSystem/nubc-UB92"],
+      "oids" : ["2.16.840.1.113883.1.11.19453"],
+      "sources" : ["2.16.840.1.113883.1.11.19453"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-encounter.html" : "US Core Encounter Profile"
+    },
+    {
+      "url" : "http://terminology.hl7.org/ValueSet/v3-UnitsOfMeasureCaseSensitive",
+      "version" : "3.0.0",
+      "status" : "active",
+      "name" : "UnitsOfMeasureCaseSensitive",
+      "title" : "UnitsOfMeasureCaseSensitive",
+      "description" : "**Description:** All units of measure.",
+      "systems" : ["http://unitsofmeasure.org"],
+      "oids" : ["2.16.840.1.113883.1.11.12839"],
+      "sources" : ["2.16.840.1.113883.1.11.12839"],
+      "uses" : {
+      },
+      "StructureDefinition-us-core-smokingstatus.html" : "US Core Smoking Status Observation Profile"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/DocumentReference/discharge-summary> a fhir:DocumentReference ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|8.0.0>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a loinc:18842-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "18842-5" ] ;
+       fhir:display [ fhir:v "Discharge Summary" ]
+     ] ) ;
+     fhir:text [ fhir:v "Discharge Summary" ]
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "clinical-note" ] ;
+       fhir:display [ fhir:v "Clinical Note" ]
+     ] ) ;
+     fhir:text [ fhir:v "Clinical No" ]
+  ] ) ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:content ( [
+     fhir:attachment [
+       fhir:contentType [ fhir:v "text/plain" ] ;
+       fhir:data [ fhir:v "Tm8gYWN0aXZpdHkgcmVzdHJpY3Rpb24sIHJlZ3VsYXIgZGlldCwgZm9sbG93IHVwIGluIHR3byB0byB0aHJlZSB3ZWVrcyB3aXRoIHByaW1hcnkgY2FyZSBwcm92aWRlci4="^^xsd:base64Binary ]
+     ]
+  ] ) ; # 
+  fhir:context [
+     fhir:encounter ( [
+       fhir:link <http://hl7.org/fhir/us/core/Encounter/example-1> ;
+       fhir:reference [ fhir:v "Encounter/example-1" ]
+     ] )
+  ] . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Encounter/example-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

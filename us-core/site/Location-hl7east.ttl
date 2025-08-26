@@ -1,0 +1,57 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Location/hl7east> a fhir:Location ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "hl7east"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Location hl7east</b></p><a name=\"hl7east\"> </a><a name=\"hchl7east\"> </a><a name=\"hl7east-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-location.html\">US Core Location Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <code>http://www.acme.org/location</code>/29</p><p><b>status</b>: Active</p><p><b>name</b>: Health Level Seven International - Amherst</p><p><b>description</b>: HL7 Headquarters - East</p><p><b>type</b>: <span title=\"Codes:{https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html 1184-1}\">Administrative Office</span></p><p><b>telecom</b>: ph: (+1) 734-677-7777</p><p><b>address</b>: 3300 WASHTENAW AVE STE 227 AMHERST MA 01002 USA </p><h3>Positions</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Longitude</b></td><td><b>Latitude</b></td></tr><tr><td style=\"display: none\">*</td><td>-72.519854</td><td>42.373222</td></tr></table><p><b>managingOrganization</b>: Health Level Seven International</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.acme.org/location"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "29" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:name [ fhir:v "Health Level Seven International - Amherst"] ; # 
+  fhir:description [ fhir:v "HL7 Headquarters - East"] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1184-1" ] ;
+       fhir:display [ fhir:v "Administrative Areas" ]
+     ] ) ;
+     fhir:text [ fhir:v "Administrative Office" ]
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "(+1) 734-677-7777" ]
+  ] ) ; # 
+  fhir:address [
+     fhir:line ( [ fhir:v "3300 WASHTENAW AVE STE 227" ] ) ;
+     fhir:city [ fhir:v "AMHERST" ] ;
+     fhir:state [ fhir:v "MA" ] ;
+     fhir:postalCode [ fhir:v "01002" ] ;
+     fhir:country [ fhir:v "USA" ]
+  ] ; # 
+  fhir:position [
+     fhir:longitude [ fhir:v -72.519854 ] ;
+     fhir:latitude [ fhir:v 42.373222 ]
+  ] ; # 
+  fhir:managingOrganization [
+     fhir:display [ fhir:v "Health Level Seven International" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

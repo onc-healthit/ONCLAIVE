@@ -1,0 +1,125 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/DiagnosticReport/metabolic-panel> a fhir:DiagnosticReport ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "metabolic-panel"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2005-07-06T15:29:58.597Z"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: DiagnosticReport metabolic-panel</b></p><a name=\"metabolic-panel\"> </a><a name=\"hcmetabolic-panel\"> </a><a name=\"metabolic-panel-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Last updated: 2005-07-06 15:29:58+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-diagnosticreport-lab.html\">US Core DiagnosticReport Profile for Laboratory Results Reportingversion: null8.0.0)</a></p></div><h2><span title=\"Codes:{http://loinc.org 24321-2}\">Basic Metabolic Panel (BMP)</span> (<span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v2-0074 LAB}\">Laboratory</span>) </h2><table class=\"grid\"><tr><td>Subject</td><td>Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</td></tr><tr><td>When For</td><td>2005-07-04</td></tr><tr><td>Reported</td><td>2005-07-06 11:45:33+0000</td></tr><tr><td>Performer</td><td> <a href=\"Organization-acme-lab.html\">Acme Laboratory, Inc</a></td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td><td><b>Reference Range</b></td><td><b>Flags</b></td><td><b>When For</b></td></tr><tr><td><a href=\"Observation-serum-sodium.html\"><span title=\"Codes:{http://loinc.org 2951-2}\">Sodium, Blood</span></a></td><td>137 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 135 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span> - 145 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-potassium.html\"><span title=\"Codes:{http://loinc.org 2823-3}\">Potassium, Blood</span></a></td><td>5.4 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 3.5 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span> - 5.5 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-creatinine.html\"><span title=\"Codes:{http://loinc.org 2160-0}\">Creatinine, Blood</span></a></td><td>1 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 0.2 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span> - 0.6 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation H}\">High</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-co2.html\"><span title=\"Codes:{http://loinc.org 2028-9}\">Carbon Dioxide (CO2), Blood</span></a></td><td>24 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 22 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span> - 29 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-chloride.html\"><span title=\"Codes:{http://loinc.org 2075-0}\">Chloride, Blood</span></a></td><td>105 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 95 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span> - 105 mmol/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemmol/L = 'mmol/L')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-calcium.html\"><span title=\"Codes:{http://loinc.org 17861-6}\">Calcium, Blood</span></a></td><td>7.7 mg/dL</td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 8.5 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span> - 10.5 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation L}\">Low</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-bun.html\"><span title=\"Codes:{http://loinc.org 3094-0}\">Urea Nitrogen (BUN), Blood</span></a></td><td>10 mg/dL</td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 5 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span> - 20 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-serum-glucose.html\"><span title=\"Codes:{http://loinc.org 2345-7}\">Glucose, Blood</span></a></td><td>76 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 40 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span> - 109 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>Final, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></td><td>2005-07-05</td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:basedOn ( [
+     fhir:link <http://hl7.org/fhir/us/core/ServiceRequest/bmp> ;
+     fhir:reference [ fhir:v "ServiceRequest/bmp" ] ;
+     fhir:display [ fhir:v "Basic Metabolic Panel (BMP) Order" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LAB" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:24321-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "24321-2" ] ;
+       fhir:display [ fhir:v "Basic metabolic 2000 panel - Serum or Plasma" ]
+     ] ) ;
+     fhir:text [ fhir:v "Basic Metabolic Panel (BMP)" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:link <http://hl7.org/fhir/us/core/Encounter/example-1> ;
+     fhir:reference [ fhir:v "Encounter/example-1" ] ;
+     fhir:display [ fhir:v "Office Visit" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2005-07-04"^^xsd:date
+  ] ; # 
+  fhir:issued [ fhir:v "2005-07-06T11:45:33Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Organization/acme-lab> ;
+     fhir:reference [ fhir:v "Organization/acme-lab" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:result ( [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-sodium> ;
+     fhir:reference [ fhir:v "Observation/serum-sodium" ] ;
+     fhir:display [ fhir:v "SODIUM" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-potassium> ;
+     fhir:reference [ fhir:v "Observation/serum-potassium" ] ;
+     fhir:display [ fhir:v "Potassium" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-creatinine> ;
+     fhir:reference [ fhir:v "Observation/serum-creatinine" ] ;
+     fhir:display [ fhir:v "CREATININE" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-co2> ;
+     fhir:reference [ fhir:v "Observation/serum-co2" ] ;
+     fhir:display [ fhir:v "TOTAL CO2" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-chloride> ;
+     fhir:reference [ fhir:v "Observation/serum-chloride" ] ;
+     fhir:display [ fhir:v "CHLORIDE" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-calcium> ;
+     fhir:reference [ fhir:v "Observation/serum-calcium" ] ;
+     fhir:display [ fhir:v "CALCIUM" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-bun> ;
+     fhir:reference [ fhir:v "Observation/serum-bun" ] ;
+     fhir:display [ fhir:v "BUN" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/serum-glucose> ;
+     fhir:reference [ fhir:v "Observation/serum-glucose" ] ;
+     fhir:display [ fhir:v "GLUCOSE" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/ServiceRequest/bmp> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Encounter/example-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Organization/acme-lab> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-sodium> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-potassium> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-creatinine> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-co2> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-chloride> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-calcium> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-bun> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/serum-glucose> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

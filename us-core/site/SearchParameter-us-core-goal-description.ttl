@@ -1,0 +1,74 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/SearchParameter/us-core-goal-description> a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "us-core-goal-description"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">    <!-- <h2>SearchParameter: USCoreGoalDescription</h2>\n				<b> description</b> : <p><strong>The code or text describing the goal</strong>\n<strong>NOTE</strong>: This US Core SearchParameter definition extends the usage context of the\n<a href=\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\">Conformance expectation extension</a></p>\n<ul>\n<li>multipleAnd</li>\n<li>multipleOr</li>\n<li>comparator</li>\n<li>modifier</li>\n<li>chain</li>\n</ul>\n\n			<br/> --><p><b> id</b> us-core-goal-description</p><p><b> url</b> : <b> http://hl7.org/fhir/us/core/SearchParameter/us-core-goal-description</b>\n			</p><p><b> version</b> : 4.1.0</p><p><b> name</b> : USCoreGoalDescription</p><p><b> status</b> : active</p><p><b> date</b> : 04/14/2022</p><p><b> publisher</b> : HL7 International - Cross-Group Projects</p><p><b> contact</b> : http://www.hl7.org/Special/committees/cgp</p>    <!-- <p>\n				<b> useContext</b> : </p> --><p><b> jurisdiction</b> : United States of America (the) <span> (Details : {urn:iso:std:iso:3166 code 'US' = 'United States of America', given as 'United\n           States of America (the)'})</span>\n			</p>    <!-- <p>\n		<b> purpose</b> : Need to search by identifier for various infrastructural cases - mainly retrieving packages,\n         and matching as part of a chain</p> --><p><b> code</b> : <code>description</code>\n			</p><p><b> base</b> :Goal</p><p><b> type</b> : token</p><p><b> expression</b> : <code>Goal.description</code>\n			</p><p><b> xpath</b> : <code>f:Goal/f:description</code>\n			</p><p><b> xpathUsage</b> : normal</p><p><b> multipleOr</b> : True   (Conformance Expectation = MAY)</p><p><b> multipleAnd</b> : True  ( Conformance Expectation = MAY)</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:code ;
+       fhir:v "cgp"
+     ]
+  ] ) ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/us/core/SearchParameter/us-core-goal-description"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "8.0.0"] ; # 
+  fhir:name [ fhir:v "USCoreGoalDescription"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v false] ; # 
+  fhir:date [ fhir:v "2022-04-14"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 International / Cross-Group Projects"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "HL7 International / Cross-Group Projects" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/cgp" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "cgp@lists.HL7.org" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "**The code or text describing the goal**\n**NOTE**: This US Core SearchParameter definition extends the usage context of the\n[Conformance expectation extension](http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html)\n - multipleAnd\n - multipleOr\n - comparator\n - modifier\n - chain"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ]
+     ] )
+  ] ) ; # 
+  fhir:code [ fhir:v "description"] ; # 
+  fhir:base ( [ fhir:v "Goal"] ) ; # 
+  fhir:type [ fhir:v "token"] ; # 
+  fhir:expression [ fhir:v "Goal.description"] ; # 
+  fhir:xpathUsage [ fhir:v "normal"] ; # 
+  fhir:multipleOr [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] ; # 
+  fhir:multipleAnd [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

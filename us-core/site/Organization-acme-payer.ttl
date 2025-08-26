@@ -1,0 +1,51 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Organization/acme-payer> a fhir:Organization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "acme-payer"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Organization acme-payer</b></p><a name=\"acme-payer\"> </a><a name=\"hcacme-payer\"> </a><a name=\"acme-payer-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-organization.html\">US Core Organization Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <a href=\"http://terminology.hl7.org/6.4.0/NamingSystem-NAICCompanyCodes.html\" title=\"NAIC company codes, also referred to as NAIC numbers, are five-digit identification codes assigned by the National Association of Insurance Commissioners (NAIC) to every insurance company to identify them. NAIC maintains a list of all lines of insurance the company sells and a list of all jurisdictions in which the company is licensed.\r\n\r\nFor more information, see [https://content.naic.org/cis_consumer_information.htm](https://content.naic.org/cis_consumer_information.htm)\">National Association of Insurance Commissioners (NAIC) Company Codes</a>/55555</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/organization-type pay}\">Payer</span></p><p><b>name</b>: Acme Health Plan</p><p><b>telecom</b>: ph: (+1) 555-555-5555, <a href=\"mailto:hq@acme.org\">hq@acme.org</a></p><p><b>address</b>: 100 INSURANCE AVE AMHERST MA 01002 USA </p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.300"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "55555" ]
+  ] ) ; # 
+  fhir:active [ fhir:v true] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/organization-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "pay" ]
+     ] ) ;
+     fhir:text [ fhir:v "Payer" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "Acme Health Plan"] ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "(+1) 555-555-5555" ]
+  ] [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "hq@acme.org" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "100 INSURANCE AVE" ] ) ;
+     fhir:city [ fhir:v "AMHERST" ] ;
+     fhir:state [ fhir:v "MA" ] ;
+     fhir:postalCode [ fhir:v "01002" ] ;
+     fhir:country [ fhir:v "USA" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

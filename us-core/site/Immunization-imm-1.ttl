@@ -1,0 +1,73 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Immunization/imm-1> a fhir:Immunization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "imm-1"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Immunization imm-1</b></p><a name=\"imm-1\"> </a><a name=\"hcimm-1\"> </a><a name=\"imm-1-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-immunization.html\">US Core Immunization Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Completed</p><p><b>vaccineCode</b>: <span title=\"Codes:{http://hl7.org/fhir/sid/cvx 197}, {http://hl7.org/fhir/sid/ndc 49281012165}\">influenza, high-dose, quadrivalent</span></p><p><b>patient</b>: <a href=\"Patient-example.html\">Amy Shaw</a></p><p><b>encounter</b>: <a href=\"Encounter-example-1.html\">Office Visit</a></p><p><b>occurrence</b>: 2020-11-19 12:46:57-0800</p><p><b>primarySource</b>: false</p><p><b>location</b>: <a href=\"Location-hospital.html\">Holy Family Hospital</a></p><p><b>lotNumber</b>: AAJN11K</p><h3>Performers</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Actor</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:vaccineCode [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/cvx"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "197" ] ;
+       fhir:display [ fhir:v "influenza, high-dose, quadrivalent" ]
+     ] [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/ndc"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "49281012165" ] ;
+       fhir:display [ fhir:v "FLUZONE High-Dose Quadrivalent Northern Hemisphere, 10 SYRINGE, GLASS in 1 PACKAGE (49281-121-65) > .7 mL in 1 SYRINGE, GLASS (49281-121-88) (package)" ]
+     ] ) ;
+     fhir:text [ fhir:v "influenza, high-dose, quadrivalent" ]
+  ] ; # 
+  fhir:patient [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy Shaw" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:link <http://hl7.org/fhir/us/core/Encounter/example-1> ;
+     fhir:reference [ fhir:v "Encounter/example-1" ] ;
+     fhir:display [ fhir:v "Office Visit" ]
+  ] ; # 
+  fhir:occurrence [
+     a fhir:dateTime ;
+     fhir:v "2020-11-19T12:46:57-08:00"^^xsd:dateTime
+  ] ; # 
+  fhir:primarySource [ fhir:v false] ; # 
+  fhir:location [
+     fhir:link <http://hl7.org/fhir/us/core/Location/hospital> ;
+     fhir:reference [ fhir:v "Location/hospital" ] ;
+     fhir:display [ fhir:v "Holy Family Hospital" ]
+  ] ; # 
+  fhir:lotNumber [ fhir:v "AAJN11K"] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+       fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+       fhir:display [ fhir:v "Dr Ronald Bone" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Encounter/example-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Location/hospital> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

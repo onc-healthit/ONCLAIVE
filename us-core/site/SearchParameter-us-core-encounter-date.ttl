@@ -1,0 +1,160 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/SearchParameter/us-core-encounter-date> a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "us-core-encounter-date"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">    <!-- <h2>SearchParameter: USCoreEncounterDate</h2>\n				<b> description</b> : <p><strong>A date within the period the Encounter lasted</strong><br />\nNOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the <a href=\"http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation\">Conformance expectation extension</a> to define additional expectations for the following SearchParameter elements:</p>\n<ul>\n<li><code>multipleAnd</code></li>\n<li><code>multipleOr</code></li>\n<li><code>comparator</code></li>\n<li><code>modifier</code></li>\n<li><code>chain</code></li>\n</ul>\n<p>For search operations, Servers and Clients <strong>SHOULD</strong> use standard FHIR SearchParameter.</p>\n\n			<br/> --><p><b> id</b> us-core-encounter-date</p><p><b> url</b> : <b> http://hl7.org/fhir/us/core/SearchParameter/us-core-encounter-date</b>\n			</p><p><b> name</b> : USCoreEncounterDate</p><p><b> derivedFrom</b> : http://hl7.org/fhir/SearchParameter/clinical-date</p><p><b> status</b> : active</p><p><b> date</b> : 11/17/2024</p><p><b> publisher</b> : HL7 International - Cross-Group Projects</p><p><b> contact</b> : http://www.hl7.org/Special/committees/cgp</p>    <!-- <p>\n				<b> useContext</b> : </p> --><p><b> jurisdiction</b> : United States of America (the) <span> (Details : {urn:iso:std:iso:3166 code 'US' = 'United States of America', given as 'United\n           States of America (the)'})</span>\n			</p>    <!-- <p>\n		<b> purpose</b> : Need to search by identifier for various infrastructural cases - mainly retrieving packages,\n         and matching as part of a chain</p> --><p><b> code</b> : <code>date</code>\n			</p><p><b> base</b> :Encounter</p><p><b> type</b> : date</p><p><b> expression</b> : <code>Encounter.period</code>\n			</p><p><b> xpath</b> : <code>f:AllergyIntolerance/f:recordedDate|f:CarePlan/f:period|f:CareTeam/f:period|f:ClinicalImpression/f:date|f:Composition/f:date|f:Consent/f:dateTime|f:DiagnosticReport/f:effectiveDateTime|f:DiagnosticReport/f:effectivePeriod|f:Encounter/f:period|f:EpisodeOfCare/f:period|f:FamilyMemberHistory/f:date|f:Flag/f:period|f:Immunization/f:occurrenceDateTime|f:Immunization/f:occurrenceString|f:List/f:date|f:Observation/f:effectiveDateTime|f:Observation/f:effectivePeriod|f:Observation/f:effectiveTiming|f:Observation/f:effectiveInstant|f:Procedure/f:performedDateTime|f:Procedure/f:performedPeriod|f:Procedure/f:performedString|f:Procedure/f:performedAge|f:Procedure/f:performedRange|f:RiskAssessment/f:occurrenceDateTime|f:SupplyRequest/f:authoredOn</code>\n			</p><p><b> xpathUsage</b> : normal</p><p><b> multipleOr</b> : True   (Conformance Expectation = MAY)</p><p><b> multipleAnd</b> : True  ( Conformance Expectation = SHOULD)</p><p><b> comparator</b> : <code>eq</code> ( Conformance Expectation = MAY)</p><p><b> comparator</b> : <code>ne</code> ( Conformance Expectation = MAY)</p><p><b> comparator</b> : <code>gt</code> ( Conformance Expectation = SHALL)</p><p><b> comparator</b> : <code>ge</code> ( Conformance Expectation = SHALL)</p><p><b> comparator</b> : <code>lt</code> ( Conformance Expectation = SHALL)</p><p><b> comparator</b> : <code>le</code> ( Conformance Expectation = SHALL)</p><p><b> comparator</b> : <code>sa</code> ( Conformance Expectation = MAY)</p><p><b> comparator</b> : <code>eb</code> ( Conformance Expectation = MAY)</p><p><b> comparator</b> : <code>ap</code> ( Conformance Expectation = MAY)</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:code ;
+       fhir:v "cgp"
+     ]
+  ] ) ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/us/core/SearchParameter/us-core-encounter-date"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "8.0.0"] ; # 
+  fhir:name [ fhir:v "USCoreEncounterDate"] ; # 
+  fhir:derivedFrom [
+     fhir:v "http://hl7.org/fhir/SearchParameter/clinical-date"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/SearchParameter/clinical-date>
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v false] ; # 
+  fhir:date [ fhir:v "2024-11-17"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 International / Cross-Group Projects"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "HL7 International / Cross-Group Projects" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/cgp" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "cgp@lists.HL7.org" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "**A date within the period the Encounter lasted**  \nNOTE: This SearchParameter is defined only to document Server and Client expectations. Its definition is derived from the standard FHIR SearchParameter and it uses the [Conformance expectation extension](http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation) to define additional expectations for the following SearchParameter elements:\n- `multipleAnd`\n- `multipleOr`\n- `comparator`\n- `modifier`\n- `chain`\n\nIt **SHALL NOT** be used as a search parameter for search. Servers and Clients **SHOULD** use the standard FHIR SearchParameter.\n"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ]
+     ] )
+  ] ) ; # 
+  fhir:code [ fhir:v "date"] ; # 
+  fhir:base ( [ fhir:v "Encounter"] ) ; # 
+  fhir:type [ fhir:v "date"] ; # 
+  fhir:expression [ fhir:v "Encounter.period"] ; # 
+  fhir:xpathUsage [ fhir:v "normal"] ; # 
+  fhir:multipleOr [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] ; # 
+  fhir:multipleAnd [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "SHOULD"
+       ]
+     ] )
+  ] ; # 
+  fhir:comparator ( [
+     fhir:v "eq" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] [
+     fhir:v "ne" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] [
+     fhir:v "gt" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "SHALL"
+       ]
+     ] )
+  ] [
+     fhir:v "ge" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "SHALL"
+       ]
+     ] )
+  ] [
+     fhir:v "lt" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "SHALL"
+       ]
+     ] )
+  ] [
+     fhir:v "le" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "SHALL"
+       ]
+     ] )
+  ] [
+     fhir:v "sa" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] [
+     fhir:v "eb" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] [
+     fhir:v "ap" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

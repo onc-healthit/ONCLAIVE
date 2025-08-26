@@ -1,0 +1,126 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-panel-example-44249-1> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "PHQ9-panel-example-44249-1"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation PHQ9-panel-example-44249-1</b></p><a name=\"PHQ9-panel-example-44249-1\"> </a><a name=\"hcPHQ9-panel-example-44249-1\"> </a><a name=\"PHQ9-panel-example-44249-1-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-screening-assessment.html\">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}\">Survey</span>, <span title=\"Codes:{http://hl7.org/fhir/us/core/CodeSystem/us-core-category disability-status}\">Disability Status</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 44249-1}\">PHQ-9 quick depression assessment panel [Reported.PHQ]</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2022-11-29 20:50:32+0000</p><p><b>performer</b>: <a href=\"Practitioner-practitioner-1.html\">Practitioner Ronald Bone </a></p><p><b>hasMember</b>: </p><ul><li><a href=\"Observation-PHQ9-item-example-44250-9.html\">Observation Little interest or pleasure in doing things in last 2 weeks</a></li><li><a href=\"Observation-PHQ9-item-example-44255-8.html\">Observation Feeling down, depressed, or hopeless in last 2 weeks</a></li><li><a href=\"Observation-PHQ9-item-example-44259-0.html\">Observation Trouble falling or staying asleep, or sleeping too much in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44254-1.html\">Observation Feeling tired or having little energy in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44251-7.html\">Observation Poor appetite or overeating in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44258-2.html\">Observation Feeling bad about yourself - or that you are a failure or have let yourself or your family down in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44252-5.html\">Observation Trouble concentrating on things, such as reading the newspaper or watching television in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44253-3.html\">Observation Moving or speaking so slowly that other people could have noticed. Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44260-8.html\">Observation Thoughts that you would be better off dead, or of hurting yourself in some way in last 2 weeks [Reported.PHQ]</a></li><li><a href=\"Observation-PHQ9-item-example-44261-6.html\">Observation Patient Health Questionnaire 9 item (PHQ-9) total score [Reported]</a></li><li><a href=\"Observation-PHQ9-item-example-69722-7.html\">Observation How difficult have these made it for you to do your work, take care of things at home, or get along with other people [Reported.PHQ]</a></li></ul><p><b>derivedFrom</b>: <a href=\"QuestionnaireResponse-phq-9-example.html\">Response to Questionnaire '-&gt;PHQ-9 Example' about '-&gt;Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))'</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "survey" ] ;
+       fhir:display [ fhir:v "Survey" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/us-core-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "disability-status" ] ;
+       fhir:display [ fhir:v "Disability Status" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:44249-1 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "44249-1" ] ;
+       fhir:display [ fhir:v "PHQ-9 quick depression assessment panel [Reported.PHQ]" ]
+     ] ) ;
+     fhir:text [ fhir:v "PHQ-9 quick depression assessment panel [Reported.PHQ]" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2022-11-29T20:50:32.718000+00:00"^^xsd:dateTime
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ]
+  ] ) ; # 
+  fhir:hasMember ( [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44250-9> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44250-9" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44255-8> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44255-8" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44259-0> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44259-0" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44254-1> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44254-1" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44251-7> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44251-7" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44258-2> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44258-2" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44252-5> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44252-5" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44253-3> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44253-3" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44260-8> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44260-8" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44261-6> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-44261-6" ]
+  ] [
+     fhir:link <http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-69722-7> ;
+     fhir:reference [ fhir:v "Observation/PHQ9-item-example-69722-7" ]
+  ] ) ; # 
+  fhir:derivedFrom ( [
+     fhir:link <http://hl7.org/fhir/us/core/QuestionnaireResponse/phq-9-example> ;
+     fhir:reference [ fhir:v "QuestionnaireResponse/phq-9-example" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44250-9> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44255-8> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44259-0> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44254-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44251-7> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44258-2> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44252-5> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44253-3> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44260-8> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-44261-6> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Observation/PHQ9-item-example-69722-7> a fhir:us .
+
+<http://hl7.org/fhir/us/core/QuestionnaireResponse/phq-9-example> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

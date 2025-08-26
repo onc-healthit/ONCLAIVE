@@ -1,0 +1,122 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/satO2-fiO2> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "satO2-fiO2"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation satO2-fiO2</b></p><a name=\"satO2-fiO2\"> </a><a name=\"hcsatO2-fiO2\"> </a><a name=\"satO2-fiO2-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-pulse-oximetry.html\">US Core Pulse Oximetry Profileversion: null8.0.0)</a></p></div><p><b>identifier</b>: <code>http://example.org/FHIR/observation/identifiers</code>/o1223435-10</p><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}\">Vital Signs</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 2708-6}, {http://loinc.org 59408-5}, {urn:iso:std:iso:11073:10101 150456}\">Oxygen saturation in Arterial blood</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2014-12-05 09:30:10+0100</p><p><b>performer</b>: <a href=\"Practitioner-practitioner-1.html\">Dr Ronald Bone</a></p><p><b>value</b>: 95 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code% = '%')</span></p><p><b>interpretation</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation N}\">Normal</span></p><p><b>device</b>: Acme Pulse Oximeter 2000</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td style=\"display: none\">*</td><td>90 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code% = '%')</span></td><td>99 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code% = '%')</span></td></tr></table><h3>Components</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td style=\"display: none\">*</td><td><span title=\"Codes:{http://loinc.org 3151-8}\">Inhaled oxygen flow rate</span></td><td>6 liters/min<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codeL/min = 'L/min')</span></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.org/FHIR/observation/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "o1223435-10" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "vital-signs" ] ;
+       fhir:display [ fhir:v "Vital Signs" ]
+     ] ) ;
+     fhir:text [ fhir:v "Vital Signs" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2708-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2708-6" ] ;
+       fhir:display [ fhir:v "Oxygen saturation in Arterial blood" ]
+     ] [
+       a loinc:59408-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "59408-5" ] ;
+       fhir:display [ fhir:v "Oxygen saturation in Arterial blood by Pulse oximetry" ]
+     ] [
+       fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "150456" ] ;
+       fhir:display [ fhir:v "MDC_PULS_OXIM_SAT_O2" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2014-12-05T09:30:10+01:00"^^xsd:dateTime
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ] ;
+     fhir:display [ fhir:v "Dr Ronald Bone" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "95"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "N" ] ;
+       fhir:display [ fhir:v "Normal" ]
+     ] ) ;
+     fhir:text [ fhir:v "Normal" ]
+  ] ) ; # 
+  fhir:device [
+     fhir:display [ fhir:v "Acme Pulse Oximeter 2000" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "90"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "99"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] ) ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:3151-8 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "3151-8" ] ;
+         fhir:display [ fhir:v "Inhaled oxygen flow rate" ]
+       ] ) ;
+       fhir:text [ fhir:v "Inhaled oxygen flow rate" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "6"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "liters/min" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "L/min" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

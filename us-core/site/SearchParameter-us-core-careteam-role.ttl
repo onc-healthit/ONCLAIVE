@@ -1,0 +1,73 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/SearchParameter/us-core-careteam-role> a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "us-core-careteam-role"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">    <!-- <h2>SearchParameter: USCoreCareTeamRole</h2>\n				<b> description</b> : <p>Returns CareTeam resources with a participant role matching the specified code.</p>\n\n			<br/> --><p><b> id</b> us-core-careteam-role</p><p><b> url</b> : <b> http://hl7.org/fhir/us/core/SearchParameter/us-core-careteam-role</b>\n			</p><p><b> version</b> : 4.1.0</p><p><b> name</b> : USCoreCareTeamRole</p><p><b> status</b> : active</p><p><b> date</b> : 04/14/2022</p><p><b> publisher</b> : HL7 International - Cross-Group Projects</p><p><b> contact</b> : http://www.hl7.org/Special/committees/cgp</p>    <!-- <p>\n				<b> useContext</b> : </p> --><p><b> jurisdiction</b> : United States of America (the) <span> (Details : {urn:iso:std:iso:3166 code 'US' = 'United States of America', given as 'United\n           States of America (the)'})</span>\n			</p>    <!-- <p>\n		<b> purpose</b> : Need to search by identifier for various infrastructural cases - mainly retrieving packages,\n         and matching as part of a chain</p> --><p><b> code</b> : <code>role</code>\n			</p><p><b> base</b> :CareTeam</p><p><b> type</b> : token</p><p><b> expression</b> : <code>CareTeam.participant.role</code>\n			</p><p><b> xpath</b> : <code>f:CareTeam/f:participant/f:role/@value</code>\n			</p><p><b> xpathUsage</b> : normal</p><p><b> multipleOr</b> : True   (Conformance Expectation = MAY)</p><p><b> multipleAnd</b> : True  ( Conformance Expectation = MAY)</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:code ;
+       fhir:v "cgp"
+     ]
+  ] ) ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/us/core/SearchParameter/us-core-careteam-role"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "8.0.0"] ; # 
+  fhir:name [ fhir:v "USCoreCareTeamRole"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2022-04-14"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 International / Cross-Group Projects"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "HL7 International / Cross-Group Projects" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/cgp" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "cgp@lists.HL7.org" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Returns CareTeam resources with a participant role matching the specified code."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ]
+     ] )
+  ] ) ; # 
+  fhir:code [ fhir:v "role"] ; # 
+  fhir:base ( [ fhir:v "CareTeam"] ) ; # 
+  fhir:type [ fhir:v "token"] ; # 
+  fhir:expression [ fhir:v "CareTeam.participant.role"] ; # 
+  fhir:xpathUsage [ fhir:v "normal"] ; # 
+  fhir:multipleOr [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] ; # 
+  fhir:multipleAnd [
+     fhir:v true ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:code ;
+         fhir:v "MAY"
+       ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

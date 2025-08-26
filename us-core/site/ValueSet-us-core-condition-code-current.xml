@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="us-core-condition-code-current"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ValueSet us-core-condition-code-current</b></p><a name="us-core-condition-code-current"> </a><a name="hcus-core-condition-code-current"> </a><a name="us-core-condition-code-current-en-US"> </a><p>This value set includes codes based on the following rules:</p><ul><li>Include these codes as defined in <a href="http://www.snomed.org/"><code>http://snomed.info/sct</code></a><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="http://snomed.info/id/160245001">160245001</a></td><td style="color: #cccccc">No current problems or disability</td></tr></table></li><li>Include codes from<a href="http://www.snomed.org/"><code>http://snomed.info/sct</code></a> where concept  is-a 404684003 (Clinical finding (finding))</li><li>Include codes from<a href="http://www.snomed.org/"><code>http://snomed.info/sct</code></a> where concept  is-a 243796009 (Context-dependent categories)</li><li>Include codes from<a href="http://www.snomed.org/"><code>http://snomed.info/sct</code></a> where concept  is-a 272379006 (Events)</li><li>Include all codes defined in <a href="http://terminology.hl7.org/5.5.0/CodeSystem-icd10CM.html"><code>http://hl7.org/fhir/sid/icd-10-cm</code></a></li></ul></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="cgp"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="3">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom">
+        <valueCanonical value="http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core"/>
+      </extension>
+    </valueInteger>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+    <valueCode value="trial-use">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom">
+        <valueCanonical value="http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core"/>
+      </extension>
+    </valueCode>
+  </extension>
+  <url value="http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code-current"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.40.2.48.3"/>
+  </identifier>
+  <version value="8.0.0"/>
+  <name value="USCoreConditionCodesCurrent"/>
+  <title value="US Core Condition Codes Current"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2025-05-01"/>
+  <publisher value="HL7 International / Cross-Group Projects"/>
+  <contact>
+    <name value="HL7 International / Cross-Group Projects"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.hl7.org/Special/committees/cgp"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="cgp@lists.HL7.org"/>
+    </telecom>
+  </contact>
+  <description value="This valueset is defined the same as the [US Core Condition Codes](ValueSet-us-core-condition-code.html) value set except it excludes ICD-9-CM codes. It us used for encoding newly recorded, non-legacy problem list items, health concerns and diagnosis using SNOMED CT and ICD-10-CM per USCDI requirements."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+    </coding>
+  </jurisdiction>
+  <copyright value="1. This value set includes content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.&#xA;2. ICD-10 is copyrighted by the World Health Organization (WHO) which owns and publishes the classification. See https://www.who.int/classifications/icd/en. WHO has authorized the development of an adaptation of ICD-9 and ICD-10 to ICD-9-CM to ICD-10-CM for use in the United States for U.S. government purposes."/>
+  <compose>
+    <include>
+      <system value="http://snomed.info/sct"/>
+      <concept>
+        <code value="160245001"/>
+      </concept>
+    </include>
+    <include>
+      <system value="http://snomed.info/sct"/>
+      <filter>
+        <property value="concept"/>
+        <op value="is-a"/>
+        <value value="404684003"/>
+      </filter>
+    </include>
+    <include>
+      <system value="http://snomed.info/sct"/>
+      <filter>
+        <property value="concept"/>
+        <op value="is-a"/>
+        <value value="243796009"/>
+      </filter>
+    </include>
+    <include>
+      <system value="http://snomed.info/sct"/>
+      <filter>
+        <property value="concept"/>
+        <op value="is-a"/>
+        <value value="272379006"/>
+      </filter>
+    </include>
+    <include>
+      <system value="http://hl7.org/fhir/sid/icd-10-cm"/>
+    </include>
+  </compose>
+</ValueSet>

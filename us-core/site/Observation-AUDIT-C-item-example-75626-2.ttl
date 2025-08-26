@@ -1,0 +1,75 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/AUDIT-C-item-example-75626-2> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "AUDIT-C-item-example-75626-2"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation AUDIT-C-item-example-75626-2</b></p><a name=\"AUDIT-C-item-example-75626-2\"> </a><a name=\"hcAUDIT-C-item-example-75626-2\"> </a><a name=\"AUDIT-C-item-example-75626-2-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-screening-assessment.html\">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}\">Survey</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 75626-2}\">Total score [AUDIT-C]</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2023-08-14 20:40:49+0000</p><p><b>performer</b>: <a href=\"Practitioner-practitioner-1.html\">Practitioner Ronald Bone </a></p><p><b>value</b>: 0 score<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  code1 = '1')</span></p><p><b>note</b>: The Alcohol Use Disorders Identification Test C (AUDIT-C) is scored on a scale of 0-12 where the higher the score, the more likely the patient's drinking is hazardous. A score of 4 or more for men and 3 or more for women is considered positive for hazardous drinking or active alcohol use disorders. If the points are all from Question 1 alone where 2 and 3 are 0, it is likely the patient is drinking below recommended limits. The care provider may review the patients alcohol intake over that past few months to confirm accuracy. [PMID: 12695273]</p><p><b>derivedFrom</b>: <a href=\"QuestionnaireResponse-AUDIT-C.html\">Alcohol Use Disorder Identification Test - Consumption [AUDIT-C] QuestionnaireResponse Example</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "survey" ] ;
+       fhir:display [ fhir:v "Survey" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:75626-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "75626-2" ] ;
+       fhir:display [ fhir:v "Total score [AUDIT-C]" ]
+     ] ) ;
+     fhir:text [ fhir:v "Total score [AUDIT-C]" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2023-08-14T20:40:49.675000+00:00"^^xsd:dateTime
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+     fhir:reference [ fhir:v "Practitioner/practitioner-1" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "score" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "1" ]
+  ] ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "The Alcohol Use Disorders Identification Test C (AUDIT-C) is scored on a scale of 0-12 where the higher the score, the more likely the patient's drinking is hazardous. A score of 4 or more for men and 3 or more for women is considered positive for hazardous drinking or active alcohol use disorders. If the points are all from Question 1 alone where 2 and 3 are 0, it is likely the patient is drinking below recommended limits. The care provider may review the patients alcohol intake over that past few months to confirm accuracy. [PMID: 12695273]" ]
+  ] ) ; # 
+  fhir:derivedFrom ( [
+     fhir:link <http://hl7.org/fhir/us/core/QuestionnaireResponse/AUDIT-C> ;
+     fhir:reference [ fhir:v "QuestionnaireResponse/AUDIT-C" ] ;
+     fhir:display [ fhir:v "Alcohol Use Disorder Identification Test - Consumption [AUDIT-C] QuestionnaireResponse Example" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/QuestionnaireResponse/AUDIT-C> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

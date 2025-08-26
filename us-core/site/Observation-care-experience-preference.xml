@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="care-experience-preference"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-care-experience-preference|8.0.0"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation care-experience-preference</b></p><a name="care-experience-preference"> </a><a name="hccare-experience-preference"> </a><a name="care-experience-preference-en-US"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-us-core-care-experience-preference.html">US Core Care Experience Preference Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://hl7.org/fhir/us/core/CodeSystem/us-core-category care-experience-preference}">Care Experience Preference</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 95541-9}">Care Experience Preference</span></p><p><b>subject</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>effective</b>: 2023-08-30</p><p><b>performer</b>: <a href="Patient-example.html">Amy Shaw</a></p><p><b>value</b>: For critical or end-of-life care, here are some examples of the things that I would like to have near me, music that I’d like to hear, and other details of my care that would help to keep me happy and relaxed: Like Bach, especially the cantatas.  St. Martin in the Fields</p></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://hl7.org/fhir/us/core/CodeSystem/us-core-category"/>
+      <code value="care-experience-preference"/>
+      <display value="Care experience preference"/>
+    </coding>
+    <text value="Care Experience Preference"/>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="95541-9"/>
+      <display value="Care experience preference"/>
+    </coding>
+    <text value="Care Experience Preference"/>
+  </code>
+  <subject>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </subject>
+  <effectiveDateTime value="2023-08-30"/>
+  <performer>
+    <reference value="Patient/example"/>
+    <display value="Amy Shaw"/>
+  </performer>
+  <valueString value="For critical or end-of-life care, here are some examples of the things that I would like to have near me, music that I’d like to hear, and other details of my care that would help to keep me happy and relaxed: Like Bach, especially the cantatas.  St. Martin in the Fields"/>
+</Observation>

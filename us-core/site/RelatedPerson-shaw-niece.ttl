@@ -1,0 +1,61 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/RelatedPerson/shaw-niece> a fhir:RelatedPerson ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "shaw-niece"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: RelatedPerson shaw-niece</b></p><a name=\"shaw-niece\"> </a><a name=\"hcshaw-niece\"> </a><a name=\"shaw-niece-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-relatedperson.html\">US Core RelatedPerson Profileversion: null8.0.0)</a></p></div><p><b>active</b>: true</p><p><b>patient</b>: <a href=\"Patient-example.html\">Amy V. Shaw</a></p><p><b>relationship</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/v3-RoleCode NIECE}\">niece</span></p><p><b>name</b>: Sarah van Putten (Official)</p><p><b>telecom</b>: ph: 555-555-5555(Home), <a href=\"mailto:sarah.vanputten@example.com\">sarah.vanputten@example.com</a></p><p><b>birthDate</b>: 1996-01-28</p><p><b>address</b>: 80A VILLAGE ST NEW HOLLAND PA 17557 (home)</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:active [ fhir:v true] ; # 
+  fhir:patient [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Amy V. Shaw" ]
+  ] ; # 
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "NIECE" ] ;
+       fhir:display [ fhir:v "niece" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:family [ fhir:v "van Putten" ] ;
+     fhir:given ( [ fhir:v "Sarah" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "555-555-5555" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "sarah.vanputten@example.com" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] ) ; # 
+  fhir:birthDate [ fhir:v "1996-01-28"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "home" ] ;
+     fhir:line ( [ fhir:v "80A VILLAGE ST" ] ) ;
+     fhir:city [ fhir:v "NEW HOLLAND" ] ;
+     fhir:state [ fhir:v "PA" ] ;
+     fhir:postalCode [ fhir:v "17557" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

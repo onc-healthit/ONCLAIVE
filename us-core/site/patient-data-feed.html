@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Patient Data Feed - US Core Implementation Guide v8.0.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+    <link href="assets/css/hl7.css" rel="stylesheet"/>
+    <link href="assets/css/fhir-ig.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"12.3"}
+    h3,h4,h5,h6{--heading-prefix:"12.3.0"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+        <div id="hl7-nav">
+          <a id="hl7-logo" no-external="true" href="http://hl7.org">
+            <img height="50" alt="Visit the HL7 website" src="assets/images/hl7-logo-header.png"/>
+          </a>
+        </div>
+        <div id="family-nav">
+          <a id="family-logo" no-external="true" href="http://hl7.org/fhir"><img height="50" alt="Visit the FHIR website" src="assets/images/fhir-logo-www.png"/> </a>
+        </div>
+        <div id="hl7-search">
+          <a id="hl7-search-lnk" no-external="true" href="searchform.html"><img alt="Search FHIR" src="assets/images/search.png"/></a>
+        </div>
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">US Core Implementation Guide</span>
+            <br/>
+            <span style="display:inline-block;">8.0.0 - STU 8
+
+
+
+  <img alt="United States of America flag" src="assets/images/usa.svg" height="16" title="United States of America"/>
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Conformance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-requirements.html">General Requirements</a>
+      </li>
+      <li>
+        <a href="must-support.html">Must Support</a>
+      </li>
+      <li>
+        <a href="scopes.html">SMART on FHIR Obligations and Capabilities</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Guidance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="uscdi.html">USCDI</a>
+      </li>
+      <li>
+        <a href="general-guidance.html">General Guidance</a>
+      </li>
+      <li>
+        <a href="clinical-notes.html">Clinical Notes</a>
+      </li>
+      <li>
+        <a href="medication-list.html">Medication List</a>
+      </li>
+      <li>
+        <a href="basic-provenance.html">Basic Provenance</a>
+      </li>
+      <li>
+        <a href="screening-and-assessments.html">Screening and Assessments</a>
+      </li>
+      <li>
+        <a href="changes-between-versions.html">Changes Between Versions</a>
+      </li>
+      <li>
+        <a href="relationship-with-other-igs.html">Relationship With Other IGs</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="profiles-and-extensions.html#profiles">Profiles</a>
+      </li>
+      <li>
+        <a href="profiles-and-extensions.html#extensions">Extensions</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#search-parameters">Search Parameters</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#operations">Operations</a>
+      </li>
+      <li>
+        <a href="terminology.html">Terminology</a>
+      </li>
+      <li>
+        <a href="capability-statements.html">Capability Statements</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="security.html">Security</a>
+  </li>
+  <li>
+    <a href="examples.html">Examples</a>
+  </li>
+  <li>
+    <a href="downloads.html">Downloads</a>
+  </li>
+  <li>
+    <a href="changes.html">Change Log</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Looking Ahead
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="us-core-roadmap.html">US Core Roadmap</a>
+      </li>
+      <li>
+        <a href="writing-vital-signs.html">Writing Vital Signs</a>
+      </li>
+      <li>
+        <a href="patient-data-feed.html">Patient Data Feed</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='looking-ahead.html'><b>Looking Ahead</b></a></li><li><b>Patient Data Feed</b></li>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">US Core Implementation Guide, published by HL7 International / Cross-Group Projects. This guide is not an authorized publication; it is the continuous build for version 8.0.0  built by the FHIR (HL7&reg; FHIR&reg; Standard) CI Build. This version is based on the current content of <a href='https://github.com/HL7/US-Core/'>https://github.com/HL7/US-Core/</a> and changes regularly. See the <a href='http://hl7.org/fhir/us/core/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>Patient Data Feed</h2>
+  
+
+
+
+
+
+  <table class="colsi">
+    <tr>
+  
+      <td>
+        <i>Page standards status:</i> <a href="http://hl7.org/fhir/R4/versions.html#std-process" title="Standard Status">Informative</a>
+        
+      </td>
+  
+  
+    </tr>
+  </table>
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#canonical-topic-url" id="markdown-toc-canonical-topic-url">Canonical Topic URL</a></li>
+  <li><a href="#resources-filters-and-triggers" id="markdown-toc-resources-filters-and-triggers">Resources, Filters, and Triggers</a></li>
+  <li><a href="#triggering-events-and-notifications" id="markdown-toc-triggering-events-and-notifications">Triggering Events and Notifications</a></li>
+  <li><a href="#subscription-filters-and-requests" id="markdown-toc-subscription-filters-and-requests">Subscription Filters and Requests</a></li>
+  <li><a href="#additional-conformance-requirements" id="markdown-toc-additional-conformance-requirements">Additional Conformance Requirements</a></li>
+  <li><a href="#additional-considerations" id="markdown-toc-additional-considerations">Additional Considerations</a></li>
+  <li><a href="#future-work" id="markdown-toc-future-work">Future Work</a></li>
+</ul>
+
+</div>
+<!-- # Patient Data Feed: Subscriptions -->
+
+<h3 id="overview">Overview</h3>
+
+<p>The Patient Data Feed is an optional feature for servers implementing US Core. It allows clients to receive FHIR Subscription Notifications when events related to US Core content occur.</p>
+
+<p class="bg-info">This specification does not yet address the standardization of the SubscriptionTopic resource itself. Instead, it focuses on standardizing the functionality of the <code class="language-plaintext highlighter-rouge">patient-data-feed</code> topic and the expectations of Subscription management. For more information on future work in this area, see <a href="#future-work">Future Work</a>.</p>
+
+<p>Servers can start simple. A minimal implementation might support a few key US Core profiles to enable subscriptions for DiagnosticReport, DocumentReference, Encounter, and Observation. From there, servers can expand to cover more resources as needed.</p>
+
+<p>This specification defines a canonical topic URL, subscription filters, triggers, and conformance requirements for the Patient Data Feed. It builds on FHIR R4 definitions from the <a href="https://hl7.org/fhir/uv/subscriptions-backport/index.html">Subscriptions R5 Backport Implementation guide</a>.</p>
+
+<h3 id="canonical-topic-url">Canonical Topic URL</h3>
+
+<p>The canonical topic URL for the Patient Data Feed is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://hl7.org/fhir/us/core/SubscriptionTopic/patient-data-feed</code></p>
+
+<p>Clients use this topic URL when creating Subscriptions to indicate they are requesting the Patient Data Feed.</p>
+
+<h3 id="resources-filters-and-triggers">Resources, Filters, and Triggers</h3>
+
+<p>The table below defines a minimal set of required resources, their US Core search parameters, and the standardized triggering events for the Patient Feed.</p>
+
+<p>The <a href="patient-data-feed-additional-resources.html">Additional Resources</a> page provides guidance for supporting additional resources.</p>
+
+<p><a id="table1"></a>
+<em>Table 1. Required Resources</em>.</p>
+<table class="grid">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Required-Support Triggers</th>
+      <th>Required-Support Filters</th>
+      <th>Recommended-Support Filters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DiagnosticReport</td>
+      <td>feed-event</td>
+      <td>patient<br />category<br />trigger</td>
+      <td>code</td>
+    </tr>
+    <tr>
+      <td>DocumentReference</td>
+      <td>feed-event</td>
+      <td>patient<br />category<br />trigger</td>
+      <td>type</td>
+    </tr>
+    <tr>
+      <td>Encounter</td>
+      <td>feed-event</td>
+      <td>patient<br />trigger</td>
+      <td>type</td>
+    </tr>
+    <tr>
+      <td>Observation</td>
+      <td>feed-event</td>
+      <td>patient<br />category<br />trigger</td>
+      <td>code</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Note</strong>: Servers can support a limited subset of profiles for these resources. See the <a href="#additional-conformance-requirements">Conformance Requirements</a> for details.</p>
+</blockquote>
+
+<h3 id="triggering-events-and-notifications">Triggering Events and Notifications</h3>
+
+<h4 id="definition-of-feed-event-trigger">Definition of feed-event Trigger</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">feed-event</code> trigger can be implemented in two ways:</p>
+
+<ol>
+  <li><strong>Event-Driven</strong>: The system sends notifications when something meaningful happens (like a patient being admitted or a provider signing a note)</li>
+  <li><strong>Data-Driven</strong>: The system sends notifications when FHIR resources change directly</li>
+</ol>
+
+<p>Servers SHALL implement at least one of these approaches and document which one(s) they use. In either case, typical examples of changes that may trigger notifications include:</p>
+
+<ul>
+  <li>New or updated content is available for clinical use</li>
+  <li>Status changes affect the resource's usability or interpretation</li>
+  <li>Corrections or amendments modify the resource's meaning</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong>:</p>
+  <ol>
+    <li>A <code class="language-plaintext highlighter-rouge">feed-event</code> will not necessarily fire for every FHIR-visible change. Implementation flexibility allows servers to define the specific events that will appear as updates.</li>
+    <li>Servers MAY overlay their own more specific event codes onto this generic trigger. They can be included in notifications and used for more granular filtering via the <code class="language-plaintext highlighter-rouge">trigger</code> parameter, providing clients with richer context about the nature of updates.</li>
+  </ol>
+</blockquote>
+
+<h4 id="profile-specific-mapping-for-feed-event-trigger">Profile-Specific Mapping for "feed-event" trigger</h4>
+
+<p>This section documents a minimum set of events to expose via the "feed-event" trigger. Based on this guidance, servers will publish detailed documentation of their trigger functionality.</p>
+
+<ul>
+  <li><strong>US Core DocumentReference</strong>:
+    <ul>
+      <li>A clinical note has new or updated content available, including draft content</li>
+      <li>The note's status has changed (e.g., preliminary to final, draft to signed, or any status to entered-in-error)</li>
+      <li>The note has been amended or corrected</li>
+    </ul>
+  </li>
+  <li><strong>US Core Encounter</strong>:
+    <ul>
+      <li>An encounter has started, or a patient has been admitted</li>
+      <li>An encounter has ended or a patient has been discharged</li>
+      <li>The encounter's status has changed (e.g., planned to in-progress, in-progress to finished, or any status to entered-in-error)</li>
+    </ul>
+  </li>
+  <li><strong>US Core Laboratory Observation</strong>:
+    <ul>
+      <li>A new result (preliminary or final) has become available</li>
+      <li>An existing result has been updated, amended, or corrected</li>
+      <li>The observation's status has changed (e.g., preliminary to final, or any status to entered-in-error)</li>
+    </ul>
+  </li>
+  <li><strong>US Core DiagnosticReport for Laboratory Results Reporting</strong>:
+    <ul>
+      <li>A new report (preliminary or final) has become available</li>
+      <li>An existing report has been updated, amended, or corrected</li>
+      <li>The report's status has changed (e.g., preliminary to final, or any status to entered-in-error)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="conformance-requirements-for-triggering-events">Conformance Requirements for Triggering Events</h4>
+
+<p>For each supported resource type:</p>
+<ul>
+  <li>Servers SHALL support the Required-Support Triggers as specified in Table 1</li>
+  <li>EHRs MAY overlay their own more specific event codes (e.g., "lab_result_final", "medication_administered") onto these generic triggers. These specific codes can be included in notifications and used for more granular filtering via the <code class="language-plaintext highlighter-rouge">trigger</code> parameter, providing clients with richer context about the nature of updates. EHRs that implement this approach SHALL document their event codes and enable them to be filtered using the <code class="language-plaintext highlighter-rouge">trigger</code> filter.</li>
+  <li>When sending a notification, servers SHALL include all applicable supported triggering event code(s) in the <code class="language-plaintext highlighter-rouge">trigger</code> sub-part of the <code class="language-plaintext highlighter-rouge">notification-event</code> part of the Parameters resource. In other words, all applicable trigger codes are included if a single change satisfies multiple trigger conditions.</li>
+</ul>
+
+<p>Example of a Parameters resource for a notification with multiple triggers, including an EHR-specific event code and an HL7 v2 event code:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parameters"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"parameter"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valueReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subscription/example"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valueCanonical"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hl7.org/fhir/us/core/SubscriptionTopic/patient-data-feed"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valueCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valueCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event-notification"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"events-since-subscription-start"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valueString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notification-event"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event-number"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueInstant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-05T14:30:00Z"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"focus"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation/lab-result-123"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueCoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hl7.org/fhir/us/core/CodeSystem/trigger"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueCoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/ehr-events"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_result_final"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"valueCoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://terminology.hl7.org/CodeSystem/v2-0003"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R01"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="subscription-filters-and-requests">Subscription Filters and Requests</h3>
+
+<p>Servers SHALL allow clients to create Subscriptions according to the <a href="https://hl7.org/fhir/uv/subscriptions-backport/index.html">Subscriptions R5 Backport Implementation guide</a> and support Subscriptions with zero or more supported filter criteria via the <a href="https://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition-backport-filter-criteria.html">filter-criteria extension</a>.  For each supported resource type, servers SHALL support the Required-Support Filters as specified in Table 1 and SHOULD support the Recommended-Support Filters.</p>
+
+<p>Clients MAY include multiple filter-criteria extensions in a Subscription request; servers SHALL process all filter-criteria extensions provided by the client.</p>
+
+<ul>
+  <li>
+    <p>If no filter criteria are provided, servers will, by default, send notifications for all supported resource types.</p>
+  </li>
+  <li>
+    <p>If one or more filter criteria are provided, servers will send notifications for <em>only those resources specified in the filter(s)</em>.</p>
+  </li>
+</ul>
+
+<h4 id="example-subscription-request">Example Subscription Request</h4>
+
+<p>The following example Subscription request demonstrates filters based on patient, category, and trigger event.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">resourceType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Subscription</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">requested</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reason</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Notify on new lab results and reports</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">criteria</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://hl7.org/fhir/us/core/SubscriptionTopic/patient-data-feed</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">_criteria</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">extension</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+ <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">valueString</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Encounter?patient=123&amp;trigger=feed-event</span><span class="dl">"</span>
+        <span class="c1">//              ^ equivalent to "all available events"</span>
+ <span class="p">},</span>
+ <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">valueString</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Observation?patient=123&amp;trigger=http://terminology.hl7.org/CodeSystem/v2-0003|R01</span><span class="dl">"</span>
+        <span class="c1">//              ^ example of filtering if the EHR offers granular or custom event codes</span>
+
+ <span class="p">},</span>
+ <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">valueString</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DiagnosticReport?patient=123&amp;category=LAB</span><span class="dl">"</span>
+        <span class="c1">//              ^ example of filtering by category</span>
+
+ <span class="p">}</span>
+ <span class="p">]</span>
+ <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">channel</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">rest-hook</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">endpoint</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://client.example.org/fhir/subscription-notification</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">payload</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/fhir+json</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">_payload</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">extension</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+ <span class="p">{</span>
+          <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-payload-content</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">valueCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">id-only</span><span class="dl">"</span>
+ <span class="p">}</span>
+ <span class="p">]</span>
+ <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="handling-multiple-resource-types-and-filters">Handling Multiple Resource Types and Filters</h4>
+
+<ol>
+  <li>
+    <p>Clients SHALL NOT include <code class="language-plaintext highlighter-rouge">patient=</code> filters for different patients in the same Subscription.</p>
+  </li>
+  <li>Servers SHALL make any <strong>adjustments</strong> needed to ensure that the filter-criteria extensions align with server capabilities. Adjustments consist of:
+    <ul>
+      <li>Removing unsupported elements (such as resource types, triggers, or filters) that the server cannot handle</li>
+      <li>Adding any implicitly required filters (such as category restrictions that the server always applies)</li>
+    </ul>
+  </li>
+  <li>
+    <p>When no adjustments are made, Servers SHALL process the request as a normal FHIR RESTful <code class="language-plaintext highlighter-rouge">create</code> interaction.</p>
+  </li>
+  <li>
+    <p>When adjustments are made, Servers SHALL persist the Subscription resource with the adjusted filter criteria and the subscription status set to "error".</p>
+  </li>
+  <li>
+    <p>Clients SHALL review the persisted Subscription resource to understand the status, resource types, triggers, and filters that are in effect.</p>
+  </li>
+  <li>If the Subscription has persisted with a status of "error", the Client MAY:
+ a. Accept the adjusted subscription by updating the Subscription to set the status to "requested".
+ b. Delete the subscription and create a new one with different parameters.</li>
+</ol>
+
+<p>Examples of potential adjustments:</p>
+<ul>
+  <li>A server that does not support CareTeam resources might remove the Client's <code class="language-plaintext highlighter-rouge">CareTeam</code> filter-criteria extension entirely.</li>
+  <li>A server that only supports notifications for laboratory observations might add <code class="language-plaintext highlighter-rouge">category=laboratory</code> to the Client's <code class="language-plaintext highlighter-rouge">Observation</code> filter-criteria extension if it wasn't already present.</li>
+</ul>
+
+<h3 id="additional-conformance-requirements">Additional Conformance Requirements</h3>
+
+<h4 id="general">General</h4>
+
+<ol>
+  <li>Support for the Patient Data Feed is optional for servers implementing US Core.</li>
+  <li>Servers that support the Patient Data Feed SHALL implement the following requirements.</li>
+</ol>
+
+<h4 id="resource-support">Resource Support</h4>
+
+<ol>
+  <li>Servers SHALL support at least one resource type from the list in Table 1.</li>
+  <li>Servers MAY support additional resource types described on the <a href="patient-data-feed-additional-resources.html">Additional Resources</a> page.</li>
+  <li>Servers supporting the following profiles SHALL support subscriptions for their resources:
+    <ul>
+      <li>US Core DocumentReference Profile</li>
+      <li>US Core Encounter Profile</li>
+      <li>US Core DiagnosticReport Profile for Laboratory Results Reporting</li>
+      <li>US Core Laboratory Result Observation Profile</li>
+    </ul>
+  </li>
+  <li>Servers MAY enable subscriptions for a limited set of profiles on supported resources by adjusting any necessary filters (e.g., <code class="language-plaintext highlighter-rouge">category</code> or <code class="language-plaintext highlighter-rouge">type</code>; see Section 5.2 for details on adjustments).</li>
+</ol>
+
+<h4 id="filter-support">Filter Support</h4>
+
+<ol>
+  <li>Servers MAY support filters beyond those listed in Table 1 for each resource type.</li>
+  <li>Servers SHOULD align any additional filters with existing search parameter names when applicable.</li>
+</ol>
+
+<h4 id="delivery-channel-and-payload-support">Delivery (Channel and Payload Support)</h4>
+<ol>
+  <li>Servers SHALL support the <code class="language-plaintext highlighter-rouge">rest-hook</code> channel type for notification delivery.</li>
+  <li>Servers SHALL support the <code class="language-plaintext highlighter-rouge">empty</code> and <code class="language-plaintext highlighter-rouge">id-only</code> payload types for notifications.</li>
+  <li>Servers MAY support additional channel types and payload types.</li>
+</ol>
+
+<h4 id="documentation-and-error-handling">Documentation and Error Handling</h4>
+<ol>
+  <li>Servers SHALL clearly document the following in their developer-facing documentation:
+    <ul>
+      <li>Supported resources, filters, and triggers</li>
+      <li>Supported channel types</li>
+      <li>Supported payload types</li>
+      <li>How their update notification implementation works, including:
+        <ul>
+          <li>An explanation of the internal events or conditions that trigger notifications</li>
+          <li>Any throttling or batching mechanisms used to manage notification frequency</li>
+          <li>The expected latency between a resource change and the corresponding notification</li>
+          <li>Any limitations or edge cases that clients should be aware of</li>
+        </ul>
+      </li>
+      <li>Criteria for firing the <code class="language-plaintext highlighter-rouge">feed-event</code> trigger, including examples of changes that would and would not result in a notification</li>
+    </ul>
+  </li>
+  <li>Clients SHALL review server documentation to understand the circumstances under which <code class="language-plaintext highlighter-rouge">feed-event</code> notifications are triggered, as these may correspond to a subset of changes to data as visible over the FHIR REST API.</li>
+  <li>Servers SHOULD provide clear error messages in <code class="language-plaintext highlighter-rouge">OperationOutcome.issue.details</code> when rejecting subscription requests due to unsupported features.</li>
+</ol>
+
+<h3 id="additional-considerations">Additional Considerations</h3>
+
+<h4 id="performance-optimization">Performance Optimization</h4>
+
+<p>Servers implementing the Patient Data Feed should consider the following performance optimizations:</p>
+
+<ol>
+  <li>
+    <p>Event Coalescing: When multiple changes occur to a single resource in rapid succession, servers can coalesce these changes into a single event notification that includes all applicable trigger codes to represent the nature of the changes.</p>
+  </li>
+  <li>
+    <p>Event Batching: For subscriptions with high update frequencies, servers can implement batching strategies to group multiple events into a single notification bundle.</p>
+  </li>
+</ol>
+
+<h4 id="security-considerations">Security Considerations</h4>
+
+<p>While detailed security implementations are beyond the scope of this specification, servers must maintain the same level of access control and security for subscription notifications as they do for direct REST API access. Key considerations include authentication, authorization, encryption in transit (https), and audit logging. Implementers are encouraged to refer to the <a href="security.html">US Core Security</a> page and relevant security best practices for additional guidance.</p>
+
+<h3 id="future-work">Future Work</h3>
+
+<p>Standardizing how to model and publish topics for discovery is ongoing work in the FHIR community. US Core's Patient Data Feed does not yet address the standardization of the SubscriptionTopic resource itself. Instead, it focuses on standardizing the functionality of the <code class="language-plaintext highlighter-rouge">patient-data-feed</code> topic and the expectations of Subscription management, allowing for interoperability based on the canonical URL, supported resources, filters, and triggers.</p>
+
+<p>As the FHIR community continues to develop and standardize subscription-related features, this specification will be updated to align with best practices and emerging standards.</p>
+
+<!-- FHIR Core Resources -->
+
+<!-- IG Pages (Including IG Artifacts -->
+<!--
+WARNING: This file is auto-generated by the page-link-list script
+at https://github.com/Healthedata1/Healthedata1-Sandbox/blob/master/publish.sh
+It is created from temp/pages/_data/pages.json using jq to extract page titles and relative URLs
+to create a link-list file.
+DO NOT EDIT THIS FILE MANUALLY, as changes will be overwritten on the next build.
+To update links, modify the source data in the pages and sushi-config.yaml file and rebuild the site.
+-->
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="http://www.hl7.org/Special/committees/cgp">HL7 International / Cross-Group Projects</a>.  Package hl7.fhir.us.core#8.0.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Jun 9, 2025 19:05+0000">2025-06-09</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+                 | <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir/us/core/history.html">Version History</a> |
+                 <a style="color: #81BEF7" rel="license" href="http://hl7.org/fhir/R4/license.html"><img style="border-style: none;" alt="CC0" src="cc0.png"/></a> |
+                 <!--<a style="color: #81BEF7" href="todo.html">Search</a> | --> 
+                 <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir-issues">Propose a change</a>
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

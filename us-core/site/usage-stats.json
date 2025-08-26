@@ -1,0 +1,670 @@
+{
+  "package": "hl7.fhir.us.core",
+  "version": "8.0.0",
+  "fhirVersion": "4.0.1",
+  "jurisdiction": "US",
+  "extensions": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-authentication-time",
+      "title": "US Core Authentication Time Extension",
+      "types": [
+        "dateTime"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+      "title": "US Core Birth Sex Extension",
+      "types": [
+        "code"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+      "title": "US Core Direct email Extension",
+      "types": [
+        "boolean"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "title": "US Core Ethnicity Extension",
+      "types": [
+        "Coding",
+        "Coding",
+        "string",
+        "base64Binary",
+        "boolean",
+        "canonical",
+        "code",
+        "date",
+        "dateTime",
+        "decimal",
+        "id",
+        "instant",
+        "integer",
+        "markdown",
+        "oid",
+        "positiveInt",
+        "string",
+        "time",
+        "unsignedInt",
+        "uri",
+        "url",
+        "uuid",
+        "Address",
+        "Age",
+        "Annotation",
+        "Attachment",
+        "CodeableConcept",
+        "Coding",
+        "ContactPoint",
+        "Count",
+        "Distance",
+        "Duration",
+        "HumanName",
+        "Identifier",
+        "Money",
+        "Period",
+        "Quantity",
+        "Range",
+        "Ratio",
+        "Reference",
+        "SampledData",
+        "Signature",
+        "Timing",
+        "ContactDetail",
+        "Contributor",
+        "DataRequirement",
+        "Expression",
+        "ParameterDefinition",
+        "RelatedArtifact",
+        "TriggerDefinition",
+        "UsageContext",
+        "Dosage",
+        "Meta"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri",
+      "title": "US Core Extension Questionnaire URI",
+      "types": [
+        "uri"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity",
+      "title": "US Core Gender Identity Extension",
+      "types": [
+        "CodeableConcept"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed",
+      "title": "US Core Interpreter Needed Extension",
+      "types": [
+        "Coding"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-jurisdiction",
+      "title": "US Core Jurisdiction Extension",
+      "types": [
+        "CodeableConcept"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence",
+      "title": "US Core Medication Adherence Extension",
+      "types": [
+        "CodeableConcept",
+        "dateTime",
+        "CodeableConcept",
+        "base64Binary",
+        "boolean",
+        "canonical",
+        "code",
+        "date",
+        "dateTime",
+        "decimal",
+        "id",
+        "instant",
+        "integer",
+        "markdown",
+        "oid",
+        "positiveInt",
+        "string",
+        "time",
+        "unsignedInt",
+        "uri",
+        "url",
+        "uuid",
+        "Address",
+        "Age",
+        "Annotation",
+        "Attachment",
+        "CodeableConcept",
+        "Coding",
+        "ContactPoint",
+        "Count",
+        "Distance",
+        "Duration",
+        "HumanName",
+        "Identifier",
+        "Money",
+        "Period",
+        "Quantity",
+        "Range",
+        "Ratio",
+        "Reference",
+        "SampledData",
+        "Signature",
+        "Timing",
+        "ContactDetail",
+        "Contributor",
+        "DataRequirement",
+        "Expression",
+        "ParameterDefinition",
+        "RelatedArtifact",
+        "TriggerDefinition",
+        "UsageContext",
+        "Dosage",
+        "Meta"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "title": "US Core Race Extension",
+      "types": [
+        "Coding",
+        "Coding",
+        "string",
+        "base64Binary",
+        "boolean",
+        "canonical",
+        "code",
+        "date",
+        "dateTime",
+        "decimal",
+        "id",
+        "instant",
+        "integer",
+        "markdown",
+        "oid",
+        "positiveInt",
+        "string",
+        "time",
+        "unsignedInt",
+        "uri",
+        "url",
+        "uuid",
+        "Address",
+        "Age",
+        "Annotation",
+        "Attachment",
+        "CodeableConcept",
+        "Coding",
+        "ContactPoint",
+        "Count",
+        "Distance",
+        "Duration",
+        "HumanName",
+        "Identifier",
+        "Money",
+        "Period",
+        "Quantity",
+        "Range",
+        "Ratio",
+        "Reference",
+        "SampledData",
+        "Signature",
+        "Timing",
+        "ContactDetail",
+        "Contributor",
+        "DataRequirement",
+        "Expression",
+        "ParameterDefinition",
+        "RelatedArtifact",
+        "TriggerDefinition",
+        "UsageContext",
+        "Dosage",
+        "Meta"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex",
+      "title": "US Core Sex Extension",
+      "types": [
+        "Coding"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+      "title": "US Core Tribal Affiliation Extension",
+      "types": [
+        "CodeableConcept",
+        "boolean",
+        "base64Binary",
+        "boolean",
+        "canonical",
+        "code",
+        "date",
+        "dateTime",
+        "decimal",
+        "id",
+        "instant",
+        "integer",
+        "markdown",
+        "oid",
+        "positiveInt",
+        "string",
+        "time",
+        "unsignedInt",
+        "uri",
+        "url",
+        "uuid",
+        "Address",
+        "Age",
+        "Annotation",
+        "Attachment",
+        "CodeableConcept",
+        "Coding",
+        "ContactPoint",
+        "Count",
+        "Distance",
+        "Duration",
+        "HumanName",
+        "Identifier",
+        "Money",
+        "Period",
+        "Quantity",
+        "Range",
+        "Ratio",
+        "Reference",
+        "SampledData",
+        "Signature",
+        "Timing",
+        "ContactDetail",
+        "Contributor",
+        "DataRequirement",
+        "Expression",
+        "ParameterDefinition",
+        "RelatedArtifact",
+        "TriggerDefinition",
+        "UsageContext",
+        "Dosage",
+        "Meta"
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/uscdi-requirement",
+      "title": "US Core USCDI Requirement Extension",
+      "types": [
+        "boolean"
+      ]
+    }
+  ],
+  "profiles": {
+    "Observation": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference",
+        "title": "US Core Treatment Intervention Preference Profile"
+      },
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs",
+        "title": "US Core Vital Signs Profile"
+      }
+    ],
+    "DocumentReference": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference",
+        "title": "US Core DocumentReference Profile"
+      }
+    ],
+    "AllergyIntolerance": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance",
+        "title": "US Core AllergyIntolerance Profile"
+      }
+    ],
+    "CarePlan": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan",
+        "title": "US Core CarePlan Profile"
+      }
+    ],
+    "CareTeam": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam",
+        "title": "US Core CareTeam Profile"
+      }
+    ],
+    "Condition": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis",
+        "title": "US Core Condition Encounter Diagnosis Profile"
+      },
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns",
+        "title": "US Core Condition Problems and Health Concerns Profile"
+      }
+    ],
+    "Coverage": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage",
+        "title": "US Core Coverage Profile"
+      }
+    ],
+    "DiagnosticReport": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab",
+        "title": "US Core DiagnosticReport Profile for Laboratory Results Reporting"
+      },
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
+        "title": "US Core DiagnosticReport Profile for Report and Note Exchange"
+      }
+    ],
+    "Encounter": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter",
+        "title": "US Core Encounter Profile"
+      }
+    ],
+    "Goal": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal",
+        "title": "US Core Goal Profile"
+      }
+    ],
+    "Immunization": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization",
+        "title": "US Core Immunization Profile"
+      }
+    ],
+    "Device": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device",
+        "title": "US Core Implantable Device Profile"
+      }
+    ],
+    "Location": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location",
+        "title": "US Core Location Profile"
+      }
+    ],
+    "Medication": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication",
+        "title": "US Core Medication Profile"
+      }
+    ],
+    "MedicationDispense": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense",
+        "title": "US Core MedicationDispense Profile"
+      }
+    ],
+    "MedicationRequest": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest",
+        "title": "US Core MedicationRequest Profile"
+      }
+    ],
+    "Organization": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+        "title": "US Core Organization Profile"
+      }
+    ],
+    "Patient": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+        "title": "US Core Patient Profile"
+      }
+    ],
+    "Practitioner": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+        "title": "US Core Practitioner Profile"
+      }
+    ],
+    "PractitionerRole": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+        "title": "US Core PractitionerRole Profile"
+      }
+    ],
+    "Procedure": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure",
+        "title": "US Core Procedure Profile"
+      }
+    ],
+    "Provenance": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance",
+        "title": "US Core Provenance Profile"
+      }
+    ],
+    "QuestionnaireResponse": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse",
+        "title": "US Core QuestionnaireResponse Profile"
+      }
+    ],
+    "RelatedPerson": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson",
+        "title": "US Core RelatedPerson Profile"
+      }
+    ],
+    "ServiceRequest": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest",
+        "title": "US Core ServiceRequest Profile"
+      }
+    ],
+    "Specimen": [
+      {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen",
+        "title": "US Core Specimen Profile"
+      }
+    ]
+  },
+  "usage": {
+    "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation": [
+      "CapabilityStatement.format",
+      "CapabilityStatement.implementationGuide",
+      "CapabilityStatement.patchFormat",
+      "CapabilityStatement.rest.interaction",
+      "CapabilityStatement.rest.resource",
+      "CapabilityStatement.rest.resource.interaction",
+      "CapabilityStatement.rest.resource.operation",
+      "CapabilityStatement.rest.resource.searchInclude",
+      "CapabilityStatement.rest.resource.searchParam",
+      "CapabilityStatement.rest.resource.searchRevInclude",
+      "CapabilityStatement.rest.resource.supportedProfile",
+      "SearchParameter.chain",
+      "SearchParameter.comparator",
+      "SearchParameter.multipleAnd",
+      "SearchParameter.multipleOr"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination": [
+      "CapabilityStatement.rest.resource"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/condition-assertedDate": [
+      "Condition"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/display": [
+      "QuestionnaireResponse.questionnaire"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice": [
+      "StructureDefinition.differential.element.constraint",
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice-explanation": [
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName": [
+      "StructureDefinition.differential.element.binding",
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet": [
+      "StructureDefinition.differential.element.binding",
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet": [
+      "StructureDefinition.differential.element.binding",
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable": [
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support": [
+      "StructureDefinition.differential.element.type",
+      "StructureDefinition.differential.element.type.targetProfile",
+      "StructureDefinition.snapshot.element.type",
+      "StructureDefinition.snapshot.element.type.targetProfile"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/itemWeight": [
+      "Observation.valueCodeableConcept.coding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/ordinalValue": [
+      "Observation.valueCodeableConcept.coding",
+      "Questionnaire.item.answerOption",
+      "Questionnaire.item.item.item.answerOption",
+      "QuestionnaireResponse.item.answer"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl": [
+      "Questionnaire.item",
+      "Questionnaire.item.item"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix": [
+      "Questionnaire.item.answerOption",
+      "Questionnaire.item.item.item.answerOption"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/questionnaire-unit": [
+      "Questionnaire.item"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/questionnaireresponse-completionMode": [
+      "QuestionnaireResponse"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature": [
+      "QuestionnaireResponse",
+      "QuestionnaireResponse.item"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/regex": [
+      "StructureDefinition.snapshot.element.type"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint": [
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type": [
+      "StructureDefinition.snapshot.element.type"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm": [
+      "CodeSystem",
+      "ImplementationGuide",
+      "OperationDefinition",
+      "StructureDefinition",
+      "ValueSet"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy": [
+      "StructureDefinition.snapshot.element.type"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status": [
+      "CodeSystem",
+      "ImplementationGuide",
+      "ImplementationGuide.definition.page",
+      "ImplementationGuide.definition.page.page",
+      "ImplementationGuide.definition.page.page.page",
+      "ImplementationGuide.definition.page.page.page.page",
+      "OperationDefinition",
+      "StructureDefinition",
+      "ValueSet"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "ImplementationGuide",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "ValueSet"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo": [
+      "Observation"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/additional-binding": [
+      "StructureDefinition.differential.element.binding",
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-link-dependency": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name": [
+      "ImplementationGuide.definition.page",
+      "ImplementationGuide.definition.page.page",
+      "ImplementationGuide.definition.page.page.page",
+      "ImplementationGuide.definition.page.page.page.page"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment": [
+      "ImplementationGuide.dependsOn"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/resource-information": [
+      "ImplementationGuide.definition.resource"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/snapshot-base-version": [
+      "StructureDefinition.snapshot"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-authentication-time": [
+      "DocumentReference"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct": [
+      "Practitioner.telecom"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity": [
+      "Patient"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri": [
+      "QuestionnaireResponse.questionnaire"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed": [
+      "Encounter",
+      "Patient"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-jurisdiction": [
+      "Practitioner.identifier"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence": [
+      "MedicationRequest"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race": [
+      "Patient"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex": [
+      "Patient"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation": [
+      "Patient"
+    ],
+    "http://hl7.org/fhir/us/core/StructureDefinition/uscdi-requirement": [
+      "StructureDefinition.differential.element",
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemAnswerMedia": [
+      "QuestionnaireResponse.item.answer"
+    ],
+    "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia": [
+      "QuestionnaireResponse.item"
+    ]
+  }
+}

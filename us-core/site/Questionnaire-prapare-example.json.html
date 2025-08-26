@@ -1,0 +1,1421 @@
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Questionnaire PRAPARE Example - JSON Representation - US Core Implementation Guide v8.0.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+    <link href="assets/css/hl7.css" rel="stylesheet"/>
+    <link href="assets/css/fhir-ig.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"14.378"}
+    h3,h4,h5,h6{--heading-prefix:"14.378"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+        <div id="hl7-nav">
+          <a id="hl7-logo" no-external="true" href="http://hl7.org">
+            <img height="50" alt="Visit the HL7 website" src="assets/images/hl7-logo-header.png"/>
+          </a>
+        </div>
+        <div id="family-nav">
+          <a id="family-logo" no-external="true" href="http://hl7.org/fhir"><img height="50" alt="Visit the FHIR website" src="assets/images/fhir-logo-www.png"/> </a>
+        </div>
+        <div id="hl7-search">
+          <a id="hl7-search-lnk" no-external="true" href="searchform.html"><img alt="Search FHIR" src="assets/images/search.png"/></a>
+        </div>
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">US Core Implementation Guide</span>
+            <br/>
+            <span style="display:inline-block;">8.0.0 - STU 8
+
+
+
+  <img alt="United States of America flag" src="assets/images/usa.svg" height="16" title="United States of America"/>
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Conformance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-requirements.html">General Requirements</a>
+      </li>
+      <li>
+        <a href="must-support.html">Must Support</a>
+      </li>
+      <li>
+        <a href="scopes.html">SMART on FHIR Obligations and Capabilities</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Guidance
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="uscdi.html">USCDI</a>
+      </li>
+      <li>
+        <a href="general-guidance.html">General Guidance</a>
+      </li>
+      <li>
+        <a href="clinical-notes.html">Clinical Notes</a>
+      </li>
+      <li>
+        <a href="medication-list.html">Medication List</a>
+      </li>
+      <li>
+        <a href="basic-provenance.html">Basic Provenance</a>
+      </li>
+      <li>
+        <a href="screening-and-assessments.html">Screening and Assessments</a>
+      </li>
+      <li>
+        <a href="changes-between-versions.html">Changes Between Versions</a>
+      </li>
+      <li>
+        <a href="relationship-with-other-igs.html">Relationship With Other IGs</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="profiles-and-extensions.html#profiles">Profiles</a>
+      </li>
+      <li>
+        <a href="profiles-and-extensions.html#extensions">Extensions</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#search-parameters">Search Parameters</a>
+      </li>
+      <li>
+        <a href="search-parameters-and-operations.html#operations">Operations</a>
+      </li>
+      <li>
+        <a href="terminology.html">Terminology</a>
+      </li>
+      <li>
+        <a href="capability-statements.html">Capability Statements</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="security.html">Security</a>
+  </li>
+  <li>
+    <a href="examples.html">Examples</a>
+  </li>
+  <li>
+    <a href="downloads.html">Downloads</a>
+  </li>
+  <li>
+    <a href="changes.html">Change Log</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Looking Ahead
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="us-core-roadmap.html">US Core Roadmap</a>
+      </li>
+      <li>
+        <a href="writing-vital-signs.html">Writing Vital Signs</a>
+      </li>
+      <li>
+        <a href="patient-data-feed.html">Patient Data Feed</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='artifacts.html'><b>Artifacts Summary</b></a></li><li><b>Questionnaire PRAPARE Example</b></li>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+
+<div style="counter-reset: section 8" class="col-12">
+<!--ReleaseHeader--><p id="publish-box">US Core Implementation Guide, published by HL7 International / Cross-Group Projects. This guide is not an authorized publication; it is the continuous build for version 8.0.0  built by the FHIR (HL7&reg; FHIR&reg; Standard) CI Build. This version is based on the current content of <a href='https://github.com/HL7/US-Core/'>https://github.com/HL7/US-Core/</a> and changes regularly. See the <a href='http://hl7.org/fhir/us/core/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+
+
+
+
+
+
+
+
+
+<ul class="nav nav-tabs">
+
+  <li>
+    <a href="Questionnaire-prapare-example.html">Narrative Content</a>
+  </li>
+
+
+
+  
+    <li>
+      <a href="Questionnaire-prapare-example.xml.html">XML</a>
+    </li>
+  
+
+
+  
+    <li class="active">
+      <a href="#">JSON</a>
+    </li>
+  
+
+
+  
+    <li>
+      <a href="Questionnaire-prapare-example.ttl.html">TTL</a>
+    </li>
+  
+
+
+
+</ul>
+
+
+<a name="root"> </a>
+
+
+<h2 id="root">: Questionnaire PRAPARE Example - JSON Representation</h2>
+
+  <table class="colsi">
+    <tr>
+
+      <td colspan="2">
+        
+          <i>Page standards status:</i> <a href="http://hl7.org/fhir/R4/versions.html#std-process" title="Standard Status">Informative</a>
+          
+        
+      </td>
+
+    </tr>
+  </table>
+
+
+<p><a href="Questionnaire-prapare-example.json" no-download="true">Raw json</a> | <a href="Questionnaire-prapare-example.json" download>Download</a></p>
+
+  <!-- insert intro if present -->
+  
+
+
+
+  <pre class="json" style="white-space: pre; text-wrap: nowrap; width: auto;"><code style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire">resourceType</a>" : "Questionnaire",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.id">id</a>" : "prapare-example",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="http://hl7.org/fhir/uv/sdc/STU3/StructureDefinition-sdc-questionnaire.html" style="color: Maroon">&#x1F517;</a> "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.text">text</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.status">status</a>" : "extensions",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.div">div</a>" : "&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p class=\&quot;res-header-id\&quot;&gt;&lt;b&gt;Generated Narrative: Questionnaire prapare-example&lt;/b&gt;&lt;/p&gt;&lt;a name=\&quot;prapare-example\&quot;&gt; &lt;/a&gt;&lt;a name=\&quot;hcprapare-example\&quot;&gt; &lt;/a&gt;&lt;a name=\&quot;prapare-example-en-US\&quot;&gt; &lt;/a&gt;&lt;div style=\&quot;display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\&quot;&gt;&lt;p style=\&quot;margin-bottom: 0px\&quot;/&gt;&lt;p style=\&quot;margin-bottom: 0px\&quot;&gt;Profile: &lt;a href=\&quot;http://hl7.org/fhir/uv/sdc/STU3/StructureDefinition-sdc-questionnaire.html\&quot;&gt;SDCBaseQuestionnaire&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;b&gt;Structure&lt;/b&gt;&lt;table border=\&quot;1\&quot; cellpadding=\&quot;0\&quot; cellspacing=\&quot;0\&quot; style=\&quot;border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;\&quot;&gt;&lt;tr style=\&quot;border: 2px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top\&quot;&gt;&lt;th style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;The linkID for the item\&quot;&gt;LinkID&lt;/a&gt;&lt;/th&gt;&lt;th style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;Text for the item\&quot;&gt;Text&lt;/a&gt;&lt;/th&gt;&lt;th style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;Minimum and Maximum # of times the item can appear in the instance\&quot;&gt;Cardinality&lt;/a&gt;&lt;/th&gt;&lt;th style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;The type of the item\&quot;&gt;Type&lt;/a&gt;&lt;/th&gt;&lt;th style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;Additional information about the item\&quot;&gt;Description &amp;amp; Constraints&lt;/a&gt;&lt;span style=\&quot;float: right\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;Legend for this format\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3goXBCwdPqAP0wAAAldJREFUOMuNk0tIlFEYhp9z/vE2jHkhxXA0zJCMitrUQlq4lnSltEqCFhFG2MJFhIvIFpkEWaTQqjaWZRkp0g26URZkTpbaaOJkDqk10szoODP//7XIMUe0elcfnPd9zsfLOYplGrpRwZaqTtw3K7PtGem7Q6FoidbGgqHVy/HRb669R+56zx7eRV1L31JGxYbBtjKK93cxeqfyQHbehkZbUkK20goELEuIzEd+dHS+qz/Y8PTSif0FnGkbiwcAjHaU1+QWOptFiyCLp/LnKptpqIuXHx6rbR26kJcBX3yLgBfnd7CxwJmflpP2wUg0HIAoUUpZBmKzELGWcN8nAr6Gpu7tLU/CkwAaoKTWRSQyt89Q8w6J+oVQkKnBoblH7V0PPvUOvDYXfopE/SJmALsxnVm6LbkotrUtNowMeIrVrBcBpaMmdS0j9df7abpSuy7HWehwJdt1lhVwi/J58U5beXGAF6c3UXLycw1wdFklArBn87xdh0ZsZtArghBdAA3+OEDVubG4UEzP6x1FOWneHh2VDAHBAt80IbdXDcesNoCvs3E5AFyNSU5nbrDPZpcUEQQTFZiEVx+51fxMhhyJEAgvlriadIJZZksRuwBYMOPBbO3hePVVqgEJhFeUuFLhIPkRP6BQLIBrmMenujm/3g4zc398awIe90Zb5A1vREALqneMcYgP/xVQWlG+Ncu5vgwwlaUNx+3799rfe96u9K0JSDXcOzOTJg4B6IgmXfsygc7/Bvg9g9E58/cDVmGIBOP/zT8Bz1zqWqpbXIsd0O9hajXfL6u4BaOS6SeWAAAAAElFTkSuQmCC\&quot; alt=\&quot;doco\&quot; style=\&quot;background-color: inherit\&quot;/&gt;&lt;/a&gt;&lt;/span&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon_q_root.gif\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;QuestionnaireRoot\&quot; class=\&quot;hierarchy\&quot;/&gt; PRAPAREExample&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Questionnaire&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;http://hl7.org/fhir/us/core/Questionnaire/prapare-example#8.0.0&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01.png)\&quot; id=\&quot;item./93025-5\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93025-5&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\&quot; id=\&quot;item./93043-8\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Personal characteristics&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93043-8/56051-6\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8/56051-6&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Hispanic or Latino&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93043-8/56051-6\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93043-8/32624-9\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8/32624-9&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Race&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..*&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93043-8/32624-9\&quot;&gt;8 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93043-8/93035-4\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8/93035-4&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93043-8/93035-4\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93043-8/93034-7\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8/93034-7&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Discharged from the U.S. Armed Forces&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93043-8/93034-7\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\&quot; id=\&quot;item./93043-8/54899-0\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93043-8/54899-0&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Preferred language&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93043-8/54899-0\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\&quot; id=\&quot;item./93042-0\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Family and home&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93042-0/63512-8\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-integer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;integer\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0/63512-8&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;How many people are living or staying at this address [#]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-integer\&quot;&gt;integer&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0111.png)\&quot; id=\&quot;item./93042-0/71802-3\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0/71802-3&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Housing status&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93042-0/71802-3\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01100.png)\&quot; id=\&quot;item./93042-0/71802-3-help\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-display.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;display\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0/71802-3-help&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Describes patients living arrangement&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-display\&quot;&gt;display&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93042-0/93033-9\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0/93033-9&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Are you worried about losing your housing [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93042-0/93033-9\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\&quot; id=\&quot;item./93042-0/56799-0\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-string.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;string\&quot; class=\&quot;hierarchy\&quot;/&gt; /93042-0/56799-0&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Address&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-string\&quot;&gt;string&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\&quot; id=\&quot;item./93041-2\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Money and resources&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93041-2/82589-3\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/82589-3&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Highest level of educ&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93041-2/82589-3\&quot;&gt;4 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93041-2/67875-5\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/67875-5&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Employment status current&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93041-2/67875-5\&quot;&gt;5 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93041-2/76437-3\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/76437-3&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Primary insurance&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93041-2/76437-3\&quot;&gt;7 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93041-2/63586-2\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-decimal.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;decimal\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/63586-2&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-decimal\&quot;&gt;decimal&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93041-2/93031-3\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/93031-3&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..*&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93041-2/93031-3\&quot;&gt;8 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\&quot; id=\&quot;item./93041-2/93030-5\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93041-2/93030-5&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..*&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93041-2/93030-5\&quot;&gt;4 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck011.png)\&quot; id=\&quot;item./93040-4\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93040-4&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Social and emotional health&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0110.png)\&quot; id=\&quot;item./93040-4/93029-7\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93040-4/93029-7&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;How often do you see or talk to people that you care about and feel close to [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93040-4/93029-7\&quot;&gt;5 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0100.png)\&quot; id=\&quot;item./93040-4/93038-8\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vline.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93040-4/93038-8&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Stress is when someone feels tense, nervous, anxious or can't sleep at night because their mind is troubled. How stressed are you?&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93040-4/93038-8\&quot;&gt;6 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck001.png)\&quot; id=\&quot;item./93039-6\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-group.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;group\&quot; class=\&quot;hierarchy\&quot;/&gt; /93039-6&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Optional additional questions&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\&quot;&gt;group&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\&quot; id=\&quot;item./93039-6/93028-9\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93039-6/93028-9&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93039-6/93028-9\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\&quot; id=\&quot;item./93039-6/93027-1\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93039-6/93027-1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Are you a refugee&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93039-6/93027-1\&quot;&gt;3 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\&quot; id=\&quot;item./93039-6/93026-3\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: #F7F7F7; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93039-6/93026-3&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Do you feel physically and emotionally safe where you currently live [PRAPARE]&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93039-6/93026-3\&quot;&gt;4 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr style=\&quot;border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\&quot;&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0000.png)\&quot; id=\&quot;item./93039-6/76501-6\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;img src=\&quot;tbl_spacer.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_blank.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;tbl_vjoin_end.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: inherit\&quot; class=\&quot;hierarchy\&quot;/&gt;&lt;img src=\&quot;icon-q-coding.png\&quot; alt=\&quot;.\&quot; style=\&quot;background-color: white; background-color: inherit\&quot; title=\&quot;coding\&quot; class=\&quot;hierarchy\&quot;/&gt; /93039-6/76501-6&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Within the last year, have you been afraid of your partner or ex-partner&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;0..1&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\&quot;&gt;choice&lt;/a&gt;&lt;/td&gt;&lt;td style=\&quot;vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\&quot; class=\&quot;hierarchy\&quot;&gt;Options: &lt;a href=\&quot;#opt-item./93039-6/76501-6\&quot;&gt;2 options&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\r\n&lt;tr&gt;&lt;td colspan=\&quot;5\&quot; class=\&quot;hierarchy\&quot;&gt;&lt;br/&gt;&lt;a href=\&quot;https://hl7.org/fhir/R4/formats.html#table\&quot; title=\&quot;Legend for this format\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3goXBCwdPqAP0wAAAldJREFUOMuNk0tIlFEYhp9z/vE2jHkhxXA0zJCMitrUQlq4lnSltEqCFhFG2MJFhIvIFpkEWaTQqjaWZRkp0g26URZkTpbaaOJkDqk10szoODP//7XIMUe0elcfnPd9zsfLOYplGrpRwZaqTtw3K7PtGem7Q6FoidbGgqHVy/HRb669R+56zx7eRV1L31JGxYbBtjKK93cxeqfyQHbehkZbUkK20goELEuIzEd+dHS+qz/Y8PTSif0FnGkbiwcAjHaU1+QWOptFiyCLp/LnKptpqIuXHx6rbR26kJcBX3yLgBfnd7CxwJmflpP2wUg0HIAoUUpZBmKzELGWcN8nAr6Gpu7tLU/CkwAaoKTWRSQyt89Q8w6J+oVQkKnBoblH7V0PPvUOvDYXfopE/SJmALsxnVm6LbkotrUtNowMeIrVrBcBpaMmdS0j9df7abpSuy7HWehwJdt1lhVwi/J58U5beXGAF6c3UXLycw1wdFklArBn87xdh0ZsZtArghBdAA3+OEDVubG4UEzP6x1FOWneHh2VDAHBAt80IbdXDcesNoCvs3E5AFyNSU5nbrDPZpcUEQQTFZiEVx+51fxMhhyJEAgvlriadIJZZksRuwBYMOPBbO3hePVVqgEJhFeUuFLhIPkRP6BQLIBrmMenujm/3g4zc398awIe90Zb5A1vREALqneMcYgP/xVQWlG+Ncu5vgwwlaUNx+3799rfe96u9K0JSDXcOzOTJg4B6IgmXfsygc7/Bvg9g9E58/cDVmGIBOP/zT8Bz1zqWqpbXIsd0O9hajXfL6u4BaOS6SeWAAAAAElFTkSuQmCC\&quot; alt=\&quot;doco\&quot; style=\&quot;background-color: inherit\&quot;/&gt; Documentation for this format&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;Options Sets&lt;/b&gt;&lt;/p&gt;&lt;a name=\&quot;opt-item./93043-8/56051-6\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93043-8/56051-6 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93043-8/32624-9\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93043-8/32624-9 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA6156-9 (&amp;quot;Asian&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA14045-1 (&amp;quot;Native Hawaiian&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30187-1 (&amp;quot;Pacific Islander&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA14042-8 (&amp;quot;Black/African American&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA4457-3 (&amp;quot;White&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA4-4 (&amp;quot;American Indian/Alaskan Native&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA46-8 (&amp;quot;Other&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93043-8/93035-4\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93043-8/93035-4 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93043-8/93034-7\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93043-8/93034-7 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93043-8/54899-0\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93043-8/54899-0 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA43-5 (&amp;quot;English&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30188-9 (&amp;quot;Language other than English&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93042-0/71802-3\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93042-0/71802-3 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30189-7 (&amp;quot;I have housing&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30190-5 (&amp;quot;I do not have housing (staying with others, in a hotel, in a shelter, living outside on the street, on a beach, in a car, or in a park)&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93042-0/93033-9\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93042-0/93033-9 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93041-2/82589-3\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93041-2/82589-3 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30191-3 (&amp;quot;Less than high school degree&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30192-1 (&amp;quot;High school diploma or GED&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30193-9 (&amp;quot;More than high school&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93041-2/67875-5\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93041-2/67875-5 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA17956-6 (&amp;quot;Unemployed&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30138-4 (&amp;quot;Part-time or temporary work&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30136-8 (&amp;quot;Full-time work&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30137-6 (&amp;quot;Otherwise unemployed but not seeking work (ex: student, retired, disabled, unpaid primary care giver)&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93041-2/76437-3\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93041-2/76437-3 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30194-7 (&amp;quot;None/uninsured&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA17849-3 (&amp;quot;Medicaid&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30195-4 (&amp;quot;CHIP Medicaid&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA15652-3 (&amp;quot;Medicare&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30196-2 (&amp;quot;Other public insurance (not CHIP)&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30197-0 (&amp;quot;Other public insurance (CHIP)&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA6350-8 (&amp;quot;Private insurance&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93041-2/93031-3\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93041-2/93031-3 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30125-1 (&amp;quot;Food&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30126-9 (&amp;quot;Clothing&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30124-4 (&amp;quot;Utilities&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30127-7 (&amp;quot;Child care&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30128-5 (&amp;quot;Medicine or Any Health Care (Medical, Dental, Mental Health, Vision)&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30129-3 (&amp;quot;Phone&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA46-8 (&amp;quot;Other&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93041-2/93030-5\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93041-2/93030-5 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30133-5 (&amp;quot;Yes, it has kept me from medical appointments or from getting my medications&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30134-3 (&amp;quot;Yes, it has kept me from non-medical meetings, appointments, work, or from getting things that I need&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30257-2 (&amp;quot;Patient unable to respond&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93040-4/93029-7\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93040-4/93029-7 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA27722-0 (&amp;quot;Less than once a week&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30130-1 (&amp;quot;1 or 2 times a week&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30131-9 (&amp;quot;3 to 5 times a week&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30132-7 (&amp;quot;5 or more times a week&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93040-4/93038-8\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93040-4/93038-8 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA6568-5 (&amp;quot;Not at all&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA13863-8 (&amp;quot;A little bit&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA13909-9 (&amp;quot;Somewhat&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA13902-4 (&amp;quot;Quite a bit&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA13914-9 (&amp;quot;Very much&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93039-6/93028-9\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93039-6/93028-9 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93039-6/93027-1\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93039-6/93027-1 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93039-6/93026-3\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93039-6/93026-3 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA14072-5 (&amp;quot;Unsure&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA30122-8 (&amp;quot;I choose not to answer this question&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;a name=\&quot;opt-item./93039-6/76501-6\&quot;&gt; &lt;/a&gt;&lt;p&gt;&lt;b&gt;Answer options for /93039-6/76501-6 &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA33-6 (&amp;quot;Yes&amp;quot;)&lt;/li&gt;&lt;li style=\&quot;font-size: 11px\&quot;&gt;http://loinc.org#LA32-8 (&amp;quot;No&amp;quot;)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;"
+  },
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.url">url</a>" : "http://hl7.org/fhir/us/core/Questionnaire/prapare-example",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.identifier">identifier</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#Identifier.system">system</a>" : "urn:ietf:rfc:3986",
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#Identifier.value">value</a>" : "urn:oid:2.16.840.1.113883.4.642.40.2.35.6"
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.version">version</a>" : "8.0.0",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.name">name</a>" : "PRAPAREExample",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.title">title</a>" : "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.status">status</a>" : "active",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.experimental">experimental</a>" : true,
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.date">date</a>" : "2023-03-31",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.publisher">publisher</a>" : "HL7 International / Cross-Group Projects",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.contact">contact</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.name">name</a>" : "HL7 International / Cross-Group Projects",
+      "<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.telecom">telecom</a>" : [
+        {
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.system">system</a>" : "url",
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.value">value</a>" : "http://www.hl7.org/Special/committees/cgp"
+        },
+        {
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.system">system</a>" : "email",
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.value">value</a>" : "cgp@lists.HL7.org"
+        }
+      ]
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.useContext">useContext</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/metadatatypes.html#UsageContext#UsageContext.code">code</a>" : {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "focus"
+      },
+      "<a href="http://hl7.org/fhir/R4/metadatatypes.html#UsageContext#UsageContext.value[x]">valueCodeableConcept</a>" : {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+          {
+            "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://hl7.org/fhir/us/core/CodeSystem/us-core-category",
+            "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "sdoh"
+          }
+        ]
+      }
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.jurisdiction">jurisdiction</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+        {
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "urn:iso:std:iso:3166",
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "US"
+        }
+      ]
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.copyright">copyright</a>" : "This material contains content from LOINC® (http://loinc.org). LOINC is copyright © 1995-2024, Regenstrief Institute, Inc. and the LOINC Committee, and is available at no cost under the license at http://loinc.org/license. Copyright © 2019. This item comes from the national PRAPARE social determinants of health assessment protocol, developed and owned by the National Association of Community Health Centers (NACHC), in partnership with the Association of Asian Pacific Community Health Organization (AAPCHO), the Oregon Primary Care Association (OPCA), and the Institute for Alternative Futures (IAF). For more information, visit www.nachc.org/prapare. Used with permission.",
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.code">code</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93025-5",
+      "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]"
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item">item</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93025-5",
+      "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]",
+      "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+      "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+      "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+        {
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93043-8",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Personal characteristics [PRAPARE]"
+            }
+          ],
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Personal characteristics",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8/56051-6",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "56051-6",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Hispanic or Latino"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Hispanic or Latino",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8/32624-9",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "32624-9",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Race"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Race",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.repeats">repeats</a>" : true,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA6156-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Asian"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA14045-1",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Native Hawaiian"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30187-1",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Pacific Islander"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA14042-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Black/African American"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA4457-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "White"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA4-4",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "American Indian/Alaskan Native"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA46-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Other"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8/93035-4",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93035-4",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Has season or migrant farm work been your or your family's main source of income at any point in past 2 years [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8/93034-7",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93034-7",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Discharged from the U.S. Armed Forces"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Discharged from the U.S. Armed Forces",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93043-8/54899-0",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "54899-0",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Preferred language"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Preferred language",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA43-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "English"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30188-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Language other than English"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93042-0",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Family and home [PRAPARE]"
+            }
+          ],
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Family and home",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0/63512-8",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "63512-8",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "How many people are living or staying at this address [#]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "How many people are living or staying at this address [#]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "integer",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0/71802-3",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "71802-3",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Housing status"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Housing status",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30189-7",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I have housing"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30190-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I do not have housing (staying with others, in a hotel, in a shelter, living outside on the street, on a beach, in a car, or in a park)"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0/71802-3-help",
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Describes patients living arrangement",
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "display"
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0/93033-9",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93033-9",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Are you worried about losing your housing [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Are you worried about losing your housing [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93042-0/56799-0",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "56799-0",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Address"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Address",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "string",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false
+            }
+          ]
+        },
+        {
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93041-2",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Money and resources [PRAPARE]"
+            }
+          ],
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Money and resources",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/82589-3",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "82589-3",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Highest level of educ"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Highest level of educ",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30191-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Less than high school degree"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30192-1",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "High school diploma or GED"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30193-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "More than high school"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/67875-5",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "67875-5",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Employment status current"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Employment status current",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA17956-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Unemployed"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30138-4",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Part-time or temporary work"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30136-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Full-time work"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30137-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Otherwise unemployed but not seeking work (ex: student, retired, disabled, unpaid primary care giver)"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/76437-3",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "76437-3",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Primary insurance"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Primary insurance",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30194-7",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "None/uninsured"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA17849-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Medicaid"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30195-4",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "CHIP Medicaid"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA15652-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Medicare"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30196-2",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Other public insurance (not CHIP)"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30197-0",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Other public insurance (CHIP)"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA6350-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Private insurance"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/63586-2",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "63586-2",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "What was your best estimate of the total income of all family members from all sources, before taxes, in last year [PhenX]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "decimal",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/93031-3",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93031-3",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Have you or any family members you live with been unable to get any of the following when it was really needed in past 1 year [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.repeats">repeats</a>" : true,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30125-1",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Food"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30126-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Clothing"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30124-4",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Utilities"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30127-7",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Child care"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30128-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Medicine or Any Health Care (Medical, Dental, Mental Health, Vision)"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30129-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Phone"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA46-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Other"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93041-2/93030-5",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93030-5",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Has lack of transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.repeats">repeats</a>" : true,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "A"
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30133-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes, it has kept me from medical appointments or from getting my medications"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "B"
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30134-3",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes, it has kept me from non-medical meetings, appointments, work, or from getting things that I need"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "C"
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "X"
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30257-2",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Patient unable to respond"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93040-4",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93040-4",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Social and emotional health [PRAPARE]"
+            }
+          ],
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Social and emotional health",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93040-4/93029-7",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93029-7",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "How often do you see or talk to people that you care about and feel close to [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "How often do you see or talk to people that you care about and feel close to [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA27722-0",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Less than once a week"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30130-1",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "1 or 2 times a week"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30131-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "3 to 5 times a week"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30132-7",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "5 or more times a week"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93040-4/93038-8",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93038-8",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Stress level"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Stress is when someone feels tense, nervous, anxious or can't sleep at night because their mind is troubled. How stressed are you?",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA6568-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Not at all"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA13863-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "A little bit"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA13909-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Somewhat"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA13902-4",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Quite a bit"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA13914-9",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Very much"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93039-6",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93039-6",
+              "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Optional additional questions [PRAPARE]"
+            }
+          ],
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Optional additional questions",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "group",
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+          "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93039-6/93028-9",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93028-9",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Have you spent more than 2 nights in a row in a jail, prison, detention center, or juvenile correctional facility in past 1 year [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93039-6/93027-1",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93027-1",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Are you a refugee"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Are you a refugee",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93039-6/93026-3",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "93026-3",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Do you feel physically and emotionally safe where you currently live [PRAPARE]"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Do you feel physically and emotionally safe where you currently live [PRAPARE]",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA14072-5",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Unsure"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA30122-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "I choose not to answer this question"
+                  }
+                }
+              ]
+            },
+            {
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.linkId">linkId</a>" : "/93039-6/76501-6",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.code">code</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "76501-6",
+                  "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Within the last year, have you been afraid of your partner or ex-partner"
+                }
+              ],
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.text">text</a>" : "Within the last year, have you been afraid of your partner or ex-partner",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.type">type</a>" : "choice",
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.required">required</a>" : false,
+              "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption">answerOption</a>" : [
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "1"
+                    },
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueDecimal</a>" : 1
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA33-6",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Yes"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.extension">extension</a>" : [
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueString</a>" : "0"
+                    },
+                    {
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.url">url</a>" : "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                      "<a href="http://hl7.org/fhir/R4/extensibility.html#Extension#Extension.value[x]">valueDecimal</a>" : 0
+                    }
+                  ],
+                  "<a href="http://hl7.org/fhir/R4/questionnaire.html#Questionnaire.item.answerOption.value[x]">valueCoding</a>" : {
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "LA32-8",
+                    "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "No"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre>
+
+
+  <!-- insert notes if present -->
+  
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="http://www.hl7.org/Special/committees/cgp">HL7 International / Cross-Group Projects</a>.  Package hl7.fhir.us.core#8.0.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Jun 9, 2025 19:05+0000">2025-06-09</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+                 | <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir/us/core/history.html">Version History</a> |
+                 <a style="color: #81BEF7" rel="license" href="http://hl7.org/fhir/R4/license.html"><img style="border-style: none;" alt="CC0" src="cc0.png"/></a> |
+                 <!--<a style="color: #81BEF7" href="todo.html">Search</a> | --> 
+                 <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir-issues">Propose a change</a>
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

@@ -1,0 +1,78 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Observation/PRAPARE-item-example-76437-3> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "PRAPARE-item-example-76437-3"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation PRAPARE-item-example-76437-3</b></p><a name=\"PRAPARE-item-example-76437-3\"> </a><a name=\"hcPRAPARE-item-example-76437-3\"> </a><a name=\"PRAPARE-item-example-76437-3-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-screening-assessment.html\">US Core Observation Screening Assessment Profileversion: null8.0.0)</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://hl7.org/fhir/us/core/CodeSystem/us-core-category sdoh}\">SDOH</span>, <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category survey}\">Survey</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 76437-3}\">Primary insurance</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>effective</b>: 2022-03-28 18:30:40-0700</p><p><b>performer</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>value</b>: <span title=\"Codes:{http://loinc.org LA17849-3}\">Medicaid</span></p><p><b>derivedFrom</b>: <a href=\"QuestionnaireResponse-prapare-example.html\">Response to Questionnaire '-&gt;Protocol for Responding to and Assessing Patients' Assets, Risks, and Experiences [PRAPARE]' about '-&gt;Amy V. Shaw'</a></p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/us/core/CodeSystem/us-core-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "sdoh" ] ;
+       fhir:display [ fhir:v "SDOH" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "survey" ] ;
+       fhir:display [ fhir:v "Survey" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:76437-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "76437-3" ] ;
+       fhir:display [ fhir:v "Primary insurance" ]
+     ] ) ;
+     fhir:text [ fhir:v "Primary insurance" ]
+  ] ; # 
+  fhir:subject [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:dateTime ;
+     fhir:v "2022-03-28T18:30:40-07:00"^^xsd:dateTime
+  ] ; # 
+  fhir:performer ( [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a loinc:LA17849-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LA17849-3" ] ;
+       fhir:display [ fhir:v "Medicaid" ]
+     ] ) ;
+     fhir:text [ fhir:v "Medicaid" ]
+  ] ; # 
+  fhir:derivedFrom ( [
+     fhir:link <http://hl7.org/fhir/us/core/QuestionnaireResponse/prapare-example> ;
+     fhir:reference [ fhir:v "QuestionnaireResponse/prapare-example" ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://hl7.org/fhir/us/core/QuestionnaireResponse/prapare-example> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+

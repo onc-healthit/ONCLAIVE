@@ -1,0 +1,161 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/core/Bundle/allergyintolerance-provenance-example2> a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "allergyintolerance-provenance-example2"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2019-07-09T18:49:01.235+00:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:type [ fhir:v "searchset"] ; # 
+  fhir:total [ fhir:v "1"^^xsd:nonNegativeInteger] ; # 
+  fhir:link ( [
+     fhir:relation [ fhir:v "self" ] ;
+     fhir:url [ fhir:v "http://example.org/fhir/AllergyIntolerance?_id=79613&_revinclude=Provenance:target"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "http://example.org/fhir/AllergyIntolerance/79613"^^xsd:anyURI ] ;
+     fhir:resource ( <http://example.org/fhir/AllergyIntolerance/79613> ) ;
+     fhir:search [
+       fhir:mode [ fhir:v "match" ]
+     ]
+  ] [
+     fhir:fullUrl [ fhir:v "http://example.org/fhir/Provenance/79614"^^xsd:anyURI ] ;
+     fhir:resource ( <http://example.org/fhir/Provenance/79614> ) ;
+     fhir:search [
+       fhir:mode [ fhir:v "include" ]
+     ]
+  ] ) . # 
+
+<http://example.org/fhir/AllergyIntolerance/79613> a fhir:AllergyIntolerance ;
+  fhir:id [ fhir:v "79613"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "1" ] ;
+     fhir:lastUpdated [ fhir:v "2019-07-09T15:26:23.217+00:00"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"AllergyIntolerance_79613\"> </a><p class=\"res-header-id\"><b>Generated Narrative: AllergyIntolerance 79613</b></p><a name=\"79613\"> </a><a name=\"hc79613\"> </a><a name=\"79613-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 1; Last updated: 2019-07-09 15:26:23+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-allergyintolerance.html\">US Core AllergyIntolerance Profile</a></p></div><p><b>clinicalStatus</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical active}\">Active</span></p><p><b>verificationStatus</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/allergyintolerance-verification confirmed}\">Confirmed</span></p><p><b>category</b>: Medication</p><p><b>criticality</b>: High Risk</p><p><b>code</b>: <span title=\"Codes:{http://snomed.info/sct 762952008}\">Peanuts</span></p><p><b>patient</b>: <a href=\"Patient-example.html\">Amy V. Baxter  (no stated gender), DoB: 1987-02-20 ( Medical Record Number: 1032702 (use: usual, ))</a></p><p><b>onset</b>: 2017-06-09</p><h3>Reactions</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Manifestation</b></td><td><b>Onset</b></td></tr><tr><td style=\"display: none\">*</td><td><span title=\"Codes:{http://snomed.info/sct 247472004}\">Hives</span></td><td>2017-06-09</td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "active" ] ;
+       fhir:display [ fhir:v "Active" ]
+     ] )
+  ] ; # 
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ] ;
+       fhir:display [ fhir:v "Confirmed" ]
+     ] )
+  ] ; # 
+  fhir:category ( [ fhir:v "medication"] ) ; # 
+  fhir:criticality [ fhir:v "high"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:762952008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:code [ fhir:v "762952008" ] ;
+       fhir:display [ fhir:v "Peanuts" ]
+     ] ) ;
+     fhir:text [ fhir:v "Peanuts" ]
+  ] ; # 
+  fhir:patient [
+     fhir:link <http://hl7.org/fhir/us/core/Patient/example> ;
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:onset [
+     a fhir:dateTime ;
+     fhir:v "2017-06-09"^^xsd:date
+  ] ; # 
+  fhir:reaction ( [
+     fhir:manifestation ( [
+       fhir:coding ( [
+         a sct:247472004 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+         fhir:code [ fhir:v "247472004" ] ;
+         fhir:display [ fhir:v "Hives" ]
+       ] )
+     ] ) ;
+     fhir:onset [ fhir:v "2017-06-09"^^xsd:date ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/Patient/example> a fhir:us .
+
+<http://example.org/fhir/Provenance/79614> a fhir:Provenance ;
+  fhir:id [ fhir:v "79614"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "1" ] ;
+     fhir:lastUpdated [ fhir:v "2019-07-09T15:26:23.217+00:00"^^xsd:dateTime ] ;
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Provenance_79614\"> </a><p class=\"res-header-id\"><b>Generated Narrative: Provenance 79614</b></p><a name=\"79614\"> </a><a name=\"hc79614\"> </a><a name=\"79614-en-US\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 1; Last updated: 2019-07-09 15:26:23+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-provenance.html\">US Core Provenance Profile</a></p></div><p>Provenance for <a href=\"Bundle-allergyintolerance-provenance-example1.html#AllergyIntolerance_79613\">Bundle: type = searchset; total = 1</a></p><p>Summary</p><table class=\"grid\"><tr><td>Recorded</td><td>2019-07-09 15:26:23+0000</td></tr></table><p><b>Agents</b></p><table class=\"grid\"><tr><td><b>Type</b></td><td><b>who</b></td><td><b>On Behalf Of</b></td></tr><tr><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/provenance-participant-type author}\">Author</span></td><td><a href=\"Practitioner-practitioner-1.html\">Practitioner Ronald Bone </a></td><td><a href=\"Organization-saint-luke-w-endpoint.html\">Organization Saint Luke's Hospital of Kansas City</a></td></tr><tr><td><span title=\"Codes:{http://terminology.hl7.org/CodeSystem/provenance-participant-type author}\">Author</span></td><td><a href=\"Practitioner-practitioner-2.html\">Practitioner Fielding Kathy </a></td><td><a href=\"Organization-saint-luke-w-endpoint.html\">Organization Saint Luke's Hospital of Kansas City</a></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:target ( [
+     fhir:link <http://hl7.org/fhir/us/core/AllergyIntolerance/79613/_history/1> ;
+     fhir:reference [ fhir:v "AllergyIntolerance/79613/_history/1" ]
+  ] ) ; # 
+  fhir:recorded [ fhir:v "2019-07-09T15:26:23.217+00:00"^^xsd:dateTime] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ] ;
+         fhir:display [ fhir:v "Author" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-1> ;
+       fhir:reference [ fhir:v "Practitioner/practitioner-1" ]
+     ] ;
+     fhir:onBehalfOf [
+       fhir:link <http://hl7.org/fhir/us/core/Organization/saint-luke-w-endpoint> ;
+       fhir:reference [ fhir:v "Organization/saint-luke-w-endpoint" ]
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ] ;
+         fhir:display [ fhir:v "Author" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:link <http://hl7.org/fhir/us/core/Practitioner/practitioner-2> ;
+       fhir:reference [ fhir:v "Practitioner/practitioner-2" ]
+     ] ;
+     fhir:onBehalfOf [
+       fhir:link <http://hl7.org/fhir/us/core/Organization/saint-luke-w-endpoint> ;
+       fhir:reference [ fhir:v "Organization/saint-luke-w-endpoint" ]
+     ]
+  ] ) . # 
+
+<http://hl7.org/fhir/us/core/AllergyIntolerance/79613/_history/1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-1> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Organization/saint-luke-w-endpoint> a fhir:us .
+
+<http://hl7.org/fhir/us/core/Practitioner/practitioner-2> a fhir:us .
+
+# -------------------------------------------------------------------------------------
+
