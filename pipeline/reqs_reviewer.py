@@ -68,7 +68,7 @@ def setup_environment(project_root: str = None):
         sys.path.insert(0, str(project_root))
     
     # Import LLM utils with better error handling
-    llm_utils_path = project_root / 'llm_utils.py'
+    llm_utils_path = project_root / 'pipeline' /'llm_utils.py'
     if not llm_utils_path.exists():
         raise FileNotFoundError(f"llm_utils.py not found at {llm_utils_path}")
     

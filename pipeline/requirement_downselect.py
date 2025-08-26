@@ -32,7 +32,7 @@ def load_mdfile(mdfile):
                 secnum = re.findall(r'((?:\d+.)+\d+)',req_dict['source'])
                 if secnum:
                     req['ig_section'] = secnum[0]
-            all_reqs.append()
+            all_reqs.append(req)
 
     return all_reqs
 
