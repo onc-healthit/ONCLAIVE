@@ -25,8 +25,8 @@ Keep the formatting of each requirement as follows. Renumber requirement IDs as 
 
     ---
     # REQ-XX
-    **Summary**: [summary text, exactly as it was]
-    **Description**: "[description text, exactly as it was]"
+    **Summary**: [Summary description of requirement]
+    **Text**: "[requirement text, exactly as it was. Should be a full sentence or phrase as much as possible]"
     **Context**: [contextual information from IG section needed to understand what requirement means for test planning activities]
     **Verification**: [method]
     **Actor**: [actor]

@@ -25,12 +25,12 @@ Your task is to analyze FHIR Implementation Guide requirements and generate prac
 # Constants
 PROJECT_ROOT = Path.cwd().parent  # Go up one level to project root
 CURRENT_DIR = Path.cwd()  # Current working directory (test_kit_dev)
-DEFAULT_INPUT_DIR = Path(PROJECT_ROOT, 'reqs_extraction', 'revised_reqs_output')  # Default input directory
-DEFAULT_OUTPUT_DIR = Path(CURRENT_DIR, 'test_plan_output')  # Default output directory
+#DEFAULT_INPUT_DIR = Path(PROJECT_ROOT, 'reqs_extraction', 'revised_reqs_output')  # Default input directory
+##DEFAULT_OUTPUT_DIR = Path(CURRENT_DIR, 'test_plan_output')  # Default output directory
 DEFAULT_CAPABILITY_DIR = Path(PROJECT_ROOT, 'full-ig', 'markdown7_cleaned')  # Default capability statement directory
 
 # Create output directory if it doesn't exist
-DEFAULT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+#DEFAULT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # # Function to find capability statement files
 # def find_capability_statement_files(directory=DEFAULT_CAPABILITY_DIR):
@@ -122,14 +122,15 @@ def instantiate_capability_vectordb(capability_statement_file: str, collection_n
     return collection
 
 
-def retrieve_relevant_capability_info(requirement: Dict[str, str], collection, n_examples: int = 5, verbose: bool = False) -> str:
+def retrieve_relevant_capability_info(requirement: Dict[str, str], collection, n_examples: int = 2, verbose: bool = False) -> str:
     """
     Retrieve most relevant capability information for a requirement using ChromaDB
     """
     # Create query from requirement
     query_parts = [
         requirement.get('summary', ''),
-        requirement.get('description', ''),
+        requirement.get('text', ''),
+        requirement.get('context', ''),
         requirement.get('actor', ''),
         f"FHIR {requirement.get('conformance', '')}"
     ]
@@ -197,7 +198,8 @@ def format_requirement_for_prompt(requirement: Dict[str, str]) -> str:
     """
     formatted = f"# {requirement.get('id', 'UNKNOWN-ID')}\n"
     formatted += f"**Summary**: {requirement.get('summary', '')}\n"
-    formatted += f"**Description**: {requirement.get('description', '')}\n"
+    formatted += f"**Text**: {requirement.get('text', '')}\n"  # Changed from description
+    formatted += f"**Context**: {requirement.get('context', '')}\n"  # Added
     formatted += f"**Verification**: {requirement.get('verification', '')}\n"
     formatted += f"**Actor**: {requirement.get('actor', '')}\n"
     formatted += f"**Conformance**: {requirement.get('conformance', '')}\n"
@@ -278,7 +280,7 @@ def parse_requirements_file(file_path: str) -> List[Dict[str, str]]:
             req_data['id'] = id_match.group(1)
         
         # Extract other fields
-        for field in ['Summary', 'Description', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
+        for field in ['Summary', 'Text', 'Context', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
             pattern = rf'\*\*{field}\*\*:\s*(.*?)(?:\n\*\*|\n---|\Z)'
             field_match = re.search(pattern, section, re.DOTALL)
             if field_match:
@@ -457,7 +459,8 @@ def generate_consolidated_test_plan(
                 # Add to test plan content with proper anchor for TOC linking
                 test_plan += f"<a id='{req_id.lower()}'></a>\n\n"
                 test_plan += f"### {req_id}: {req['parsed'].get('summary', 'No summary')}\n\n"
-                test_plan += f"**Description**: {req['parsed'].get('description', '')}\n\n"
+                test_plan += f"**Text**: {req['parsed'].get('text', '')}\n\n"  # Changed from Description
+                test_plan += f"**Context**: {req['parsed'].get('context', '')}\n\n"  # Added
                 test_plan += f"**Actor**: {req['parsed'].get('actor', '')}\n\n"
                 test_plan += f"**Conformance**: {req['parsed'].get('conformance', '')}\n\n"
                 test_plan += f"{test_spec}\n\n"

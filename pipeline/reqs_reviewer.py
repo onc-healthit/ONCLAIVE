@@ -193,7 +193,7 @@ def split_requirements_by_tokens(requirements_text: str, max_input_tokens: int,
     
     # Split by individual requirements first
     #req_pattern = r'(?=^---\s*\n#\s*REQ-\d+)'
-    req_pattern = r'(?=^## REQ-\d+)'
+    req_pattern = r'(?=^#+\s+REQ-\d+)'
     requirements = re.split(req_pattern, requirements_text, flags=re.MULTILINE)
     requirements = [req.strip() for req in requirements if req.strip()]
     
@@ -749,7 +749,7 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
     
     # Split into individual requirements
     print("Splitting requirements...")
-    req_pattern = r'(?=^## REQ-\d+)'
+    req_pattern = r'(?=^#+\s+REQ-\d+)'
     requirements = re.split(req_pattern, content, flags=re.MULTILINE)
     requirements = [req.strip() for req in requirements if req.strip()]
     
@@ -847,7 +847,7 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
     output_dir_path.mkdir(parents=True, exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_filename = f"{api_type}_refined_requirements_batch_{timestamp}.md"
+    output_filename = f"{api_type}_refined_requirements_{timestamp}.md"
     output_path = output_dir_path / output_filename
     
     with open(output_path, 'w', encoding='utf-8') as f:

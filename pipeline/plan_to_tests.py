@@ -34,27 +34,6 @@ INFERNO_TEST_SYSTEM_PROMPT = """You are a specialized FHIR testing engineer with
 Your task is to convert test specifications from a test plan into executable Ruby tests using the Inferno testing framework.
 You will generate valid, working Ruby code that follows Inferno test patterns and best practices, and uses the Inferno domain specific language."""
 
-def get_inferno_test_generation_prompt(test_specification: str, requirement_id: str, module_name: str, inferno_guidance: str, dsl_guidance: str) -> str:
-    """
-    Load the Inferno test generation prompt from file and format it with test details
-    
-    Args:
-        test_specification: The test specification content
-        requirement_id: The ID of the requirement
-        module_name: The name of the module
-        inferno_guidance: The Inferno guidance
-        
-    Returns:
-        str: The formatted prompt for the LLM
-    """
-    return prompt_utils.load_prompt(
-        TEST_GEN_PATH,
-        test_specification=test_specification,
-        requirement_id=requirement_id,
-        module_name=module_name,
-        inferno_guidance=inferno_guidance, 
-        dsl_guidance=dsl_guidance
-    )
 
 def parse_test_plan(file_path: str) -> Dict[str, Any]:
     """
@@ -111,18 +90,20 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
                 'requirements': []
             }
     
-    # Find all requirement headers in the document
-    req_pattern = r'### (REQ-\d+): (.*?)\n\n\*\*Description\*\*: "(.*?)"\n\n\*\*Actor\*\*: (.*?)\n\n\*\*Conformance\*\*: (.*?)(?:\n\n|$)'
+    # FIXED: Updated regex pattern to match your actual document structure
+    # Looking for: ### REQ-XXX: Title followed by **Text**: "content" **Context**: content **Actor**: actor **Conformance**: conformance
+    req_pattern = r'### (REQ-\d+): (.*?)\n\n\*\*Text\*\*: "(.*?)"\n\n\*\*Context\*\*: (.*?)\n\n\*\*Actor\*\*: (.*?)\n\n\*\*Conformance\*\*: (.*?)(?:\n\n|# Test Specification|\Z)'
     req_matches = re.findall(req_pattern, content, re.DOTALL)
     
-    print(f"Found {len(req_matches)} potential requirements")
+    print(f"Found {len(req_matches)} requirements with updated pattern")
     
     # Process each requirement
-    for req_id, req_title, req_desc, req_actor, req_conf in req_matches:
+    for req_id, req_title, req_text, req_context, req_actor, req_conf in req_matches:
         print(f"Processing requirement: {req_id}")
         
         # Find the full test specification for this requirement
-        test_spec_pattern = f"# Test Specification for {req_id}(.*?)(?:---|\\n## |$)"
+        # Look for the pattern: # Test Specification for REQ-XXX until next requirement or end
+        test_spec_pattern = f"# Test Specification for {req_id}(.*?)(?=### REQ-|\\Z)"
         test_spec_match = re.search(test_spec_pattern, content, re.DOTALL)
         test_spec = test_spec_match.group(1).strip() if test_spec_match else ""
         
@@ -131,7 +112,14 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
         
         # First try to find the requirement in one of the identified sections
         for section_name, section in sections.items():
-            section_start = content.find(f"## {section_name}")
+            # Look for section headers that might contain this requirement
+            section_pattern = f"<a id='{section['id']}'></a>\n\n## {section_name}"
+            section_start = content.find(section_pattern)
+            
+            # If we can't find the exact pattern, try simpler approach
+            if section_start == -1:
+                section_start = content.find(f"## {section_name}")
+            
             if section_start == -1:
                 continue
                 
@@ -151,10 +139,11 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
                 requirement = {
                     'id': req_id,
                     'title': req_title.strip(),
-                    'description': req_desc.strip(),
+                    'text': req_text.strip(),  # NEW: Store the actual requirement text
+                    'context': req_context.strip(),  # NEW: Store the context
                     'actor': req_actor.strip(),
                     'conformance': req_conf.strip(),
-                    'full_content': f"### {req_id}: {req_title}\n\n**Description**: \"{req_desc}\"\n\n**Actor**: {req_actor}\n\n**Conformance**: {req_conf}",
+                    'full_content': f"### {req_id}: {req_title}\n\n**Text**: \"{req_text}\"\n\n**Context**: {req_context}\n\n**Actor**: {req_actor}\n\n**Conformance**: {req_conf}",
                     'full_spec': test_spec,
                     'section': section_name,
                     'testability': 'Automatic'  # Default value
@@ -184,10 +173,11 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
             requirement = {
                 'id': req_id,
                 'title': req_title.strip(),
-                'description': req_desc.strip(),
+                'text': req_text.strip(),  # NEW: Store the actual requirement text
+                'context': req_context.strip(),  # NEW: Store the context
                 'actor': actor,
                 'conformance': req_conf.strip(),
-                'full_content': f"### {req_id}: {req_title}\n\n**Description**: \"{req_desc}\"\n\n**Actor**: {req_actor}\n\n**Conformance**: {req_conf}",
+                'full_content': f"### {req_id}: {req_title}\n\n**Text**: \"{req_text}\"\n\n**Context**: {req_context}\n\n**Actor**: {req_actor}\n\n**Conformance**: {req_conf}",
                 'full_spec': test_spec,
                 'section': actor,
                 'testability': 'Automatic'  # Default value
@@ -199,19 +189,23 @@ def parse_test_plan(file_path: str) -> Dict[str, Any]:
     # Remove empty sections
     sections = {k: v for k, v in sections.items() if v['requirements']}
     
+    print(f"Final sections: {list(sections.keys())}")
+    for section_name, section in sections.items():
+        print(f"  {section_name}: {len(section['requirements'])} requirements")
+    
     return sections
 
-def get_inferno_guidance() -> str:
-    """
-    Load the Inferno test writing guidance document
+# def get_inferno_guidance() -> str:
+#     """
+#     Load the Inferno test writing guidance document
     
-    Returns:
-        String containing Inferno test development guidance
-    """
-    guidance_path = PROJECT_ROOT / "test_kit_dev" / "inferno-guidance.md"
+#     Returns:
+#         String containing Inferno test development guidance
+#     """
+#     guidance_path = PROJECT_ROOT / "test_kit_dev" / "inferno-guidance.md"
     
-    with open(guidance_path, 'r') as f:
-        return f.read()
+#     with open(guidance_path, 'r') as f:
+#         return f.read()
     
 
 def get_dsl_guidance() -> str:
@@ -221,7 +215,7 @@ def get_dsl_guidance() -> str:
     Returns:
         String containing Inferno dsl guidance
     """
-    guidance_path = PROJECT_ROOT / "test_kit_dev" / "dsl-guidance.md"
+    guidance_path = PROJECT_ROOT / "pipeline" / "dsl-guidance.md"
     
     with open(guidance_path, 'r') as f:
         return f.read()

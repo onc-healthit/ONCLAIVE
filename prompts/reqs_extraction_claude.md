@@ -16,8 +16,9 @@ Format each extracted requirement as shown in the <formatting_example> tag below
 ```
 ## REQ-[ID]
 
-**Summary**: Brief description of the requirement
-**Description**: "[exact quote with necessary [clarifications]]"
+**Summary**: Summary description of the requirement
+**Text**: "[exact quote with necessary [clarifications] and [additions] to make it a full phrase or sentence]"
+**Context**: Overview of context within which requirement is set to provide background needed to understand requirement for later test planning activities
 **Verification**: Recommended verification method (Test/Analysis/Inspection/Demonstration)
 **Actor**: Actor responsible, conformance level, conditions, etc.
 **Conformance**: Conformance level

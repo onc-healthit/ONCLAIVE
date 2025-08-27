@@ -22,8 +22,8 @@ For each requirement you identify, format it as follows:
 ```
 ## REQ-[ID]
 
-**Summary**: Brief description of the requirement
-**Description**: "<exact quote with necessary [clarifications]>"
+**Summary**: Description of the requirement
+**Text**: "<exact quote with necessary [clarifications]>"
 **Context**: Overview of context within which requirement is set to provide background needed to understand requirement for later test planning activities
 **Verification**: Recommended verification method (Test/Analysis/Inspection/Demonstration)
 **Actor**: Actor responsible, conformance level, conditions, etc.

@@ -6,12 +6,13 @@ from itertools import product
 import re
 from uuid import uuid4
 import os
+import datetime
 
 def load_mdfile(mdfile):
     all_reqs = []
     with open(mdfile) as f:
         mdreqs = f.read()
-    sections = list(re.finditer("#+ REQ-[0-9]+", mdreqs))
+    sections = list(re.finditer("## REQ-\d+", mdreqs))
     md_splits = []
     for i in range(len(sections)-1):
 
@@ -129,7 +130,9 @@ def convert_to_markdown(reqlist, output_dir):
                           represents a requirement.
         output_dir (str): The directory where the markdown file will be created.
     """
-    output_filename = os.path.join(output_dir, 'filtered_requirements.md')
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    output_filename = os.path.join(output_dir, f'consolidated_reqs_{timestamp}.md')
     with open(output_filename, 'w') as md_file:
         for i, req in enumerate(reqlist):
             # Extract and write the details from the 'parsed' dictionary
@@ -180,8 +183,9 @@ def full_pass(md_files=[], rag_files=[], output_dir="checkpoints/requirements_do
 
         with open(os.path.join(output_dir, 'ids_to_embeddings.json'), 'w+') as f:
             json.dump(embeds_only, f, indent=2)
-
-        with open(os.path.join(output_dir, 'filtered_requirements.json'), 'w+') as f:
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        with open(os.path.join(output_dir, f'consolidated_reqs_{timestamp}.json'), 'w+') as f:
             json.dump(filtered_allreqs, f, indent=2)
         print(f"Output saved in JSON format in directory: {output_dir}")
         

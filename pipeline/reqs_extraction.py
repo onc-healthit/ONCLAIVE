@@ -45,7 +45,7 @@ logging.info(f"Project root: {PROJECT_ROOT}")
 load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
 
 # Import prompt utilities
-prompt_utils_path = os.path.join(PROJECT_ROOT, 'prompt_utils.py')
+#prompt_utils_path = os.path.join(PROJECT_ROOT, 'prompt_utils.py')
     
 # Setup the prompt environment
 prompt_env = prompt_utils.setup_prompt_environment(PROJECT_ROOT)

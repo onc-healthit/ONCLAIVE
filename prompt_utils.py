@@ -53,12 +53,12 @@ def setup_prompt_environment(project_root: Path) -> Dict[str, Any]:
     # Define paths for common prompts
     paths = {
         "prompt_dir": prompt_dir,
-        "requirements_extraction_path": os.path.join(prompt_dir, 'reqs_extraction.md'),
+        "requirements_extraction_path": os.path.join(prompt_dir, 'reqs_extraction_claude.md'),
         "requirements_refinement_path": os.path.join(prompt_dir, 'requirements_refinement.md'),
-        "requirements_grouping_path": os.path.join(prompt_dir, 'requirements_grouping_uscore.md'),
+        "requirement_grouping_path": os.path.join(prompt_dir, 'requirement_grouping_uscore.md'),
         "test_plan_gen_path": os.path.join(prompt_dir, 'test_plan.md'),
-        "test_gen_path": os.path.join(prompt_dir, 'test_gen.md'),
-        "requirement_grouping_path": os.path.join(prompt_dir, 'requirement_grouping.md')
+        "test_gen_path": os.path.join(prompt_dir, 'test_gen.md')
+        #"requirement_grouping_path": os.path.join(prompt_dir, 'requirement_grouping.md')
     }
     
     logging.info(f"Prompt environment set up at: {prompt_dir}")

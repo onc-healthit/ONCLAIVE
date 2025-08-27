@@ -58,7 +58,8 @@ def format_requirement_for_prompt(requirement: Dict[str, str]) -> str:
     """
     formatted = f"# {requirement.get('id', 'UNKNOWN-ID')}\n"
     formatted += f"**Summary**: {requirement.get('summary', '')}\n"
-    formatted += f"**Description**: {requirement.get('description', '')}\n"
+    formatted += f"**Text**: {requirement.get('text', '')}\n"  
+    formatted += f"**Context**: {requirement.get('context', '')}\n" 
     formatted += f"**Verification**: {requirement.get('verification', '')}\n"
     formatted += f"**Actor**: {requirement.get('actor', '')}\n"
     formatted += f"**Conformance**: {requirement.get('conformance', '')}\n"
@@ -292,8 +293,14 @@ def parse_requirements_file(file_path: str) -> List[Dict[str, str]]:
     with open(file_path, 'r') as f:
         content = f.read()
     
-    # Split by requirement sections (separated by ---)
-    req_sections = content.split('---')
+    # NEW - add this logic at the start:
+    if '---' not in content or len(content.split('---')) <= 2:
+        # Header-based format
+        req_pattern = r'\n(?=## REQ-[A-Z0-9\-]+)'
+        req_sections = re.split(req_pattern, content)
+    else:
+        # Delimiter-based format  
+        req_sections = content.split('---')
     
     requirements = []
     for section in req_sections:
@@ -304,12 +311,12 @@ def parse_requirements_file(file_path: str) -> List[Dict[str, str]]:
         req_data = {}
         
         # Extract ID from format "# REQ-XX"
-        id_match = re.search(r'#\s+([A-Z0-9\-]+)', section)
+        id_match = re.search(r'#+\s+(REQ-[A-Z0-9\-]+)', section)
         if id_match:
             req_data['id'] = id_match.group(1)
         
         # Extract other fields
-        for field in ['Summary', 'Description', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
+        for field in ['Summary', 'Text', 'Context', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
             pattern = rf'\*\*{field}\*\*:\s*(.*?)(?:\n\*\*|\n---|\Z)'
             field_match = re.search(pattern, section, re.DOTALL)
             if field_match:
