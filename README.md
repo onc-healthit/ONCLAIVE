@@ -44,11 +44,9 @@ LLM prompts for the various notebooks can be found in the `prompts` folder. Prom
 
 ## Working with the Pipeline
 
-The notebook and scripts listed above work with the files saved in the `full-ig` and `us-core` folders, which have been downloaded from the below links:
+The notebook and scripts listed above work with the files saved in the `full-ig` folder.
 
-- [Da Vinci PDex Plan Net IG Download](https://build.fhir.org/ig/HL7/davinci-pdex-plan-net/downloads.html)
-
-Other IGs can be used with this pipeline as well. To do so, download the IG and save the files under the `full-ig` folder. The notebook will pull from the `site` folder under `full-ig`. 
+Other IGs can be used with this pipeline. To do so, download the IG and save the files under the `full-ig` folder. The notebook will pull from the `site` folder under `full-ig`. 
 
 After cloning the repository: 
 
@@ -56,22 +54,22 @@ After cloning the repository:
     - LLMs of interest can be setup in the `llm_utils.py` file
     - Individual API keys will need to be generated for each model of interest to fully run each notebook using the selected API (see below for instructions). API keys should be saved in a .env file in the root directory. 
 
-Example: 
+        Example: 
 
-ANTHROPIC_API_KEY=your_anthropic_key_here
+        ANTHROPIC_API_KEY=your_anthropic_key_here
 
-GEMINI_API_KEY=your_gemini_key_here
+        GEMINI_API_KEY=your_gemini_key_here
 
-OPENAI_API_KEY=your_openai_key_here
+        OPENAI_API_KEY=your_openai_key_here
 
 2. Install dependencies: This will install all necessary packages including API clients as well as data processing libraries.
-In your working directory, using the command line, run the command `pip install -r requirements.txt`
+    In your working directory, using the command line, run the command `pip install -r requirements.txt`
 
 3. Start Jupyter: Start Jupyter to explore and run the notebooks.
-Jupyter notebooks can be run locally using the command line or by opening notebook files in IDEs of choice. 
+    Jupyter notebooks can be run locally using the command line or by opening notebook files in IDEs of choice. 
 
-To open a file using the command line, run `jupyter notebook`
-This will open a web browser showing the Jupyter file explorer. Navigate to the notebook you want to run and click on it.
+    To open a file using the command line, run `jupyter notebook`
+    This will open a web browser showing the Jupyter file explorer. Navigate to the notebook you want to run and click on it.
 
 4. If you encounter SSL certificate issues with API requests, modify the `verify_path` variable in the `setup_clients()` function in `llm_utils.py` file.
 
