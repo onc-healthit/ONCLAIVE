@@ -6,7 +6,7 @@ Requirements Coverage (detail-aware)
 - Model is read from API_CONFIGS; just set API_TYPE below
 """
 
-import sys, re, json
+import sys, re, json, time
 from pathlib import Path
 
 # ---------- CONFIG ----------
@@ -51,6 +51,8 @@ def _extract_req_blocks(req_md: str):
     return [(m.group(1).strip(), m.group(2)) for m in REQ_BLOCK_RE.finditer(req_md)]
 
 def main():
+    start_time = time.time()
+
     req_md   = Path(REQ_PATH).read_text()
     plan_md  = Path(TEST_PLAN_PATH).read_text()
     prompt   = Path(PROMPT_PATH).read_text()
@@ -105,6 +107,10 @@ def main():
             lines.append(f"- [{'x' if fct.get('covered') else ' '}] {fct.get('name')} — {fct.get('notes','')}")
         lines.append("")
     (out_dir / "requirements_coverage.md").write_text("\n".join(lines))
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Total execution time: {elapsed_time:.2f} seconds ({elapsed_time/60:.1f} minutes)")
 
 if __name__ == "__main__":
     main()
