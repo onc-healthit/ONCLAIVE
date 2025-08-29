@@ -4,7 +4,7 @@
 Test Plan Coverage (detail-aware, plan→kit only), scalable across many Ruby files.
 """
 
-import sys, re, os, json
+import sys, re, os, json, time
 from pathlib import Path
 from typing import Dict, List
 
@@ -206,6 +206,8 @@ def merge_batches(per_batch: List[dict]) -> dict:
 
 # --- Main ---
 def main():
+    start_time = time.time()
+
     plan_md = Path(TEST_PLAN_PATH).read_text()
     prompt  = Path(PROMPT_PATH).read_text()
     dsl_md  = Path(DSL_GUIDANCE_PATH).read_text() if Path(DSL_GUIDANCE_PATH).exists() else ""
@@ -302,6 +304,10 @@ def main():
                 lines.append(f"- {f.get('name')}")
         lines.append("")
     (out_dir / "test_plan_coverage.md").write_text("\n".join(lines))
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Total execution time: {elapsed_time:.2f} seconds ({elapsed_time/60:.1f} minutes)")
 
 if __name__ == "__main__":
     main()
