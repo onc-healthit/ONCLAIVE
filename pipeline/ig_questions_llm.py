@@ -5,7 +5,7 @@ Questions about IG (CapabilityStatement → unresolved questions)
 - Splits doc by headers
 - Model chosen via API_TYPE and API_CONFIGS
 """
-import sys, re, json
+import sys, re, json, time
 from pathlib import Path
 
 # ---------- CONFIG ----------
@@ -57,6 +57,8 @@ def _force_json(text: str):
 
 # --- main ---
 def main():
+    start_time = time.time()
+
     ig_md  = Path(IG_MD_PATH).read_text()
     prompt = Path(PROMPT_PATH).read_text()
 
@@ -106,6 +108,10 @@ def main():
         lines.append(f"- **{q.get('id','')}** [{q.get('section','')}] {q.get('summary','')} "
                      f"(impact: {q.get('impact','')}, severity: {q.get('severity','')}, blocking: {q.get('blocking')})")
     (out_dir / "ig_questions.md").write_text("\n".join(lines))
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Total execution time: {elapsed_time:.2f} seconds ({elapsed_time/60:.1f} minutes)")
 
 if __name__ == "__main__":
     main()
