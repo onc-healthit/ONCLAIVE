@@ -398,7 +398,8 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
         
         # Save INCOSE SRS document to markdown file
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        srs_output_file = os.path.join(output_directory, f"{api_type}_reqs_list_v1_{timestamp}.md")
+        #srs_output_file = os.path.join(output_directory, f"{api_type}_reqs_list_v1_{timestamp}.md")
+        srs_output_file = os.path.join(output_directory, f"reqs_list_v1.md")
         
         with open(srs_output_file, 'w') as f:
             f.write(srs_document)

@@ -46,9 +46,9 @@ API_CONFIGS = {
         "timeout": 900
     },
     "gpt": {
-        "model": "gpt-5",
+        "model": "gpt-4.1",
         "max_tokens": 8192,
-        "temperature": 1,
+        "temperature": 0.3,
         "batch_size": 8,  
         "delay_between_chunks": 0.5,   
         "delay_between_batches": 2.0,  

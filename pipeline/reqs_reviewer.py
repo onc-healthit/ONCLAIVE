@@ -494,6 +494,7 @@ def refine_requirements(input_file: str, api_type: str = "claude",
         # Generate output filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_filename = f"{api_type}_reqs_list_v2_{timestamp}.md"
+        #output_filename = f"reqs_list_v2.md"
         output_file_path = output_dir / output_filename
         
         # Save refined requirements with proper encoding
@@ -848,6 +849,7 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_filename = f"{api_type}_refined_requirements_{timestamp}.md"
+    #output_filename = f"refined_requirements.md"
     output_path = output_dir_path / output_filename
     
     with open(output_path, 'w', encoding='utf-8') as f:

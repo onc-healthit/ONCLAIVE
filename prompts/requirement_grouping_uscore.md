@@ -37,6 +37,4 @@ If the requirement does not belong to any of the specific resource profiles list
 - Security
 - Privacy
 
-Or generate a more appropriate group title not listed.
-
 Return only the category name that best represents this requirement's grouping, with no additional text or explanation.

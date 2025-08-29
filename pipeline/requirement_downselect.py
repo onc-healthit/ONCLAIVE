@@ -6,34 +6,65 @@ from itertools import product
 import re
 from uuid import uuid4
 import os
-import datetime
+from datetime import datetime
+from pathlib import Path
+from typing import List, Union
+
+
 
 def load_mdfile(mdfile):
     all_reqs = []
     with open(mdfile) as f:
         mdreqs = f.read()
-    sections = list(re.finditer("## REQ-\d+", mdreqs))
+    
+    sections = list(re.finditer(r"# REQ-\d+", mdreqs))  # Added r prefix
+    
+    # Check if any sections were found
+    if not sections:
+        print(f"Warning: No requirement sections found in {mdfile}")
+        print("Expected format: # REQ-XX where XX is a number")
+        return all_reqs
+    
     md_splits = []
     for i in range(len(sections)-1):
-
         md_splits.append(mdreqs[sections[i].span()[1]:sections[i+1].span()[0]])
-    md_splits.append(mdreqs[sections[-1].span()[1]:])
+    
+    # Only add the last section if sections is not empty
+    if sections:
+        md_splits.append(mdreqs[sections[-1].span()[1]:])
 
     for split in md_splits:
         req_dict = {}
-        headings = list(re.finditer("\*\*\w+\*\*\:", split))
+        headings = list(re.finditer(r"\*\*\w+\*\*\:", split))  # Added r prefix
+        
+        # Check if any headings were found
+        if not headings:
+            print(f"Warning: No headings found in requirement section")
+            continue
+            
         for i in range(len(headings)-1):
             heading = headings[i]
             req_dict[heading.group()[2:-3].lower()] = split[heading.span()[1]:headings[i+1].span()[0]]
-        heading = headings[-1]
-        req_dict[heading.group()[2:-3].lower()] = split[heading.span()[1]:]
+        
+        # Only process the last heading if headings exist
+        if headings:
+            heading = headings[-1]
+            req_dict[heading.group()[2:-3].lower()] = split[heading.span()[1]:]
+        
+        # Check for either 'description' or 'text' field
         if 'description' in req_dict:
             req = {"text": req_dict['description'], "raw": split, "source": mdfile, 'parsed': req_dict, "id": str(uuid4())}
-            if 'source' in req_dict:
-                secnum = re.findall(r'((?:\d+.)+\d+)',req_dict['source'])
-                if secnum:
-                    req['ig_section'] = secnum[0]
-            all_reqs.append(req)
+        elif 'text' in req_dict:
+            req = {"text": req_dict['text'], "raw": split, "source": mdfile, 'parsed': req_dict, "id": str(uuid4())}
+        else:
+            print(f"Warning: No 'description' or 'text' field found in requirement")
+            continue
+            
+        if 'source' in req_dict:
+            secnum = re.findall(r'((?:\d+.)+\d+)',req_dict['source'])  # Added r prefix
+            if secnum:
+                req['ig_section'] = secnum[0]
+        all_reqs.append(req)
 
     return all_reqs
 
@@ -132,7 +163,8 @@ def convert_to_markdown(reqlist, output_dir):
     """
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    output_filename = os.path.join(output_dir, f'consolidated_reqs_{timestamp}.md')
+    #output_filename = os.path.join(output_dir, f'consolidated_reqs_{timestamp}.md')
+    output_filename = os.path.join(output_dir, f'consolidated_reqs.md')
     with open(output_filename, 'w') as md_file:
         for i, req in enumerate(reqlist):
             # Extract and write the details from the 'parsed' dictionary
@@ -192,3 +224,22 @@ def full_pass(md_files=[], rag_files=[], output_dir="checkpoints/requirements_do
     elif output_format == 'markdown':
         convert_to_markdown(filtered_allreqs, output_dir)
         print(f"Output saved in Markdown format in directory: {output_dir}")
+
+
+def get_md_files_from_directory(directory_path: str, pattern: str = "*.md") -> List[str]:
+    """
+    Get .md files from a directory with optional pattern filtering
+    
+    Args:
+        directory_path: Path to directory containing markdown files
+        pattern: Glob pattern to match files (default: "*.md")
+        
+    Returns:
+        List of full file paths to matching .md files
+    """
+    directory = Path(directory_path)
+    if not directory.exists():
+        raise FileNotFoundError(f"Directory does not exist: {directory_path}")
+    
+    md_files = list(directory.glob(pattern))
+    return sorted([str(f) for f in md_files]) 

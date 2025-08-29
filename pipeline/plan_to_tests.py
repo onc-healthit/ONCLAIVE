@@ -478,11 +478,12 @@ def generate_tests_for_section(
             logger.info(f"Generating test for requirement: {requirement['id']}")
             
             # Prepare the prompt for this requirement with full context
-            req_prompt = get_inferno_test_generation_prompt(
+            test_gen_path = PROJECT_ROOT / "prompts" / "test_gen.md"
+            req_prompt = prompt_utils.load_prompt(
+                str(test_gen_path),
                 test_specification=requirement['full_content'],
                 requirement_id=requirement['id'],
                 module_name=module_name,
-                inferno_guidance=inferno_guidance,
                 dsl_guidance=dsl_guidance
             )
             actual_tokens = llm_clients.count_tokens(req_prompt, api_type)
@@ -1044,7 +1045,7 @@ def generate_inferno_test_kit(
     llm_clients,
     api_type: str,
     test_plan_file: str,
-    module_name: str = "PlanNet",
+    module_name: str = "US Core",
     output_dir: str = OUTPUT_DIR,
     expected_actors: List[str] = None
 ) -> Dict[str, Any]:
