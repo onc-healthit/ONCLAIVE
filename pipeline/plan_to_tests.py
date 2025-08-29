@@ -277,7 +277,7 @@ def determine_test_groups(sections: Dict[str, Dict[str, Any]], expected_actors: 
 
 
 
-def validate_test_with_llm(llm_clients, api_type, test_code, inferno_guidance, dsl_guidance):
+def validate_test_with_llm(llm_clients, api_type, test_code, dsl_guidance):
     """Use LLM to check and correct common issues in generated test code."""
     
     validation_prompt = f"""
@@ -379,7 +379,6 @@ def generate_tests_for_section(
     llm_clients, 
     api_type: str,
     section: Dict[str, Any],
-    inferno_guidance: str,
     dsl_guidance: str,
     module_name: str,
     max_input_token_limit: int = 16000
@@ -518,7 +517,6 @@ def generate_tests_for_section(
                 llm_clients, 
                 api_type, 
                 test_code, 
-                inferno_guidance,
                 dsl_guidance
             )
             validated_tests[req_id] = validated_code
@@ -1125,10 +1123,9 @@ def generate_inferno_test_kit(
                 llm_clients, 
                 api_type, 
                 section, 
-                #inferno_guidance, 
                 dsl_guidance,
                 module_name_camel, 
-                70000
+                7000
             )
             
             # Add to our collection

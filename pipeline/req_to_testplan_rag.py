@@ -419,8 +419,8 @@ def generate_consolidated_test_plan(
             logger.info(f"Group '{group}': {len(reqs)} requirements")
         
         # Update output file path to use Path object
-        #test_plan_path = output_dir / f"{api_type}_test_plan_{timestamp}.md"
-        test_plan_path = output_dir / f"test_plan.md"
+        test_plan_path = output_dir / f"{api_type}_test_plan_{timestamp}.md"
+        #test_plan_path = output_dir / f"test_plan.md"
 
         # Initialize test plan content
         test_plan = f"# Consolidated Test Plan for {ig_name}\n\n"
