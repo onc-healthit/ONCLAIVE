@@ -69,7 +69,7 @@ def main():
         if not body.strip():
             continue
 
-        user = f"{prompt.strip()}\n\n## CAPABILITYSTATEMENT SECTION: {title}\n{body}"
+        user = f"{prompt.strip()}\n\n##SECTION: {title}\n{body}"
         out = client.make_llm_request(
             api_type=API_TYPE,
             prompt=user,
