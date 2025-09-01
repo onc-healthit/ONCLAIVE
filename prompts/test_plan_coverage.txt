@@ -71,4 +71,4 @@ Remember
 - JSON ONLY. No prose outside the JSON object.
 - Include all facets from the plan (even unimplemented).
 - Treat logging, comments, or broad helper calls without line-specific checks as insufficient.
-- Use the DSL GUIDANCE to distinguish real assertions from helpers or placeholders.  ← NEW
+- Use the DSL GUIDANCE to distinguish real assertions from helpers or placeholders.  
