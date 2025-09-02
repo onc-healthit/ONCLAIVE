@@ -1,14 +1,32 @@
 """
 LLM Utilities Module for API interactions with Claude, Gemini, and GPT models.
+
+This module provides a unified interface for interacting with multiple LLM APIs,
+including rate limiting, error handling, and safety filter management.
+
+Features:
+- Multi-API support (Claude, Gemini, GPT, AIP)
+- Automatic rate limiting and token management
+- Safety filter exception handling
+- Token counting utilities
+- Configurable API parameters
+
+Usage:
+    from llm_utils import LLMApiClient, SafetyFilterException
+    
+    # Initialize client
+    client = LLMApiClient()
+    
+    # Make a request
+    response = client.make_llm_request("claude", "Your prompt here", sys_prompt="System prompt")
 """
-# Imports
+
 import os
 import time
 import logging
-from xml.parsers.expat import model
 import httpx
-from typing import Dict, Any, Callable, Union, List
-import dotenv
+from typing import Dict, Any, Union, List
+from dotenv import load_dotenv
 
 try:
     from anthropic import Anthropic, RateLimitError
@@ -18,6 +36,8 @@ try:
 except ImportError:
     raise ImportError("Please install required packages: pip install anthropic google-generativeai openai tenacity")
 
+# Load environment variables
+load_dotenv()
 
 # API Configuration
 API_CONFIGS = {
@@ -31,7 +51,7 @@ API_CONFIGS = {
         "requests_per_minute": 3800,  
         "input_tokens_per_minute": 1900000,  
         "output_tokens_per_minute": 380000,  
-        "delay_between_requests": .2  
+        "delay_between_requests": 0.2  
     },
     "gemini": {
         "model": "models/gemini-1.5-pro",
@@ -71,16 +91,30 @@ API_CONFIGS = {
     }
 }
 
-# Custom exception for safety filter blocks
+
 class SafetyFilterException(Exception):
-    """Exception raised when content is blocked by safety filters"""
-    def __init__(self, message, blocked_content=None):
+    """
+    Exception raised when content is blocked by safety filters.
+    
+    Attributes:
+        blocked_content: Sample of the content that triggered the safety filter
+    """
+    def __init__(self, message: str, blocked_content: str = None):
         super().__init__(message)
         self.blocked_content = blocked_content
 
 
-def format_content_for_api(content: Union[str, dict, list], api_type: str) -> Union[str, List[dict], dict]:
-    """Format content appropriately for each API"""
+def format_content_for_api(content: str, api_type: str) -> Union[str, List[Dict], Dict]:
+    """
+    Format content appropriately for each API's expected input format.
+    
+    Args:
+        content: The text content to format
+        api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+        
+    Returns:
+        Formatted content structure for the specific API
+    """
     if api_type == "claude":
         return [{
             "type": "text",
@@ -94,41 +128,65 @@ def format_content_for_api(content: Union[str, dict, list], api_type: str) -> Un
         }]
     return content
 
-class LLMApiClient:
-    
-    
-    # Rate Limiter Setup
 
-     # Setup LLM Clients
-    def __init__(self, config=API_CONFIGS, verify_path='/opt/homebrew/etc/openssl@3/cert.pem', system_prompt=None):
-        """Initialize clients for each LLM service"""
+class LLMApiClient:
+    """
+    Unified client for multiple LLM APIs with rate limiting and error handling.
+    
+    This class provides a consistent interface for interacting with Claude, Gemini, GPT,
+    and AIP models while handling rate limits, token management, and safety filters.
+    
+    Attributes:
+        config: API configuration dictionary
+        clients: Dictionary of initialized API clients
+        rate_limiter: Rate limiting state tracker
+        safety_blocked_count: Counter for safety filter blocks
+    """
+    
+    def __init__(self, config: Dict = None, verify_path: str = '/opt/homebrew/etc/openssl@3/cert.pem', 
+                 system_prompt: str = None):
+        """
+        Initialize clients for each LLM service.
+        
+        Args:
+            config: API configuration dictionary (uses default if None)
+            verify_path: SSL certificate path for Claude client
+            system_prompt: Default system prompt for all requests
+            
+        Raises:
+            ImportError: If required API packages are not installed
+            Exception: If client initialization fails
+        """
         self.logger = logging.getLogger(__name__)
-        self.config = config
+        self.config = config or API_CONFIGS
         self.clients = {}
         self.system_prompt = system_prompt
         self.safety_blocked_count = 0
 
+        self._initialize_clients(verify_path)
+        self.rate_limiter = self._create_rate_limiter(self.config)
+
+    def _initialize_clients(self, verify_path: str) -> None:
+        """Initialize all available API clients based on environment variables."""
         try:
             # Claude setup
             claude_api_key = os.getenv('ANTHROPIC_API_KEY')
-            if not claude_api_key:
-                self.logger.warning("ANTHROPIC_API_KEY not found. Claude API client will not be loaded.")
-            else:
+            if claude_api_key:
                 http_client = httpx.Client(
                     verify=verify_path if os.path.exists(verify_path) else True,
-                    timeout=httpx.Timeout(900.0, connect=300.0),  # 15 minutes total, 5 minutes connect
-                    limits=httpx.Limits(max_keepalive_connections=5, max_connections=10),  # Reduced connections
+                    timeout=httpx.Timeout(900.0, connect=300.0),
+                    limits=httpx.Limits(max_keepalive_connections=5, max_connections=10),
                 )
                 self.clients['claude'] = Anthropic(
                     api_key=claude_api_key,
                     http_client=http_client
                 )
+            else:
+                self.logger.warning("ANTHROPIC_API_KEY not found. Claude API client will not be loaded.")
             
             # Gemini setup
             gemini_api_key = os.getenv('GEMINI_API_KEY')
-            if not gemini_api_key:
-                self.logger.warning("GEMINI_API_KEY not found. Gemini API client will not be loaded.")
-            else:
+            if gemini_api_key:
                 gemini.configure(api_key=gemini_api_key)
                 
                 # Configure safety settings for technical content
@@ -136,8 +194,7 @@ class LLMApiClient:
                     {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
                     {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}#, 
-                    #{"category": "HARM_CATEGORY_CIVIC_INTEGRITY", "threshold": "BLOCK_NONE"}
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
                 ]
                 
                 self.clients['gemini'] = gemini.GenerativeModel(
@@ -148,17 +205,20 @@ class LLMApiClient:
                     },
                     safety_settings=safety_settings
                 )
+            else:
+                self.logger.warning("GEMINI_API_KEY not found. Gemini API client will not be loaded.")
             
             # OpenAI setup
             openai_api_key = os.getenv('OPENAI_API_KEY')
-            if not openai_api_key:
-                self.logger.warning("OPENAI_API_KEY not found. GPT API client will not be loaded.")
-            else:
+            if openai_api_key:
                 self.clients['gpt'] = OpenAI(
                     api_key=openai_api_key,
                     timeout=900.0
                 )
+            else:
+                self.logger.warning("OPENAI_API_KEY not found. GPT API client will not be loaded.")
             
+            # AIP setup
             aip_api_key = os.getenv("AIP_API_KEY")
             if aip_api_key:
                 self.clients['aip'] = OpenAI(
@@ -168,13 +228,19 @@ class LLMApiClient:
                 )
             
         except Exception as e:
-            logging.error(f"Error setting up clients: {str(e)}")
+            self.logger.error(f"Error setting up clients: {str(e)}")
             raise
 
-        self.rate_limiter = self.create_rate_limiter(config)
-
-    def create_rate_limiter(self, config):
-        """Create a rate limiter state dictionary for all APIs"""
+    def _create_rate_limiter(self, config: Dict) -> Dict:
+        """
+        Create rate limiter state dictionary for all APIs.
+        
+        Args:
+            config: API configuration dictionary
+            
+        Returns:
+            Dictionary containing rate limiter state for each API
+        """
         limiter = {}
         for api in config.keys():
             limiter[api] = {
@@ -194,67 +260,69 @@ class LLMApiClient:
         
         return limiter
 
-    def check_rate_limits(self, api: str, input_text: str = "", requested_output_tokens: int = None):
-        """Check and wait if rate limits would be exceeded - supports all models"""
-        rate_limiter = self.rate_limiter
-        if api not in rate_limiter:
+    def check_rate_limits(self, api: str, input_text: str = "", requested_output_tokens: int = None) -> None:
+        """
+        Check and enforce rate limits for the specified API.
+        
+        This method implements comprehensive rate limiting including:
+        - Requests per minute
+        - Tokens per minute (API-specific)
+        - Daily request limits (where applicable)
+        - Minimum delays between requests
+        
+        Args:
+            api: API type to check limits for
+            input_text: Input text for token estimation
+            requested_output_tokens: Expected output tokens (optional)
+            
+        Raises:
+            ValueError: If API type is unknown
+            Exception: If daily limits are exceeded
+        """
+        if api not in self.rate_limiter:
             raise ValueError(f"Unknown API: {api}")
             
         now = time.time()
-        state = rate_limiter[api]
+        state = self.rate_limiter[api]
         config = self.config[api]
         
         # Estimate tokens based on API type
-        if api == "claude":
-            estimated_input_tokens = len(input_text) // 4
-            estimated_output_tokens = requested_output_tokens or config["max_tokens"]
-            estimated_total_tokens = estimated_input_tokens + estimated_output_tokens
-            
-        elif api in ["gemini", "gpt"]:
-            # For Gemini/GPT, estimate total tokens (input + output)
-            estimated_input_tokens = len(input_text) // 4
-            estimated_output_tokens = requested_output_tokens or config["max_tokens"]
-            estimated_total_tokens = estimated_input_tokens + estimated_output_tokens
-        else:
-            estimated_input_tokens = 0
-            estimated_output_tokens = 0
-            estimated_total_tokens = 0
+        estimated_input_tokens = len(input_text) // 4
+        estimated_output_tokens = requested_output_tokens or config["max_tokens"]
+        estimated_total_tokens = estimated_input_tokens + estimated_output_tokens
         
         # Reset daily counts if needed
-        day_seconds = 24 * 60 * 60
-        if now - state['last_reset'] >= day_seconds:
+        if now - state['last_reset'] >= 86400:  # 24 hours
             state['daily_requests'] = 0
             state['last_reset'] = now
         
-        # Check daily request limit (Gemini only has this)
+        # Check daily request limit
         daily_limit = config.get('max_requests_per_day')
         if daily_limit and state['daily_requests'] >= daily_limit:
             raise Exception(f"{api} daily request limit ({daily_limit}) exceeded")
         
-        # Remove old entries outside the current minute
+        # Clean old entries (older than 1 minute)
         cutoff = now - 60
         state['requests'] = [req_time for req_time in state['requests'] if req_time > cutoff]
         
-        # Clean token tracking based on API type
         if api == "claude":
             state['input_tokens'] = [(t, tokens) for t, tokens in state['input_tokens'] if t > cutoff]
             state['output_tokens'] = [(t, tokens) for t, tokens in state['output_tokens'] if t > cutoff]
         elif api in ["gemini", "gpt"]:
             state['tokens'] = [(t, tokens) for t, tokens in state['tokens'] if t > cutoff]
         
-        # Check limits and calculate wait times
+        # Calculate required wait times
         wait_times = []
         
-        # 1. Request limit (all APIs have this)
+        # Check request limit
         current_requests = len(state['requests'])
         if current_requests >= config['requests_per_minute']:
             wait_time = 60 - (now - state['requests'][0])
             if wait_time > 0:
                 wait_times.append(("requests", wait_time))
         
-        # 2. Token limits (API-specific)
+        # Check token limits (API-specific)
         if api == "claude":
-            # Claude: separate input/output limits
             current_input = sum(tokens for _, tokens in state['input_tokens'])
             current_output = sum(tokens for _, tokens in state['output_tokens'])
             
@@ -271,7 +339,6 @@ class LLMApiClient:
                     wait_times.append(("output_tokens", wait_time))
         
         elif api in ["gemini", "gpt"]:
-            # Gemini/GPT: combined token limit
             current_tokens = sum(tokens for _, tokens in state['tokens'])
             token_limit = config.get('tokens_per_minute', float('inf'))
             
@@ -281,20 +348,10 @@ class LLMApiClient:
                 if wait_time > 0:
                     wait_times.append(("tokens", wait_time))
         
-        # Wait for the longest required time
+        # Wait if necessary
         if wait_times:
             limit_type, max_wait = max(wait_times, key=lambda x: x[1])
             self.logger.info(f"{api} rate limit hit ({limit_type}), waiting {max_wait:.1f}s")
-            
-            # Log current usage for debugging
-            if api == "claude":
-                current_input = sum(tokens for _, tokens in state['input_tokens'])
-                current_output = sum(tokens for _, tokens in state['output_tokens'])
-                self.logger.info(f"Usage: {current_requests} req, {current_input} in_tokens, {current_output} out_tokens")
-            elif api in ["gemini", "gpt"]:
-                current_tokens = sum(tokens for _, tokens in state['tokens'])
-                self.logger.info(f"Usage: {current_requests} req, {current_tokens} tokens")
-            
             time.sleep(max_wait)
             # Recursive call to re-check
             return self.check_rate_limits(api, input_text, requested_output_tokens)
@@ -307,30 +364,13 @@ class LLMApiClient:
         state['requests'].append(now)
         state['daily_requests'] += 1
         
-        # Record token usage based on API type
+        # Record token usage
         if api == "claude":
             state['input_tokens'].append((now, estimated_input_tokens))
             state['output_tokens'].append((now, estimated_output_tokens))
         elif api in ["gemini", "gpt"]:
             state['tokens'].append((now, estimated_total_tokens))
-        
-        # Periodic usage logging
-        if len(state['requests']) % 20 == 0:
-            if api == "claude":
-                current_input = sum(tokens for _, tokens in state['input_tokens'])
-                current_output = sum(tokens for _, tokens in state['output_tokens'])
-                self.logger.info(f"{api} usage: {current_requests + 1} req, {current_input} in, {current_output} out")
-            elif api in ["gemini", "gpt"]:
-                current_tokens = sum(tokens for _, tokens in state['tokens'])
-                self.logger.info(f"{api} usage: {current_requests + 1} req, {current_tokens} tokens")
 
-
-    def extract_problematic_content(self, prompt: str) -> str:
-        """Extract a sample of the content that might have triggered safety filters"""
-        return prompt
-
-
-    # Make LLM Call
     @retry(
         wait=wait_exponential(multiplier=2, min=60, max=7200),
         stop=stop_after_attempt(100),
@@ -338,29 +378,26 @@ class LLMApiClient:
                retry_if_exception_type(TimeoutError) | 
                retry_if_exception_type(Exception))
     )
-    def make_one_llm_request(self, api_type: str, prompt: str, system_prompt, max_tokens=None):
-        """Enhanced version with max_tokens parameter"""
+    def make_one_llm_request(self, api_type: str, prompt: str, system_prompt: str, max_tokens: int = None) -> str:
+        """
+        Make a single LLM API request with retry logic and rate limiting.
+        
+        Args:
+            api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+            prompt: User prompt text
+            system_prompt: System prompt text
+            max_tokens: Maximum tokens to generate (uses config default if None)
+            
+        Returns:
+            Generated text response from the LLM
+            
+        Raises:
+            SafetyFilterException: If content is blocked by safety filters
+            Exception: For various API errors
+        """
         config = self.config[api_type]
         client = self.clients[api_type]
         tokens_limit = max_tokens if max_tokens is not None else config["max_tokens"]
-        
-        # AUTO-STREAMING LOGIC: Decide if should stream
-        # if api_type == "claude":
-        #     # Estimate request size
-        #     full_input = f"{system_prompt or ''}\n{prompt}"
-        #     estimated_input_tokens = len(full_input) // 4
-        #     estimated_output_tokens = tokens_limit
-
-        #     should_stream = (
-        #         estimated_input_tokens > 30000 or  # Large input
-        #         estimated_output_tokens > 8000 or  # Large output  
-        #         (estimated_input_tokens + estimated_output_tokens) > 40000  # Large combined
-        #     )
-            
-        #     if should_stream:
-        #         logging.info(f" Auto-streaming: {estimated_input_tokens} input + {estimated_output_tokens} output tokens")
-        #         return self.make_one_llm_request_streaming(api_type, prompt, system_prompt, max_tokens)
-    
         
         full_input = f"{system_prompt or ''}\n{prompt}"
         self.check_rate_limits(api_type, full_input, tokens_limit)
@@ -369,7 +406,7 @@ class LLMApiClient:
             if api_type == "claude":
                 response = client.messages.create(
                     model=config["model_name"],
-                    max_tokens=tokens_limit,  # Use the tokens_limit variable
+                    max_tokens=tokens_limit,
                     messages=[{
                         "role": "user", 
                         "content": prompt
@@ -388,12 +425,12 @@ class LLMApiClient:
                 response = client.generate_content(
                     combined_prompt,
                     generation_config={
-                        "max_output_tokens": tokens_limit,  # Use the tokens_limit variable
+                        "max_output_tokens": tokens_limit,
                         "temperature": config["temperature"]
                     }
                 )
                 
-                # Check for safety filter blocks FIRST
+                # Check for safety filter blocks
                 if response.candidates and len(response.candidates) > 0:
                     candidate = response.candidates[0]
                     if candidate.finish_reason == 2:  # SAFETY
@@ -403,23 +440,17 @@ class LLMApiClient:
                             blocked_content=problematic_content
                         )
                 
-                # Then try to get the text
-                try:
-                    if hasattr(response, 'text') and response.text:
-                        return response.text
-                    elif response.candidates and len(response.candidates) > 0:
-                        candidate = response.candidates[0]
-                        if candidate.content and candidate.content.parts:
-                            return candidate.content.parts[0].text
-                        else:
-                            raise ValueError(f"No content returned from Gemini")
+                # Extract response text
+                if hasattr(response, 'text') and response.text:
+                    return response.text
+                elif response.candidates and len(response.candidates) > 0:
+                    candidate = response.candidates[0]
+                    if candidate.content and candidate.content.parts:
+                        return candidate.content.parts[0].text
                     else:
-                        raise ValueError("No response generated from Gemini API")
-                except AttributeError:
-                    if response.candidates and len(response.candidates) > 0:
-                        return response.candidates[0].content.parts[0].text
-                    else:
-                        raise ValueError("Unable to extract text from Gemini response")
+                        raise ValueError("No content returned from Gemini")
+                else:
+                    raise ValueError("No response generated from Gemini API")
         
             elif api_type == "aip":
                 response = client.chat.completions.create(
@@ -428,14 +459,14 @@ class LLMApiClient:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=config["max_tokens"],
+                    max_tokens=tokens_limit,
                     temperature=config["temperature"]
                 )
                 return response.choices[0].message.content
+                
             elif api_type == "gpt":
-                # Prepare the request parameters
                 response = client.responses.create(
-                    model= config["model"],
+                    model=config["model"],
                     input=[
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": prompt}
@@ -445,136 +476,76 @@ class LLMApiClient:
                     max_output_tokens=tokens_limit
                 )
                 return response.output_text
-                # Use the correct token parameter based on the model
-                #model_name = config["model"]
-                #if "gpt-4o" in model_name or "gpt-4-turbo" in model_name or "gpt-5" in model_name:
-                    # Newer models use max_completion_tokens
-                #request_params["max_completion_tokens"] = tokens_limit
-                #else:
-                    # Older models use max_tokens
-                    #request_params["max_tokens"] = tokens_limit
-                
-                #try:
-                #response = client.chat.completions.create(**request_params)
-                return response.choices[0].message.content
-                #except Exception as e:
-                    # If we get the parameter error, try switching the parameter
-                    #if "max_tokens" in str(e) and "max_completion_tokens" in str(e):
-                        #logging.info("Switching GPT token parameter due to API error")
-                        #if "max_tokens" in request_params:
-                            #request_params["max_completion_tokens"] = request_params.pop("max_tokens")
-                        #elif "max_completion_tokens" in request_params:
-                            #request_params["max_tokens"] = request_params.pop("max_completion_tokens")
-                        
-                        # Retry with the corrected parameter
-                        #response = client.chat.completions.create(**request_params)
-                        #return response.choices[0].message.content
-                    #else:
-                        #raise e
                 
         except SafetyFilterException:
             # Re-raise safety filter exceptions without wrapping them
             raise
         except Exception as e:
-            logging.error(f"Error in {api_type} API request: {str(e)}")
-            raise Exception(e)
-        
+            self.logger.error(f"Error in {api_type} API request: {str(e)}")
+            raise
 
-    def make_one_llm_request_streaming(self, api_type: str, prompt: str, system_prompt, max_tokens=None):
-        """Streaming version of make_one_llm_request (Claude only)"""
+
+    def make_llm_request(self, api_type: str, prompt: Union[str, List[str]], sys_prompt: str = None, 
+                        raise_on_error: bool = True, reformat: bool = True, max_tokens: int = None) -> Union[str, List]:
+        """
+        Make LLM API request with comprehensive error handling.
         
-        if api_type != "claude":
-            # Fall back to regular method for non-Claude APIs
-            return self.make_one_llm_request(api_type, prompt, system_prompt, max_tokens)
+        This is the main public interface for making LLM requests. It handles:
+        - Single prompts or lists of prompts
+        - Safety filter exceptions
+        - API formatting
+        - Error handling and reporting
         
-        config = self.config[api_type]
-        client = self.clients[api_type]
-        tokens_limit = max_tokens if max_tokens is not None else config["max_tokens"]
-        
-        full_input = f"{system_prompt or ''}\n{prompt}"
-        self.check_rate_limits(api_type, full_input, tokens_limit)
-        
-        try:
-            logging.info("🌊 Using streaming for large request...")
+        Args:
+            api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+            prompt: Single prompt string or list of prompt strings
+            sys_prompt: System prompt (uses instance default if None)
+            raise_on_error: Whether to raise exceptions or return error info
+            reformat: Whether to reformat content for API-specific format
+            max_tokens: Maximum tokens to generate
             
-            # Use Anthropic SDK's built-in streaming
-            with client.messages.stream(
-                model=config["model_name"],
-                max_tokens=tokens_limit,
-                messages=[{
-                    "role": "user", 
-                    "content": prompt
-                }],
-                system=system_prompt
-            ) as stream:
-                # Collect all text chunks
-                full_response = ""
-                chunk_count = 0
-                
-                for text in stream.text_stream:
-                    full_response += text
-                    chunk_count += 1
-                    
-                    # Progress indicator every 100 chunks
-                    if chunk_count % 100 == 0:
-                        logging.info(f"📥 Received {len(full_response)} characters so far...")
-                
-                logging.info(f"✅ Streaming complete: {len(full_response)} characters, {chunk_count} chunks")
-                return full_response
-                
-        except Exception as e:
-            logging.error(f"Streaming error in {api_type}: {e}")
-            # Fall back to regular request if streaming fails
-            logging.info("🔄 Falling back to regular request...")
-            return self.make_one_llm_request(api_type, prompt, system_prompt, max_tokens)
-
-
-
-    def make_llm_request(self, api_type: str, prompt: Union[str, List[str]], sys_prompt=None, 
-                     raise_on_error=True, reformat=True, max_tokens=None) -> str:
-        """Make rate-limited API request with retries - enhanced with max_tokens"""
-        
+        Returns:
+            Generated response string (for single prompt) or list of responses
+            
+        Raises:
+            ValueError: If API type is unknown or unavailable
+        """
         if api_type not in self.clients:
             raise ValueError(f"Unknown API: {api_type}. Valid API types are: {','.join(self.clients.keys())}")
         
-        if not sys_prompt:
-            system_prompt = self.system_prompt
-        else:
-            system_prompt = sys_prompt
+        system_prompt = sys_prompt or self.system_prompt
             
-        if type(prompt) == str:
-            if reformat:
-                query = format_content_for_api(prompt, api_type)
-            else:
-                query = prompt
+        if isinstance(prompt, str):
+            # Single prompt
+            query = format_content_for_api(prompt, api_type) if reformat else prompt
             try:
                 return self.make_one_llm_request(api_type, query, system_prompt, max_tokens)
             except SafetyFilterException as e:
                 self.safety_blocked_count += 1
-                print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
+                print(f"\nSAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
                 print("=" * 60)
                 print("BLOCKED CONTENT SAMPLE:")
                 print(e.blocked_content)
                 print("=" * 60)
                 print("Skipping this chunk and continuing...\n")
                 
-                if raise_on_error:
-                    return "[CONTENT BLOCKED BY SAFETY FILTER - SKIPPED]"
-                else:
-                    return {'error': 'safety_filter_blocked', 'content_sample': e.blocked_content}
+                return "[CONTENT BLOCKED BY SAFETY FILTER - SKIPPED]" if raise_on_error else {
+                    'error': 'safety_filter_blocked', 
+                    'content_sample': e.blocked_content
+                }
         else:
+            # List of prompts
             responses = []
-            for i,p in enumerate(prompt):
+            for i, p in enumerate(prompt):
                 print(f"{i+1} of {len(prompt)}", end='\r')
-                if reformat:
-                    query = format_content_for_api(p, api_type)
-                else:
-                    query = p
+                query = format_content_for_api(p, api_type) if reformat else p
+                
                 try:
-                    responses.append(self.make_one_llm_request(api_type, query, system_prompt, max_tokens))
+                    response = self.make_one_llm_request(api_type, query, system_prompt, max_tokens)
+                    responses.append(response)
                 except SafetyFilterException as e:
                     self.safety_blocked_count += 1
-                    print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
+                    print(f"\nSAFETY FILTER BLOCKED CONTENT #{self.safety_blocked_count}")
                     print("=" * 60)
                     print("BLOCKED CONTENT SAMPLE:")
                     print(e.blocked_content)
@@ -587,11 +558,11 @@ class LLMApiClient:
                         responses.append({'error': 'safety_filter_blocked', 'content_sample': e.blocked_content})
                 except Exception as e:
                     if raise_on_error:
-                        raise Exception(e)
+                        raise
                     else:
                         responses.append({'error': str(e)})
+            
             return responses
-
 
     def count_tokens(self, text: str, api_type: str) -> int:
         """
@@ -599,26 +570,22 @@ class LLMApiClient:
         
         Args:
             text: The text to count tokens for
-            api_type: The API type (claude, gemini, gpt)
+            api_type: The API type ('claude', 'gemini', 'gpt', 'aip')
             
         Returns:
             Estimated token count
+            
+        Note:
+            Uses tiktoken for GPT when available, falls back to character-based 
+            estimation (4 chars per token) for all APIs.
         """
-        if api_type == "claude":
-            # Claude uses roughly 4 characters per token as a rough estimate
-            return len(text) // 4
-        elif api_type == "gemini":
-            # Gemini uses roughly 4 characters per token as a rough estimate
-            return len(text) // 4
-        elif api_type == "gpt":
-            # GPT uses tiktoken for accurate counts, but as a fallback:
+        if api_type == "gpt":
             try:
                 import tiktoken
                 enc = tiktoken.encoding_for_model("gpt-4")
                 return len(enc.encode(text))
             except (ImportError, Exception):
-                # Fallback to rough estimate if tiktoken not available
-                return len(text) // 4
-        else:
-            # Default rough estimate
-            return len(text) // 4
+                pass
+        
+        # Default estimation for all APIs
+        return len(text) // 4

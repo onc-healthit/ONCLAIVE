@@ -1,8 +1,0 @@
-{
-  "version": "1.1.0",
-  "fhirVersion": [
-    "4.0.1"
-  ],
-  "date": "20220404140415",
-  "name": "hl7.fhir.us.davinci-pdex-plan-net"
-}

@@ -1,9 +1,0 @@
-# Downloads
-Publication Build: This will be filled in by the publication tooling
-## Downloads
-* [Full Specification (zip)](full-ig.zip)
-* [JSON Definitions (zip)](definitions.json.zip)
-* [JSON Examples (zip)](examples.json.zip)
-* [XML Definitions (zip)](definitions.xml.zip)
-* [XML Examples (zip)](examples.xml.zip)
-* [Turtle Definitions](definitions.ttl.zip)
