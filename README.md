@@ -16,27 +16,27 @@ This repository includes a set of scripts that are run together as part of a pip
 The entire pipeline can be run using the Jupyter notebook `full_pipeline.ipynb` in the `pipeline` directory. The pipeline notebook imports the following scripts as modules in sequence to complete all steps in the process.
 
 1) Implementation Guide Prep: 
-- `local_HTML_narrative_extractor.py`: Notebook to convert local HTML files (downloaded IG) to Markdown format. First step of pipeline
-- `markdown_cleaner.py`: Notebook to clean unnecessary content from IG files converted to Markdown format. Second step of pipeline
+- `HTML_narrative_extractor_01.py`: Notebook to convert local HTML files (downloaded IG) to Markdown format. First step of pipeline
+- `markdown_cleaner_02.py`: Notebook to clean unnecessary content from IG files converted to Markdown format. Second step of pipeline
 - `checkpoints/markdown1`: Outputs from the HTML extraction will save here
 - `checkpoints/markdown2`: Outputs from the markdown cleaner will save here
 
 2) Requirements Extraction: 
 Scripts to extract requirements using an LLM from the Plan Net IG.
-- `reqs_extraction.py`: Script that uses an LLM to extract requirements from the Plan Net IG. Third step of pipeline
-- `reqs_reviewer.py`: Notebook to review set of requirements using an LLM and output a refined set. Fourth step of pipeline
-- `requirement_downselect.py`: Notebook to review multiple sets of requirements in markdown files and identify the total set of requirements across input lists, while removing duplicates. Fifth step of pipeline
+- `reqs_extraction_03.py`: Script that uses an LLM to extract requirements from the Plan Net IG. Third step of pipeline
+- `reqs_reviewer_04.py`: Notebook to review set of requirements using an LLM and output a refined set. Fourth step of pipeline
+- `requirement_downselect_05.py`: Notebook to review multiple sets of requirements in markdown files and identify the total set of requirements across input lists, while removing duplicates. Fifth step of pipeline
 - `checkpoints/requirements_extraction`: Outputs from first requirements extraction step will save here
 - `checkpoints/requirements_refinement`: Outputs from first requirements extraction step will save here
 - `checkpoints/requirements_downselect`: Outputs from requirements downselect step will save here
 
 
 3) Test Plan Generation
-- `req_to_testplan.py`: Notebook to convert a list of requirements to a test plan, using an LLM. Sixth step of pipeline
+- `test_plan_06.py`: Notebook to convert a list of requirements to a test plan, using an LLM. Sixth step of pipeline
 - `checkpoints/testplan_generation`: Outputs from test plan generation step will save here
 
 4) Test Kit Generation
-- `plan_to_tests.py`: Notebook to take in a test plan and develop a set of tests to cover the testable IG requirements. Seventh step of pipeline
+- `test_kit_07.py`: Notebook to take in a test plan and develop a set of tests to cover the testable IG requirements. Seventh step of pipeline
 - `checkpoints/test_kit_generation`: Outputs from test kit generation step will save here
 
 ### Prompts
