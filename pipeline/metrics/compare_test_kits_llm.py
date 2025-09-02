@@ -1,16 +1,7 @@
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Repeatability checker: compare two generated versions of a FHIR Ruby test kit using an LLM.
-
-Design mirrors your prior batch script:
-- Top-of-file config (no CLI) for paths, API type, tokens, workers
-- Uses llm_utils.LLMApiClient + API_CONFIGS exactly like your existing code
-- Single-pass indexing of both versions; robust to differing folder layouts
-- Pairing by requirement id with best-match fallback
-- Minimal, efficient code (no extra bells & whistles)
-- Per-REQ checkpoints (resumable), JSON + Markdown reports
 
 Outputs:
   <OUT_DIR>/compare_report.json
@@ -32,16 +23,18 @@ from collections import Counter
 LLM_UTILS_PATH    = "pipeline/llm_utils.py"
 ENV_PATH          = "./.env"
 
-V1_ROOT           = "pipeline/checkpoints/gemini_8_13"
-V2_ROOT           = "pipeline/checkpoints/gemini_7_30"
+V1_ROOT           = "pipeline/checkpoints/us_core_claude_828"
+V2_ROOT           = "pipeline/checkpoints/us_core"
 
-OUT_DIR           = "./reports_compare_kits_813_vs_730"
+OUT_DIR           = "./reports_compare_kits"
 CHK_DIR           = Path(OUT_DIR) / ".chk"
 
-API_TYPE          = "claude"     # must exist in your llm_utils.API_CONFIGS
-MAX_TOKENS        = 16000        # like your other script
+PROMPT_DIR        = Path("prompts/repeatability.txt")
 
-# Concurrency + retries (same shape as your prior script)
+API_TYPE          = "claude"     # must exist in your llm_utils.API_CONFIGS
+MAX_TOKENS        = 16000        
+
+# Concurrency + retries 
 MAX_WORKERS         = 4
 MAX_RETRIES         = 5
 INITIAL_BACKOFF_S   = 2.0
@@ -54,7 +47,7 @@ MAX_CHARS_PER_FILE  = 120_000
 
 # ------------------------------------------------------------------------
 
-# Setup imports (same pattern as your previous script)
+# Setup imports 
 import sys
 sys.path.insert(0, str(Path(LLM_UTILS_PATH).parent))
 try:
@@ -166,30 +159,16 @@ def best_pair_for_req(rid: int, a: VersionIndex, b: VersionIndex) -> Optional[Tu
 SYS_PROMPT = "You are precise and return only valid JSON."
 
 def llm_user_prompt(req_id: int, path_a: str, path_b: str, code_a: str, code_b: str) -> str:
-    return f"""
-Compare the two Ruby test implementations for requirement REQ-{req_id}.
-Judge SEMANTIC similarity of test scope and logic (FHIR profile/params, setup, assertions, errors, negative tests).
-Return ONLY JSON using this schema:
-{{
-  "requirement_id": {req_id},
-  "similarity_score": <float 0.0-1.0 (1.0 = functionally equivalent)>,
-  "verdict": "<one of: same|minor_differences|moderate_differences|major_differences>",
-  "coverage_risk": "<one of: low|medium|high>",
-  "key_differences": ["<short bullet 1>", "<short bullet 2>"],
-  "changed_checks_estimate": <int>,
-  "added_removed_tests": <int>,
-  "reasoning": "<1-3 concise sentences>"
-}}
-
-File A: {path_a}
-```ruby
-{code_a}
-```
-
-File B: {path_b}
-```ruby
-{code_b}
-```""".strip()
+    """Load the user prompt template from disk and format it with inputs."""
+    prompt_path = PROMPT_DIR
+    template = prompt_path.read_text(encoding="utf-8")
+    return template.format(
+        req_id=req_id,
+        path_a=path_a,
+        path_b=path_b,
+        code_a=code_a,
+        code_b=code_b,
+    )
 
 def call_llm_with_retry(prompt: str, sys_prompt: str, max_tokens: int) -> str:
     delay = INITIAL_BACKOFF_S
@@ -347,6 +326,8 @@ def compare_one(req_id: int, pair: Tuple[FileEntry,FileEntry]) -> dict:
 # --------------------------- Main ---------------------------
 
 def main():
+    start_time = time.time()
+    
     root1 = Path(V1_ROOT)
     root2 = Path(V2_ROOT)
     Path(OUT_DIR).mkdir(parents=True, exist_ok=True)
@@ -384,6 +365,7 @@ def main():
     write_reports(meta, results)
     print(f"OK: wrote {Path(OUT_DIR)/'compare_report.json'} and {Path(OUT_DIR)/'compare_report.md'}")
     print(f"Checkpoints: {CHK_DIR}")
+    print(f"Total execution time: {time.time() - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()

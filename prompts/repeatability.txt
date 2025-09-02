@@ -1,0 +1,22 @@
+Compare the two Ruby test implementations for requirement REQ-{req_id}.
+Judge SEMANTIC similarity of test scope and logic (FHIR profile/params, setup, assertions, errors, negative tests).
+Return ONLY JSON using this schema:
+{{
+  "requirement_id": {req_id},
+  "similarity_score": <float 0.0-1.0 (1.0 = functionally equivalent)>,
+  "verdict": "<one of: same|minor_differences|moderate_differences|major_differences>",
+  "coverage_risk": "<one of: low|medium|high>",
+  "key_differences": ["<short bullet 1>", "<short bullet 2>"],
+  "changed_checks_estimate": <int>,
+  "added_removed_tests": <int>,
+  "reasoning": "<1-3 concise sentences>"
+}}
+
+File A: {path_a}
+```ruby
+{code_a}
+```
+
+File B: {path_b}
+```ruby
+{code_b}
