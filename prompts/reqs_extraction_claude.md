@@ -163,7 +163,7 @@ Source: FHIR RESTful Capabilities Section- Endpoint
 Here is the chunk of FHIR Implementation Guide text to analyze:
 
 <fhir_text>
-{{FHIR_TEXT}}
+{FHIR_TEXT}
 </fhir_text>
 
 If no requirements are found in the provided text in the <fhir_text> tag, do not add any text or commentary. Simply provide no output.

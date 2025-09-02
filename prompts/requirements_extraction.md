@@ -37,4 +37,6 @@ Where [ID] starts at 1 and follows in sequential order.
 Content to analyze:
 {content}
 
+For this IG, the actor should be either "Server" or "Client" only.
+
 Generate your INCOSE-style requirements extraction now. For each chunk, list each requirement using the format specified above. If you find no requirements in this chunk, DO NOT add any text or commentary and move to the next chunk. Do not include any introductory or conclusion/summary comments in your response. Only include the extracted requirements as a list.

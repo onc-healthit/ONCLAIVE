@@ -17,9 +17,6 @@ Usage:
     
     # Direct usage
     result = refine_requirements("input_file.md", "claude", "output_dir")
-    
-    # Interactive mode
-    result = run_interactive_refinement()
 """
 
 import os
@@ -29,46 +26,43 @@ from pathlib import Path
 from typing import Dict, Any, Optional, List, Tuple
 from datetime import datetime, timedelta
 import re
-import tiktoken
 import importlib.util
 from dotenv import load_dotenv
 import sys
 
-
+# Setup logging
 logging.basicConfig(level=logging.INFO, 
-                       format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-def setup_environment(project_root: str = None):
+
+def setup_environment(project_root: str = None) -> Dict[str, Any]:
     """
-    Set up the environment for requirements refinement
+    Set up the environment for requirements refinement.
     
     Args:
         project_root: Path to project root directory. If None, auto-detected.
         
     Returns:
-        Dict containing paths and utilities
+        Dictionary containing paths and utilities needed for processing
+        
+    Raises:
+        FileNotFoundError: If required files (llm_utils.py, prompt_utils.py) are not found
+        RuntimeError: If prompt environment setup fails
     """
     if project_root is None:
         project_root = Path.cwd().parent
     else:
         project_root = Path(project_root)
     
-    # Load environment variables (MISSING from original)
+    # Load environment variables
     load_dotenv()
     
-    # Default paths
-    default_input_dir = project_root / "pipeline" / "checkpoints" / "requirements_extraction" / "markdown"
-    default_output_dir = project_root / "pipeline" / "checkpoints" / "revised_reqs_extraction"
-    
-    # Create output directory if it doesn't exist (MISSING from original)
-    default_output_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Add project root to sys.path for imports (IMPROVEMENT)
+    # Add project root to sys.path for imports
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
     
     # Import LLM utils with better error handling
-    llm_utils_path = project_root / 'pipeline' /'llm_utils.py'
+    llm_utils_path = project_root / 'pipeline' / 'llm_utils.py'
     if not llm_utils_path.exists():
         raise FileNotFoundError(f"llm_utils.py not found at {llm_utils_path}")
     
@@ -77,7 +71,7 @@ def setup_environment(project_root: str = None):
     spec.loader.exec_module(llm_utils)
     
     # Import prompt utilities with better error handling
-    prompt_utils_path = project_root /'pipeline' /'prompt_utils.py'
+    prompt_utils_path = project_root / 'pipeline' / 'prompt_utils.py'
     if not prompt_utils_path.exists():
         raise FileNotFoundError(f"prompt_utils.py not found at {prompt_utils_path}")
     
@@ -100,56 +94,73 @@ def setup_environment(project_root: str = None):
     
     return {
         "project_root": project_root,
-        "default_input_dir": str(default_input_dir),
-        "default_output_dir": str(default_output_dir),
         "llm_utils": llm_utils,
         "prompt_utils": prompt_utils,
         "prompt_env": prompt_env,
         "system_prompts": system_prompts
     }
 
+
 def get_requirements_refinement_prompt(requirements_list: str, prompt_utils, requirements_refinement_path: str) -> str:
     """
-    Create the prompt for refining requirements list using external prompt file
+    Create the prompt for refining requirements list using external prompt file.
     
     Args:
-        requirements_list: The original list of requirements
+        requirements_list: The original list of requirements to refine
         prompt_utils: Prompt utilities module
-        requirements_refinement_path: Path to requirements refinement prompt
+        requirements_refinement_path: Path to requirements refinement prompt file
         
     Returns:
-        str: The prompt for the LLM loaded from external file
+        The formatted prompt for the LLM loaded from external file
     """
     return prompt_utils.load_prompt(
         requirements_refinement_path,
         requirements_list=requirements_list
     )
 
+
 def estimate_tokens(text: str, api_type: str = "claude", llm_utils=None) -> int:
     """
-    Estimate token count for different models using existing count_tokens method
+    Estimate token count for different models using existing count_tokens method.
+    
+    Args:
+        text: Text to count tokens for
+        api_type: Type of API ('claude', 'gemini', 'gpt')
+        llm_utils: LLM utilities module (optional)
+        
+    Returns:
+        Estimated token count
     """
     if llm_utils:
         try:
             temp_client = llm_utils.LLMApiClient()
             return temp_client.count_tokens(text, api_type)
-        except:
+        except Exception:
             pass
     
     # Fallback estimation if client creation fails
     if api_type == "gpt":
         try:
+            import tiktoken
             encoding = tiktoken.encoding_for_model("gpt-4o")
             return len(encoding.encode(text))
-        except:
+        except Exception:
             return len(text) // 4
     else:
         # Claude and Gemini fallback
         return len(text) // 4
 
+
 def get_token_limits(api_type: str, llm_utils=None) -> Tuple[int, int]:
     """
-    Get input and output token limits for different APIs
+    Get input and output token limits for different APIs.
+    
+    Args:
+        api_type: Type of API ('claude', 'gemini', 'gpt')
+        llm_utils: LLM utilities module (optional)
+        
+    Returns:
+        Tuple of (max_input_tokens, max_output_tokens)
     """
     # Input limits (conservative estimates for context windows)
     input_limits = {
@@ -174,12 +185,23 @@ def get_token_limits(api_type: str, llm_utils=None) -> Tuple[int, int]:
     
     return input_limits.get(api_type, 100000), output_limits.get(api_type, 4000)
 
+
 def split_requirements_by_tokens(requirements_text: str, max_input_tokens: int, 
-                                prompt_template: str, api_type: str, 
-                                prompt_utils, requirements_refinement_path: str,
+                                api_type: str, prompt_utils, requirements_refinement_path: str,
                                 llm_utils=None) -> List[str]:
     """
-    Split requirements into chunks that fit within token limits
+    Split requirements into chunks that fit within token limits.
+    
+    Args:
+        requirements_text: Text containing all requirements
+        max_input_tokens: Maximum input tokens allowed
+        api_type: Type of API being used
+        prompt_utils: Prompt utilities module
+        requirements_refinement_path: Path to prompt template
+        llm_utils: LLM utilities module (optional)
+        
+    Returns:
+        List of requirement chunks that fit within token limits
     """
     # For prompt overhead calculation, use existing prompt loading function
     sample_prompt = prompt_utils.load_prompt(requirements_refinement_path, requirements_list="PLACEHOLDER")
@@ -192,7 +214,6 @@ def split_requirements_by_tokens(requirements_text: str, max_input_tokens: int,
     logging.info(f"Available tokens for requirements: {available_tokens}")
     
     # Split by individual requirements first
-    #req_pattern = r'(?=^---\s*\n#\s*REQ-\d+)'
     req_pattern = r'(?=^#+\s+REQ-\d+)'
     requirements = re.split(req_pattern, requirements_text, flags=re.MULTILINE)
     requirements = [req.strip() for req in requirements if req.strip()]
@@ -214,8 +235,8 @@ def split_requirements_by_tokens(requirements_text: str, max_input_tokens: int,
                 current_chunk = ""
                 current_tokens = 0
             
-            # Try to split the large requirement (this is tricky and may not work perfectly)
-            chunks.append(req)  # Add it anyway, let API handle it
+            # Add the large requirement anyway, let API handle it
+            chunks.append(req)
             continue
         
         # Check if adding this requirement would exceed limit
@@ -234,9 +255,16 @@ def split_requirements_by_tokens(requirements_text: str, max_input_tokens: int,
     logging.info(f"Split into {len(chunks)} chunks")
     return chunks
 
+
 def merge_and_renumber_requirements(results: List[str]) -> str:
     """
-    Merge multiple result chunks and renumber requirements sequentially
+    Merge multiple result chunks and renumber requirements sequentially.
+    
+    Args:
+        results: List of result strings from different chunks
+        
+    Returns:
+        Combined and renumbered requirements document
     """
     all_requirements = []
     
@@ -260,10 +288,20 @@ def merge_and_renumber_requirements(results: List[str]) -> str:
     
     return final_output
 
+
 def validate_output_completeness(input_count: int, output_count: int, 
-                               estimated_output_tokens: int, max_output_tokens: int):
+                               estimated_output_tokens: int, max_output_tokens: int) -> List[str]:
     """
-    Validate that output wasn't truncated
+    Validate that output wasn't truncated and check for potential issues.
+    
+    Args:
+        input_count: Number of input requirements
+        output_count: Number of output requirements
+        estimated_output_tokens: Estimated tokens in output
+        max_output_tokens: Maximum allowed output tokens
+        
+    Returns:
+        List of warning messages if any issues detected
     """
     warnings = []
     
@@ -277,12 +315,30 @@ def validate_output_completeness(input_count: int, output_count: int,
     
     return warnings
 
+
 def make_api_request_with_limits(client_instance, api_type: str, content: str, 
                                prompt_utils, requirements_refinement_path: str,
                                system_prompts: dict, llm_utils=None) -> str:
-    """Enhanced API request with token limit checking using LLMApiClient"""
+    """
+    Make API request with token limit checking and chunking if necessary.
     
-    # Validate inputs (MISSING from original)
+    Args:
+        client_instance: LLM client instance
+        api_type: Type of API ('claude', 'gemini', 'gpt')
+        content: Requirements content to process
+        prompt_utils: Prompt utilities module
+        requirements_refinement_path: Path to prompt template
+        system_prompts: Dictionary of system prompts for each API
+        llm_utils: LLM utilities module (optional)
+        
+    Returns:
+        Processed requirements text
+        
+    Raises:
+        ValueError: If inputs are invalid
+        RuntimeError: If processing fails
+    """
+    # Validate inputs
     if not content.strip():
         raise ValueError("Content cannot be empty")
     
@@ -307,15 +363,8 @@ def make_api_request_with_limits(client_instance, api_type: str, content: str,
     if estimated_tokens > max_input_tokens * 0.9:  # 90% threshold
         logging.warning("Input may exceed token limits. Splitting into chunks...")
         
-        # Load the prompt template from external file with error handling
-        try:
-            with open(requirements_refinement_path, 'r', encoding='utf-8') as f:
-                prompt_template = f.read()
-        except Exception as e:
-            raise RuntimeError(f"Failed to read prompt template from {requirements_refinement_path}: {e}")
-        
         # Split requirements into manageable chunks
-        chunks = split_requirements_by_tokens(content, max_input_tokens, prompt_template, api_type, 
+        chunks = split_requirements_by_tokens(content, max_input_tokens, api_type, 
                                             prompt_utils, requirements_refinement_path, llm_utils)
         logging.info(f"Split into {len(chunks)} chunks")
         
@@ -370,14 +419,18 @@ def make_api_request_with_limits(client_instance, api_type: str, content: str,
             raise RuntimeError(f"Failed to process single API request: {e}")
 
 
-def count_requirements_in_markdown(markdown_text):
+def count_requirements_in_markdown(markdown_text: str) -> int:
     """
     Count the number of requirements in a markdown file that follow the REQ-XX format.
     
-    Handles both formats:
-    # REQ-01
-    or
-    ## REQ-01
+    Args:
+        markdown_text: Markdown text content to analyze
+        
+    Returns:
+        Number of requirements found
+        
+    Note:
+        Handles both formats: # REQ-01 and ## REQ-01
     """
     # Pattern for both formats: either # REQ-XX or ## REQ-XX
     req_pattern = r"^\s*(#|##)\s+REQ-\d+"
@@ -392,21 +445,27 @@ def count_requirements_in_markdown(markdown_text):
     
     return count
 
+
 def refine_requirements(input_file: str, api_type: str = "claude", 
                        output_dir: str = None, project_root: str = None,
-                       llm_client_instance=None) -> Dict[str, Any]:
+                       client_instance=None) -> Dict[str, Any]:
     """
-    Refine requirements using the specified API with token limit handling
+    Refine requirements using the specified API with token limit handling.
     
     Args:
         input_file: Path to the input requirements list markdown file
         api_type: The API to use ("claude", "gemini", or "gpt")
-        output_dir: Directory to save the output (optional)
+        output_dir: Directory to save the output (optional, uses default if None)
         project_root: Path to project root (optional, auto-detected if None)
-        llm_client_instance: Pre-initialized LLM client instance (optional)
+        client_instance: Pre-initialized LLM client instance (optional)
         
     Returns:
-        Dict containing processing results and path to refined requirements
+        Dictionary containing processing results and path to refined requirements
+        
+    Raises:
+        RuntimeError: If environment setup fails
+        FileNotFoundError: If input file doesn't exist
+        ValueError: If input file is invalid or API client unavailable
     """
     # Setup environment
     try:
@@ -450,7 +509,7 @@ def refine_requirements(input_file: str, api_type: str = "claude",
     logging.info(f"Input size: {len(requirements_content)} characters, ~{input_tokens} tokens")
     
     # Initialize LLMApiClient
-    if llm_client_instance is None:
+    if client_instance is None:
         try:
             client_instance = env["llm_utils"].LLMApiClient()
             if api_type not in client_instance.clients or client_instance.clients[api_type] is None:
@@ -459,7 +518,7 @@ def refine_requirements(input_file: str, api_type: str = "claude",
             logging.error(f"Error initializing LLMApiClient: {str(e)}")
             raise
     else:
-        client_instance = llm_client_instance
+        client_instance = client_instance
         # Validate that the provided client has the required API
         if hasattr(client_instance, 'clients') and api_type not in client_instance.clients:
             raise ValueError(f"Provided client instance does not support {api_type}")
@@ -494,7 +553,6 @@ def refine_requirements(input_file: str, api_type: str = "claude",
         # Generate output filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_filename = f"{api_type}_reqs_list_v2_{timestamp}.md"
-        #output_filename = f"reqs_list_v2.md"
         output_file_path = output_dir / output_filename
         
         # Save refined requirements with proper encoding
@@ -525,205 +583,174 @@ def refine_requirements(input_file: str, api_type: str = "claude",
         raise
 
 
-
-
-def run_interactive_refinement(project_root: str = None) -> Optional[Dict[str, Any]]:
-    """
-    Run the refinement process with user input (interactive mode)
-    
-    Args:
-        project_root: Path to project root (optional, auto-detected if None)
-        
-    Returns:
-        Dict containing processing results or None if error occurred
-    """
-    # Setup environment
-    env = setup_environment(project_root)
-    
-    print("\n" + "="*80)
-    print("FHIR Requirements Refinement Tool")
-    print("="*80)
-    
-    # Start timing the entire function execution
-    start_time = time.time()
-    
-    # Get input directory or use default
-    input_dir = input(f"Enter input directory path or accept default (default '{env['default_input_dir']}'): ") or env["default_input_dir"]
-    input_dir_path = Path(input_dir)
-    
-    if not input_dir_path.exists():
-        print(f"Warning: Input directory {input_dir} does not exist.")
-        input_file = input("Enter full path to requirements markdown file: ")
-    else:
-        # List all markdown files in the input directory
-        md_files = list(input_dir_path.glob("*.md"))
-        
-        if md_files:
-            # Sort files by modification time (newest first)
-            md_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
-            
-            # Show only the 10 most recent files
-            recent_files = md_files[:10]
-            
-            print("\nMost recent files:")
-            for idx, file in enumerate(recent_files, 1):
-                # Format the modification time as part of the display
-                mod_time = datetime.fromtimestamp(file.stat().st_mtime).strftime("%Y-%m-%d %H:%M")
-                print(f"{idx}. {file.name} ({mod_time})")
-            
-            # Let user select from the list, see more files, or enter a custom path
-            print("\nOptions:")
-            print("- Select a number (1-10) to choose one of the following most recently generated files")
-            print("- Enter 'all' to see all files")
-            print("- Enter a full path to use a specific file")
-            
-            selection = input("\nReview the printed options for choosing a requirements file and enter applicable selection: ")
-            
-            if selection.lower() == 'all':
-                # Show all files with pagination
-                all_files = md_files
-                page_size = 20
-                total_pages = (len(all_files) + page_size - 1) // page_size
-                
-                current_page = 1
-                while current_page <= total_pages:
-                    start_idx = (current_page - 1) * page_size
-                    end_idx = min(start_idx + page_size, len(all_files))
-                    
-                    print(f"\nAll files (page {current_page}/{total_pages}):")
-                    for idx, file in enumerate(all_files[start_idx:end_idx], start_idx + 1):
-                        mod_time = datetime.fromtimestamp(file.stat().st_mtime).strftime("%Y-%m-%d %H:%M")
-                        print(f"{idx}. {file.name} ({mod_time})")
-                    
-                    if current_page < total_pages:
-                        next_action = input("\nPress Enter for next page, 'q' to select, or enter a number to choose a file: ")
-                        if next_action.lower() == 'q':
-                            break
-                        elif next_action.isdigit() and 1 <= int(next_action) <= len(all_files):
-                            input_file = str(all_files[int(next_action) - 1])
-                            break
-                        else:
-                            current_page += 1
-                    else:
-                        break
-                
-                if 'input_file' not in locals():
-                    # If we went through all pages without selection
-                    file_number = input("\nEnter the file number to process: ")
-                    if file_number.isdigit() and 1 <= int(file_number) <= len(all_files):
-                        input_file = str(all_files[int(file_number) - 1])
-                    else:
-                        input_file = file_number  # Treat as a custom path
-            
-            elif selection.isdigit() and 1 <= int(selection) <= len(recent_files):
-                input_file = str(recent_files[int(selection) - 1])
-            else:
-                input_file = selection  # Treat as a custom path
-        else:
-            print(f"No markdown files found in {input_dir}")
-            input_file = input("Enter full path to requirements markdown file: ")
-    
-    # Get output directory or use default
-    output_dir = input(f"Enter output directory path or accept default (default '{env['default_output_dir']}'): ") or env["default_output_dir"]
-    output_dir_path = Path(output_dir)
-    
-    # Create output directory if it doesn't exist
-    output_dir_path.mkdir(parents=True, exist_ok=True)
-    
-    # Select the API to use
-    print("\nSelect the API to use:")
-    print("1. Claude")
-    print("2. Gemini")
-    print("3. GPT-4")
-    api_choice = input("Enter your choice of API to use, based on the printed listing (1-3, default 1): ") or "1"
-    
-    api_mapping = {
-        "1": "claude",
-        "2": "gemini",
-        "3": "gpt"
-    }
-    
-    api_type = api_mapping.get(api_choice, "claude")
-    
-    try:
-        # Run the refinement
-        print(f"\nProcessing requirements with {api_type.capitalize()}...")
-        result = refine_requirements(input_file, api_type, str(output_dir_path), env["project_root"])
-        
-        # Calculate total execution time
-        total_elapsed_time = time.time() - start_time
-        total_elapsed_formatted = str(timedelta(seconds=int(total_elapsed_time)))
-        
-        print("\n" + "="*80)
-        print("Requirements Refinement Complete!")
-        print(f"Input file: {result['input_file']}")
-        print(f"Refined requirements saved to: {result['output_file']}")
-        print(f"API used: {result['api_used']}")
-        
-        # Handle both old and new result formats
-        if 'original_requirements_count' in result:
-            print(f"Original requirements: {result['original_requirements_count']}")
-            print(f"Refined requirements: {result['requirements_count']}")
-            print(f"Input tokens: ~{result['input_tokens']}")
-            print(f"Output tokens: ~{result['output_tokens']}")
-            if result.get('warnings'):
-                print("Warnings:")
-                for warning in result['warnings']:
-                    print(f"  - {warning}")
-        else:
-            print(f"Number of requirements identified: {result['requirements_count']}")
-        
-        print(f"Total execution time: {total_elapsed_formatted}")
-        print("="*80)
-        
-        return result
-    
-    except Exception as e:
-        logging.error(f"Error: {str(e)}")
-        print(f"\nError occurred during refinement: {str(e)}")
-        print("Check the log for more details.")
-        return None
-
-# Main execution functions for backwards compatibility
-def main():
-    """Main function for standalone execution"""
-    # Set up logging
-    logging.basicConfig(level=logging.INFO, 
-                       format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    
-    return run_interactive_refinement()
-
-if __name__ == "__main__":
-    main()
-
+# Batch Processing Functions
 
 def create_batch_refinement_prompt(batch_content: str, batch_num: int, total_batches: int, 
                                   prompt_utils, requirements_refinement_path: str) -> str:
-    """Create the refinement prompt for a batch using your existing prompt file"""
+    """
+    Create the refinement prompt for a batch using existing prompt file.
     
+    Args:
+        batch_content: Requirements content for this batch
+        batch_num: Current batch number (1-based)
+        total_batches: Total number of batches
+        prompt_utils: Prompt utilities module
+        requirements_refinement_path: Path to prompt template file
+        
+    Returns:
+        Formatted prompt for the batch
+    """
     # Use existing prompt loading function - this will load requirements_refinement.md
     return get_requirements_refinement_prompt(batch_content, prompt_utils, requirements_refinement_path)
 
 
+def make_batch_request_with_timeout(client_instance, api_type: str, prompt: str, 
+                                   system_prompt: str, timeout_minutes: int = 12) -> str:
+    """
+    Make API request with timeout monitoring using threading.
+    
+    Args:
+        client_instance: LLM client instance
+        api_type: Type of API ('claude', 'gemini', 'gpt')
+        prompt: The prompt to send
+        system_prompt: System prompt for the API
+        timeout_minutes: Timeout in minutes (default 12)
+        
+    Returns:
+        API response text
+        
+    Raises:
+        TimeoutError: If request takes too long
+        RuntimeError: If API call fails or returns no result
+    """
+    import threading
+    
+    result = [None]
+    exception = [None]
+    
+    def api_call():
+        try:
+            result[0] = client_instance.make_llm_request(
+                api_type=api_type,
+                prompt=prompt,
+                sys_prompt=system_prompt,
+                reformat=False
+            )
+        except Exception as e:
+            exception[0] = e
+    
+    # Start API call in separate thread
+    thread = threading.Thread(target=api_call)
+    thread.daemon = True
+    thread.start()
+    
+    # Monitor with timeout
+    timeout_seconds = timeout_minutes * 60
+    start_time = time.time()
+    
+    while thread.is_alive():
+        elapsed = time.time() - start_time
+        
+        if elapsed > timeout_seconds:
+            print(f"      Request taking longer than {timeout_minutes} minutes...")
+            # Give it a bit more time, but warn
+            if elapsed > timeout_seconds * 1.5:  # 150% of timeout
+                raise TimeoutError(f"Request timed out after {timeout_minutes * 1.5:.1f} minutes")
+        
+        time.sleep(1)
+    
+    if exception[0]:
+        raise exception[0]
+    
+    if result[0] is None:
+        raise RuntimeError("API call completed but no result received")
+    
+    return result[0]
 
-def batch_process_requirements(input_file: str, output_dir: str, llm_client_instance, 
+
+def combine_batch_results(batch_results: List[str]) -> str:
+    """
+    Combine all batch results and renumber requirements sequentially.
+    
+    Args:
+        batch_results: List of result strings from different batches
+        
+    Returns:
+        Combined document with renumbered requirements
+    """
+    print("Merging batch results and renumbering...")
+    
+    final_output = """# Refined FHIR Implementation Guide Requirements
+
+This document contains the refined, testable requirements extracted from the FHIR Implementation Guide.
+
+Generated using batch processing to handle large requirement sets efficiently.
+
+"""
+    
+    req_counter = 1
+    
+    for i, batch_result in enumerate(batch_results):
+        if not batch_result or batch_result.strip() == "":
+            continue
+            
+        print(f"   Processing batch {i+1} results...")
+        
+        # Skip error results  
+        if "[ERROR" in batch_result and "BATCH" in batch_result:
+            final_output += batch_result + "\n"
+            continue
+        
+        # Process each line and renumber requirements
+        lines = batch_result.split('\n')
+        
+        for line in lines:
+            if re.match(r'^# REQ-\d+', line):
+                # Renumber this requirement
+                line = f"# REQ-{req_counter:03d}"
+                req_counter += 1
+            
+            final_output += line + '\n'
+    
+    print(f"   Renumbered {req_counter - 1} requirements")
+    
+    return final_output
+
+
+def count_requirements_in_output(output: str) -> int:
+    """
+    Count requirements in the final output using standard REQ-XX format.
+    
+    Args:
+        output: Output text to count requirements in
+        
+    Returns:
+        Number of requirements found
+    """
+    return len(re.findall(r'^# REQ-\d+', output, re.MULTILINE))
+
+
+def batch_process_requirements(input_file: str, output_dir: str, client_instance, 
                              batch_size: int = 100, api_type: str = "claude", 
                              project_root: str = None) -> Dict[str, Any]:
     """
-    Process requirements in batches of specified size
+    Process requirements in batches of specified size for handling large requirement sets.
     
     Args:
         input_file: Path to input requirements file
         output_dir: Directory to save output
-        llm_client_instance: Your LLM client instance
+        client_instance: LLM client instance
         batch_size: Number of requirements per batch (default: 100)
-        api_type: API to use (claude/gemini/gpt)
+        api_type: API to use ('claude', 'gemini', 'gpt')
         project_root: Project root path (optional)
     
     Returns:
-        Dict with processing results
+        Dictionary containing processing results including timing and success metrics
+        
+    Raises:
+        FileNotFoundError: If input file doesn't exist
+        RuntimeError: If environment setup fails
     """
-    
     print("STARTING BATCH PROCESSING")
     print("=" * 50)
     print(f"Input: {input_file}")
@@ -784,7 +811,7 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
         batch_start_time = time.time()
         
         try:
-            # Create the prompt using your existing prompt file
+            # Create the prompt using existing prompt file
             batch_prompt = create_batch_refinement_prompt(
                 batch_content, batch_num + 1, total_batches,
                 env["prompt_utils"], env["prompt_env"]["requirements_refinement_path"]
@@ -792,8 +819,8 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
             
             # Make API request with timeout
             result = make_batch_request_with_timeout(
-                llm_client_instance, api_type, batch_prompt,
-                env["system_prompts"][api_type],  # Use your system prompts
+                client_instance, api_type, batch_prompt,
+                env["system_prompts"][api_type],
                 timeout_minutes=8  # 8 minute timeout per batch
             )
             
@@ -849,7 +876,6 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_filename = f"{api_type}_refined_requirements_{timestamp}.md"
-    #output_filename = f"refined_requirements.md"
     output_path = output_dir_path / output_filename
     
     with open(output_path, 'w', encoding='utf-8') as f:
@@ -883,122 +909,36 @@ def batch_process_requirements(input_file: str, output_dir: str, llm_client_inst
     }
 
 
-def make_batch_request_with_timeout(llm_client_instance, api_type: str, prompt: str, 
-                                   system_prompt: str, timeout_minutes: int = 12) -> str:
-    """Make API request with timeout monitoring"""
-    
-    import threading
-    
-    result = [None]
-    exception = [None]
-    
-    def api_call():
-        try:
-            result[0] = llm_client_instance.make_llm_request(
-                api_type=api_type,
-                prompt=prompt,
-                sys_prompt=system_prompt,  # Use the passed system prompt
-                reformat=False
-            )
-        except Exception as e:
-            exception[0] = e
-    
-    # Start API call in separate thread
-    thread = threading.Thread(target=api_call)
-    thread.daemon = True
-    thread.start()
-    
-    # Monitor with timeout
-    timeout_seconds = timeout_minutes * 60
-    start_time = time.time()
-    
-    while thread.is_alive():
-        elapsed = time.time() - start_time
-        
-        if elapsed > timeout_seconds:
-            print(f"      Request taking longer than {timeout_minutes} minutes...")
-            # Give it a bit more time, but warn
-            if elapsed > timeout_seconds * 1.5:  # 150% of timeout
-                raise TimeoutError(f"Request timed out after {timeout_minutes * 1.5:.1f} minutes")
-        
-        time.sleep(1)
-    
-    if exception[0]:
-        raise exception[0]
-    
-    if result[0] is None:
-        raise RuntimeError("API call completed but no result received")
-    
-    return result[0]
-
-
-
-def combine_batch_results(batch_results: List[str]) -> str:
-    """Combine all batch results and renumber requirements"""
-    
-    print("Merging batch results and renumbering...")
-    
-    final_output = """# Refined FHIR Implementation Guide Requirements
-
-This document contains the refined, testable requirements extracted from the US Core FHIR Implementation Guide.
-
-Generated using batch processing to handle large requirement sets efficiently.
-
-"""
-    
-    req_counter = 1
-    
-    for i, batch_result in enumerate(batch_results):
-        if not batch_result or batch_result.strip() == "":
-            continue
-            
-        print(f"   Processing batch {i+1} results...")
-        
-        # Skip error results  
-        if "[ERROR" in batch_result and "BATCH" in batch_result:
-            final_output += batch_result + "\n"
-            continue
-        
-        # Process each line and renumber requirements
-        lines = batch_result.split('\n')
-        
-        for line in lines:
-            if re.match(r'^# REQ-\d+', line):
-                # Renumber this requirement
-                line = f"# REQ-{req_counter:03d}"
-                req_counter += 1
-            
-            final_output += line + '\n'
-    
-    print(f"   Renumbered {req_counter - 1} requirements")
-    
-    return final_output
-
-def count_requirements_in_output(output: str) -> int:
-    """Count requirements in the final output"""
-    return len(re.findall(r'^# REQ-\d+', output, re.MULTILINE))
-
-
-def run_batch_requirements_refinement(input_file: str, llm_client_instance, 
+def run_batch_requirements_refinement(input_file: str, client_instance, 
                                      output_dir: str = "checkpoints/revised_reqs_extraction",
                                      batch_size: int = 100, api_type: str = "claude",
-                                     project_root: str = None):
+                                     project_root: str = None) -> Dict[str, Any]:
     """
-    Convenience function to run batch processing with your existing setup
+    Convenience function to run batch processing with existing setup.
     
+    Args:
+        input_file: Path to input requirements file
+        client_instance: Your LLM client instance  
+        output_dir: Output directory (default: "checkpoints/revised_reqs_extraction")
+        batch_size: Requirements per batch (default: 100)
+        api_type: API to use (default: "claude")
+        project_root: Project root path (optional)
+        
+    Returns:
+        Dictionary containing processing results
+        
     Usage:
-        result = run_batch_requirements_refinement(
-            input_file="path/to/your/requirements.md",
-            llm_client_instance=llm_clients,
-            batch_size=100,
-            api_type="claude"
-        )
+        >>> result = run_batch_requirements_refinement(
+        ...     input_file="path/to/your/requirements.md",
+        ...     client_instance=llm_clients,
+        ...     batch_size=50,
+        ...     api_type="gpt"
+        ... )
     """
-    
     return batch_process_requirements(
         input_file=input_file,
         output_dir=output_dir,
-        llm_client_instance=llm_client_instance,
+        client_instance=client_instance,
         batch_size=batch_size,
         api_type=api_type,
         project_root=project_root

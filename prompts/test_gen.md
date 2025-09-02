@@ -8,9 +8,9 @@ Naming conventions: - Use underscored lowercase names for files (e.g., patient_r
 
 The test should be comprehensive but focused on exactly what's described in the specification. Include proper documentation in the code and follow Inferno best practices.
 
-Requirement ID: {requirement_id} Module Name: {module_name}
+Requirement ID: {requirement_id} Module Name: {ig_name}
 
-CRITICAL REQUIREMENTS: 1. MODULE AND CLASS NAMING\_ - Use module {module_name}, NOT numeric modules like "module 70000" - Use proper Ruby class names (CamelCase) - Module name must start with uppercase letter
+CRITICAL REQUIREMENTS: 
 
 1. INPUTS AND CLIENTS
 
@@ -78,7 +78,7 @@ All tests should be written in accordance with this guidance on the Inferno doma
 Follow this pattern for the TestGroup structure:
 
 ```bash
-module {module_name}
+module {ig_name}
     class YourTestGroup < Inferno::TestGroup
         id :your_unique_id
         title 'Clear Requirement Title'

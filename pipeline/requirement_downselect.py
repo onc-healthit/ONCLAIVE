@@ -170,7 +170,8 @@ def convert_to_markdown(reqlist, output_dir):
             # Extract and write the details from the 'parsed' dictionary
             parsed_data = req.get('parsed', {})
             summary = parsed_data.get('summary', 'N/A').strip()
-            description = parsed_data.get('description', 'N/A').strip()
+            text = parsed_data.get('text', 'N/A').strip()
+            context = parsed_data.get('context', 'N/A').strip()
             verification = parsed_data.get('verification', 'N/A').strip()
             actor = parsed_data.get('actor', 'N/A').strip()
             conformance = parsed_data.get('conformance', 'N/A').strip()
@@ -180,7 +181,8 @@ def convert_to_markdown(reqlist, output_dir):
             md_file.write(f"""
 # REQ-{i+1:02}
 **Summary**: {summary}
-**Description**: {description}
+**Text**: {text}
+**Context**: {context}
 **Verification**: {verification}
 **Actor**: {actor}
 **Conformance**: {conformance}

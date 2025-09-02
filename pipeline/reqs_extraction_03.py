@@ -3,25 +3,20 @@ import os
 import logging
 from typing import List, Dict, Union, Optional, Any
 import time
-import json
 from datetime import datetime
 import re
 import pandas as pd
 from dotenv import load_dotenv
-import httpx
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 from anthropic import Anthropic, RateLimitError
 import google.generativeai as gemini
 from openai import OpenAI
 from pathlib import Path
-import sys
 import prompt_utils
 from llm_utils import SafetyFilterException
 
 # Get the current working directory and set up paths
 PROJECT_ROOT = Path.cwd().parent  # Go up one level from reqs_extraction to onclaive root
-#DEFAULT_MARKDOWN_DIR = os.path.join(PROJECT_ROOT, 'full-ig', 'markdown7_cleaned')
-#DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'reqs_extraction', 'initial_reqs_output')
 
 SYSTEM_PROMPTS = {
     "claude": """You are a seasoned Healthcare Integration Test Engineer with expertise in INCOSE Systems Engineering standards, 
@@ -34,32 +29,34 @@ SYSTEM_PROMPTS = {
     Implementation Guide content to extract specific testable requirements in INCOSE-compliant format."""
 }
 
-# Add debug logging
-logging.basicConfig(level=logging.INFO)
-logging.info(f"Current working directory: {Path.cwd()}")
-logging.info(f"Project root: {PROJECT_ROOT}")
-#logging.info(f"Default markdown directory: {DEFAULT_MARKDOWN_DIR}")
-#logging.info(f"Default output directory: {DEFAULT_OUTPUT_DIR}")
-
 # Basic setup
 load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
 
-# Import prompt utilities
-#prompt_utils_path = os.path.join(PROJECT_ROOT, 'prompt_utils.py')
-    
 # Setup the prompt environment
 prompt_env = prompt_utils.setup_prompt_environment(PROJECT_ROOT)
 PROMPT_DIR = prompt_env["prompt_dir"]
 REQUIREMENTS_EXTRACTION_PATH = prompt_env["requirements_extraction_path"]
 
-logging.info(f"Using prompts directory: {PROMPT_DIR}")
-logging.info(f"Requirements extraction prompt: {REQUIREMENTS_EXTRACTION_PATH}")
+# Setup logging
+logging.basicConfig(level=logging.INFO)
 
-def list_markdown_files(markdown_dir, verbose=False):
-    """Debug function to list all markdown files"""
+
+def list_markdown_files(markdown_dir: str, verbose: bool = False) -> List[str]:
+    """
+    List all markdown files in a directory.
+    
+    Args:
+        markdown_dir: Path to directory containing markdown files
+        verbose: If True, log each filename found
+        
+    Returns:
+        List of markdown filenames
+        
+    Raises:
+        FileNotFoundError: If directory doesn't exist
+    """
     if not os.path.exists(markdown_dir):
-        logging.error(f"Directory does not exist: {markdown_dir}")
-        return
+        raise FileNotFoundError(f"Directory does not exist: {markdown_dir}")
     
     files = [f for f in os.listdir(markdown_dir) if f.endswith('.md')]
     logging.info(f"Found {len(files)} markdown files")
@@ -68,49 +65,71 @@ def list_markdown_files(markdown_dir, verbose=False):
             logging.info(f"  - {file}")
     return files
 
-def calculate_optimal_chunk_size(config, api_type: str, markdown_content: str) -> int:
+
+def calculate_optimal_chunk_size(config: Dict, api_type: str, markdown_content: str) -> int:
     """
     Calculate the optimal chunk size based on API type and content characteristics.
-    """
     
+    Args:
+        config: Configuration dictionary for the API
+        api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+        markdown_content: The content to be chunked
+        
+    Returns:
+        Optimal chunk size in characters
+    """
     # Base chunk sizes based on API token limits
     base_chunk_sizes = {
         "claude": 25000,  # Claude has higher token limits
         "gemini": 20000,  # Gemini is also capable of handling larger chunks
-        "gpt": 12000,      # GPT-4 with smaller context
+        "gpt": 12000,     # GPT-4 with smaller context
         "aip": 8000
     }
     
     # Start with the base size for the API
     optimal_size = base_chunk_sizes[api_type]
     
-    # Adjust based on content characteristics
-    content_length = len(markdown_content)
-    
     # For small content, don't chunk at all
+    content_length = len(markdown_content)
     if content_length <= optimal_size:
         return content_length
     
-    # For larger content, use the full chunk size
     return optimal_size
 
-# Markdown Processing Functions
+
 def clean_markdown(text: str) -> str:
-    """Clean markdown content"""
-    text = re.sub(r'\n\s*\n', '\n\n', text)
-    text = re.sub(r'<!--.*?-->', '', text, flags=re.DOTALL)
-    text = re.sub(r'\.{2,}', '.', text)
-    text = re.sub(r'\\(.)', r'\1', text)
-    text = re.sub(r'\|', ' ', text)
-    text = re.sub(r'[-\s]*\n[-\s]*', '\n', text)
+    """
+    Clean markdown content by removing excessive whitespace, comments, and formatting artifacts.
+    
+    Args:
+        text: Raw markdown text to clean
+        
+    Returns:
+        Cleaned markdown text
+    """
+    text = re.sub(r'\n\s*\n', '\n\n', text)  # Normalize multiple newlines
+    text = re.sub(r'<!--.*?-->', '', text, flags=re.DOTALL)  # Remove HTML comments
+    text = re.sub(r'\.{2,}', '.', text)  # Replace multiple dots with single
+    text = re.sub(r'\\(.)', r'\1', text)  # Remove escape characters
+    text = re.sub(r'\|', ' ', text)  # Replace pipes with spaces
+    text = re.sub(r'[-\s]*\n[-\s]*', '\n', text)  # Clean up dashes and whitespace
     return text.strip()
 
-def split_markdown_dynamic(config, content: str, api_type: str) -> List[str]:
+
+def split_markdown_dynamic(config: Dict, content: str, api_type: str) -> List[str]:
     """
-    Optimized markdown splitting with larger chunks and fewer API calls.
+    Split markdown content into optimal chunks for API processing.
+    
+    Args:
+        config: Configuration dictionary for the API
+        content: Markdown content to split
+        api_type: Type of API being used
+        
+    Returns:
+        List of content chunks
     """
     # Don't split small files at all
-    if len(content) < 5000:  # Increased threshold
+    if len(content) < 5000:
         return [content]
     
     max_size = calculate_optimal_chunk_size(config, api_type, content)
@@ -135,34 +154,25 @@ def split_markdown_dynamic(config, content: str, api_type: str) -> List[str]:
     return chunks if len(chunks) > 1 else [content]
 
 
-
-def find_good_split_point(lines: List[str]) -> int:
+def should_combine_files(config: Dict, files: List[str], markdown_dir: str, api_type: str) -> List[List[str]]:
     """
-    Find a good place to split a chunk, preferring blank lines or headers.
-    """
-    # Go backwards from the end to find a natural splitting point
-    for i in range(len(lines) - 1, 0, -1):
-        # Prefer blank lines
-        if lines[i].strip() == '':
-            return i + 1
-        
-        # Or headers
-        if lines[i].startswith('#') or lines[i].startswith('==') or lines[i].startswith('--'):
-            return i
+    Determine if small files should be combined for more efficient processing.
     
-    # If we're more than halfway through, just use the current point
-    return len(lines) // 2
-
-def should_combine_files(config, files: List[str], markdown_dir: str, api_type: str) -> List[List[str]]:
-    """
-    Determine if small files should be combined for processing.
+    Args:
+        config: Configuration dictionary for the API
+        files: List of markdown filenames
+        markdown_dir: Directory containing the files
+        api_type: Type of API being used
+        
+    Returns:
+        List of file groups, where each group should be processed together
     """
     file_sizes = {}
     
     # Get the size of each file
     for file in files:
         file_path = os.path.join(markdown_dir, file)
-        with open(file_path, 'r') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
             file_sizes[file] = len(content)
     
@@ -210,17 +220,18 @@ def should_combine_files(config, files: List[str], markdown_dir: str, api_type: 
     
     return combined_files
 
+
 def create_incose_requirements_extraction_prompt(content: str, chunk_index: int, total_chunks: int) -> str:
     """
-    Create a prompt for extracting requirements in INCOSE format using external prompt file
+    Create a prompt for extracting requirements in INCOSE format using external prompt file.
     
     Args:
         content: The content to analyze
-        chunk_index: Index of this chunk in the total content
+        chunk_index: Index of this chunk in the total content (1-based)
         total_chunks: Total number of chunks being processed
         
     Returns:
-        str: The prompt for the LLM loaded from external file
+        The formatted prompt for the LLM
     """
     prompt = prompt_utils.load_prompt(
         REQUIREMENTS_EXTRACTION_PATH,
@@ -229,17 +240,22 @@ def create_incose_requirements_extraction_prompt(content: str, chunk_index: int,
         total_chunks=total_chunks
     )
     
-    # Debug: Check if substitution worked
-    if "{FHIR_TEXT}" in prompt:
-        logging.error("Template substitution failed!")
-        logging.error(f"Content length: {len(content)}")
-    else:
-        logging.info("Prompt chunk placement successful")
-    
     return prompt
 
-def format_content_for_api(content: Union[str, dict, list], api_type: str, chunk_index: int, total_chunks: int) -> Union[str, List[dict], dict]:
-    """Format content appropriately for each API"""
+
+def format_content_for_api(content: str, api_type: str, chunk_index: int, total_chunks: int) -> Union[str, List[dict], dict]:
+    """
+    Format content appropriately for each API's expected input format.
+    
+    Args:
+        content: The content to format
+        api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+        chunk_index: Index of this chunk
+        total_chunks: Total number of chunks
+        
+    Returns:
+        Formatted content ready for API consumption
+    """
     base_prompt = create_incose_requirements_extraction_prompt(content, chunk_index, total_chunks)
     
     if api_type == "claude":
@@ -255,27 +271,43 @@ def format_content_for_api(content: Union[str, dict, list], api_type: str, chunk
         }]
     return base_prompt
 
-def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir: str, 
-                                           output_directory: str = None, max_files: int = None) -> Dict[str, Any]:
+
+def process_markdown_content_for_incose_srs(
+    client_instance, 
+    api_type: str, 
+    markdown_dir: str, 
+    output_dir: str = None, 
+    max_files: int = None
+) -> Dict[str, Any]:
     """
-    Process markdown content and generate INCOSE SRS document directly from LLM outputs.
+    Process markdown content and generate document directly from LLM outputs.
     
     Args:
-        api_type: The API to use for processing
+        client_instance: LLM client manager object
+        api_type: The API to use for processing ('claude', 'gemini', 'gpt', 'aip')
         markdown_dir: Directory containing markdown files
-        output_directory: Directory to save output files (optional)
+        output_directory: Directory to save output files (optional, uses default if None)
+        max_files: Maximum number of files to process (optional, processes all if None)
         
     Returns:
-        Dict containing processing results and SRS document
+        Dictionary containing:
+            - processed_files: List of files that were processed
+            - srs_document: The complete INCOSE SRS document text
+            - output_file: Path to the saved output file
+            
+    Raises:
+        FileNotFoundError: If markdown directory doesn't exist
+        Exception: For various processing errors
     """
     logging.info(f"Starting processing with {api_type} on directory: {markdown_dir}")
-    config = clients.config[api_type]
+    config = client_instance.config[api_type]
+    
     # Use default output directory if none provided
-    if output_directory is None:
-        output_directory = os.path.join(PROJECT_ROOT, 'reqs_extraction', 'initial_reqs_output')
+    if output_dir is None:
+        output_dir = os.path.join(PROJECT_ROOT, 'reqs_extraction', 'initial_reqs_output')
     
     # Create output directory if it doesn't exist
-    os.makedirs(output_directory, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
     
     # List files before processing
     markdown_files = list_markdown_files(markdown_dir)
@@ -284,30 +316,30 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
         return {"processed_files": [], "srs_document": "", "output_file": None}
     
     try:
-        all_incose_requirements = []
+        all_requirements = []
         processed_files = []
         
         # Group files for potential combination
         file_groups = should_combine_files(config, markdown_files[:max_files], markdown_dir, api_type)
         logging.info(f"Organized {len(markdown_files)} files into {len(file_groups)} processing groups")
         
-        for group in file_groups:
-            # For a single file
+        for group_idx, group in enumerate(file_groups, 1):
+            # Process single file
             if len(group) == 1:
                 file_path = os.path.join(markdown_dir, group[0])
+                print(f"\n[{group_idx}/{len(file_groups)}] Processing single file: {group[0]}")
                 logging.info(f"Processing single file: {group[0]}")
                 
-                with open(file_path, 'r') as f:
+                with open(file_path, 'r', encoding='utf-8') as f:
                     content = clean_markdown(f.read())
                 
-                # Use dynamic chunk sizing
                 chunks = split_markdown_dynamic(config, content, api_type)
                 logging.info(f"Split {group[0]} into {len(chunks)} chunks using dynamic sizing")
                 
                 for chunk_idx, chunk in enumerate(chunks, 1):
+                    print(f"    Processing chunk {chunk_idx}/{len(chunks)}", end='\r')
                     logging.info(f"Processing chunk {chunk_idx}/{len(chunks)} of {group[0]}")
                     
-                    # Format the content for the API
                     formatted_content = format_content_for_api(chunk, api_type, chunk_idx, len(chunks))
                     
                     # Extract proper text based on API type
@@ -318,33 +350,35 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
                     else:
                         prompt_text = formatted_content
                     
-                    # Use the utility function for API request
                     try:
-                        response = clients.make_llm_request(api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
-                        all_incose_requirements.append(response)
+                        response = client_instance.make_llm_request(api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
+                        all_requirements.append(response)
                     except SafetyFilterException as e:
-                        clients.safety_blocked_count += 1
-                        print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{clients.safety_blocked_count}")
-                        print(f"📁 File: {group[0]} - Chunk {chunk_idx}/{len(chunks)}")
+                        client_instance.safety_blocked_count += 1
+                        print(f"\nSAFETY FILTER BLOCKED CONTENT #{client_instance.safety_blocked_count}")
+                        print(f"File: {group[0]} - Chunk {chunk_idx}/{len(chunks)}")
                         print("=" * 60)
                         print("BLOCKED CONTENT SAMPLE:")
                         print(e.blocked_content)
                         print("=" * 60)
                         print("Skipping this chunk and continuing...\n")
-                        all_incose_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by Gemini safety filters]\n\n")
+                        all_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n")
+                    
                     time.sleep(config["delay_between_chunks"])
                 
+                print(f"    Completed {len(chunks)} chunks                    ")
                 processed_files.append(group[0])
                 
-            # For multiple combined files
+            # Process multiple combined files
             else:
+                print(f"\n[{group_idx}/{len(file_groups)}] Processing combined group of {len(group)} files: {', '.join(group[:3])}{'...' if len(group) > 3 else ''}")
                 logging.info(f"Processing combined group of {len(group)} files")
                 combined_content = []
                 
                 # Prepare combined content with clear file boundaries
                 for file in group:
                     file_path = os.path.join(markdown_dir, file)
-                    with open(file_path, 'r') as f:
+                    with open(file_path, 'r', encoding='utf-8') as f:
                         file_content = clean_markdown(f.read())
                         combined_content.append(f"## FILE: {file}\n\n{file_content}\n\n")
                 
@@ -353,9 +387,9 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
                 logging.info(f"Split combined content into {len(chunks)} chunks")
                 
                 for chunk_idx, chunk in enumerate(chunks, 1):
+                    print(f"    Processing chunk {chunk_idx}/{len(chunks)}", end='\r')
                     logging.info(f"Processing chunk {chunk_idx}/{len(chunks)} of combined files")
                     
-                    # Format the content for the API
                     formatted_content = format_content_for_api(chunk, api_type, chunk_idx, len(chunks))
                     
                     # Extract proper text based on API type
@@ -366,109 +400,131 @@ def process_markdown_content_for_incose_srs(clients, api_type: str, markdown_dir
                     else:
                         prompt_text = formatted_content
                     
-                    # Use the utility function for API request
                     try:
-                        response = clients.make_llm_request(api_type, prompt_text, SYSTEM_PROMPTS[api_type])
-                        all_incose_requirements.append(response)
+                        response = client_instance.make_llm_request(api_type, prompt_text, SYSTEM_PROMPTS[api_type])
+                        all_requirements.append(response)
                     except SafetyFilterException as e:
-                        clients.safety_blocked_count += 1
-                        print(f"\n⚠️  SAFETY FILTER BLOCKED CONTENT #{clients.safety_blocked_count}")
-                        print(f"📁 Combined files: {', '.join(group)} - Chunk {chunk_idx}/{len(chunks)}")
+                        client_instance.safety_blocked_count += 1
+                        print(f"\nSAFETY FILTER BLOCKED CONTENT #{client_instance.safety_blocked_count}")
+                        print(f"Combined files: {', '.join(group)} - Chunk {chunk_idx}/{len(chunks)}")
                         print("=" * 60)
                         print("BLOCKED CONTENT SAMPLE:")
                         print(e.blocked_content)
                         print("=" * 60)
                         print("Skipping this chunk and continuing...\n")
-                        all_incose_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by Gemini safety filters]\n\n")
+                        all_requirements.append("## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n")
+                    
                     time.sleep(config["delay_between_chunks"])
                 
+                print(f"    Completed {len(chunks)} chunks                    ")
                 processed_files.extend(group)
             
             # Add delay between file groups
             time.sleep(config["delay_between_batches"])
         
-        # Combine all requirements into a full INCOSE SRS document
-        srs_document = ""
-        for req_section in all_incose_requirements:
+        # Combine all requirements into single list
+        reqs_document = ""
+        for req_section in all_requirements:
             # Skip the intro text if it's present to avoid duplication
-            # Look for the first requirement section
             if "## REQ-" in req_section:
                 # Find the index of the first requirement
                 req_start_idx = req_section.find("## REQ-")
                 if req_start_idx > 0:
                     # Only add the requirements part, not any introductory text
-                    srs_document += req_section[req_start_idx:]
+                    reqs_document += req_section[req_start_idx:]
                 else:
-                    srs_document += req_section
+                    reqs_document += req_section
             else:
                 # Add any content that doesn't contain requirements
-                # (this could be informational text related to requirements)
-                srs_document += req_section
+                reqs_document += req_section
         
-        # Save INCOSE SRS document to markdown file
+        # Save requirements list to markdown file
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        srs_output_file = os.path.join(output_directory, f"{api_type}_reqs_list_v1_{timestamp}.md")
-        #srs_output_file = os.path.join(output_directory, f"reqs_list_v1.md")
-        
-        with open(srs_output_file, 'w') as f:
-            f.write(srs_document)
+        #output_file = os.path.join(output_dir, f"{api_type}_reqs_list_v1_{timestamp}.md")
+        output_file = os.path.join(output_dir, "reqs_list_v1.md")
+
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(reqs_document)
         
         logging.info(f"Completed processing {len(processed_files)} files")
-        logging.info(f"Generated requirements document saved to {srs_output_file}")
+        logging.info(f"Generated requirements document saved to {output_file}")
         
         return {
             "processed_files": processed_files,
-            "srs_document": srs_document,
-            "output_file": srs_output_file
+            "srs_document": reqs_document,
+            "output_file": output_file
         }
         
     except Exception as e:
         logging.error(f"Error processing content: {str(e)}")
         raise
 
-def run_requirements_extractor(markdown_dir, output_directory, api_type, clients, max_files: int = None):
+
+def run_requirements_extractor(
+    markdown_dir: str, 
+    output_dir: str, 
+    api_type: str, 
+    client_instance, 
+    max_files: int = None
+) -> None:
     """
     Main function to run the requirements extraction process.
-    Handles user input, processes markdown files, and generates INCOSE-formatted requirements.
+    
+    This function handles the complete workflow of processing FHIR Implementation Guide
+    markdown files and generating INCOSE-formatted requirements documents.
+    
+    Args:
+        markdown_dir: Path to directory containing markdown files to process
+        output_dir: Path to directory where output files should be saved
+        api_type: Type of LLM API to use ('claude', 'gemini', 'gpt', 'aip')
+        client_instance: LLM client manager object with configured API clients
+        max_files: Maximum number of files to process (optional, processes all if None)
+        
+    Raises:
+        FileNotFoundError: If markdown directory doesn't exist
+        Exception: For various processing errors
+        
+    Example:
+        >>> run_requirements_extractor(
+        ...     'input/markdown_files',
+        ...     'output/requirements', 
+        ...     'claude',
+        ...     llm_clients,
+        ...     max_files=10
+        ... )
     """
-   
     # Create output directory if it doesn't exist
-    os.makedirs(output_directory, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
     # Verify the markdown directory exists
-    if os.path.exists(markdown_dir):
-        logging.info(f"Found markdown directory at {markdown_dir}")
-        markdown_files = [f for f in os.listdir(markdown_dir) if f.endswith('.md')]
-        logging.info(f"Found {len(markdown_files)} markdown files")
-    else:
-        logging.error(f"Markdown directory not found at {markdown_dir}")
-        print(f"Error: Directory not found at {markdown_dir}")
-        return  # Exit the function if directory doesn't exist
+    if not os.path.exists(markdown_dir):
+        raise FileNotFoundError(f"Markdown directory not found at {markdown_dir}")
+    
+    logging.info(f"Found markdown directory at {markdown_dir}")
+    markdown_files = [f for f in os.listdir(markdown_dir) if f.endswith('.md')]
+    logging.info(f"Found {len(markdown_files)} markdown files")
 
-    clients.safety_blocked_count = 0
+    # Initialize safety filter counter
+    client_instance.safety_blocked_count = 0
 
-    # try:
     logging.info(f"Processing with {api_type}...")
     print(f"\nProcessing Implementation Guide with {api_type.capitalize()}...")
-    print(f"This may take several minutes depending on the size of the Implementation Guide.")
+    print("This may take several minutes depending on the size of the Implementation Guide.")
     
     # Process the markdown files and generate direct INCOSE SRS document
     api_results = process_markdown_content_for_incose_srs(
-        clients=clients,
+        client_instance=client_instance,
         api_type=api_type, 
         markdown_dir=markdown_dir,
-        output_directory=output_directory,
+        output_dir=output_dir,
         max_files=max_files
     )
     
     # Output the results to the user
     print("\n" + "="*80)
-    print(f"Processing complete!")
+    print("Processing complete!")
     print(f"Generated requirements document: {api_results['output_file']}")
     print(f"Processed {len(api_results['processed_files'])} files")
+    if hasattr(client_instance, 'safety_blocked_count') and client_instance.safety_blocked_count > 0:
+        print(f"Safety filter blocked {client_instance.safety_blocked_count} chunks")
     print("="*80)
-        
-    # except Exception as e:
-    #     logging.error(f"Error processing {api_type}: {str(e)}")
-    #     print(f"\nError occurred during processing: {str(e)}")
-    #     print("Check the log file for more details.")
