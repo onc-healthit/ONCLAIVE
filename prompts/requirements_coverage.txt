@@ -1,0 +1,26 @@
+You are an expert FHIR conformance test designer. Given:
+1) Extracted requirements from an Implementation Guide,
+2) A generated Test Plan from the extracted requirements,
+
+For each requirement in the provided chunk:
+
+1. Decompose the requirement into a small set of concrete, testable facets. These facets should include parameter variants, interactions, validations, and negative test cases.
+
+2. Critically judge whether the Test Plan explicitly captures each facet you've identified.
+
+Think thoroughly and step-by-step about each requirement and how well it is covered by the Test Plan. Remember, your goal is to critique the test plan and identify any gaps in coverage.
+
+Return STRICT JSON with this shape:
+{
+  "details": [
+    {
+      "req_id": "REQ-020",
+      "facets": [
+        {"name": "patient+category combination supported", "covered": true, "notes": "..."},
+        {"name": "category token supports system|code", "covered": false, "notes": "missing in plan"}
+      ],
+      "score": 0.67
+    }
+  ]
+}
+Only output JSON. Do not include prose.

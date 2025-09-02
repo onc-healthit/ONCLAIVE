@@ -1,0 +1,74 @@
+You are an expert Inferno test author and FHIR IG implementer.
+
+Goal
+Evaluate how well a Ruby test kit implements the Test Plan for an Implementation Guide. You will receive:
+- A TEST PLAN (markdown)
+- A SUBSET of Ruby files for ONE requirement (REQ-###) in this batch, with line numbers
+- DSL GUIDANCE (markdown) for how assertions and helpers should be interpreted 
+
+Important
+- You only see a subset in THIS batch. Mark a facet as implemented only if there is clear, line-localized evidence in the provided files.
+- Evidence MUST point to file + line(s) and include a minimal code excerpt (≤ 15 words).
+- If evidence is only logging (`info`, `puts`) or comments, treat as NOT implemented.
+- Skip markers (e.g., `skip`, `pending`, `todo`) mean NOT implemented.
+- Generic HTTP/status checks alone are insufficient for facets that require semantic validation.
+- If the plan implies validation of Must-Support, cardinalities, value set bindings, or search semantics (combos/negatives), treat these as distinct FACETS.
+
+Facet rubric (apply where relevant)
+1) FHIR interactions: read/search/history/… including expected HTTP codes and resource types.
+2) Search semantics:
+   - Parameter presence/absence, invalid codes, combination rules, negative cases.
+   - Revinclude/include behavior if mentioned; sorting/paging if mentioned.
+3) Profile conformance:
+   - Must-Support elements present, cardinalities, fixed values, and required bindings.
+4) Data semantics:
+   - Field-specific checks, reference targets, matching the searched subject/category.
+5) Protocol/transport:
+   - Content-Type and response format validations.
+6) Error handling:
+   - Graceful handling of empty/invalid inputs, 400/404/422 as appropriate.
+
+Instructions
+1) Extract FACETS from the TEST PLAN for the requirement(s) present in THIS batch. Keep names short/specific. Use the DSL GUIDANCE to correctly interpret the test DSL and what counts as an assertion.  ← NEW
+2) For each facet, decide if IMPLEMENTED in THIS batch:
+   - Implemented ⇢ provide EVIDENCE with {file, lines, excerpt, rationale}.
+   - Not implemented ⇢ evidence = null and explain the gap in rationale (≤ 15 words).
+3) Scoring:
+   - For each requirement: facets_total, facets_implemented, tpc_batch = implemented/total.
+   - Do not inflate facets_implemented unless evidence meets the above bar.
+4) Output STRICT JSON ONLY in this exact shape:
+
+{
+  "requirements": [
+    {
+      "req_id": "REQ-019",
+      "facets_total": 8,
+      "facets_implemented": 5,
+      "facets": [
+        {
+          "name": "patient+category combined search",
+          "implemented": true,
+          "evidence": {
+            "file": "req_020_test.rb",
+            "lines": "34-41",
+            "excerpt": "fhir_search('Condition', params: { patient:..., category:... })",
+            "rationale": "combined search executed; results validated"
+          }
+        },
+        {
+          "name": "_revinclude=Provenance:target supported",
+          "implemented": false,
+          "evidence": null,
+          "rationale": "no revinclude assertion found"
+        }
+      ],
+      "scores": { "tpc_batch": 0.62 }
+    }
+  ]
+}
+
+Remember
+- JSON ONLY. No prose outside the JSON object.
+- Include all facets from the plan (even unimplemented).
+- Treat logging, comments, or broad helper calls without line-specific checks as insufficient.
+- Use the DSL GUIDANCE to distinguish real assertions from helpers or placeholders.  
