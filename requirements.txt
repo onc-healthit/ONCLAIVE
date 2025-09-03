@@ -41,11 +41,13 @@ langchain-text-splitters==0.3.11
 langsmith==0.4.23
 marshmallow==3.26.1
 multidict==6.6.4
+markdownify==0.10.0
 mypy_extensions==1.1.0
 numpy==2.3.2
 openai==1.105.0
 orjson==3.11.3
 packaging==25.0
+pandas==2.2.3
 pipenv==2025.0.4
 platformdirs==4.4.0
 propcache==0.3.2
