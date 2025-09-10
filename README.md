@@ -1,4 +1,4 @@
-# ASTP/ONC Leveraging Artificial Intelligence Validation and Exploration (ONCLAIVE) for Inferno FHIR Testing Gitlab Repo 
+# ASTP/ONC Leveraging Artificial Intelligence Validation and Exploration (ONCLAIVE) for Inferno FHIR Testing 
 
 ## Overview
 This repository includes a set of scripts that are run together as part of a pipeline to take in a FHIR implementation guide, extract requirements, generate a test plan, and develop Inferno test kits to test API standards conformance. Each phase of the pipeline uses generative AI to review IG-related inputs and create the outputs for the next phase of the pipeline. 
