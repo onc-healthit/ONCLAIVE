@@ -1,5 +1,7 @@
 #import packages
 import os
+import json
+import csv
 import logging
 from typing import List, Dict, Union, Optional, Any
 import time
@@ -240,12 +242,80 @@ def create_incose_requirements_extraction_prompt(content: str, chunk_index: int,
     
     return prompt
 
+
+def parse_requirements_from_markdown(markdown_text: str) -> List[Dict[str, str]]:
+    """
+    Parse requirements from markdown format into structured data.
+    
+    Args:
+        markdown_text: The markdown document containing requirements
+        
+    Returns:
+        List of requirement dictionaries
+    """
+    requirements = []
+    
+    # Split by requirement headers
+    req_blocks = re.split(r'## (REQ-[^\n]+)', markdown_text)
+    
+    # Process pairs of (ID, content)
+    for i in range(1, len(req_blocks), 2):
+        if i + 1 < len(req_blocks):
+            req_id = req_blocks[i].strip()
+            content = req_blocks[i + 1].strip()
+            
+            req_dict = {'ID': req_id}
+            
+            # Extract fields using regex
+            fields = {
+                'Summary': r'\*\*Summary\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Text': r'\*\*Text\*\*:\s*"(.+?)"(?=\n\*\*|$)',
+                'Context': r'\*\*Context\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Verification': r'\*\*Verification\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Actor': r'\*\*Actor\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Conformance': r'\*\*Conformance\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Conditional': r'\*\*Conditional\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Source': r'\*\*Source\*\*:\s*(.+?)(?=\n\*\*|$)',
+                'Group': r'\*\*Group\*\*:\s*(.+?)(?=\n\*\*|$)',
+            }
+            
+            for field, pattern in fields.items():
+                match = re.search(pattern, content, re.DOTALL)
+                req_dict[field] = match.group(1).strip() if match else ''
+            
+            requirements.append(req_dict)
+    
+    return requirements
+
+def save_requirements_json(requirements: List[Dict[str, str]], output_path: str):
+    """Save requirements as JSON."""
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(requirements, f, indent=2, ensure_ascii=False)
+    logging.info(f"Saved JSON output to {output_path}")
+
+
+def save_requirements_csv(requirements: List[Dict[str, str]], output_path: str):
+    """Save requirements as CSV."""
+    if not requirements:
+        return
+    
+    fieldnames = ['ID', 'Summary', 'Text', 'Context', 'Verification', 
+                  'Actor', 'Conformance', 'Conditional', 'Source', 'Group']
+    
+    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(requirements)
+    logging.info(f"Saved CSV output to {output_path}")
+
+
 def process_markdown_content_for_incose_srs(
     client_instance, 
     api_type: str,
     artifacts_dir: str,
     output_dir: str = None,
-    max_files: int = None
+    max_files: int = None,
+    output_format: str = 'markdown'
 ) -> Dict[str, Any]:
     """
     Process markdown content and generate document directly from LLM outputs.
@@ -392,20 +462,36 @@ def process_markdown_content_for_incose_srs(
                 reqs_document += req_section
         
         # Save requirements list to markdown file
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        #output_file = os.path.join(output_dir, f"{api_type}_reqs_list_v1_{timestamp}.md")
-        output_file = os.path.join(output_dir, "reqs_list_v1.md")
+        base_filename = "reqs_list_v1"
 
-        with open(output_file, 'w', encoding='utf-8') as f:
+        # Always save markdown
+        md_output_file = os.path.join(output_dir, f"{base_filename}.md")
+        with open(md_output_file, 'w', encoding='utf-8') as f:
             f.write(reqs_document)
-        
+
+        output_files = {"markdown": md_output_file}
+
+        # Parse and save in additional formats if requested
+        if output_format in ["json", "csv", "all"]:
+            parsed_reqs = parse_requirements_from_markdown(reqs_document)
+            
+            if output_format in ["json", "all"]:
+                json_output_file = os.path.join(output_dir, f"{base_filename}.json")
+                save_requirements_json(parsed_reqs, json_output_file)
+                output_files["json"] = json_output_file
+            
+            if output_format in ["csv", "all"]:
+                csv_output_file = os.path.join(output_dir, f"{base_filename}.csv")
+                save_requirements_csv(parsed_reqs, csv_output_file)
+                output_files["csv"] = csv_output_file
+
         logging.info(f"Completed processing {len(processed_files)} files")
-        logging.info(f"Generated requirements document saved to {output_file}")
-        
+        logging.info(f"Generated requirements document(s) saved: {list(output_files.values())}")
+
         return {
             "processed_files": processed_files,
             "srs_document": reqs_document,
-            "output_file": output_file
+            "output_files": output_files  # Changed from output_file to output_files
         }
         
     except Exception as e:
@@ -417,7 +503,8 @@ def run_requirements_extractor(
     api_type: str,
     client_instance,
     artifacts_dir: str = str(path_helpers.DEMO_ARTIFACTS_ROOT),
-    max_files: int = None
+    max_files: int = None,
+    output_format: str = 'markdown'
 ) -> None:
     """
     Main function to run the requirements extraction process.
@@ -470,13 +557,15 @@ def run_requirements_extractor(
         api_type=api_type,
         artifacts_dir=artifacts_dir,
         output_dir=output_dir,
-        max_files=max_files
+        max_files=max_files,
+        output_format=output_format
     )
     
     # Output the results to the user
     print("\n" + "="*80)
     print("Processing complete!")
-    print(f"Generated requirements document: {api_results['output_file']}")
+    for fmt, path in api_results['output_files'].items():
+        print(f"Generated {fmt.upper()} requirements document: {path}")
     print(f"Processed {len(api_results['processed_files'])} files")
     if hasattr(client_instance, 'safety_blocked_count') and client_instance.safety_blocked_count > 0:
         print(f"Safety filter blocked {client_instance.safety_blocked_count} chunks")

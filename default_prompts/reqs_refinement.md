@@ -33,6 +33,7 @@ Keep the formatting of each requirement as follows. Renumber requirement IDs as 
     **Conformance**: [SHALL/SHOULD/MAY/etc.]
     **Conditional**: [True/False]
     **Source**: [reference]
+    **Group**: [previously identified category that requirement falls under]
     ---
 
 Do not include any introductory or conclusion/summary comments in your response. Only include the requirements as a list.

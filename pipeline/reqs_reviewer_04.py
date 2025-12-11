@@ -31,6 +31,7 @@ import re
 import importlib.util
 from dotenv import load_dotenv
 import sys
+import json
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, 
@@ -161,6 +162,93 @@ def make_batch_request_with_timeout(client_instance, api_type: str, prompt: str,
     return result[0]
 
 
+def parse_requirements_from_markdown(markdown_text: str) -> List[Dict[str, str]]:
+    """
+    Parse requirements from markdown format into structured data.
+    
+    Args:
+        markdown_text: The markdown document containing requirements
+        
+    Returns:
+        List of requirement dictionaries
+    """
+    requirements = []
+    
+    # Split by requirement headers (# REQ-)
+    req_blocks = re.split(r'# (REQ-[^\n]+)', markdown_text)
+    
+    # Process pairs of (ID, content)
+    for i in range(1, len(req_blocks), 2):
+        if i + 1 < len(req_blocks):
+            req_id = req_blocks[i].strip()
+            content = req_blocks[i + 1].strip()
+            
+            req_dict = {'ID': req_id}
+            
+            # Extract fields using regex
+            fields = {
+                'Summary': r'\*\*Summary\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Text': r'\*\*Text\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Context': r'\*\*Context\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Verification': r'\*\*Verification\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Actor': r'\*\*Actor\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Conformance': r'\*\*Conformance\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Conditional': r'\*\*Conditional\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Source': r'\*\*Source\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Group': r'\*\*Group\*\*:\s*(.+?)(?=\n\*\*|\n---|$)'
+            }
+            
+            for field, pattern in fields.items():
+                match = re.search(pattern, content, re.DOTALL)
+                req_dict[field] = match.group(1).strip() if match else ''
+            
+            requirements.append(req_dict)
+    
+    return requirements
+
+
+def group_requirements(requirements: List[Dict[str, str]]) -> Dict[str, List[Dict[str, str]]]:
+    """
+    Group requirements by their Group field.
+    
+    Args:
+        requirements: List of requirement dictionaries
+        
+    Returns:
+        Dictionary mapping group names to lists of requirements
+    """
+    grouped = {}
+    for req in requirements:
+        group = req.get('Group', 'Ungrouped')
+        if group not in grouped:
+            grouped[group] = []
+        grouped[group].append(req)
+    return grouped
+
+
+
+def save_requirements_json(requirements: List[Dict[str, str]], output_path: str):
+    """Save requirements as JSON."""
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(requirements, f, indent=2, ensure_ascii=False)
+    logging.info(f"Saved JSON output to {output_path}")
+
+
+def save_requirements_csv(requirements: List[Dict[str, str]], output_path: str):
+    """Save requirements as CSV."""
+    if not requirements:
+        return
+    
+    fieldnames = ['ID', 'Summary', 'Text', 'Context', 'Verification', 
+                  'Actor', 'Conformance', 'Conditional', 'Source', 'Group']
+    
+    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(requirements)
+    logging.info(f"Saved CSV output to {output_path}")
+
+
 def combine_batch_results(batch_results: List[str]) -> str:
     """
     Combine all batch results and renumber requirements sequentially.
@@ -224,7 +312,8 @@ def count_requirements_in_output(output: str) -> int:
 
 
 def batch_process_requirements(input_file: str, output_dir: str, client_instance, artifacts_dir: str,
-                             batch_size: int = 100, api_type: str = "claude", 
+                             batch_size: int = 100, api_type: str = "claude",
+                             output_format: str = "markdown"
                              ) -> Dict[str, Any]:
     """
     Process requirements in batches of specified size for handling large requirement sets.
@@ -267,17 +356,34 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
     
     print(f"File size: {len(content):,} characters")
     
-    # Split into individual requirements
-    print("Splitting requirements...")
-    req_pattern = r'(?=^#+\s+REQ-\d+)'
-    requirements = re.split(req_pattern, content, flags=re.MULTILINE)
-    requirements = [req.strip() for req in requirements if req.strip()]
-    
-    print(f"Found {len(requirements)} total requirements")
+    # Detect format and parse accordingly
+    if input_path.suffix == '.json':
+        print("Detected JSON format with groups...")
+        requirements_data = json.loads(content)
+        grouped_reqs = group_requirements(requirements_data)
+        total_reqs = len(requirements_data)
+        print(f"Found {total_reqs} total requirements in {len(grouped_reqs)} groups")
+        use_groups = True
+    else:
+        print("Detected markdown format...")
+        req_pattern = r'(?=^#+\s+REQ-\d+)'
+        requirements = re.split(req_pattern, content, flags=re.MULTILINE)
+        requirements = [req.strip() for req in requirements if req.strip()]
+        total_reqs = len(requirements)
+        print(f"Found {total_reqs} total requirements")
+        use_groups = False
     
     # Calculate batches
-    total_batches = (len(requirements) + batch_size - 1) // batch_size
-    print(f"Will process in {total_batches} batches")
+    if use_groups:
+        # Count total sub-batches across all groups
+        total_batches = 0
+        for group_reqs in grouped_reqs.values():
+            group_batch_count = (len(group_reqs) + batch_size - 1) // batch_size
+            total_batches += group_batch_count
+        print(f"Will process in {total_batches} batches across {len(grouped_reqs)} groups")
+    else:
+        total_batches = (len(requirements) + batch_size - 1) // batch_size
+        print(f"Will process in {total_batches} batches")
     print()
     
     # Process each batch
@@ -286,50 +392,148 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
     failed_batches = 0
     start_time = time.time()
     
-    for batch_num in range(total_batches):
-        batch_start_idx = batch_num * batch_size
-        batch_end_idx = min(batch_start_idx + batch_size, len(requirements))
-        batch_reqs = requirements[batch_start_idx:batch_end_idx]
-        
-        print(f"BATCH {batch_num + 1}/{total_batches}")
-        print(f"   Requirements: {len(batch_reqs)} (#{batch_start_idx + 1}-#{batch_end_idx})")
-        
-        # Create batch content
-        batch_content = "\n\n".join(batch_reqs)
-        batch_tokens = len(batch_content) // 4
-        print(f"   Size: {len(batch_content):,} chars (~{batch_tokens:,} tokens)")
-        
-        # Process this batch
-        batch_start_time = time.time()
-        
-        try:
-            # Create the prompt using existing prompt file
-            batch_prompt = get_requirements_refinement_prompt(batch_content, artifacts_dir)
+    batch_counter = 0  # Track overall batch number
+    
+    if use_groups:
+        # Process by groups
+        for group_name, group_reqs in grouped_reqs.items():
+            print(f"\n{'='*60}")
+            print(f"PROCESSING GROUP: {group_name}")
+            print(f"{'='*60}")
+            print(f"Requirements in group: {len(group_reqs)}")
+
+            # Split large groups into sub-batches
+            group_batches = []
+            for i in range(0, len(group_reqs), batch_size):
+                sub_batch = group_reqs[i:i + batch_size]
+                group_batches.append(sub_batch)
             
-            # Make API request with timeout
-            result = make_batch_request_with_timeout(
-                client_instance, api_type, batch_prompt,
-                env["system_prompts"][api_type],
-                timeout_minutes=8  # 8 minute timeout per batch
-            )
+            if len(group_batches) > 1:
+                print(f"Group split into {len(group_batches)} sub-batches")
+            print()
             
-            batch_elapsed = time.time() - batch_start_time
-            print(f"   Completed in {batch_elapsed:.1f}s")
+            # Process each sub-batch within the group
+            for sub_batch_num, sub_batch_reqs in enumerate(group_batches, 1):
+                batch_counter += 1
+                
+                print(f"BATCH {batch_counter}/{total_batches} (Group: {group_name}, Sub-batch {sub_batch_num}/{len(group_batches)})")
+                print(f"   Requirements: {len(sub_batch_reqs)}")
+                
+                # Convert JSON requirements to markdown format
+                batch_content = "\n\n".join([
+                    f"# {req['ID']}: {req.get('Summary', '')}\n\n" +
+                    "\n\n".join([f"**{k}**: {v}" for k, v in req.items() if k not in ['ID', 'Group'] and v]) +
+                    f"\n\n**Group**: {group_name}"  # Add group back to markdown
+                    for req in sub_batch_reqs
+                ])
+                
+                batch_tokens = len(batch_content) // 4
+                print(f"   Size: {len(batch_content):,} chars (~{batch_tokens:,} tokens)")
+                
+                # Process this batch
+                batch_start_time = time.time()
+                
+                try:
+                    # Create the prompt using existing prompt file
+                    batch_prompt = get_requirements_refinement_prompt(batch_content, artifacts_dir)
+                    
+                    # Make API request with timeout
+                    result = make_batch_request_with_timeout(
+                        client_instance, api_type, batch_prompt,
+                        env["system_prompts"][api_type],
+                        timeout_minutes=8
+                    )
+                    
+                    batch_elapsed = time.time() - batch_start_time
+                    print(f"   Completed in {batch_elapsed:.1f}s")
+                    
+                    # Add group header for first sub-batch
+                    if sub_batch_num == 1:
+                        all_results.append(f"\n\n---\n# GROUP: {group_name}\n---\n\n{result}")
+                    else:
+                        all_results.append(result)
+                    
+                    successful_batches += 1
+                    
+                    # Brief pause between batches
+                    if batch_counter < total_batches:
+                        print("   Pausing 2s...")
+                        time.sleep(2)
+                
+                except Exception as e:
+                    batch_elapsed = time.time() - batch_start_time
+                    print(f"   Failed after {batch_elapsed:.1f}s: {str(e)}")
+                    
+                    # Add error placeholder
+                    error_result = f"""
+---
+# ERROR IN BATCH {batch_counter} (Group: {group_name})
+
+**Error**: {str(e)}
+**Time**: {batch_elapsed:.1f} seconds
+
+---
+"""
+                    all_results.append(error_result)
+                    failed_batches += 1
+                
+                # Progress update
+                total_elapsed = time.time() - start_time
+                avg_time_per_batch = total_elapsed / batch_counter
+                remaining_batches = total_batches - batch_counter
+                eta_minutes = (remaining_batches * avg_time_per_batch) / 60
+                
+                print(f"   Overall Progress: {batch_counter}/{total_batches} ({(batch_counter/total_batches)*100:.1f}%)")
+                print(f"   ETA: {eta_minutes:.1f} minutes remaining")
+                print()
+    
+    else:
+        # Original markdown processing (unchanged)
+        for batch_num in range(total_batches):
+            batch_counter += 1
+            batch_start_idx = batch_num * batch_size
+            batch_end_idx = min(batch_start_idx + batch_size, len(requirements))
+            batch_reqs = requirements[batch_start_idx:batch_end_idx]
             
-            all_results.append(result)
-            successful_batches += 1
+            print(f"BATCH {batch_num + 1}/{total_batches}")
+            print(f"   Requirements: {len(batch_reqs)} (#{batch_start_idx + 1}-#{batch_end_idx})")
             
-            # Brief pause between batches
-            if batch_num < total_batches - 1:  # Don't pause after last batch
-                print("   Pausing 2s...")
-                time.sleep(2)
+            # Create batch content
+            batch_content = "\n\n".join(batch_reqs)
+            batch_tokens = len(batch_content) // 4
+            print(f"   Size: {len(batch_content):,} chars (~{batch_tokens:,} tokens)")
+            
+            # Process this batch
+            batch_start_time = time.time()
+            
+            try:
+                # Create the prompt using existing prompt file
+                batch_prompt = get_requirements_refinement_prompt(batch_content, artifacts_dir)
+                
+                # Make API request with timeout
+                result = make_batch_request_with_timeout(
+                    client_instance, api_type, batch_prompt,
+                    env["system_prompts"][api_type],
+                    timeout_minutes=8
+                )
+                
+                batch_elapsed = time.time() - batch_start_time
+                print(f"   Completed in {batch_elapsed:.1f}s")
+                
+                all_results.append(result)
+                successful_batches += 1
+                
+                # Brief pause between batches
+                if batch_num < total_batches - 1:
+                    print("   Pausing 2s...")
+                    time.sleep(2)
         
-        except Exception as e:
-            batch_elapsed = time.time() - batch_start_time
-            print(f"   Failed after {batch_elapsed:.1f}s: {str(e)}")
-            
-            # Add error placeholder
-            error_result = f"""
+            except Exception as e:
+                    batch_elapsed = time.time() - batch_start_time
+                    print(f"   Failed after {batch_elapsed:.1f}s: {str(e)}")
+                    
+                    # Add error placeholder
+                    error_result = f"""
 ---
 # ERROR IN BATCH {batch_num + 1}
 
@@ -364,20 +568,53 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
     output_dir_path.mkdir(parents=True, exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_filename = f"{api_type}_refined_requirements_{timestamp}.md"
-    output_path = output_dir_path / output_filename
+    base_filename = f"{api_type}_refined_requirements_{timestamp}"
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    # Always save markdown
+    md_output_path = output_dir_path / f"{base_filename}.md"
+    with open(md_output_path, 'w', encoding='utf-8') as f:
         f.write(final_output)
     
+    output_files = {"markdown": str(md_output_path)}
+    
+    # Parse and save in additional formats if requested
+    if output_format in ["json", "csv", "all"]:
+        parsed_reqs = parse_requirements_from_markdown(final_output)
+        
+        if use_groups:
+            # Create a mapping of req_id to group from original data
+            req_to_group = {}
+            for group_name, group_reqs in grouped_reqs.items():
+                for req in group_reqs:
+                    req_to_group[req.get('ID', req.get('id', ''))] = group_name
+            
+            # Add Group field back to parsed requirements
+            for req in parsed_reqs:
+                req_id = req.get('ID', req.get('id', ''))
+                req['Group'] = req_to_group.get(req_id, 'Ungrouped')
+
+        if output_format in ["json", "all"]:
+            json_output_path = output_dir_path / f"{base_filename}.json"
+            save_requirements_json(parsed_reqs, str(json_output_path))
+            output_files["json"] = str(json_output_path)
+        
+        if output_format in ["csv", "all"]:
+            csv_output_path = output_dir_path / f"{base_filename}.csv"
+            save_requirements_csv(parsed_reqs, str(csv_output_path))
+            output_files["csv"] = str(csv_output_path)
+
     # Final summary
     total_time = time.time() - start_time
     
     print("BATCH PROCESSING COMPLETE!")
     print("=" * 40)
-    print(f"Output saved: {output_path}")
-    print(f"Original requirements: {len(requirements)}")
+    print("Output saved:")
+    for fmt, path in output_files.items():
+        print(f"  {fmt.upper()}: {path}")
+    print(f"Original requirements: {total_reqs}")
     print(f"Final requirements: {final_req_count}")
+    if use_groups:
+        print(f"Groups processed: {len(grouped_reqs)}")
     print(f"Successful batches: {successful_batches}/{total_batches}")
     print(f"Failed batches: {failed_batches}/{total_batches}")
     print(f"Total time: {total_time/60:.1f} minutes")
@@ -385,11 +622,12 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
     
     return {
         "input_file": str(input_path),
-        "output_file": str(output_path),
+        "output_file": str(output_files),
         "api_used": api_type,
         "timestamp": timestamp,
-        "original_requirements_count": len(requirements),
+        "original_requirements_count": total_reqs,
         "final_requirements_count": final_req_count,
+        "groups_processed": len(grouped_reqs) if use_groups else None,
         "total_batches": total_batches,
         "successful_batches": successful_batches,
         "failed_batches": failed_batches,
@@ -401,6 +639,7 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
 def run_batch_requirements_refinement(client_instance,
                                       artifacts_dir: str = str(path_helpers.DEMO_ARTIFACTS_ROOT),
                                       batch_size: int = 100, api_type: str = "claude",
+                                      output_format: str = "markdown"
                                       ) -> Dict[str, Any]:
     """
     Convenience function to run batch processing with existing setup.
@@ -430,5 +669,6 @@ def run_batch_requirements_refinement(client_instance,
         client_instance=client_instance,
         artifacts_dir=artifacts_dir,
         batch_size=batch_size,
-        api_type=api_type
+        api_type=api_type,
+        output_format=output_format
     )

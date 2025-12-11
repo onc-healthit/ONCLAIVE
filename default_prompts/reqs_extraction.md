@@ -9,6 +9,7 @@ Follow these steps to extract and format the requirements:
 4. Extract the exact quote for each requirement, preserving necessary context.
 5. Format each requirement according to the INCOSE standard exemplified in the <formatting_example> tag below.
 6. If a section has multiple small requirements relating to the same topic, group those together as one (e.g., requirements for multiple search paramters for the same resource type)
+7. Identify most appropriate group for each requirement (based on list provided below)
 </instructions>
 
 Format each extracted requirement as shown in the <formatting_example> tag below:
@@ -24,6 +25,7 @@ Format each extracted requirement as shown in the <formatting_example> tag below
 **Conformance**: Conformance level
 **Conditional**: [True/False]
 **Source**: Section reference from the Implementation Guide
+**Group**: Most appropriate group that the requirement falls under, from the list of potential options below
 ```
 </formatting_example>
 
@@ -37,6 +39,42 @@ Guidelines for requirement selection and formatting:
 - Preserve the original conformance level.
 - Mark conditional requirements (those that depend on optional features).
 - Use exact quotes with necessary context preserved, when possible.
+
+For each extracted requirement, identify the most appropriate category or group it belongs to. Group the requirements by the resource profiles that make up the implementation guide from which these requirements were extracted, which are listed below:
+AllergyIntolerance
+CarePlan
+CareTeam
+Condition
+Coverage
+Device
+DiagnosticReport
+DocumentReference
+Encounter
+Goal
+Immunization
+Location
+Medication
+MedicationDispense
+MedicationRequest
+Observation
+Organization
+Patient
+Practitioner
+PractitionerRole
+Procedure
+Provenance
+QuestionnaireResponse
+RelatedPerson
+ServiceRequest
+Specimen
+
+If the requirement does not belong to any of the specific resource profiles listed, use one of the following categories instead:
+- Capability Statement
+- General/Cross-Resource
+- Security
+- Privacy
+
+Do not choose another category and only provide the group name, do not include any other descriptive text.
 </guidelines>
 
 Here is an example: 
