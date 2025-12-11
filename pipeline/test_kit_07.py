@@ -339,10 +339,15 @@ def validate_test_with_llm(client_instance, api_type: str, test_code: str, dsl_g
     
     return corrected_code
 
+def extract_input_names(test_code: str) -> set:
+    """Extract just the input names from test code."""
+    pattern = r'input\s+:(\w+)'
+    return set(re.findall(pattern, test_code))
+
 
 def generate_tests_for_section(client_instance, api_type: str, section: Dict[str, Any],
-                               dsl_guidance: str, ig_name: str, artifacts_dir: str,
-                               max_input_token_limit: int = 16000,
+                               dsl_guidance: str, ig_name: str, existing_input_names: set,
+                               artifacts_dir: str, max_input_token_limit: int = 16000,
                                enable_validation: bool = True) -> Dict[str, str]:
     """
     Generate tests for an entire section or individual requirements.
@@ -437,6 +442,11 @@ def generate_tests_for_section(client_instance, api_type: str, section: Dict[str
         try:
             logging.info(f"Generating test for requirement: {requirement['id']}")
             
+            # Build simple input context
+            input_context = ""
+            if existing_input_names:
+                input_context = f"\n\nEXISTING INPUTS (reuse these if applicable):\n{', '.join(sorted(existing_input_names))}\n"
+
             # Prepare the prompt for this requirement with full context
             req_prompt = prompt_utils.load_prompt(
                 artifacts_dir,
@@ -444,7 +454,8 @@ def generate_tests_for_section(client_instance, api_type: str, section: Dict[str
                 test_specification=requirement['full_content'],
                 requirement_id=requirement['id'],
                 ig_name=ig_name,
-                dsl_guidance=dsl_guidance
+                dsl_guidance=dsl_guidance,
+                existing_input_names= input_context
             )
             actual_tokens = client_instance.count_tokens(req_prompt, api_type)
             logging.info(f"Requirement {requirement['id']}: {actual_tokens} tokens to {api_type} API")
@@ -465,7 +476,13 @@ def generate_tests_for_section(client_instance, api_type: str, section: Dict[str
                 test_code = re.sub(r'\n```$', '', test_code)
             
             tests[requirement['id']] = test_code
+
+            # Extract and add new inputs to the set
+            new_inputs = extract_input_names(test_code)
+            existing_input_names.update(new_inputs)
+
             logging.info(f"Successfully generated test for requirement: {requirement['id']}")
+            logging.info(f"Total unique inputs so far: {len(existing_input_names)}") 
             
         except Exception as e:
             logging.error(f"Error generating test for requirement {requirement['id']}: {str(e)}")
@@ -1078,6 +1095,7 @@ def generate_inferno_test_kit(client_instance, api_type: str,
         # Generate tests by section
         print(f"\nGenerating tests...")
         all_tests = {}
+        all_input_names = set()
         processed_sections = 0
         
         for section_name, section in sections.items():
@@ -1097,6 +1115,7 @@ def generate_inferno_test_kit(client_instance, api_type: str,
                 section, 
                 dsl_guidance,
                 ig_name_camel,
+                all_input_names
                 artifacts_dir,
                 70000,  # Higher token limit
                 enable_validation
@@ -1112,6 +1131,7 @@ def generate_inferno_test_kit(client_instance, api_type: str,
             
         print(f"\nGenerated {len(all_tests)} total tests")
         logging.info(f"Generated tests for {len(all_tests)} requirements")
+        print(f"  Total unique inputs: {len(all_input_names)}")
 
         # Write test files to the module subdirectory - SECTION-BASED ORGANIZATION
         print("Writing test files...")
@@ -1230,6 +1250,8 @@ def generate_inferno_test_kit(client_instance, api_type: str,
             "total_sections": len(sections),
             "total_requirements": total_requirements,
             "generated_tests": len(all_tests),
+            "unique_inputs": len(all_input_names),
+            "input_names": sorted(all_input_names),
             "module_dir": module_subdir,
             "module_file": module_file_path,
             "output_dir": timestamped_output_dir,
