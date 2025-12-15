@@ -344,6 +344,13 @@ def extract_input_names(test_code: str) -> set:
     pattern = r'input\s+:(\w+)'
     return set(re.findall(pattern, test_code))
 
+def normalize_input_name(input_name: str) -> str:
+    """
+    Normalize input names by removing underscores and lowercasing.
+    This catches duplicates like 'care_plan_id' vs 'careplan_id'.
+    """
+    return input_name.replace('_', '').lower()
+
 
 def generate_tests_for_section(client_instance, api_type: str, section: Dict[str, Any],
                                dsl_guidance: str, ig_name: str, existing_input_names: set,
@@ -442,11 +449,33 @@ def generate_tests_for_section(client_instance, api_type: str, section: Dict[str
         try:
             logging.info(f"Generating test for requirement: {requirement['id']}")
             
-            # Build simple input context
+            # Build simple input context with duplicate detection
             input_context = ""
             if existing_input_names:
-                input_context = f"\n\nEXISTING INPUTS (reuse these if applicable):\n{', '.join(sorted(existing_input_names))}\n"
+                # Group inputs by normalized form to show duplicates
+                normalized_groups = defaultdict(list)
+                for inp in existing_input_names:
+                    normalized_groups[normalize_input_name(inp)].append(inp)
+                
+                # Build the context string
+                sorted_inputs = ', '.join(sorted(existing_input_names))
+                
+                # Warn about existing variations
+                duplicate_warnings = ""
+                for normalized, variants in normalized_groups.items():
+                    if len(variants) > 1:
+                        duplicate_warnings += f"\nWARNING: These inputs are the same concept - use ONE consistently: {', '.join(sorted(variants))}"
+                
+                input_context = f"""
+EXISTING INPUTS (reuse these EXACT names):
+{sorted_inputs}
+{duplicate_warnings}
 
+CRITICAL: Before declaring a new input:
+1. Check if it exists in the list above (copy the EXACT name)
+2. Remove underscores from compound FHIR resource names: e.g., 'careplan_id' NOT 'care_plan_id'
+"""
+            
             # Prepare the prompt for this requirement with full context
             req_prompt = prompt_utils.load_prompt(
                 artifacts_dir,
@@ -476,11 +505,23 @@ def generate_tests_for_section(client_instance, api_type: str, section: Dict[str
                 test_code = re.sub(r'\n```$', '', test_code)
             
             tests[requirement['id']] = test_code
-
+            
             # Extract and add new inputs to the set
             new_inputs = extract_input_names(test_code)
+            
+            # Warn about potential duplicates
+            for new_input in new_inputs:
+                if new_input not in existing_input_names:
+                    new_normalized = normalize_input_name(new_input)
+                    for existing in existing_input_names:
+                        if normalize_input_name(existing) == new_normalized:
+                            logging.warning(
+                                f"Potential duplicate in {requirement['id']}: '{new_input}' vs existing '{existing}'"
+                            )
+                            break
+            
             existing_input_names.update(new_inputs)
-
+            
             logging.info(f"Successfully generated test for requirement: {requirement['id']}")
             logging.info(f"Total unique inputs so far: {len(existing_input_names)}") 
             
@@ -1115,11 +1156,11 @@ def generate_inferno_test_kit(client_instance, api_type: str,
                 section, 
                 dsl_guidance,
                 ig_name_camel,
-                all_input_names
+                all_input_names,
                 artifacts_dir,
                 70000,  # Higher token limit
                 enable_validation
-            )
+                )
             
             print(f"  Generated {len(section_tests)} tests")
             
@@ -1131,7 +1172,23 @@ def generate_inferno_test_kit(client_instance, api_type: str,
             
         print(f"\nGenerated {len(all_tests)} total tests")
         logging.info(f"Generated tests for {len(all_tests)} requirements")
-        print(f"  Total unique inputs: {len(all_input_names)}")
+
+        # Check for duplicates
+        print("Checking for duplicate inputs...")
+        normalized_groups = defaultdict(list)
+        for inp in all_input_names:
+            normalized_groups[normalize_input_name(inp)].append(inp)
+
+        duplicates_found = {k: v for k, v in normalized_groups.items() if len(v) > 1}
+
+        if duplicates_found:
+            print(f"\n⚠️  Found {len(duplicates_found)} potential duplicate input groups:")
+            for variants in duplicates_found.values():
+                print(f"  - {', '.join(sorted(variants))}")
+            logging.warning(f"Found {len(duplicates_found)} potential duplicate input groups")
+        else:
+            print("✅ No duplicate inputs detected")
+            logging.info("No duplicate inputs detected")
 
         # Write test files to the module subdirectory - SECTION-BASED ORGANIZATION
         print("Writing test files...")
@@ -1251,6 +1308,7 @@ def generate_inferno_test_kit(client_instance, api_type: str,
             "total_requirements": total_requirements,
             "generated_tests": len(all_tests),
             "unique_inputs": len(all_input_names),
+            "potential_duplicates": len(duplicates_found) if duplicates_found else 0,
             "input_names": sorted(all_input_names),
             "module_dir": module_subdir,
             "module_file": module_file_path,

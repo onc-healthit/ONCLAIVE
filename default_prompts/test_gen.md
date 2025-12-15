@@ -63,6 +63,31 @@ CRITICAL REQUIREMENTS:
 - ALWAYS use the Inferno DSL assertion methods (assert_valid_json, assert_response_status, etc.) when appropriate.
 - ONLY use the `assert condition, 'Failure message'` logic pattern with `assert`, not the DSL assertion methods like assert_response_status, and assert_resource_type.
 
+{existing_inputs}
+
+CRITICAL - INPUT NAMING CONSISTENCY:
+
+Before declaring ANY new input:
+1. Check if it already exists in the list above (copy the EXACT name)
+2. Pay attention to any WARNING messages about duplicate variations
+3. If a similar input exists, USE IT - don't create a variation
+
+Common duplicate mistakes to AVOID:
+- 'care_plan_id' vs 'careplan_id' → Choose ONE format consistently
+- 'care_team_id' vs 'careteam_id' → Choose ONE format consistently
+- 'medication_request_id' vs 'medicationrequest_id' → Choose ONE format consistently
+
+Naming rules for compound FHIR resource names:
+- For 2-word resources: Remove underscores (e.g., 'careplan_id' NOT 'care_plan_id')
+- When in doubt: Copy the EXACT name from the existing inputs list above
+
+Input suffix consistency:
+- _id: for resource IDs (e.g., patient_id)
+- _identifier: for business identifiers (e.g., patient_identifier for MRN)
+- _reference: for resource references (e.g., practitioner_reference)
+- _code: for coded values (e.g., category_code)
+- _date: for date parameters (e.g., search_date)
+
 When developing the test:
 
 1. Define a TestGroup with a descriptive ID based on the requirement
