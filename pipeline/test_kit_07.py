@@ -484,7 +484,7 @@ CRITICAL: Before declaring a new input:
                 requirement_id=requirement['id'],
                 ig_name=ig_name,
                 dsl_guidance=dsl_guidance,
-                existing_input_names= input_context
+                existing_inputs= input_context
             )
             actual_tokens = client_instance.count_tokens(req_prompt, api_type)
             logging.info(f"Requirement {requirement['id']}: {actual_tokens} tokens to {api_type} API")
