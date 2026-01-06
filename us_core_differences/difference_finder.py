@@ -37,6 +37,29 @@ def create_difference_prompt(new_ig_content: str, old_ig_content: str, artifacts
 
     return prompt
 
+def create_check_prompt(new_ig_content: str, old_ig_content: str, differences: str, artifacts_dir: str) -> str:
+    """
+    Create a prompt for finding differences between IG versions.
+
+    Args:
+        new_ig_content: The content from the new version of the IG to analyze
+        old_ig_content: The content from the old version of the IG to analyze
+        artifacts_dir: Path to the base artifacts directory
+
+    Returns:
+        The formatted prompt for the LLM
+    """
+
+    prompt = prompt_utils.load_prompt(
+        artifacts_dir,
+        'reqs_check.md',
+        NEW_IG_NARRATIVE=new_ig_content,
+        OLD_IG_NARRATIVE=old_ig_content,
+        DIFFERENCES=differences
+    )
+
+    return prompt
+
 def compare_narrative(client_instance, artifacts_dir: str, api_type: str):
     artifacts_path = Path(artifacts_dir)
     old_ig_dir = artifacts_path / "ig" / "cleaned_markdown" / "old"
@@ -45,6 +68,8 @@ def compare_narrative(client_instance, artifacts_dir: str, api_type: str):
     new_ig_files = new_ig_dir.glob('*.md')
 
     all_changes = {}
+
+    checked_changes = {}
 
     client_instance.safety_blocked_count = 0
 
@@ -69,6 +94,10 @@ def compare_narrative(client_instance, artifacts_dir: str, api_type: str):
             print(f"Comparing: {new_ig_file_path.name}")
             response = client_instance.make_llm_request(api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
             all_changes[new_ig_file_path.name] = response
+
+            check_prompt_text = create_check_prompt(new_file_content, old_file_content, response, artifacts_dir)
+            checked_response = client_instance.make_llm_request(api_type, check_prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type])
+            checked_changes[new_ig_file_path.name] = checked_response
         except SafetyFilterException as e:
             client_instance.safety_blocked_count += 1
             print(f"\nSAFETY FILTER BLOCKED CONTENT #{client_instance.safety_blocked_count}")
@@ -85,7 +114,16 @@ def compare_narrative(client_instance, artifacts_dir: str, api_type: str):
         content = f"# {filename}\n\n{differences}\n\n"
         final_content = final_content + content
 
+    checked_content = ""
+    for filename, differences in checked_changes.items():
+        content = f"# {filename}\n\n{differences}\n\n"
+        checked_content = checked_content + content
+
     output_path = artifacts_path / 'ig' / 'differences.md'
+    checked_output_path = artifacts_path / 'ig' / 'checked_differences.md'
 
     with open(output_path, 'w') as f:
         f.write(final_content)
+
+    with open(checked_output_path, 'w') as f:
+        f.write(checked_content)
