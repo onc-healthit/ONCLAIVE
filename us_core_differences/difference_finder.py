@@ -44,6 +44,7 @@ def create_check_prompt(new_ig_content: str, old_ig_content: str, differences: s
     Args:
         new_ig_content: The content from the new version of the IG to analyze
         old_ig_content: The content from the old version of the IG to analyze
+        differences: The differences found from the initial analysis
         artifacts_dir: Path to the base artifacts directory
 
     Returns:
