@@ -14,6 +14,7 @@ Follow these steps to extract and format the requirements:
 
 Format each extracted requirement as shown in the <formatting_example> tag below:
 <formatting_example>
+
 ```
 ## REQ-[ID]
 
@@ -31,6 +32,7 @@ Format each extracted requirement as shown in the <formatting_example> tag below
 **Section**: Section reference from the Implementation Guide
 **Grouping**: Most appropriate group that the requirement falls under, from the list of potential options below
 ```
+
 </formatting_example>
 
 <guidelines>
@@ -81,7 +83,7 @@ If the requirement does not belong to any of the specific resource profiles list
 Do not choose another category and only provide the group name, do not include any other descriptive text.
 </guidelines>
 
-Here is an example: 
+Here is an example:
 <examples>
 <example>
 <FHIR_TEXT>
@@ -103,18 +105,18 @@ Fetch and Search Criteria:
 A Server SHALL be capable of returning a Endpoint resource using:
 GET [base]/Endpoint/[id]
 
-A Server SHALL be capable of supporting the following _includes:
-Endpoint:organization - GET [base]/Endpoint?[parameter=value]&_include=Endpoint:organization
+A Server SHALL be capable of supporting the following \_includes:
+Endpoint:organization - GET [base]/Endpoint?[parameter=value]&\_include=Endpoint:organization
 
 Search Parameter Summary:
-Conformance	Parameter	Type	Example
-SHALL	_lastUpdated	date	GET [base]/Endpoint?_lastUpdated=[_lastUpdated]
+Conformance Parameter Type Example
+SHALL \_lastUpdated date GET [base]/Endpoint?\_lastUpdated=[_lastUpdated]
 
 Search Parameter Summary:
-Conformance	Parameter	Type	Example
-SHALL	organization	reference	GET [base]/Endpoint?organization=[organization]
-SHALL	_id	token	GET [base]/Endpoint?_id=[id]
-SHALL	_lastUpdated	date	GET [base]/Endpoint?_lastUpdated=[_lastUpdated]
+Conformance Parameter Type Example
+SHALL organization reference GET [base]/Endpoint?organization=[organization]
+SHALL \_id token GET [base]/Endpoint?\_id=[id]
+SHALL \_lastUpdated date GET [base]/Endpoint?\_lastUpdated=[_lastUpdated]
 </FHIR_TEXT>
 <ideal_output>
 <requirement_extraction>
@@ -124,13 +126,13 @@ Potential requirements:
 - The Plan-Net server SHALL support the searchParameters on each profile individually
 - The Plan-Net server SHALL support the searchParameters on each profile...in combination.
 - A Server SHALL be capable of returning a Endpoint resource using:
-GET [base]/Endpoint/[id]
-- A Server SHALL be capable of supporting the following _includes: Endpoint:organization - GET [base]/Endpoint?[parameter=value]&_include=Endpoint:organization
-- A Server SHALL be capable of supporting the following search: GET [base]/Endpoint?_lastUpdated=[_lastUpdated]
+  GET [base]/Endpoint/[id]
+- A Server SHALL be capable of supporting the following \_includes: Endpoint:organization - GET [base]/Endpoint?[parameter=value]&\_include=Endpoint:organization
+- A Server SHALL be capable of supporting the following search: GET [base]/Endpoint?\_lastUpdated=[_lastUpdated]
 
 Search Parameter Summary:
-Conformance	Parameter	Type	Example
-SHALL	_lastUpdated	date	GET [base]/Endpoint?_lastUpdated=[_lastUpdated]
+Conformance Parameter Type Example
+SHALL \_lastUpdated date GET [base]/Endpoint?\_lastUpdated=[_lastUpdated]
 
 </requirement_extraction>
 
@@ -162,9 +164,9 @@ Conditional: False
 Source: FHIR RESTful Capabilities Section
 
 REQ-XX
-Summary: A server SHALL support searching by _id on the Endpoint resource.
+Summary: A server SHALL support searching by \_id on the Endpoint resource.
 Description: "A Server SHOULD be capable of returning a Endpoint resource using:
-GET [base]/Endpoint/[id]/_history/vid"
+GET [base]/Endpoint/[id]/\_history/vid"
 Verification: Test
 Actor: Plan-Net Server
 Conformance: SHALL
@@ -172,9 +174,9 @@ Conditional: False
 Source: FHIR RESTful Capabilities Section
 
 REQ-XX
-Summary: A server SHALL support searching by _id on the Endpoint resource.
+Summary: A server SHALL support searching by \_id on the Endpoint resource.
 Description: "A Server SHOULD be capable of returning a Endpoint resource using:
-GET [base]/Endpoint/[id]/_history/vid"
+GET [base]/Endpoint/[id]/\_history/vid"
 Verification: Test
 Actor: Plan-Net Server
 Conformance: SHALL
@@ -183,7 +185,7 @@ Source: FHIR RESTful Capabilities Section- Endpoint
 
 REQ-XX
 Summary: A server SHALL support searching by organization on the Endpoint resource.
-Description: "A Server SHALL be capable of supporting the following _includes: Endpoint:organization - GET [base]/Endpoint?[parameter=value]&_include=Endpoint:organization"
+Description: "A Server SHALL be capable of supporting the following \_includes: Endpoint:organization - GET [base]/Endpoint?[parameter=value]&\_include=Endpoint:organization"
 Verification: Test
 Actor: Plan-Net Server
 Conformance: SHALL
@@ -191,8 +193,8 @@ Conditional: False
 Source: FHIR RESTful Capabilities Section- Endpoint
 
 REQ-XX
-Summary: A server SHALL support searching by _lastUpdated on the Endpoint resource.
-Description: "A Server SHALL be capable of supporting the following search: GET [base]/Endpoint?_lastUpdated=[_lastUpdated]"
+Summary: A server SHALL support searching by \_lastUpdated on the Endpoint resource.
+Description: "A Server SHALL be capable of supporting the following search: GET [base]/Endpoint?\_lastUpdated=[_lastUpdated]"
 Verification: Test
 Actor: Plan-Net Server
 Conformance: SHALL

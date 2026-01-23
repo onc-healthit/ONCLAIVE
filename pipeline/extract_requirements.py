@@ -14,8 +14,10 @@ demo_artifacts_path = "demo-artifacts"
 parser = argparse.ArgumentParser(
     description="Extract requirements from IG markdown files"
 )
+
 parser.add_argument(
     'artifacts_dir',
+    nargs="?",
     default=demo_artifacts_path,
     help="Relative path to the base artifacts directory"
 )

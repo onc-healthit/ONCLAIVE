@@ -1,6 +1,6 @@
 import argparse
-import html_narrative_extractor_01
-import markdown_cleaner_02
+import ig_narrative_extractor
+import markdown_cleaner
 import os
 
 working_directory = os.getcwd()
@@ -13,9 +13,20 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     'artifacts_dir',
-    nargs="?",
     default=demo_artifacts_path,
     help="Relative path to the base artifacts directory"
+)
+
+parser.add_argument(
+    '-o', '--old-ig-location',
+    required=True,
+    help="URL or relative file path of full IG package for old IG version"
+)
+
+parser.add_argument(
+    '-n', '--new-ig-location',
+    required=True,
+    help="URL or relative file path of full IG package for new IG version"
 )
 
 parser.add_argument(
@@ -34,17 +45,26 @@ parser.add_argument(
 args = parser.parse_args()
 
 relative_artifacts_dir = args.artifacts_dir
+old_ig_location = args.old_ig_location
+new_ig_location = args.new_ig_location
 verbose = args.verbose
 exclude_patterns = args.exclude_pattern
 
 final_artifacts_dir = os.path.abspath(os.path.join(working_directory, relative_artifacts_dir))
 
-result = html_narrative_extractor_01.convert_local_html_to_markdown(
+ig_narrative_extractor.download_and_extract_ig_html(
+    artifacts_dir=final_artifacts_dir,
+    old_ig_location=old_ig_location,
+    new_ig_location=new_ig_location,
+    verbose=verbose
+)
+
+result = ig_narrative_extractor.convert_local_html_to_markdown(
     artifacts_dir=final_artifacts_dir,
     verbose=verbose,
     exclude_patterns=exclude_patterns
 )
 
-markdown_cleaner_02.process_directory(
+markdown_cleaner.process_directory(
     artifacts_dir=final_artifacts_dir
 )

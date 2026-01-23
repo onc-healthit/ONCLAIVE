@@ -17,6 +17,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     'artifacts_dir',
+    nargs="?",
     default=demo_artifacts_path,
     help="Relative path to the base artifacts directory"
 )

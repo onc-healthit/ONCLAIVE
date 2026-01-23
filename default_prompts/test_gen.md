@@ -2,7 +2,7 @@ Convert the following FHIR test specification into executable Ruby code using th
 
 Test Specification: {test_specification}
 
-Create an Inferno test implementation that 1: Follows the Inferno structure (TestGroup containing one or more tests) 2. Implements the test logic described in the specification 3. Implements test for all components outlined in the test specification- do not develop tests for only one part 4. Makes appropriate FHIR API calls 5. Includes proper assertions to validate the requirements 6. Handles both success and error cases appropriately
+Create an Inferno test implementation that 1: Follows the Inferno structure (TestGroup containing one or more tests) 2. Implements the test logic described in the specification 3. Implements tests for all components outlined in the test specification- do not develop tests for only one part 4. Makes appropriate FHIR API calls 5. Includes proper assertions to validate the requirements 6. Handles both success and error cases appropriately
 
 Naming conventions: - Use underscored lowercase names for files (e.g., patient_read_test.rb) - Use CamelCase for class names (e.g., PatientReadTest) - Class names should end with 'Test' or 'Group' - Give each test a unique ID that's descriptive and related to the requirement
 
@@ -10,11 +10,11 @@ The test should be comprehensive but focused on exactly what's described in the 
 
 Requirement ID: {requirement_id} Module Name: {ig_name}
 
-CRITICAL REQUIREMENTS: 
+CRITICAL REQUIREMENTS:
 
 1. INPUTS AND CLIENTS
 
-- DO NOT declaure URL inputs in TestGroups- they inherit from the parent TestSuite
+- DO NOT declare URL inputs in TestGroups- they inherit from the parent TestSuite
 - DO NOT define fhir_client blocks in TestGroups unless you need different credentials
 - ALWAYS declare all OTHER inputs that a test will use (excluding URL which comes from parent)
 - Always use valid input types (see Inferno guidance; e.g., text, textarea, radio, checkbox, oauth_credentials)
@@ -26,7 +26,7 @@ CRITICAL REQUIREMENTS:
 - Only define a new fhir_client a TestGroup if you need different authentication/credentials
 - The URL input is already available from the parent TestSuite
 
-3. MAKING REQUESTING:
+3. MAKING REQUESTS:
 
 - ALWAYS use the Inferno DSL methods (fhir_read, fhir_search, etc.)
 - NEVER use direct HTTP methods like 'get', 'post'
@@ -38,7 +38,7 @@ CRITICAL REQUIREMENTS:
 - NEVER use dot notation: response.code, response.body, etc.
 - For header access, iterate through response[:headers]
 
-5. ERROR_HANDLING:
+5. ERROR HANDLING:
 
 - NEVER use rescue blocks for test failures - use assertions
 - AVOID rescuing StandardError in test implementations
