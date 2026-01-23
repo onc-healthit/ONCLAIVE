@@ -32,6 +32,7 @@ import importlib.util
 from dotenv import load_dotenv
 import sys
 import json
+import csv
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, 
@@ -188,14 +189,17 @@ def parse_requirements_from_markdown(markdown_text: str) -> List[Dict[str, str]]
             # Extract fields using regex
             fields = {
                 'Summary': r'\*\*Summary\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Text': r'\*\*Text\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Requirement': r'\*\*Requirement\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
                 'Context': r'\*\*Context\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Verification': r'\*\*Verification\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Actor': r'\*\*Actor\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
                 'Conformance': r'\*\*Conformance\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Conditional': r'\*\*Conditional\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Source': r'\*\*Source\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
-                'Group': r'\*\*Group\*\*:\s*(.+?)(?=\n\*\*|\n---|$)'
+                'Actor': r'\*\*Actor\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Sub-Requirement(s)': r'\*\*Sub-Requirement\(s\)\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Conditionality': r'\*\*Conditionality\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Conditionality Details': r'\*\*Conditionality Details\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Verifiable?': r'\*\*Verifiable\?\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Verifiability Details': r'\*\*Verifiability Details\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Section': r'\*\*Section\*\*:\s*(.+?)(?=\n\*\*|\n---|$)',
+                'Grouping': r'\*\*Grouping\*\*:\s*(.+?)(?=\n\*\*|\n---|$)'
             }
             
             for field, pattern in fields.items():
@@ -239,14 +243,63 @@ def save_requirements_csv(requirements: List[Dict[str, str]], output_path: str):
     if not requirements:
         return
     
-    fieldnames = ['ID', 'Summary', 'Text', 'Context', 'Verification', 
-                  'Actor', 'Conformance', 'Conditional', 'Source', 'Group']
+    fieldnames = ['ID', 'Summary', 'Requirement', 'Context', 'Conformance', 
+                  'Actor', 'Sub-Requirement(s)', 'Conditionality', 'Conditionality Details', 
+                  'Verifiable?', 'Verifiability Details', 'Section', 'Grouping']
     
     with open(output_path, 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(requirements)
     logging.info(f"Saved CSV output to {output_path}")
+
+
+def save_requirements_csv_inferno(requirements: List[Dict[str, str]], output_path: str):
+    """
+    Save requirements as CSV with additional Inferno columns in the specified order.
+    """
+    if not requirements:
+        return
+    
+    # Define the complete column order for Inferno format
+    inferno_fieldnames = [
+        'ID', 'URL', 'Summary', 'Requirement', 'Context', 'Conformance', 
+        'Actor', 'Sub-Requirement(s)', 'Conditionality', 'Conditionality Details',
+        'Verifiable?', 'Verifiability Details', 'Planning To Test?', 
+        'Planning To Test Details', 'Page', 'Section', 'Section #', 
+        'Grouping', 'Priority', 'Test Plan', 'Questions', 'Notes', 
+        'Target Draft Scope', 'Status'
+    ]
+    
+    # Convert requirements to Inferno format
+    inferno_requirements = []
+    for req in requirements:
+        inferno_req = {}
+        
+        # Copy existing fields directly (they already have the right names)
+        for field in ['ID', 'Summary', 'Requirement', 'Context', 'Conformance', 
+                      'Actor', 'Sub-Requirement(s)', 'Conditionality', 
+                      'Conditionality Details', 'Verifiable?', 'Verifiability Details', 
+                      'Section', 'Grouping']:
+            inferno_req[field] = req.get(field, '')
+        
+        # Initialize new empty columns
+        new_columns = ['URL', 'Planning To Test?', 'Planning To Test Details', 
+                      'Page', 'Section #', 'Priority', 'Test Plan', 
+                      'Questions', 'Notes', 'Target Draft Scope', 'Status']
+        
+        for col in new_columns:
+            inferno_req[col] = ''
+        
+        inferno_requirements.append(inferno_req)
+    
+    # Write to CSV with all columns in the correct order
+    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=inferno_fieldnames)
+        writer.writeheader()
+        writer.writerows(inferno_requirements)
+    
+    logging.info(f"Saved Inferno CSV output to {output_path}")
 
 
 def combine_batch_results(batch_results: List[str]) -> str:
@@ -578,7 +631,7 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
     output_files = {"markdown": str(md_output_path)}
     
     # Parse and save in additional formats if requested
-    if output_format in ["json", "csv", "all"]:
+    if output_format in ["json", "csv", "inferno", "all"]:
         parsed_reqs = parse_requirements_from_markdown(final_output)
         
         if use_groups:
@@ -602,6 +655,11 @@ def batch_process_requirements(input_file: str, output_dir: str, client_instance
             csv_output_path = output_dir_path / f"{base_filename}.csv"
             save_requirements_csv(parsed_reqs, str(csv_output_path))
             output_files["csv"] = str(csv_output_path)
+
+        if output_format in ["inferno", "all"]:
+            inferno_output_path = output_dir_path / f"{base_filename}_inferno.csv"
+            save_requirements_csv_inferno(parsed_reqs, str(inferno_output_path))
+            output_files["inferno"] = str(inferno_output_path)
 
     # Final summary
     total_time = time.time() - start_time
@@ -649,6 +707,8 @@ def run_batch_requirements_refinement(client_instance,
         client_instance: Your LLM client instance
         batch_size: Requirements per batch (default: 100)
         api_type: API to use (default: "claude")
+        output_format: Format for output ('markdown', 'json', 'csv', 'inferno', or 'all')
+
 
     Returns:
         Dictionary containing processing results
@@ -661,7 +721,7 @@ def run_batch_requirements_refinement(client_instance,
         ...     api_type="gpt"
         ... )
     """
-    input_file = os.path.join(artifacts_dir, "requirements", "initial_extraction", "reqs_list_v1.md")
+    input_file = os.path.join(artifacts_dir, "requirements", "grouped", "HealthcareService.json")
     output_dir = os.path.join(artifacts_dir, "requirements", "revised")
     return batch_process_requirements(
         input_file=input_file,

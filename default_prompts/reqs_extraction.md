@@ -17,15 +17,19 @@ Format each extracted requirement as shown in the <formatting_example> tag below
 ```
 ## REQ-[ID]
 
+**URL**: URL of the page that the requirement content is taken from. If available, look for the IG package name, any complete URLs in the file (in links, copyright, or metadata), extract the base path from them, and reconstruct the full URL of the page if possible. If unavailable, leave blank.
 **Summary**: Summary description of the requirement
-**Text**: "[exact quote with necessary [clarifications] and [additions] to make it a full phrase or sentence]"
-**Context**: Overview of context within which requirement is set to provide background needed to understand requirement for later test planning activities
-**Verification**: Recommended verification method (Test/Analysis/Inspection/Demonstration)
-**Actor**: Actor responsible, conformance level, conditions, etc.
-**Conformance**: Conformance level
-**Conditional**: [True/False]
-**Source**: Section reference from the Implementation Guide
-**Group**: Most appropriate group that the requirement falls under, from the list of potential options below
+**Requirement**: "[exact quote with necessary [clarifications] and [additions] to make it a full phrase or sentence]"
+**Context**: Overview of context within which requirement is set to provide background needed to understand requirement for later test planning activities. This can include any clarifications or interpretations.
+**Conformance**: Conformance level, one of "[SHALL/SHOULD/MAY/SHOULD NOT/SHALL NOT]"
+**Actor**: The actor, or actors, that the requirement constrains
+**Sub-Requirement(s)**: The requirement set id and requirement id(s) of external requirements that are referenced by this requirement. This column will only be used when this requirements document points to requirements from a different requirement set. If not applicable, enter "NA"
+**Conditionality**: Either "[True/False]" depending on whether or not the requirement is conditional on a prerequisite clause. An example of a conditional requirement is, "If the value is X, then the server SHALL do Y." Note: A blank value carries no information and does not indicate if Conditionality is true or false.
+**Conditionality Details**: If the requirement is conditional, detail on when it is in force.
+**Verifiable**: either "[Yes/No]" - A determination as to whether this requirement can be verified:: 'No' - the requirement cannot be verified, e.g., because it is not specific enough; 'Yes' - the requirement can be verified using mechanical means or an attestation
+**Verifiability Details**: Recommended verification method; one of "[Attestation/Automation/Out of Scope]"
+**Section**: Section reference from the Implementation Guide
+**Grouping**: Most appropriate group that the requirement falls under, from the list of potential options below
 ```
 </formatting_example>
 
