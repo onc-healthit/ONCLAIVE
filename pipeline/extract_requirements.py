@@ -52,7 +52,7 @@ parser.add_argument(
 parser.add_argument(
     '-f', '--output-format',
     default="markdown",
-    choices=['markdown', 'json'],
+    choices=['markdown', 'json', 'csv', 'all'],
     help="Output format"
 )
 
@@ -71,14 +71,16 @@ reqs_extraction_03.run_requirements_extractor(
     artifacts_dir=final_artifacts_dir,
     api_type=api_type,
     client_instance=llm_clients,
-    max_files=max_files
+    max_files=max_files,
+    output_format=output_format
 )
 
 reqs_reviewer_04.run_batch_requirements_refinement(
     artifacts_dir=final_artifacts_dir,
     client_instance=llm_clients,
     batch_size=batch_size,
-    api_type=api_type
+    api_type=api_type,
+    output_format=output_format
 )
 
 reqs_downselect_05.full_pass(

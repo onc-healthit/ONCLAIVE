@@ -25,15 +25,21 @@ Keep the formatting of each requirement as follows. Renumber requirement IDs as 
 
     ---
     # REQ-XX
+    **ID**: [renumbered XX value included in header above]
     **Summary**: [Summary description of requirement]
-    **Text**: "[requirement text, exactly as it was. Should be a full sentence or phrase as much as possible]"
+    **Requirement**: "[requirement text, exactly as it was. Should be a full sentence or phrase as much as possible]"
     **Context**: [contextual information from IG section needed to understand what requirement means for test planning activities]
-    **Verification**: [method]
+    **Conformance**: "[SHALL/SHOULD/MAY/SHOULD NOT/SHALL NOT/etc.]"
     **Actor**: [actor]
-    **Conformance**: [SHALL/SHOULD/MAY/etc.]
-    **Conditional**: [True/False]
-    **Source**: [reference]
+    **Sub-Requirement(s)**: [The requirement set id and requirement id(s) of external requirements that are referenced by this requirement]
+    **Conditionality**: "[True/False]"
+    **Conditionality Details**: [If the requirement is conditional, detail on when it is in force]
+    **Verifiability**: "[Yes/No]"
+    **Verifiability Details**: "[Attestation/Automation/Out of Scope]"
+    **Section**: [reference]
+    **Grouping**: [previously identified category that requirement falls under]
     ---
+
 
 Do not include any introductory or conclusion/summary comments in your response. Only include the requirements as a list.
 

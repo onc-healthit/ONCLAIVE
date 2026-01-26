@@ -300,17 +300,18 @@ def parse_requirements_file(file_path: str) -> List[Dict[str, str]]:
             req_data['id'] = id_match.group(1)
         
         # Extract other fields
-        for field in ['Summary', 'Text', 'Context', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source']:
+        for field in ['Summary', 'Text', 'Context', 'Verification', 'Actor', 'Conformance', 'Conditional', 'Source', 'Group']:
             pattern = rf'\*\*{field}\*\*:\s*(.*?)(?:\n\*\*|\n---|\Z)'
             field_match = re.search(pattern, section, re.DOTALL)
             if field_match:
                 req_data[field.lower()] = field_match.group(1).strip()
         
         if req_data:
-            # Format to match expected structure (same as JSON format)
+            # Format to match expected structure
             formatted_req = {
                 'id': req_data.get('id', 'UNKNOWN'),
-                'parsed': req_data
+                'parsed': req_data,
+                'group': req_data.get('group', None)
             }
             requirements.append(formatted_req)
     
@@ -486,27 +487,45 @@ def generate_consolidated_test_plan(client_instance, api_type: str,
         capability_collection = instantiate_capability_vectordb(capability_statement_file)
         print("Capability knowledge base ready")
         
-        # Identify groups for each requirement
-        print(f"\nGrouping requirements...")
-        req_groups = {}
-        for i, req in enumerate(requirements, 1):
-            req_id = req.get('id', 'UNKNOWN-ID')
-            print(f"  Analyzing requirement {i}/{len(requirements)}: {req_id}", end='\r')
-            req_groups[req_id] = identify_requirement_group(client_instance, api_type, req, artifacts_dir)
-        
-        print(f"  Completed grouping {len(requirements)} requirements                    ")
-        
-        # Group requirements by identified category
+        # Group requirements by existing Group field (from refined requirements)
+        print(f"\nOrganizing requirements by groups...")
         grouped_requirements = defaultdict(list)
+        use_llm_fallback = False  # Set to True to use LLM for missing groups
+        missing_group_reqs = []
+
         for req in requirements:
             req_id = req.get('id', 'UNKNOWN-ID')
-            group = req_groups.get(req_id, 'Uncategorized')
-            grouped_requirements[group].append(req)
+            # Try to get group from multiple possible locations
+            group = None
             
-        # Log the grouping results
-        print(f"\nRequirements organized into {len(grouped_requirements)} groups:")
-        for group, reqs in grouped_requirements.items():
-            print(f"  • {group}: {len(reqs)} requirements")
+            # Check top-level group field (from markdown parsing)
+            if 'group' in req and req['group']:
+                group = req['group']
+            # Check inside parsed dict
+            elif 'parsed' in req and 'group' in req['parsed'] and req['parsed']['group']:
+                group = req['parsed']['group']
+            
+            # If no group found, decide on fallback strategy
+            if not group:
+                if use_llm_fallback:
+                    # Use LLM to identify group for this requirement
+                    missing_group_reqs.append(req_id)
+                    print(f"  Identifying group for {req_id} using LLM...", end='\r')
+                    group = identify_requirement_group(client_instance, api_type, req, artifacts_dir)
+                else:
+                    # Simple fallback to Uncategorized
+                    group = 'Uncategorized'
+                    missing_group_reqs.append(req_id)
+            
+            grouped_requirements[group].append(req)
+        
+        # Report on grouping
+        if missing_group_reqs:
+            if use_llm_fallback:
+                print(f"  Used LLM to identify groups for {len(missing_group_reqs)} requirements")
+            else:
+                print(f"  {len(missing_group_reqs)} requirements missing Group field (assigned to 'Uncategorized')")
+        print(f"  Requirements organized into {len(grouped_requirements)} groups")
         
         # Generate test plan file
         test_plan_path = output_dir / "test_plan.md"
