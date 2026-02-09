@@ -1,0 +1,17 @@
+[
+  {
+    "ID": "REQ-031",
+    "Summary": "HealthcareService deliverymethod extension must be supported",
+    "Requirement": "\"HealthcareService.extension:deliverymethod [must be supported]\"",
+    "Context": "This requirement pertains to the Plan-Net HealthcareService profile. The deliverymethod extension describes the service delivery method and must be supported by implementations.",
+    "Conformance": "SHALL",
+    "Actor": "Health Plan API Actor",
+    "Sub-Requirement(s)": "NA",
+    "Conditionality": "False",
+    "Conditionality Details": "NA",
+    "Verifiable?": "",
+    "Verifiability Details": "Automation",
+    "Section": "11.58.1 Resource Profile: PlannetHealthcareService - Detailed Descriptions",
+    "Grouping": "HealthcareService# REQ-PRACT-001"
+  }
+]

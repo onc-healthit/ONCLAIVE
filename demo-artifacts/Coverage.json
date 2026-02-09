@@ -1,0 +1,17 @@
+[
+  {
+    "ID": "REQ-003",
+    "Summary": "Support search by administered-by parameter on InsurancePlan resource",
+    "Requirement": "\"Select products that are administered by the specified organization [using Parameter `administered-by`:`reference` with Expression `InsurancePlan.administeredBy`]\"",
+    "Context": "This search parameter allows querying InsurancePlan resources filtered by the administering Organization reference. The parameter supports multipleAnd (multiple values that must all be true) and multipleOr (comma-separated values where at least one must be true). Allowed chains include: name, partof.",
+    "Conformance": "SHALL",
+    "Actor": "Health Plan API Actor",
+    "Sub-Requirement(s)": "NA",
+    "Conditionality": "False",
+    "Conditionality Details": "NA",
+    "Verifiable?": "",
+    "Verifiability Details": "Automation",
+    "Section": "11.12.1 SearchParameter: Plannet_sp_insuranceplan_administered_by",
+    "Grouping": "Coverage"
+  }
+]
