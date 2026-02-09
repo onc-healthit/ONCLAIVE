@@ -27,7 +27,7 @@ Format each extracted requirement as shown in the <formatting_example> tag below
 **Sub-Requirement(s)**: The requirement set id and requirement id(s) of external requirements that are referenced by this requirement. This column will only be used when this requirements document points to requirements from a different requirement set. If not applicable, enter "NA"
 **Conditionality**: Either "[True/False]" depending on whether or not the requirement is conditional on a prerequisite clause. An example of a conditional requirement is, "If the value is X, then the server SHALL do Y." Note: A blank value carries no information and does not indicate if Conditionality is true or false.
 **Conditionality Details**: If the requirement is conditional, detail on when it is in force.
-**Verifiable**: either "[Yes/No]" - A determination as to whether this requirement can be verified:: 'No' - the requirement cannot be verified, e.g., because it is not specific enough; 'Yes' - the requirement can be verified using mechanical means or an attestation
+**Verifiable**: either "[Yes/No]" - A determination as to whether this requirement can be verified: 'No' - the requirement cannot be verified, e.g., because it is not specific enough; 'Yes' - the requirement can be verified using mechanical means or an attestation
 **Verifiability Details**: Recommended verification method; one of "[Attestation/Automation/Out of Scope]"
 **Section**: Section reference from the Implementation Guide
 **Grouping**: Most appropriate group that the requirement falls under, from the list of potential options below
