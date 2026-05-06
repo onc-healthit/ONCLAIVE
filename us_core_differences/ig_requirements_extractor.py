@@ -44,7 +44,17 @@ def load_and_extract_ig_requirements(
         # Grab the <page name>.html from the URL from the URL* column of the row
         # Example: https://hl7.org/fhir/us/core/STU7/general-guidance.html#language-support becomes
         # general-guidance.html
-        url = row['URL*'].split("/")[-1].split("#")[0]
+        raw_url = row['URL*']
+        if pd.isna(raw_url) or not str(raw_url).strip():
+            if verbose:
+                print("Skipping row with empty URL*")
+            continue
+
+        url = str(raw_url).strip().split("/")[-1].split("#")[0]
+        if not url:
+            if verbose:
+                print(f"Skipping row with URL* that has no filename: {raw_url}")
+            continue
 
         # Change the .html filename to .md
         md_filename = url.removesuffix(".html") + ".md"

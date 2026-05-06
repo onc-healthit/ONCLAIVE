@@ -33,9 +33,9 @@ def convert_local_html_to_markdown(
     """
     Convert HTML files from a local directory to markdown, excluding files matching specific patterns.
 
-    This function recursively processes all HTML files in the input directory,
+    This function processes HTML files directly in the input directory,
     applies header numbering based on CSS styles, and converts them to Markdown format
-    while preserving the directory structure.
+    while ignoring any subdirectories.
 
     Args:
         artifacts_dir: Path to the base artifacts directory
@@ -74,9 +74,9 @@ def convert_local_html_to_markdown(
         # Compile regex patterns for exclusion
         compiled_patterns = [re.compile(pattern) for pattern in exclude_patterns]
 
-        # Get all HTML files in the directory
+        # Get top-level HTML files in the directory. Nested directories are intentionally ignored.
         html_files = []
-        for file in input_path.glob('**/*.html'):
+        for file in input_path.glob('*.html'):
             file_str = str(file)
 
             # Check if the file should be excluded
@@ -257,6 +257,31 @@ def _update_header_numbering(header_list: list, current_level: int, prev_level: 
 def _is_url(path_or_url: str) -> bool:
     return path_or_url.startswith(('http://', 'https://'))
 
+def _get_extractable_ig_html_filename(zip_member: str) -> str | None:
+    """
+    Return the output filename for an IG HTML zip member that should be extracted.
+
+    CARIN BB packages place narrative pages under the en/ directory. Files outside
+    en/, including top-level files and nested asset folders, are ignored before
+    extraction so they never reach markdown conversion.
+    """
+    path_parts = [
+        part for part in zip_member.replace('\\', '/').split('/')
+        if part and part != '.'
+    ]
+
+    if path_parts and path_parts[0].lower() == 'site':
+        path_parts = path_parts[1:]
+
+    if len(path_parts) != 2 or path_parts[0].lower() != 'en':
+        return None
+
+    filename = path_parts[1]
+    if not filename.lower().endswith('.html'):
+        return None
+
+    return filename
+
 def download_and_extract_ig_html(
     new_ig_location: str,
     artifacts_dir: str,
@@ -377,7 +402,10 @@ def download_and_extract_ig_html(
 
 def _extract_html_files(zip_path: str, target_dir: Path, verbose: bool = True) -> int:
     """
-    Extract all html files from a zip archive to the target directory.
+    Extract html files from the en/ directory in a zip archive to the target directory.
+
+    HTML files outside the en/ directory are skipped before extraction, so they are
+    not present for the markdown conversion step.
 
     Args:
         zip_path: Path to the zip file
@@ -395,31 +423,20 @@ def _extract_html_files(zip_path: str, target_dir: Path, verbose: bool = True) -
 
     files_to_skip = [
         "artifacts.html",
-        "capability-statements.html",
-        "changes-between-versions.html",
-        "changes.html",
-        "conformance.html",
         "downloads.html",
-        "examples.html",
-        "fsh-link-references.html",
-        "future-of-US-core.html",
-        "guidance.html",
+        "change_notes.html",
         "index.html",
-        "looking-ahead.html",
-        "observation-summary.html",
-        "patient-data-feed-additional-resources.html",
-        "patient-data-feed.html",
-        "profiles-and-extensions.html",
-        "README.html",
-        "relationship-with-other-igs.html",
-        "search-parameters-and-operations.html",
-        "searchform.html",
-        "terminology.html",
         "toc.html",
-        "us-core-roadmap.html",
-        "uscdi.html",
-        "vsacname-fhiruri-map.html",
-        "vitals-write.html"
+        "searchform.html"
+    ]
+
+    files_to_keep = [
+        "Background.html",
+        "Security_And_Privacy_Considerations.html",
+        "Common_Payer_Consumer_Data_Set.html",
+        "Conformance_Requirements.html",
+        "General_Guidance.html",
+        "Terminology_Licensure.html"
     ]
 
     patterns_to_skip = [
@@ -434,29 +451,34 @@ def _extract_html_files(zip_path: str, target_dir: Path, verbose: bool = True) -
         re.compile(r"^ipa-comparison-"),
         re.compile(r"^ips-comparison-"),
         re.compile(r"^comparison-"),
+        re.compile(r"^qa*"),
         re.compile(r"^qa*")
     ]
 
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         all_files = zip_ref.namelist()
 
-        html_files = [f for f in all_files if f.lower().endswith(('.html'))]
+        html_files = [
+            f for f in all_files
+            if _get_extractable_ig_html_filename(f) is not None
+        ]
 
         if verbose and len(html_files) > 0:
-            print(f"Found {len(html_files)} html files in zip")
+            print(f"Found {len(html_files)} en-directory html files in zip")
 
         for html_file in html_files:
             try:
+                print(html_file)
                 with zip_ref.open(html_file) as source:
                     content = source.read()
 
-                safe_filename = html_file.removeprefix('site/').replace('/', '_').replace('\\', '_')
+                safe_filename = _get_extractable_ig_html_filename(html_file)
 
                 if safe_filename in files_to_skip:
                     continue
 
                 # Skip documentation for resources which aren't StructureDefinitions (terminology and examples)
-                if safe_filename[0].isupper() and not (safe_filename.startswith('StructureDefinition') or safe_filename.startswith('CapabilityStatement')):
+                if safe_filename[0].isupper() and not (safe_filename.startswith('StructureDefinition') or safe_filename.startswith('CapabilityStatement') or safe_filename in files_to_keep):
                     continue
 
                 pattern_to_skip = False
