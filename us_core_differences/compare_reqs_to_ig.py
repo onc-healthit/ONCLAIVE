@@ -62,7 +62,7 @@ def clean_differences_markdown_file(file_path: Path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    content, differences_count = _remove_no_differences_files(content)
+    # content, differences_count = _remove_no_differences_files(content)
     content = re.sub(r"[ \t]+$", "", content, flags=re.MULTILINE)
     content = re.sub(r"\n{3,}", "\n\n", content).strip()
 
@@ -70,7 +70,7 @@ def clean_differences_markdown_file(file_path: Path):
         out_file.write(f"{content}\n" if content else "")
 
     print(f"Cleaned differences file: {file_path}")
-    print(f"{differences_count} substantive differences found between IG versions.")
+    # print(f"{differences_count} substantive differences found between IG versions.")
 
 parser = argparse.ArgumentParser(
     description="Compare IG versions"

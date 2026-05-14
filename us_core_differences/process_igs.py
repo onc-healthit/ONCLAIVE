@@ -1,5 +1,6 @@
 import argparse
 import ig_narrative_extractor
+import carin_bb_ig_narrative_extractor
 import markdown_cleaner
 import os
 
@@ -42,6 +43,12 @@ parser.add_argument(
     help="Files matching regular expressions in this argument will be ignored"
 )
 
+parser.add_argument(
+    '--c4bb-ig',
+    action='store_true',
+    help="Process Carin for Blue Button"
+)
+
 args = parser.parse_args()
 
 relative_artifacts_dir = args.artifacts_dir
@@ -49,21 +56,36 @@ old_ig_location = args.old_ig_location
 new_ig_location = args.new_ig_location
 verbose = args.verbose
 exclude_patterns = args.exclude_pattern
+c4bb_ig = args.c4bb_ig
 
 final_artifacts_dir = os.path.abspath(os.path.join(working_directory, relative_artifacts_dir))
 
-ig_narrative_extractor.download_and_extract_ig_html(
-    artifacts_dir=final_artifacts_dir,
-    old_ig_location=old_ig_location,
-    new_ig_location=new_ig_location,
-    verbose=verbose
-)
+if (c4bb_ig):
+    carin_bb_ig_narrative_extractor.download_and_extract_ig_html(
+        artifacts_dir=final_artifacts_dir,
+        old_ig_location=old_ig_location,
+        new_ig_location=new_ig_location,
+        verbose=verbose
+    )
 
-result = ig_narrative_extractor.convert_local_html_to_markdown(
-    artifacts_dir=final_artifacts_dir,
-    verbose=verbose,
-    exclude_patterns=exclude_patterns
-)
+    result = carin_bb_ig_narrative_extractor.convert_local_html_to_markdown(
+        artifacts_dir=final_artifacts_dir,
+        verbose=verbose,
+        exclude_patterns=exclude_patterns
+    )
+else:
+    ig_narrative_extractor.download_and_extract_ig_html(
+        artifacts_dir=final_artifacts_dir,
+        old_ig_location=old_ig_location,
+        new_ig_location=new_ig_location,
+        verbose=verbose
+    )
+
+    result = ig_narrative_extractor.convert_local_html_to_markdown(
+        artifacts_dir=final_artifacts_dir,
+        verbose=verbose,
+        exclude_patterns=exclude_patterns
+    )
 
 markdown_cleaner.process_directory(
     artifacts_dir=final_artifacts_dir

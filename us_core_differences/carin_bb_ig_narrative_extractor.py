@@ -282,6 +282,126 @@ def _get_extractable_ig_html_filename(zip_member: str) -> str | None:
 
     return filename
 
+def _extract_html_files_old_carin_ig(zip_path: str, target_dir: Path, verbose: bool = True) -> int:
+    """
+    Extract all html files from a zip archive to the target directory.
+
+    Args:
+        zip_path: Path to the zip file
+        target_dir: Directory to extract html files to
+        verbose: Whether to print progress messages
+
+    Returns:
+        Number of html files extracted
+
+    Raises:
+        zipfile.BadZipFile: If zip file is corrupted
+        PermissionError: If unable to write files
+    """
+    html_count = 0
+
+    files_to_skip = [
+        "artifacts.html",
+        "capability-statements.html",
+        "changes-between-versions.html",
+        "changes.html",
+        "conformance.html",
+        "downloads.html",
+        "examples.html",
+        "fsh-link-references.html",
+        "future-of-US-core.html",
+        "guidance.html",
+        "index.html",
+        "looking-ahead.html",
+        "observation-summary.html",
+        "patient-data-feed-additional-resources.html",
+        "patient-data-feed.html",
+        "profiles-and-extensions.html",
+        "README.html",
+        "relationship-with-other-igs.html",
+        "search-parameters-and-operations.html",
+        "searchform.html",
+        "terminology.html",
+        "toc.html",
+        "us-core-roadmap.html",
+        "uscdi.html",
+        "vsacname-fhiruri-map.html",
+        "vitals-write.html"
+    ]
+
+    files_to_keep = [
+        "Background.html",
+        "Security_And_Privacy_Considerations.html",
+        "Common_Payer_Consumer_Data_Set.html",
+        "Conformance_Requirements.html",
+        "General_Guidance.html",
+        "Terminology_Licensure.html"
+    ]
+
+    patterns_to_skip = [
+        re.compile(r"-definitions\.html$"),
+        re.compile(r"-examples\.html$"),
+        re.compile(r"-mappings\.html$"),
+        re.compile(r"-testing\.html$"),
+        re.compile(r"\.profile\.history\.html$"),
+        re.compile(r"\.profile\.json\.html$"),
+        re.compile(r"\.profile\.ttl\.html$"),
+        re.compile(r"\.profile\.xml\.html$"),
+        re.compile(r"^ipa-comparison-"),
+        re.compile(r"^ips-comparison-"),
+        re.compile(r"^comparison-"),
+        re.compile(r"^us-core-comparisons"),
+        re.compile(r"^qa*")
+    ]
+
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        all_files = zip_ref.namelist()
+
+        html_files = [f for f in all_files if f.lower().endswith(('.html'))]
+
+        if verbose and len(html_files) > 0:
+            print(f"Found {len(html_files)} html files in zip")
+
+        for html_file in html_files:
+            try:
+                with zip_ref.open(html_file) as source:
+                    content = source.read()
+
+                safe_filename = html_file.removeprefix('site/').replace('/', '_').replace('\\', '_')
+
+                if safe_filename in files_to_skip:
+                    continue
+
+                # Skip documentation for resources which aren't StructureDefinitions (terminology and examples)
+                if safe_filename[0].isupper() and not (safe_filename.startswith('StructureDefinition') or safe_filename.startswith('CapabilityStatement') or safe_filename in files_to_keep):
+                    continue
+
+                pattern_to_skip = False
+                for pattern in patterns_to_skip:
+                    if pattern.search(safe_filename):
+                        pattern_to_skip = True
+                        break
+
+                if pattern_to_skip:
+                    continue
+
+                target_file = target_dir / safe_filename
+                with open(target_file, 'wb') as dest:
+                    dest.write(content)
+
+                html_count += 1
+
+                if verbose and html_count % 10 == 0:
+                    print(f"Extracted {html_count} html files...")
+
+            except Exception as e:
+                print(f"Error extracting {html_file}: {str(e)}")
+
+                continue
+
+    return html_count
+
+
 def download_and_extract_ig_html(
     new_ig_location: str,
     artifacts_dir: str,
@@ -346,11 +466,21 @@ def download_and_extract_ig_html(
                     temp_zip_path = temp_zip.name
 
                 try:
-                    html_count = _extract_html_files(
-                        temp_zip_path,
-                        config['target_dir'],
-                        verbose
-                    )
+                    # Not the prettiest code, but the old CARIN BB IG has a different structure and we want to extract different files from it,
+                    # so we need to use a different extraction function for it
+                    if (config['name'] == "old"):
+                        html_count = _extract_html_files_old_carin_ig(
+                            temp_zip_path,
+                            config['target_dir'],
+                            verbose
+                        )
+                    else:
+                        html_count = _extract_html_files(
+                            temp_zip_path,
+                            config['target_dir'],
+                            verbose
+                        )
+                    
 
                     if verbose:
                         print(f"Extracted {html_count} html files from {config['name']} zip")
@@ -468,7 +598,6 @@ def _extract_html_files(zip_path: str, target_dir: Path, verbose: bool = True) -
 
         for html_file in html_files:
             try:
-                print(html_file)
                 with zip_ref.open(html_file) as source:
                     content = source.read()
 
