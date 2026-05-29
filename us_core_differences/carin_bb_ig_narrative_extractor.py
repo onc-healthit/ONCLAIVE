@@ -25,6 +25,12 @@ DEFAULT_EXCLUDE_PATTERNS = [
     r'(?i)example'
 ]
 
+def _strip_numbered_html_prefix(filename: str) -> str:
+    """Remove leading IG ordering prefixes like 1_Background.html."""
+    path_prefix, separator, basename = filename.replace('\\', '/').rpartition('/')
+    basename = re.sub(r'^\d+_', '', basename)
+    return f"{path_prefix}{separator}{basename}" if separator else basename
+
 def convert_local_html_to_markdown(
     artifacts_dir: str = str(path_helpers.DEMO_ARTIFACTS_ROOT),
     exclude_patterns: list = None,
@@ -280,7 +286,7 @@ def _get_extractable_ig_html_filename(zip_member: str) -> str | None:
     if not filename.lower().endswith('.html'):
         return None
 
-    return filename
+    return _strip_numbered_html_prefix(filename)
 
 def _extract_html_files_old_carin_ig(zip_path: str, target_dir: Path, verbose: bool = True) -> int:
     """
@@ -305,6 +311,7 @@ def _extract_html_files_old_carin_ig(zip_path: str, target_dir: Path, verbose: b
         "capability-statements.html",
         "changes-between-versions.html",
         "changes.html",
+        "change_notes.html",
         "conformance.html",
         "downloads.html",
         "examples.html",
@@ -367,7 +374,8 @@ def _extract_html_files_old_carin_ig(zip_path: str, target_dir: Path, verbose: b
                 with zip_ref.open(html_file) as source:
                     content = source.read()
 
-                safe_filename = html_file.removeprefix('site/').replace('/', '_').replace('\\', '_')
+                safe_filename = _strip_numbered_html_prefix(html_file.removeprefix('site/'))
+                safe_filename = safe_filename.replace('/', '_').replace('\\', '_')
 
                 if safe_filename in files_to_skip:
                     continue
