@@ -267,9 +267,10 @@ def _get_extractable_ig_html_filename(zip_member: str) -> str | None:
     """
     Return the output filename for an IG HTML zip member that should be extracted.
 
-    CARIN BB packages place narrative pages under the en/ directory. Files outside
-    en/, including top-level files and nested asset folders, are ignored before
-    extraction so they never reach markdown conversion.
+    CARIN BB packages are not consistent across versions: some place narrative
+    pages under site/en/, while older packages place them directly under site/.
+    Nested asset folders are ignored before extraction so they never reach
+    markdown conversion.
     """
     path_parts = [
         part for part in zip_member.replace('\\', '/').split('/')
@@ -279,14 +280,17 @@ def _get_extractable_ig_html_filename(zip_member: str) -> str | None:
     if path_parts and path_parts[0].lower() == 'site':
         path_parts = path_parts[1:]
 
-    if len(path_parts) != 2 or path_parts[0].lower() != 'en':
-        return None
+    if len(path_parts) == 2 and path_parts[0].lower() == 'en':
+        filename = path_parts[1]
+        if filename.lower().endswith('.html'):
+            return _strip_numbered_html_prefix(filename)
 
-    filename = path_parts[1]
-    if not filename.lower().endswith('.html'):
-        return None
+    if len(path_parts) == 1:
+        filename = path_parts[0]
+        if filename.lower().endswith('.html'):
+            return _strip_numbered_html_prefix(filename)
 
-    return _strip_numbered_html_prefix(filename)
+    return None
 
 def _extract_html_files_old_carin_ig(zip_path: str, target_dir: Path, verbose: bool = True) -> int:
     """

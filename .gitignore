@@ -5,3 +5,4 @@ __pycache__
 pipeline/checkpoints
 reports
 reports_plannet_test_plan
+inferno-test-kits/
