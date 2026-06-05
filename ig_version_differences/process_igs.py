@@ -4,6 +4,12 @@ import carin_bb_ig_narrative_extractor
 import markdown_cleaner
 import os
 
+
+def _get_narrative_extractor(c4bb_ig: bool):
+    """Return the narrative extractor module for the selected IG family."""
+    return carin_bb_ig_narrative_extractor if c4bb_ig else ig_narrative_extractor
+
+
 working_directory = os.getcwd()
 
 demo_artifacts_path = "demo-artifacts"
@@ -60,32 +66,19 @@ c4bb_ig = args.c4bb_ig
 
 final_artifacts_dir = os.path.abspath(os.path.join(working_directory, relative_artifacts_dir))
 
-if (c4bb_ig):
-    carin_bb_ig_narrative_extractor.download_and_extract_ig_html(
-        artifacts_dir=final_artifacts_dir,
-        old_ig_location=old_ig_location,
-        new_ig_location=new_ig_location,
-        verbose=verbose
-    )
+narrative_extractor = _get_narrative_extractor(c4bb_ig)
+narrative_extractor.download_and_extract_ig_html(
+    artifacts_dir=final_artifacts_dir,
+    old_ig_location=old_ig_location,
+    new_ig_location=new_ig_location,
+    verbose=verbose
+)
 
-    result = carin_bb_ig_narrative_extractor.convert_local_html_to_markdown(
-        artifacts_dir=final_artifacts_dir,
-        verbose=verbose,
-        exclude_patterns=exclude_patterns
-    )
-else:
-    ig_narrative_extractor.download_and_extract_ig_html(
-        artifacts_dir=final_artifacts_dir,
-        old_ig_location=old_ig_location,
-        new_ig_location=new_ig_location,
-        verbose=verbose
-    )
-
-    result = ig_narrative_extractor.convert_local_html_to_markdown(
-        artifacts_dir=final_artifacts_dir,
-        verbose=verbose,
-        exclude_patterns=exclude_patterns
-    )
+narrative_extractor.convert_local_html_to_markdown(
+    artifacts_dir=final_artifacts_dir,
+    verbose=verbose,
+    exclude_patterns=exclude_patterns
+)
 
 markdown_cleaner.process_directory(
     artifacts_dir=final_artifacts_dir

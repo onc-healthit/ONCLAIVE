@@ -1,6 +1,18 @@
 from pathlib import Path
 import pandas as pd
-import os
+
+
+def _markdown_filename_from_requirement_url(raw_url) -> str | None:
+    """Return the markdown filename referenced by a requirements URL cell."""
+    if pd.isna(raw_url) or not str(raw_url).strip():
+        return None
+
+    filename = str(raw_url).strip().split("/")[-1].split("#")[0]
+    if not filename:
+        return None
+
+    return filename.removesuffix(".html") + ".md"
+
 
 def row_to_markdown(row) -> str:
     """
@@ -12,14 +24,15 @@ def row_to_markdown(row) -> str:
     lines.append("")
     return "\n".join(lines)
 
+
 def load_and_extract_ig_requirements(
     old_requirements_path: str,
     artifacts_dir: str,
     verbose: bool = False
-):
+) -> None:
     """
-    Loads and extracts IG requirements from an Excel spreadsheet and saves the 
-    contents of each row in the spreadsheet to a markdown file corresponding to the 
+    Loads and extracts IG requirements from an Excel spreadsheet and saves the
+    contents of each row in the spreadsheet to a markdown file corresponding to the
     HTML filename in the URL* column of the spreadsheet.
 
     Args:
@@ -34,45 +47,26 @@ def load_and_extract_ig_requirements(
     if verbose:
         print(f"Created directory: {old_ig_requirements_markdown_output}")
 
-    # Read the requirements Excel spreadsheet 
+    # Read the requirements Excel spreadsheet.
     df = pd.read_excel(Path(old_requirements_path), sheet_name='Requirements')
 
     # Store existing markdown file names from the URL* column of the spreadsheet in a set
     markdown_files = set()
 
     for _, row in df.iterrows():
-        # Grab the <page name>.html from the URL from the URL* column of the row
-        # Example: https://hl7.org/fhir/us/core/STU7/general-guidance.html#language-support becomes
-        # general-guidance.html
-        raw_url = row['URL*']
-        if pd.isna(raw_url) or not str(raw_url).strip():
+        md_filename = _markdown_filename_from_requirement_url(row['URL*'])
+        if md_filename is None:
             if verbose:
-                print("Skipping row with empty URL*")
+                print(f"Skipping row with empty or invalid URL*: {row['URL*']}")
             continue
 
-        url = str(raw_url).strip().split("/")[-1].split("#")[0]
-        if not url:
-            if verbose:
-                print(f"Skipping row with URL* that has no filename: {raw_url}")
-            continue
-
-        # Change the .html filename to .md
-        md_filename = url.removesuffix(".html") + ".md"
-
-        # Path of directory to store the converted markdown
         md_path = old_ig_requirements_markdown_output / md_filename
-
-        # Convert row into formatted markdown
         content = row_to_markdown(row)
 
         if md_filename in markdown_files:
-            # If the filename already exists in the markdown_files set, then we just add the 
-            # row content to the existing markdown file
             with md_path.open("a", encoding="utf-8") as f:
                 f.write(content)
         else:
-            # If the filename does not exist in the markdown_files set, then we create a markdown
-            # file and add the row content to that new markdown file
             with md_path.open("w", encoding="utf-8") as f:
                 f.write(f"# {md_filename.replace('.md', '').replace('-', ' ').title()}\n\n")
                 f.write(content)

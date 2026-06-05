@@ -5,7 +5,6 @@ pipeline_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'p
 sys.path.append(pipeline_path)
 
 from bs4 import BeautifulSoup
-import os
 from pathlib import Path
 import path_helpers
 from langchain_community.document_transformers import MarkdownifyTransformer
@@ -26,14 +25,111 @@ DEFAULT_EXCLUDE_PATTERNS = [
 ]
 
 def _strip_numbered_html_prefix(filename: str) -> str:
-    """Remove leading IG ordering prefixes like 1_Background.html."""
+    """Remove leading IG ordering prefixes like 1_Background.html or 1.2-page.html."""
     path_prefix, separator, basename = filename.replace('\\', '/').rpartition('/')
-    basename = re.sub(r'^\d+_', '', basename)
+    basename = re.sub(r'^\d+(?:[._-]\d+)*[._-]+', '', basename)
     return f"{path_prefix}{separator}{basename}" if separator else basename
+
+
+def _find_html_files(
+    input_path: Path,
+    compiled_patterns: list[re.Pattern],
+    recursive: bool,
+) -> list[Path]:
+    """Return HTML files under input_path that do not match exclusion patterns."""
+    glob_pattern = '**/*.html' if recursive else '*.html'
+    return [
+        file
+        for file in input_path.glob(glob_pattern)
+        if not any(pattern.search(str(file)) for pattern in compiled_patterns)
+    ]
+
+
+def _convert_local_html_to_markdown(
+    artifacts_dir: str = str(path_helpers.DEMO_ARTIFACTS_ROOT),
+    exclude_patterns: list[str] | None = None,
+    verbose: bool = True,
+    recursive: bool = True,
+) -> dict:
+    """
+    Convert extracted IG HTML files to markdown for both old and new versions.
+
+    Args:
+        artifacts_dir: Path to the base artifacts directory
+        exclude_patterns: Regex patterns for files to skip. Defaults to DEFAULT_EXCLUDE_PATTERNS
+        verbose: Whether to print progress messages
+        recursive: Whether to include nested HTML files under each version directory
+
+    Returns:
+        Dictionary containing total_files, processed, errors, and error_files
+    """
+    summary = {
+        'total_files': 0,
+        'processed': 0,
+        'errors': 0,
+        'error_files': []
+    }
+    patterns = DEFAULT_EXCLUDE_PATTERNS if exclude_patterns is None else exclude_patterns
+    compiled_patterns = [re.compile(pattern) for pattern in patterns]
+
+    for ig_version in ['old', 'new']:
+        input_path = Path(artifacts_dir) / "ig" / "site" / ig_version
+        if not input_path.exists():
+            raise FileNotFoundError(f"IG files in artifacts directory not found: {input_path}")
+
+        output_dir = Path(artifacts_dir) / "ig" / "converted_markdown" / ig_version
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        html_files = _find_html_files(input_path, compiled_patterns, recursive)
+        summary['total_files'] += len(html_files)
+
+        if verbose:
+            print(f"Found {len(html_files)} HTML files to process")
+
+        md_transformer = MarkdownifyTransformer()
+        for i, html_file in enumerate(html_files):
+            try:
+                rel_path = html_file.relative_to(input_path)
+                output_path = output_dir / rel_path.with_suffix('.md')
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+
+                with open(html_file, 'r', encoding='utf-8') as f:
+                    html_content = f.read()
+
+                processed_content = _process_html_headers(html_content, html_file, verbose)
+                converted_docs = md_transformer.transform_documents([
+                    Document(page_content=processed_content)
+                ])
+
+                if not converted_docs:
+                    raise ValueError("No content generated from markdown transformer")
+
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(converted_docs[0].page_content)
+                summary['processed'] += 1
+
+                if verbose and ((i + 1) % 10 == 0 or i == len(html_files) - 1):
+                    print(f"Processed {i + 1}/{len(html_files)} files")
+
+            except Exception as e:
+                if verbose:
+                    print(f"Error processing {html_file}: {str(e)}")
+                summary['errors'] += 1
+                summary['error_files'].append(str(html_file))
+
+        if verbose:
+            print(
+                "Conversion complete. "
+                f"Successfully processed {summary['processed']} files. "
+                f"Encountered {summary['errors']} errors."
+            )
+
+    return summary
+
 
 def convert_local_html_to_markdown(
     artifacts_dir: str = str(path_helpers.DEMO_ARTIFACTS_ROOT),
-    exclude_patterns: list = None,
+    exclude_patterns: list[str] | None = None,
     verbose: bool = True
 ) -> dict:
     """
@@ -63,93 +159,12 @@ def convert_local_html_to_markdown(
         >>> result = convert_local_html_to_markdown('input/html', 'output/md')
         >>> print(f"Processed {result['processed']} files")
     """
-    for ig_version in ['old', 'new']:
-        # Validate input directory
-        input_path = Path(artifacts_dir) / "ig" / "site" / ig_version
-        if not input_path.exists():
-            raise FileNotFoundError(f"IG files in artifacts directory not found: {input_path}")
-
-        output_dir= Path(artifacts_dir) / "ig" / "converted_markdown" / ig_version
-
-        os.makedirs(output_dir, exist_ok=True)
-
-        # Use default patterns if none provided
-        if exclude_patterns is None:
-            exclude_patterns = DEFAULT_EXCLUDE_PATTERNS
-
-        # Compile regex patterns for exclusion
-        compiled_patterns = [re.compile(pattern) for pattern in exclude_patterns]
-
-        # Get all HTML files in the directory
-        html_files = []
-        for file in input_path.glob('**/*.html'):
-            file_str = str(file)
-
-            # Check if the file should be excluded
-            exclude = any(pattern.search(file_str) for pattern in compiled_patterns)
-            if not exclude:
-                html_files.append(file)
-
-        if verbose:
-            print(f"Found {len(html_files)} HTML files to process")
-
-        # Initialize counters and transformer
-        processed = 0
-        errors = 0
-        error_files = []
-        md_transformer = MarkdownifyTransformer()
-
-        # Process each HTML file
-        for i, html_file in enumerate(html_files):
-            try:
-                # Create relative path to preserve directory structure
-                rel_path = html_file.relative_to(input_path)
-                output_path = Path(output_dir) / rel_path.with_suffix('.md')
-
-                # Create parent directories if they don't exist
-                output_path.parent.mkdir(parents=True, exist_ok=True)
-
-                # Load and process HTML content
-                with open(html_file, 'r', encoding='utf-8') as f:
-                    html_content = f.read()
-
-                # Process headers with numbering
-                processed_content = _process_html_headers(html_content, html_file, verbose)
-
-                # Create a LangChain Document object with the processed HTML content
-                doc = Document(page_content=processed_content)
-
-                # Transform to Markdown
-                converted_docs = md_transformer.transform_documents([doc])
-
-                # Write to output file
-                if converted_docs and len(converted_docs) > 0:
-                    with open(output_path, 'w', encoding='utf-8') as f:
-                        f.write(converted_docs[0].page_content)
-                    processed += 1
-                else:
-                    raise ValueError("No content generated from markdown transformer")
-
-                # Print progress
-                if verbose and ((i + 1) % 10 == 0 or i == len(html_files) - 1):
-                    print(f"Processed {i + 1}/{len(html_files)} files")
-
-            except Exception as e:
-                if verbose:
-                    print(f"Error processing {html_file}: {str(e)}")
-                errors += 1
-                error_files.append(str(html_file))
-
-        # Print summary
-        if verbose:
-            print(f"Conversion complete. Successfully processed {processed} files. Encountered {errors} errors.")
-
-    return {
-        'total_files': len(html_files),
-        'processed': processed,
-        'errors': errors,
-        'error_files': error_files
-    }
+    return _convert_local_html_to_markdown(
+        artifacts_dir=artifacts_dir,
+        exclude_patterns=exclude_patterns,
+        verbose=verbose,
+        recursive=True
+    )
 
 
 def _process_html_headers(html_content: str, html_file: Path, verbose: bool = True) -> str:
@@ -187,7 +202,7 @@ def _process_html_headers(html_content: str, html_file: Path, verbose: bool = Tr
             style_tag.text
         )
 
-        # We also want to check if the CSS styling is present in the HTML file and if not then we need to add a digit to the first header present
+        # Some IG pages omit the counter CSS while still declaring a prefix.
         css_style_tag = None
         for tag in soup.find_all("style", attrs={'type': 'text/css'}):
             if 'h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}' in tag.text:
@@ -202,8 +217,8 @@ def _process_html_headers(html_content: str, html_file: Path, verbose: bool = Tr
         prev_level = starting_header_level - 1
         header_list = [int(x) for x in h_prefix_match.group(2).split('.')]
 
-        # If the CSS styling is not present, we want to add a 1 as a digit (see 14.2.1 in US Core IG)
-        if css_style_tag == None:
+        # Add the missing first child value so headings align with the IG numbering.
+        if css_style_tag is None:
             header_list.append(1)
 
         # Process all headers in the document
@@ -246,46 +261,43 @@ def _update_header_numbering(header_list: list, current_level: int, prev_level: 
     Returns:
         Updated header numbering list
     """
-    # Base base - if the header level is the same as the starting level, then nothing changes
     if current_level != starting_header_level:
         if prev_level == current_level:
             header_list[-1] += 1
         elif prev_level > current_level:
-            # Chop off the last digit and increment the new last digit
-            header_list = header_list[:-1] # or try .pop if this doesn't work
+            header_list = header_list[:-1]
             header_list[-1] += 1
         elif prev_level < current_level:
-            # Add a 1 to the end
             header_list.append(1)
     return header_list
 
 
-def _is_url(path_or_url: str) -> bool:
+def _is_url(path_or_url: str | None) -> bool:
+    """Return whether a source location is an HTTP(S) URL."""
+    if path_or_url is None:
+        return False
     return path_or_url.startswith(('http://', 'https://'))
+
 
 def download_and_extract_ig_html(
     new_ig_location: str,
     artifacts_dir: str,
     verbose: bool = False,
     old_ig_location: str | None = None,
-) -> dict:
+) -> None:
     """
-    Download or load two specified IG sources and extract all html files to separate folders.
+    Download or load IG zip sources and extract selected HTML files.
 
-    This function handles both URLs and local file paths. For URLs, it downloads zip files
-    and extracts HTML files. For local paths, it handles both zip files and directories
-    containing HTML files directly.
+    This function handles URL sources by downloading zip files. Local sources must
+    already be zip files.
 
     Args:
-        old_ig_location: URL or local path of the first (old) IG source
-        new_ig_location: URL or local path of the second (new) IG source
+        old_ig_location: URL or local path of the old IG zip, when present
+        new_ig_location: URL or local path of the new IG zip
         artifacts_dir: Path to the base artifacts directory
         verbose: Whether to print progress messages
 
     Raises:
-        requests.RequestException: If download fails (for URLs)
-        zipfile.BadZipFile: If zip file is corrupted
-        FileNotFoundError: If local path doesn't exist
         PermissionError: If unable to create directories or write files
     """
     artifacts_path = Path(artifacts_dir)
@@ -306,6 +318,9 @@ def download_and_extract_ig_html(
     ]
 
     for config in ig_configs:
+        if config['source'] is None:
+            continue
+
         try:
             if _is_url(config['source']):
                 # Handle URL - download zip file
