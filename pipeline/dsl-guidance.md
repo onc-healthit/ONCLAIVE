@@ -169,6 +169,44 @@ require_relative 'us_core_test_kit/us_core_patient_group' # Correct file path
 require_relative 'us_core_test_kit/us_core_condition_group' # Correct file path
 ```
 
+The `require_relative` statements must be at the top of the file, outside of the TestSuite:
+
+Incorrect:
+
+```ruby
+module InfernoTemplate
+  class Suite < Inferno::TestSuite
+    id :inferno_template
+    title 'Inferno Template Test Suite'
+    description 'Inferno template test suite.'
+
+    require_relative 'us_core_test_kit/us_core_patient_group' # Incorrect spot
+    require_relative 'us_core_test_kit/us_core_condition_group' # Incorrect spot
+
+    group from: :us_core_patient_group
+    group from: :us_core_condition_group
+  end
+end
+```
+
+Correct:
+
+```ruby
+require_relative 'us_core_test_kit/us_core_patient_group' # Correct spot at the top of the file
+require_relative 'us_core_test_kit/us_core_condition_group' # Correct spot at the top of the file
+
+module InfernoTemplate
+  class Suite < Inferno::TestSuite
+    id :inferno_template
+    title 'Inferno Template Test Suite'
+    description 'Inferno template test suite.'
+
+    group from: :us_core_patient_group
+    group from: :us_core_condition_group
+  end
+end
+```
+
 ### 2. Test and Group Properties
 
 Use the required and common properties appropriately:
@@ -754,6 +792,119 @@ assert_valid_json(response[:body])
 Do not use rescue blocks for error handling in tests. Use assertions to verify expected behavior. Never rescue StandardError in test implementations as this interferes with Inferno's result tracking.
 
 Only test resources explicitly mentioned in the test plan. Always access response properties using hash syntax: response[:code], response[:body], etc. Never try to access response.code, response.body, or other dot notation on the response object.
+
+## US Profile Support Tests Considerations
+
+If a requirement exists for supporting a US Core Profile and that US Core Profile has SHALL support requirements for both search and read FHIR operations, to limit the amount of inputs in the test kit, it is recommended to order the tests in the test group such that the search test is referenced before the read test. Example for a US Core AllergyIntolerance Profile TestGroup:
+
+```ruby
+module UsCoreIg
+  class AllergyIntoleranceProfileSupportGroup < Inferno::TestGroup
+    id :req_006_allergy_intolerance_profile_support
+    title 'REQ-006: AllergyIntolerance Profile Support'
+    description %(
+      This test group verifies that the US Core Server supports the US Core AllergyIntolerance Profile.
+
+      The server SHALL support:
+      - Searching for AllergyIntolerance resources by patient
+      - Reading AllergyIntolerance resources
+      - Returning valid AllergyIntolerance resources that conform to the US Core profile
+      - Supporting required elements and terminology bindings defined in the profile
+    )
+
+    input :patient_id,
+          title: 'Patient ID',
+          description: 'ID of a Patient resource with associated AllergyIntolerance resources'
+
+    test from: :req_006_capability_statement_declares_allergy_intolerance_support
+    test from: :req_006_allergy_intolerance_search_by_patient # Correct - search by patient test is BEFORE read test
+    test from: :req_006_allergy_intolerance_read # Correct - read test is referenced after the search test
+    test from: :req_006_allergy_intolerance_profile_validation
+    test from: :req_006_allergy_intolerance_must_support_elements
+  end
+end
+```
+
+Only if a US Core Profile Test Group has both search and read tests that are ordered in the Test Group such that the search test is referenced before the read test, then the search test must output the resource that is found in a search so that the read test can use that resource ID to read.
+
+An example of a US Core AllergyIntolerance Profile search test where the AllergyIntolerance resource ID is output by the search test:
+
+```ruby
+module UsCoreIg
+  class AllergyIntoleranceSearchByPatient < Inferno::Test
+        id :req_006_allergy_intolerance_search_by_patient
+    title 'Server supports AllergyIntolerance search by patient'
+    description %(
+      This test verifies that the server supports searching for AllergyIntolerance resources
+      by patient, which is a required search parameter for US Core AllergyIntolerance Profile.
+    )
+
+    input :patient_id
+    output :allergy_intolerance_id
+
+    run do
+      skip_if patient_id.blank?, 'Patient ID not provided'
+
+      fhir_search(:allergy_intolerance, params: { patient: patient_id })
+      assert_response_status(200)
+      assert_resource_type(:bundle)
+
+      allergies = resource.entry&.map(&:resource)&.select { |r| r.resourceType == 'AllergyIntolerance' }
+
+      if allergies.present?
+        # Verify all returned resources have the correct patient reference
+        allergies.each do |allergy|
+          patient_ref = allergy.patient&.reference
+          assert patient_ref.present?, 'AllergyIntolerance must have a patient reference'
+
+          # Extract patient ID from reference (could be Patient/123 or just 123)
+          ref_patient_id = patient_ref.split('/').last
+          assert ref_patient_id == patient_id,
+                 "AllergyIntolerance patient reference '#{patient_ref}' does not match search parameter '#{patient_id}'"
+        end
+
+        allergy_id = allergies.first.id
+
+        output allergy_intolerance_id: allergy_id
+        pass "Found #{allergies.length} AllergyIntolerance resource(s) for patient #{patient_id}"
+      else
+        skip 'No AllergyIntolerance resources found for the given patient'
+      end
+    end
+  end
+end
+```
+
+Since the above test outputs an `allergy_intolerance_id`, we can use that output in any subsequent tests. Use the output US Core Profile resource ID from a search test in the read test for the same US Core Profile read test.
+
+An example of a US Core AllergyIntoleranceProfile read test:
+
+```ruby
+module UsCoreIg
+  class AllergyIntoleranceReadTest < Inferno::Test
+    id :req_006_allergy_intolerance_read
+    title 'Server supports AllergyIntolerance read interaction'
+    description %(
+      This test verifies that the server can successfully read AllergyIntolerance resources
+      and return them in a valid format.
+    )
+
+    input :patient_id
+    input :allergy_intolerance_id
+
+    run do
+      skip_if patient_id.blank?, 'Patient ID not provided'
+
+      fhir_read(:allergy_intolerance, allergy_intolerance_id)
+      assert_response_status(200)
+      assert_resource_type(:allergy_intolerance)
+
+      assert resource.id == allergy_intolerance_id,
+             "Expected AllergyIntolerance ID '#{allergy_intolerance_id}', but got '#{resource.id}'"
+    end
+  end
+end
+```
 
 ## Additional Examples of Tests for the US Core Implementation Guide
 
