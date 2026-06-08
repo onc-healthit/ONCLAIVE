@@ -1,15 +1,22 @@
 import argparse
 import ig_narrative_extractor
+import carin_bb_ig_narrative_extractor
 import ig_requirements_extractor
 import markdown_cleaner
 import os
+
+
+def _get_narrative_extractor(c4bb_ig: bool):
+    """Return the narrative extractor module for the selected IG family."""
+    return carin_bb_ig_narrative_extractor if c4bb_ig else ig_narrative_extractor
+
 
 working_directory = os.getcwd()
 
 us_core_ig_path = "us-core"
 
 parser = argparse.ArgumentParser(
-    description="Covert html IG files into cleaned markdown files"
+    description="Convert html IG files into cleaned markdown files"
 )
 
 parser.add_argument(
@@ -43,6 +50,12 @@ parser.add_argument(
     help="Files matching regular expressions in this argument will be ignored"
 )
 
+parser.add_argument(
+    '--c4bb-ig',
+    action='store_true',
+    help="Process Carin for Blue Button"
+)
+
 args = parser.parse_args()
 
 relative_artifacts_dir = args.artifacts_dir
@@ -50,16 +63,18 @@ old_reqs_location = args.old_reqs_location
 new_ig_location = args.new_ig_location
 verbose = args.verbose
 exclude_patterns = args.exclude_pattern
+c4bb_ig = args.c4bb_ig
 
 final_artifacts_dir = os.path.abspath(os.path.join(working_directory, relative_artifacts_dir))
 
-ig_narrative_extractor.download_and_extract_ig_html(
+narrative_extractor = _get_narrative_extractor(c4bb_ig)
+narrative_extractor.download_and_extract_ig_html(
     artifacts_dir=final_artifacts_dir,
     new_ig_location=new_ig_location,
     verbose=verbose
 )
 
-result = ig_narrative_extractor.convert_local_html_to_markdown(
+narrative_extractor.convert_local_html_to_markdown(
     artifacts_dir=final_artifacts_dir,
     verbose=verbose,
     exclude_patterns=exclude_patterns
@@ -74,4 +89,3 @@ ig_requirements_extractor.load_and_extract_ig_requirements(
 markdown_cleaner.process_directory(
     artifacts_dir=final_artifacts_dir
 )
-

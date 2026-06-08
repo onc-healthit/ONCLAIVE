@@ -6,7 +6,7 @@ This repository includes:
 
 - `pipeline/`: A set of scripts that are run together as part of a pipeline to take in an HL7® FHIR® Implementation Guide, extract requirements, generate a test plan, and develop Inferno Test Kits to test API standards conformance by using generative AI to review IG-related inputs and create the outputs for each phase of the pipeline.
 - `full_pipeline.ipynb`: Optional Jupyter notebook to use for running and visualizing each step of the pipeline.
-- `us_core_differences`: Directory that contains scripts for detecting requirements differences between difference versions of the US Core Implementation Guide.
+- `ig_version_differences/`: Utilities for comparing requirements-relevant IG narrative and requirements. See the [IG Version Differences README](ig_version_differences/README.md).
 
 ## Input/Output Artifacts
 
@@ -131,15 +131,11 @@ Go to Dashboard > [API Keys](https://platform.openai.com/api-keys) in an OpenAI 
 
 Create a Gemini [API Key](https://aistudio.google.com/app/apikey?_gl=1*nc11k*_ga*OTIzNzIyMjM0LjE3MzYzNjM5Nzc.*_ga_P1DBVKWT6V*MTczNjM2Mzk3Ni4xLjAuMTczNjM2Mzk3Ni42MC4wLjEyOTEyNzA3OTM.) in Google AI Studio. Billing can also be set up within Studio however many of the services are free of charge until specific rate limits are met. See pricing information [here](https://ai.google.dev/pricing?_gl=1*1ktr08b*_ga*OTIzNzIyMjM0LjE3MzYzNjM5Nzc.*_ga_P1DBVKWT6V*MTczNjM2Mzk3Ni4xLjEuMTczNjM2Mzk3OS41Ny4wLjEyOTEyNzA3OTM.#1_5flash).
 
-## Analyzing differences between US Core versions
+## Analyzing differences between US Core versions and other IGs
 
-The `us_core_differences` folder contains scripts to detect differences in the IG narrative between versions of the US Core IG. The `process_igs.py` script will download two versions of the IG, extract the narrative from html files, and convert it to markdown. The `compare_igs.py` script will identify differences in the narrative between the two versions. The differences will be outputted to `<input_artifacts_dir>/ig/differences.md`.
-
-```sh
-> uv run us_core_differences/process_igs.py -n https://hl7.org/fhir/us/core/STU8/full-ig.zip -o https://hl7.org/fhir/us/core/STU7/full-ig.zip ../us-core-comparison
-
-> uv run us_core_differences/compare_igs.py ../us-core-comparison
-```
+See the [IG Version Differences README](ig_version_differences/README.md) for the
+current workflows, supported extractor scope, command examples, and output
+layout.
 
 ## License
 
