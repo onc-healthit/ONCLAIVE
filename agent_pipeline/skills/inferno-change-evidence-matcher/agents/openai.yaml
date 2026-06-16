@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inferno Change Evidence Matcher"
+  short_description: "Match IG change ledgers to Inferno test-kit evidence."
+  default_prompt: "Use this skill to enrich an IG change ledger with Inferno inventory matches, code-search evidence, and review notes."

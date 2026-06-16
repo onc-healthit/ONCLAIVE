@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inferno Test Kit Updater"
+  short_description: "Implement approved Inferno test-kit update decisions."
+  default_prompt: "Use this skill to update an Inferno test kit from an impact decision ledger and verify the changes."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inferno Test Kit Inventory"
+  short_description: "Build searchable JSONL inventories from Inferno test kits."
+  default_prompt: "Use this skill to inventory an Inferno test kit into searchable JSONL files for downstream matching."

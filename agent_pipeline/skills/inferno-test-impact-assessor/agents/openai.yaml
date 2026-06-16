@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inferno Test Impact Assessor"
+  short_description: "Turn matched IG changes into test-kit update decisions."
+  default_prompt: "Use this skill to assess enriched IG changes and produce implementation-ready test-kit update decisions."

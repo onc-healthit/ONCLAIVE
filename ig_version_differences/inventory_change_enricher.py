@@ -23,6 +23,33 @@ import yaml
 DEFAULT_REQ_SET = None
 GENERIC_ARTIFACT_IDS = {"carin bb", "c4bb", "implementationguide", "unknown", "none"}
 GENERIC_QUERY_TERMS = {"unknown", "none", "implementationguide"}
+FHIR_INTERACTIONS = {
+    "batch",
+    "capabilities",
+    "create",
+    "delete",
+    "history-instance",
+    "history-system",
+    "history-type",
+    "patch",
+    "read",
+    "search-system",
+    "search-type",
+    "transaction",
+    "update",
+    "vread",
+}
+CONFORMANCE_STRENGTHS = {
+    "MAY": "optional",
+    "SHOULD": "recommended",
+    "SHALL": "required",
+    "SHALL NOT": "required_prohibition",
+    "MUST": "required",
+    "MUST NOT": "required_prohibition",
+    "GUIDANCE_ONLY": "guidance_only",
+    "UNKNOWN": "unknown",
+}
+OPTIONAL_OR_RECOMMENDED_CONFORMANCE = {"MAY", "SHOULD"}
 
 
 class NoAliasDumper(yaml.SafeDumper):
@@ -97,6 +124,188 @@ def source_artifact_type(value: str | None) -> str:
     if name:
         return Path(name).stem
     return "unknown"
+
+
+def profile_local_id(value: str) -> str:
+    """Return the local StructureDefinition id from a profile id or canonical URL."""
+    match = re.search(r"/StructureDefinition/([^/#?]+)", value)
+    if match:
+        return match.group(1)
+    return Path(value).stem
+
+
+def profile_source_token(value: str) -> str:
+    """
+    Convert a profile id into the generated-test source token used by Inferno.
+
+    Example:
+      C4BB-ExplanationOfBenefit-Inpatient-Institutional -> eob_inpatient_institutional
+      C4BB-Coverage -> coverage
+    """
+    local_id = profile_local_id(value)
+    name = Path(local_id).stem
+    name = re.sub(
+        r"^(StructureDefinition|ValueSet|CapabilityStatement|CodeSystem|SearchParameter|OperationDefinition|Extension)-",
+        "",
+        name,
+        flags=re.IGNORECASE,
+    )
+    name = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", name)
+    words = [word for word in normalize_text(name).split() if word and word != "c4bb"]
+
+    source_words: list[str] = []
+    idx = 0
+    while idx < len(words):
+        if words[idx] == "c4bb":
+            idx += 1
+            continue
+        if words[idx : idx + 2] == ["c4", "bb"]:
+            idx += 2
+            continue
+        if words[idx : idx + 3] == ["explanation", "of", "benefit"]:
+            source_words.append("eob")
+            idx += 3
+            continue
+        source_words.append(words[idx])
+        idx += 1
+
+    return "_".join(source_words)
+
+
+def profile_filter_match_reasons(runnable: dict[str, Any], profile_filters: list[str]) -> list[str]:
+    """
+    Return deterministic reasons a runnable appears to belong to a requested profile.
+
+    This uses deterministic hints in the inventory: profile URLs, generated source
+    paths, runnable IDs, and group file names. It intentionally does not use the
+    generic FHIR resource type alone, because a resource can have multiple profiles.
+    """
+    if not profile_filters:
+        return []
+
+    profile_urls = [str(url) for url in runnable.get("profile_urls") or []]
+    source_file = str(runnable.get("source_file") or "")
+    search_blob = f"/{source_file.lower()}|"
+    reasons: list[str] = []
+
+    for profile_filter in profile_filters:
+        local_id = profile_local_id(profile_filter)
+        source_token = profile_source_token(profile_filter)
+        if not source_token:
+            continue
+
+        normalized_local_id = normalize_text(local_id)
+        if any(normalized_local_id == normalize_text(profile_local_id(url)) for url in profile_urls):
+            if len(profile_urls) == 1:
+                reasons.append(f"profile URL match: {local_id}")
+            else:
+                reasons.append(f"broad profile URL match: {local_id}")
+
+        source_patterns = [
+            f"/{source_token}/",
+            f"/{source_token}_group.rb",
+        ]
+        if any(pattern in search_blob for pattern in source_patterns):
+            reasons.append(f"profile source path match: {local_id}")
+
+    return unique(reasons)
+
+
+def runnable_matches_profile_filter(runnable: dict[str, Any], profile_filters: list[str]) -> bool:
+    if not profile_filters:
+        return True
+    return bool(profile_filter_match_reasons(runnable, profile_filters))
+
+
+def profile_match_score(reasons: list[str]) -> int:
+    score = 0
+    for reason in reasons:
+        if reason.startswith("profile source path match:"):
+            score += 22
+        elif reason.startswith("profile URL match:"):
+            score += 16
+        elif reason.startswith("broad profile URL match:"):
+            score += 6
+    return min(score, 32)
+
+
+def infer_change_profile_filters(change: dict[str, Any]) -> list[str]:
+    """Infer precise StructureDefinition profile filters directly named by a change."""
+    text_values: list[str] = []
+    for key in ("artifact_id", "source_artifact", "source_section", "summary", "old_text", "new_text"):
+        value = change.get(key)
+        if value:
+            text_values.append(str(value))
+    text_values.extend(str(value) for value in change.get("element_paths") or [])
+
+    profiles: list[str] = []
+    for text in text_values:
+        profiles.extend(
+            match.group(1)
+            for match in re.finditer(r"/StructureDefinition/([A-Za-z0-9_.:-]+)", text)
+        )
+        profiles.extend(
+            match.group(1)
+            for match in re.finditer(
+                r"\bStructureDefinition-([A-Za-z][A-Za-z0-9_:-]+)(?=\.(?:html|md|json|xml|ttl)|\b)",
+                text,
+            )
+        )
+        profiles.extend(match.group(1) for match in re.finditer(r"\b(C4BB-[A-Za-z0-9_.:-]+)\b", text))
+
+    affected_resource = normalize_text(change.get("affected_resource"))
+    filtered_profiles: list[str] = []
+    for profile in unique(profiles):
+        local_id = profile_local_id(str(profile))
+        normalized_local_id = normalize_text(local_id)
+        if affected_resource and affected_resource not in {"unknown", "none"}:
+            if affected_resource not in normalized_local_id:
+                continue
+        filtered_profiles.append(local_id)
+
+    return filtered_profiles
+
+
+def normalize_conformance(value: Any) -> str:
+    text = normalize_text(value).upper().replace(" ", "_")
+    if text in {"GUIDANCE", "GUIDANCE_ONLY"}:
+        return "GUIDANCE_ONLY"
+    return text.replace("_", " ")
+
+
+def conformance_impact(change: dict[str, Any]) -> dict[str, Any]:
+    new_conformance = normalize_conformance(change.get("new_conformance"))
+    strength = CONFORMANCE_STRENGTHS.get(new_conformance, "unknown")
+    optional_or_recommended = new_conformance in OPTIONAL_OR_RECOMMENDED_CONFORMANCE
+    required_for_conformance = strength in {"required", "required_prohibition"}
+
+    if new_conformance == "MAY":
+        filter_category = "optional_conformance"
+    elif new_conformance == "SHOULD":
+        filter_category = "recommended_conformance"
+    elif required_for_conformance:
+        filter_category = "required_conformance"
+    elif strength == "guidance_only":
+        filter_category = "guidance_only"
+    else:
+        filter_category = "unknown_conformance"
+
+    if optional_or_recommended:
+        likely_test_kit_coverage = "low"
+    elif required_for_conformance:
+        likely_test_kit_coverage = "high"
+    elif strength == "guidance_only":
+        likely_test_kit_coverage = "low"
+    else:
+        likely_test_kit_coverage = "unknown"
+
+    return {
+        "strength": strength,
+        "required_for_conformance": required_for_conformance,
+        "optional_or_recommended": optional_or_recommended,
+        "likely_test_kit_coverage": likely_test_kit_coverage,
+        "filter_category": filter_category,
+    }
 
 
 def requirement_full_ids(raw_ids: Iterable[Any], req_set: str | None) -> list[str]:
@@ -252,6 +461,25 @@ def search_parameters_from_change(change: dict[str, Any]) -> list[str]:
     return unique(params)
 
 
+def interactions_from_change(change: dict[str, Any]) -> list[str]:
+    text = " ".join(
+        str(value or "")
+        for value in [
+            change.get("source_section"),
+            change.get("summary"),
+            change.get("old_text"),
+            change.get("new_text"),
+            " ".join(change.get("element_paths") or []),
+        ]
+    )
+    interactions: list[str] = []
+    for match in re.finditer(r"`([A-Za-z][A-Za-z0-9-]*)`", text):
+        value = match.group(1)
+        if value in FHIR_INTERACTIONS:
+            interactions.append(value)
+    return unique(interactions)
+
+
 def path_variants(change: dict[str, Any]) -> list[str]:
     affected_resource = change.get("affected_resource")
     variants: list[str] = []
@@ -324,6 +552,16 @@ def score_runnable(
     title_description = normalize_text(
         " ".join([str(runnable.get("title") or ""), str(runnable.get("description") or "")])
     )
+    source_file = str(runnable.get("source_file") or "").lower()
+    runnable_resource_types = set(runnable.get("resource_types") or [])
+    single_resource_match = bool(affected_resource and runnable_resource_types == {affected_resource})
+    interactions = set(interactions_from_change(change))
+    if single_resource_match and "read" in interactions and (
+        "read_test" in source_file or "read interaction" in title_description
+    ):
+        score += 15
+        reasons.append("interaction match: read")
+
     for token in search_params:
         if normalize_text(token) and normalize_text(token) in title_description:
             score += 8
@@ -334,12 +572,35 @@ def score_runnable(
     return score, unique(reasons)
 
 
+def is_broad_resource_only_match(
+    runnable: dict[str, Any],
+    change: dict[str, Any],
+    reasons: list[str],
+) -> bool:
+    affected_resource = change.get("affected_resource")
+    if not affected_resource:
+        return False
+
+    resource_types = set(runnable.get("resource_types") or [])
+    if len(resource_types) <= 1:
+        return False
+
+    resource_reason = f"resource match: {affected_resource}"
+    reason_set = set(reasons)
+    broad_profile_reasons = {reason for reason in reason_set if reason.startswith("broad profile URL match:")}
+    if broad_profile_reasons:
+        return reason_set - broad_profile_reasons <= {resource_reason}
+
+    return reason_set == {resource_reason}
+
+
 def candidate_tests(
     index: InventoryIndex,
     change: dict[str, Any],
     full_requirement_ids: list[str],
     coverage_rows: list[dict[str, Any]],
     limit: int,
+    profile_filters: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     coverage_full_ids = unique(
         full_id
@@ -347,8 +608,17 @@ def candidate_tests(
         for full_id in (row.get("full_ids") or [])
     )
     candidates: list[dict[str, Any]] = []
+    active_profile_filters = profile_filters or []
     for runnable in index.runnables:
+        profile_reasons = profile_filter_match_reasons(runnable, active_profile_filters)
+        if active_profile_filters and not profile_reasons:
+            continue
         score, reasons = score_runnable(runnable, change, full_requirement_ids, coverage_full_ids)
+        if profile_reasons:
+            score += profile_match_score(profile_reasons)
+            reasons = unique([*reasons, *profile_reasons])
+        if is_broad_resource_only_match(runnable, change, reasons):
+            continue
         if score > 0:
             candidates.append(concise_runnable(runnable, score, reasons))
 
@@ -406,17 +676,23 @@ def enrich_change(
     change: dict[str, Any],
     req_set: str | None,
     candidate_limit: int,
+    profile_filters: list[str] | None = None,
+    auto_profile_filter: bool = True,
 ) -> dict[str, Any]:
     old_requirement_ids = change.get("old_requirement_ids") or []
     full_ids = requirement_full_ids(old_requirement_ids, req_set)
     requirement_rows = index.requirements_for(full_ids)
     coverage_rows = index.coverage_for(full_ids)
-    candidates = candidate_tests(index, change, full_ids, coverage_rows, candidate_limit)
+    explicit_profile_filters = profile_filters or []
+    inferred_profile_filters = infer_change_profile_filters(change) if auto_profile_filter else []
+    effective_profile_filters = explicit_profile_filters or inferred_profile_filters
+    candidates = candidate_tests(index, change, full_ids, coverage_rows, candidate_limit, effective_profile_filters)
     status, confidence = match_status(change, candidates, coverage_rows)
 
     enriched = dict(change)
     enriched["old_requirement_full_ids"] = full_ids
     enriched["requirement_context"] = [concise_requirement(record) for record in requirement_rows]
+    enriched["conformance_impact"] = conformance_impact(change)
     enriched["inventory_match"] = {
         "status": status,
         "confidence": confidence,
@@ -424,6 +700,11 @@ def enrich_change(
         "candidate_coverage": [concise_coverage(record) for record in coverage_rows],
         "repobase_queries": repobase_queries(change, full_ids),
     }
+    if inferred_profile_filters:
+        enriched["inventory_match"]["inferred_profile_filters"] = inferred_profile_filters
+    if effective_profile_filters:
+        enriched["inventory_match"]["profile_filters"] = effective_profile_filters
+        enriched["inventory_match"]["profile_filter_source"] = "explicit" if explicit_profile_filters else "inferred_from_change"
     return enriched
 
 
@@ -436,6 +717,8 @@ def enrich_ledger(
     target_ig_version: str | None = None,
     baseline_suite_ids: list[str] | None = None,
     inventory_label: str | None = None,
+    profile_filters: list[str] | None = None,
+    auto_profile_filter: bool = True,
 ) -> dict[str, Any]:
     enriched = dict(ledger)
     meta = dict(enriched.get("meta") or {})
@@ -448,6 +731,8 @@ def enrich_ledger(
             "inventory_req_sets": index.req_sets,
             "numeric_requirement_id_req_set": req_set,
             "numeric_requirement_ids_qualified": bool(req_set),
+            "profile_filters": profile_filters or [],
+            "auto_profile_filter": auto_profile_filter,
             "inventory_enriched_at": datetime.now(UTC).strftime("%Y%m%d_%H%M%S"),
         }
     )
@@ -461,7 +746,7 @@ def enrich_ledger(
         meta["target_ig_version"] = target_ig_version
     enriched["meta"] = meta
     enriched["changes"] = [
-        enrich_change(index, change, req_set, candidate_limit)
+        enrich_change(index, change, req_set, candidate_limit, profile_filters, auto_profile_filter)
         for change in ledger.get("changes", [])
     ]
     return enriched
@@ -499,6 +784,23 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Baseline test suite ID(s), e.g. --baseline-suite-id c4bb_v110. Can be repeated or comma-separated.",
     )
+    parser.add_argument(
+        "--profile-filter",
+        action="append",
+        default=None,
+        help=(
+            "Limit candidate tests to one or more profile ids/canonical URLs, "
+            "e.g. --profile-filter C4BB-ExplanationOfBenefit-Inpatient-Institutional. "
+            "Can be repeated or comma-separated."
+        ),
+    )
+    parser.add_argument(
+        "--no-auto-profile-filter",
+        dest="auto_profile_filter",
+        action="store_false",
+        default=True,
+        help="Disable per-change profile filters inferred from Supported Profiles and StructureDefinition references.",
+    )
     parser.add_argument("--inventory-label", default=None, help="Human-readable label for the inventory used")
     return parser.parse_args()
 
@@ -525,6 +827,8 @@ def main() -> None:
         target_ig_version=args.target_ig_version,
         baseline_suite_ids=split_cli_values(args.baseline_suite_id),
         inventory_label=args.inventory_label,
+        profile_filters=split_cli_values(args.profile_filter),
+        auto_profile_filter=args.auto_profile_filter,
     )
 
     output_path = args.output or args.ledger.with_name(f"{args.ledger.stem}_inventory_enriched.yaml")
