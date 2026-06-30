@@ -45,3 +45,5 @@ Implement approved decisions in an Inferno test kit. This skill starts only afte
 ## References
 
 - Read `references/implementation-report-contract.md` before summarizing the update.
+- Read `references/content-guide.md` before editing Inferno test-kit files.
+- Read `references/examples.md` when implementing common decision patterns.

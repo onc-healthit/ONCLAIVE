@@ -62,3 +62,5 @@ python3 ig_version_differences/diff_to_change_ledger_v2.py \
 ## References
 
 - Read `references/raw-ledger-contract.md` when inspecting or validating raw ledger shape.
+- Read `references/content-guide.md` before classifying IG changes.
+- Read `references/examples.md` when you need examples of good raw ledger records.

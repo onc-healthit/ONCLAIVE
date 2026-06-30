@@ -68,3 +68,5 @@ python3 ig_version_differences/inventory_change_enricher.py \
 ## References
 
 - Read `references/evidence-contract.md` when creating or reviewing evidence notes.
+- Read `references/content-guide.md` before reconciling candidate evidence.
+- Read `references/examples.md` when writing `relevance_assessment` records.

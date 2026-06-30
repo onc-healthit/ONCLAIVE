@@ -51,3 +51,5 @@ The inventory directory must contain:
 ## References
 
 - Read `references/inventory-contract.md` when validating inventory contents or explaining fields to another agent.
+- Read `references/content-guide.md` before interpreting Inferno source structure.
+- Read `references/examples.md` when reviewing sample inventory records.
