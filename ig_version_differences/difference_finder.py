@@ -11,8 +11,7 @@ from llm_utils import SafetyFilterException
 SYSTEM_PROMPTS = {
     "claude": """You are a seasoned Healthcare Integration Test Engineer with expertise determining the requirements present in FHIR Implementation Guides.""",
     "gemini": """You are a Healthcare Integration Test Engineer with expertise determining the requirements present in FHIR Implementation Guides.""",
-    "gpt": """As a Healthcare Integration Test Engineer with expertise determining the requirements present in FHIR Implementation Guides, analyze these IG narratives for differences in requirements.""",
-    "aip": """As a Healthcare Integration Test Engineer with expertise determining the requirements present in FHIR Implementation Guides, analyze these IG narratives for differences in requirements."""
+    "gpt": """As a Healthcare Integration Test Engineer with expertise determining the requirements present in FHIR Implementation Guides, analyze these IG narratives for differences in requirements."""
 }
 
 def create_requirements_ig_difference_prompt(new_ig_content: str, old_ig_requirements_content: str, artifacts_dir: str) -> str:

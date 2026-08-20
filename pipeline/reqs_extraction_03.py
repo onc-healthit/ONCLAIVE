@@ -22,8 +22,6 @@ SYSTEM_PROMPTS = {
     "gemini": """You are a Healthcare Integration Test Engineer with expertise in INCOSE Systems Engineering standards, analyzing FHIR 
     Implementation Guide content to identify and format testable requirements following INCOSE specifications.""",
     "gpt": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
-    Implementation Guide content to extract specific testable requirements in INCOSE-compliant format.""",
-    "aip": """As a Healthcare Integration Test Engineer with INCOSE Systems Engineering expertise, analyze this FHIR 
     Implementation Guide content to extract specific testable requirements in INCOSE-compliant format."""
 }
 
@@ -67,7 +65,7 @@ def calculate_optimal_chunk_size(config: Dict, api_type: str, markdown_content: 
     
     Args:
         config: Configuration dictionary for the API
-        api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+        api_type: Type of API ('claude', 'gemini', 'gpt')
         markdown_content: The content to be chunked
         
     Returns:
@@ -77,8 +75,7 @@ def calculate_optimal_chunk_size(config: Dict, api_type: str, markdown_content: 
     base_chunk_sizes = {
         "claude": 25000,  # Claude has higher token limits
         "gemini": 20000,  # Gemini is also capable of handling larger chunks
-        "gpt": 12000,     # GPT-4 with smaller context
-        "aip": 8000
+        "gpt": 12000     # GPT-4 with smaller context
     }
     
     # Start with the base size for the API
@@ -175,8 +172,7 @@ def should_combine_files(config: Dict, files: List[str], markdown_dir: str, api_
     optimal_sizes = {
         "claude": 12000,
         "gemini": 10000,
-        "gpt": 6000,
-        "aip": 6000,
+        "gpt": 6000
     }
     
     optimal_size = optimal_sizes[api_type]
@@ -252,7 +248,7 @@ def process_markdown_content_for_incose_srs(
     
     Args:
         client_instance: LLM client manager object
-        api_type: The API to use for processing ('claude', 'gemini', 'gpt', 'aip')
+        api_type: The API to use for processing ('claude', 'gemini', 'gpt')
         artifacts_dir: Path to base artifacts directory
         output_directory: Directory to save output files (optional, uses default if None)
         max_files: Maximum number of files to process (optional, processes all if None)
@@ -427,7 +423,7 @@ def run_requirements_extractor(
     
     Args:
         artifacts_dir: Path to base artifacts directory
-        api_type: Type of LLM API to use ('claude', 'gemini', 'gpt', 'aip')
+        api_type: Type of LLM API to use ('claude', 'gemini', 'gpt')
         client_instance: LLM client manager object with configured API clients
         max_files: Maximum number of files to process (optional, processes all if None)
         

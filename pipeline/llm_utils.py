@@ -5,7 +5,7 @@ This module provides a unified interface for interacting with multiple LLM APIs,
 including rate limiting, error handling, and safety filter management.
 
 Features:
-- Multi-API support (Claude, Gemini, GPT, AIP)
+- Multi-API support (Claude, Gemini, GPT)
 - Automatic rate limiting and token management
 - Safety filter exception handling
 - Token counting utilities
@@ -94,17 +94,6 @@ API_CONFIGS = {
         "reasoning": {
             "effort": "medium"
         }
-    },
-    "aip": {
-        'model': 'nvidia/Llama-3_3-Nemotron-Super-49B-v1',
-        "max_tokens": 8192,
-        "temperature": 0.3,
-        "batch_size": 5,
-        "delay_between_chunks": 2,
-        "delay_between_batches": 5,
-        "requests_per_minute": 450,
-        "max_requests_per_day": 20000,
-        "delay_between_requests": 0.15  
     }
 }
 
@@ -127,7 +116,7 @@ def format_content_for_api(content: str, api_type: str) -> Union[str, List[Dict]
     
     Args:
         content: The text content to format
-        api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+        api_type: Type of API ('claude', 'gemini', 'gpt')
         
     Returns:
         Formatted content structure for the specific API
@@ -150,8 +139,8 @@ class LLMApiClient:
     """
     Unified client for multiple LLM APIs with rate limiting and error handling.
     
-    This class provides a consistent interface for interacting with Claude, Gemini, GPT,
-    and AIP models while handling rate limits, token management, and safety filters.
+    This class provides a consistent interface for interacting with Claude, Gemini, 
+    and GPT models while handling rate limits, token management, and safety filters.
     
     Attributes:
         config: API configuration dictionary
@@ -214,15 +203,6 @@ class LLMApiClient:
                 )
             else:
                 self.logger.warning("OPENAI_API_KEY not found. GPT API client will not be loaded.")
-            
-            # AIP setup
-            aip_api_key = os.getenv("AIP_API_KEY")
-            if aip_api_key:
-                self.clients['aip'] = OpenAI(
-                    base_url="https://models.k8s.aip.mitre.org/v1",
-                    api_key=aip_api_key,
-                    timeout=60.0
-                )
             
         except Exception as e:
             self.logger.error(f"Error setting up clients: {str(e)}")
@@ -380,7 +360,7 @@ class LLMApiClient:
         Make a single LLM API request with retry logic and rate limiting.
         
         Args:
-            api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+            api_type: Type of API ('claude', 'gemini', 'gpt')
             prompt: User prompt text
             system_prompt: System prompt text
             max_tokens: Maximum tokens to generate (uses config default if None)
@@ -453,18 +433,6 @@ class LLMApiClient:
                         raise ValueError("No content returned from Gemini")
                 else:
                     raise ValueError("No response generated from Gemini API")
-        
-            elif api_type == "aip":
-                response = client.chat.completions.create(
-                    model=config["model"],
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": prompt}
-                    ],
-                    max_tokens=tokens_limit,
-                    temperature=config["temperature"]
-                )
-                return response.choices[0].message.content
                 
             elif api_type == "gpt":
                 response = client.responses.create(
@@ -499,7 +467,7 @@ class LLMApiClient:
         - Error handling and reporting
         
         Args:
-            api_type: Type of API ('claude', 'gemini', 'gpt', 'aip')
+            api_type: Type of API ('claude', 'gemini', 'gpt')
             prompt: Single prompt string or list of prompt strings
             sys_prompt: System prompt (uses instance default if None)
             raise_on_error: Whether to raise exceptions or return error info
@@ -572,7 +540,7 @@ class LLMApiClient:
         
         Args:
             text: The text to count tokens for
-            api_type: The API type ('claude', 'gemini', 'gpt', 'aip')
+            api_type: The API type ('claude', 'gemini', 'gpt')
             
         Returns:
             Estimated token count
