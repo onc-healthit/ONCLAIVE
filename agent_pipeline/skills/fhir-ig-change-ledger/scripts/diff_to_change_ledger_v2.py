@@ -24,20 +24,15 @@ inventory_change_enricher.py as a separate step when you want test-kit context.
 
 Usage:
     python diff_to_change_ledger_v2.py \\
-        --diff-file carin-bb-comparison/ig/reqs_difference_output_20240101_120000.md \\
-        [--output-dir carin-bb-comparison/ig] \\
-        [--reqs-xlsx carin-bb-comparison/ig/hl7.fhir.us.carin-bb_2.0.0_reqs.xlsx] \\
+        --diff-file comparison-artifacts/ig/reqs_difference_output_20240101_120000.md \\
+        [--output-dir comparison-artifacts/ig] \\
+        [--reqs-xlsx comparison-artifacts/ig/old_requirements.xlsx] \\
         [--provider claude|openai]
 
 Environment variables:
     ANTHROPIC_API_KEY   — required when --provider claude (default)
     OPENAI_API_KEY      — required when --provider openai
 """
-
-# The bundled copy at
-# agent_pipeline/skills/fhir-ig-change-ledger/scripts/diff_to_change_ledger_v2.py
-# has identical behavior, but its usage examples use neutral placeholder paths
-# instead of CARIN Blue Button-specific example paths.
 
 import argparse
 import json
@@ -619,22 +614,22 @@ def main() -> None:
             Examples:
               # Reqs-to-narrative diff, with XLSX (recommended)
               python diff_to_change_ledger_v2.py \\
-                  --diff-file carin-bb-comparison/ig/reqs_difference_output_20240101_120000.md \\
-                  --reqs-xlsx carin-bb-comparison/ig/hl7.fhir.us.carin-bb_2.0.0_reqs.xlsx
+                  --diff-file comparison-artifacts/ig/reqs_difference_output_20240101_120000.md \\
+                  --reqs-xlsx comparison-artifacts/ig/old_requirements.xlsx
 
               # Narrative-to-narrative diff, XLSX as optional context
               python diff_to_change_ledger_v2.py \\
-                  --diff-file carin-bb-comparison/ig/differences_20240101_120000.md \\
-                  --reqs-xlsx carin-bb-comparison/ig/hl7.fhir.us.carin-bb_2.0.0_reqs.xlsx
+                  --diff-file comparison-artifacts/ig/differences_20240101_120000.md \\
+                  --reqs-xlsx comparison-artifacts/ig/old_requirements.xlsx
 
               # Narrative-to-narrative diff, no XLSX
               python diff_to_change_ledger_v2.py \\
-                  --diff-file carin-bb-comparison/ig/differences_20240101_120000.md
+                  --diff-file comparison-artifacts/ig/differences_20240101_120000.md
 
               # Add deterministic Inferno inventory matches in a separate step:
               python inventory_change_enricher.py \\
-                  carin-bb-comparison/ig/change_ledger_raw_20240101_120000.yaml \\
-                  --inventory-dir inferno-test-kits/inventory/carin-for-blue-button-test-kit-v110
+                  comparison-artifacts/ig/change_ledger_raw_20240101_120000.yaml \\
+                  --inventory-dir inventory/baseline-test-kit
         """),
     )
     parser.add_argument("--diff-file", "-d", required=True, type=Path,

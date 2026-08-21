@@ -24,12 +24,14 @@ target implementation as an oracle, not as evidence for matching.
 
 ## Workflow
 
+Run the commands below from this skill's directory.
+
 1. Validate the raw ledger and inventory directory.
    Confirm the inventory and any source-search repository are for the baseline suite/version, not the future target suite.
 2. Run deterministic inventory enrichment:
 
 ```bash
-python3 ig_version_differences/inventory_change_enricher.py \
+python3 scripts/inventory_change_enricher.py \
   <change_ledger_raw.yaml> \
   --inventory-dir <inventory_dir> \
   --output <change_ledger_enriched.yaml> \

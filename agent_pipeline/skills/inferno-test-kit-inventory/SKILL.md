@@ -22,12 +22,14 @@ baseline evidence.
 
 ## Workflow
 
+Run the commands below from this skill's directory.
+
 1. Confirm the baseline repository and suite ID. Use the baseline suite, not the future target suite, when planning an update from an existing kit.
    Record the intended baseline IG version and suite ID in the inventory summary or surrounding notes.
 2. Generate inventory:
 
 ```bash
-python3 pipeline/inferno_inventory.py \
+python3 scripts/inferno_inventory.py \
   <inferno_test_kit_repo> \
   --suite-id <suite_id> \
   --output-dir <inventory_dir>

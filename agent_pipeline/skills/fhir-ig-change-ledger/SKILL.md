@@ -16,26 +16,26 @@ Build the raw IG-change ledger. This skill owns the pipeline segment from old/ne
 - Artifact directory for the comparison
 - LLM provider for comparison and ledger conversion
 - Optional old requirements XLSX for comparison context
-- Optional CARIN Blue Button mode with `--c4bb-ig`
 
 ## Workflow
+
+Run the commands below from this skill's directory.
 
 1. Confirm the comparison pair, artifact directory, and extractor mode.
 2. Extract, convert, and clean narrative:
 
 ```bash
-python3 ig_version_differences/process_igs.py \
+python3 scripts/process_igs.py \
   <artifacts_dir> \
   -o <old_ig_zip_or_url> \
   -n <new_ig_zip_or_url> \
-  --c4bb-ig \
   --verbose
 ```
 
 3. Compare cleaned old/new narrative:
 
 ```bash
-python3 ig_version_differences/compare_igs.py \
+python3 scripts/compare_igs.py \
   <artifacts_dir> \
   -a gpt
 ```
@@ -45,7 +45,7 @@ Add `--reqs-xlsx <old_requirements.xlsx>` only when the user explicitly wants sp
 4. Convert the newest `ig/differences_*.md` into a raw ledger:
 
 ```bash
-python3 ig_version_differences/diff_to_change_ledger_v2.py \
+python3 scripts/diff_to_change_ledger_v2.py \
   --diff-file <artifacts_dir>/ig/differences_YYYYMMDD_HHMMSS.md \
   --provider openai
 ```
