@@ -71,6 +71,22 @@ migration planning unless the user explicitly says they are draft implementation
 
 Target IG artifacts are valid evidence. Target generated implementation files are different from target IG artifacts.
 
+When a repository contains both baseline and target implementation folders, search only baseline paths and shared helpers that
+are needed to understand baseline candidates. Do not search target paths just because they are present locally.
+
+Use these labels consistently:
+
+- `baseline_evidence`: existing baseline inventory, baseline files, baseline-derived source search, and shared helpers reached
+  from baseline files.
+- `target_ig_artifact`: target IG narrative, package content, structured requirements, CapabilityStatement, SearchParameter,
+  StructureDefinition, terminology, or invariants.
+- `target_implementation`: target test-kit source files, generated output, fixtures, specs, or requirement mappings.
+- `evaluation_oracle`: target implementation files intentionally saved for after-the-fact comparison once the updater has
+  produced a candidate.
+
+During evidence matching, `target_implementation` and `evaluation_oracle` are forbidden unless the user explicitly changes the
+task from pre-target planning to target-draft assessment.
+
 ## Output Quality
 
 A good `relevance_assessment` includes:
@@ -83,4 +99,3 @@ A good `relevance_assessment` includes:
 - gaps.
 
 Do not collapse uncertainty into a final implementation decision. That belongs to the impact assessor.
-

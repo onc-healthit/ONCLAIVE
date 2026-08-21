@@ -38,8 +38,15 @@ decisions: []
     summary: What must change in the test kit.
     update_type: assertion_change
     expected_behavior: The observable pass/fail behavior after the update.
+    # Baseline test-kit files only. Do not put target-version implementation paths here
+    # unless target implementation files were explicitly authorized as draft evidence.
     likely_files_to_edit:
       - lib/example.rb
+    target_output_hints:
+      - path_pattern: lib/generated/{target_version}/example.rb
+        inference_basis: baseline versioned path plus generator output convention
+        confidence: medium
+    discovery_instructions: []
     likely_fixtures_to_edit: []
   evidence:
     inventory_matches: []
@@ -64,6 +71,11 @@ decisions: []
 ## Quality Rules
 
 - Every change receives one decision.
-- Actionable decisions must include likely edit locations or a precise discovery instruction.
+- Actionable decisions must include baseline likely edit locations, target output hints, or a precise discovery instruction.
 - Manual-review decisions must explain what evidence is missing.
 - Decisions must not contain code diffs.
+- `required_update.likely_files_to_edit` must come from baseline inventory, baseline source search, or baseline file inspection.
+- When target implementation files are not explicitly authorized, do not cite concrete target-version files as `code_search`
+  evidence and do not place target-version paths in `likely_files_to_edit`.
+- Expected target-version files may appear only in `target_output_hints` or `discovery_instructions`, and each target hint must
+  state its inference basis.

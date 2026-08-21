@@ -20,7 +20,14 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     update_type: new_search_test
     expected_behavior: The suite sends service-start-date searches and fails unsupported or invalid responses.
     likely_files_to_edit:
-      - DISCOVERY: generator output for target ExplanationOfBenefit service-start-date search test.
+      - lib/generated/v1.1.0/eob_group.rb
+      - lib/generated/v1.1.0/eob/service_date_search_test.rb
+    target_output_hints:
+      - path_pattern: lib/generated/{target_version}/eob/service_start_date_search_test.rb
+        inference_basis: target IG SearchParameter plus baseline EOB generated search-test pattern
+        confidence: medium
+    discovery_instructions:
+      - Inspect generator output for the target ExplanationOfBenefit service-start-date search test.
     likely_fixtures_to_edit: []
 ```
 
@@ -50,6 +57,8 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     expected_behavior: 401, 403, and 404 pass; other statuses fail.
     likely_files_to_edit:
       - lib/example/security_test.rb
+    target_output_hints: []
+    discovery_instructions: []
     likely_fixtures_to_edit: []
 ```
 
@@ -67,6 +76,11 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     expected_behavior: Missing Organization search support does not fail conformance; read behavior remains tested.
     likely_files_to_edit:
       - lib/generated/v1.1.0/organization_group.rb
+    target_output_hints:
+      - path_pattern: lib/generated/{target_version}/organization_group.rb
+        inference_basis: baseline versioned group path plus target optionalization requirement
+        confidence: medium
+    discovery_instructions: []
     likely_fixtures_to_edit: []
 ```
 
@@ -84,6 +98,8 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     expected_behavior: Tests no longer reference APR-DEG and fixtures validate with APR-DRG.
     likely_files_to_edit:
       - lib/generated/v1.1.0/eob_inpatient_institutional/metadata.yml
+    target_output_hints: []
+    discovery_instructions: []
     likely_fixtures_to_edit:
       - spec/fixtures
 ```
@@ -101,7 +117,10 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     update_type: scope_review
     expected_behavior: The suite does not claim automated legal compliance without a defined testable criterion.
     likely_files_to_edit:
-      - DISCOVERY: inspect visual inspection and attestation security group.
+      - DISCOVERY: inspect baseline visual inspection and attestation security group, if present.
+    target_output_hints: []
+    discovery_instructions:
+      - Determine whether the target suite should add attestation, metadata, or no test behavior.
     likely_fixtures_to_edit: []
 ```
 
@@ -118,6 +137,7 @@ These examples illustrate decision selection and level of detail. Keep real ledg
     update_type: none
     expected_behavior: Suite behavior remains unchanged.
     likely_files_to_edit: []
+    target_output_hints: []
+    discovery_instructions: []
     likely_fixtures_to_edit: []
 ```
-

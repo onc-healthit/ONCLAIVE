@@ -42,7 +42,8 @@ Strong indicators:
 
 Required ledger detail:
 
-- expected generated/custom file pattern or discovery instruction,
+- baseline file evidence in `likely_files_to_edit` when available,
+- expected generated/custom target file pattern in `target_output_hints` or a discovery instruction,
 - target resource/profile/search parameter/requirement,
 - expected pass/fail behavior,
 - validation plan.
@@ -131,6 +132,10 @@ Manual review records must explain the missing evidence and provide a precise di
 
 Use generator inference only from baseline patterns and target IG artifacts. Do not use target-version implementation files
 unless explicitly authorized as a draft implementation.
+
+When documenting generator inference, keep baseline files in `likely_files_to_edit` and place expected target generated files
+in `target_output_hints`. If no baseline file exists for a newly introduced resource or behavior, leave
+`likely_files_to_edit` empty and provide a precise generator or target-output discovery instruction.
 
 Assume the generator can probably handle:
 

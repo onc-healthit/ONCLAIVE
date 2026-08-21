@@ -1,6 +1,6 @@
 ---
 name: inferno-test-kit-updater
-description: Use when Codex needs to implement approved Inferno test-kit changes from an impact decision ledger, including adding or revising tests, updating fixtures, updating requirement metadata, removing or relaxing obsolete assertions, and running targeted validation. Trigger for editing Inferno Ruby test-kit files based on test_update_decisions.yaml, implementation reports, or approved IG-change decisions.
+description: Use when coding agent needs to implement approved Inferno test-kit changes from an impact decision ledger, including adding or revising tests, updating fixtures, updating requirement metadata, removing or relaxing obsolete assertions, and running targeted validation. Trigger for editing Inferno Ruby test-kit files based on test_update_decisions.yaml, implementation reports, or approved IG-change decisions.
 ---
 
 # Inferno Test Kit Updater

@@ -1,6 +1,6 @@
 ---
 name: inferno-test-impact-assessor
-description: "Use when Codex needs to review enriched IG change evidence and decide what an Inferno test kit should do next: add tests, revise existing tests, remove or relax tests, update fixtures, update metadata or requirement links, mark no test change needed, or flag manual review. Trigger for impact assessment, decision ledgers, test_update_decisions.yaml, implementation-ready work orders, or determining test-kit changes from an enriched ledger."
+description: "Use when coding agent needs to review enriched IG change evidence and decide what an Inferno test kit should do next: add tests, revise existing tests, remove or relax tests, update fixtures, update metadata or requirement links, mark no test change needed, or flag manual review. Trigger for impact assessment, decision ledgers, test_update_decisions.yaml, implementation-ready work orders, or determining test-kit changes from an enriched ledger."
 ---
 
 # Inferno Test Impact Assessor
@@ -26,6 +26,8 @@ Turn enriched IG-change evidence into implementation-ready test-kit update decis
 4. Use existing baseline test-kit files and baseline inventories as primary coverage evidence.
 5. Do not inspect target-version implementation files unless the user explicitly provides them as a draft implementation to assess.
    For target-version planning, rely on target IG artifacts, structured requirement inventories, generator behavior, and baseline patterns.
+   Keep `required_update.likely_files_to_edit` grounded in baseline test-kit files only; do not translate those entries to
+   target-version implementation paths.
 6. For each change, decide whether the test kit needs an update.
 7. Use only these decision values:
 
@@ -39,7 +41,8 @@ no_test_change_needed
 manual_review_required
 ```
 
-8. For every non-`no_test_change_needed` decision, identify likely files, target tests, expected behavior, and validation steps.
+8. For every non-`no_test_change_needed` decision, identify baseline likely files, target tests or generated-output hints,
+   expected behavior, and validation steps.
 9. Preserve uncertainty. Use `manual_review_required` when relevance evidence is weak, contradictory, or absent.
 10. Write an implementation-ready decision ledger. Do not edit code in this skill.
 
@@ -51,7 +54,8 @@ The updater should be able to continue from the decision ledger without rediscov
 - Decision and confidence
 - Existing coverage status
 - Relevant targets from the evidence matcher
-- Likely files/tests/fixtures to inspect or edit
+- Baseline files/tests/fixtures to inspect or edit
+- Target output hints or discovery instructions when a target-version file is expected but not observed
 - Required behavior after the update
 - Evidence supporting the decision
 - Implementation notes and validation plan

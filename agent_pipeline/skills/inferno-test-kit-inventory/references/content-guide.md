@@ -80,3 +80,5 @@ behavior match the task. If any are uncertain, rebuild.
 Never inventory a future target suite when the task is to plan a migration from a baseline suite, unless the user explicitly
 asks to assess an existing target draft.
 
+If target implementation files are available for later comparison, keep them outside the baseline inventory and label them as
+an `evaluation_oracle`. The matcher and impact assessor should not consume oracle files as evidence.

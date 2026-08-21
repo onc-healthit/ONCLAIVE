@@ -43,15 +43,14 @@ should stay stable.
 
 ```json
 {
-  "id": "carin_server_requirement_48_57_attestation",
+  "id": "carin_v110_server_requirement_48_attestation",
   "title": "Secures data",
   "runnable_type": "test",
-  "suite_hint": "c4bb_v200",
-  "source_file": "lib/carin_for_blue_button_test_kit/custom_groups/visual_inspection_and_attestation/v200_server/00_authorization_group/attestation_test_requirement_48.rb",
+  "suite_hint": "c4bb_v110",
+  "source_file": "lib/carin_for_blue_button_test_kit/custom_groups/visual_inspection_and_attestation/v110_server/authorization_group/attestation_test_requirement_48.rb",
   "line": 2,
   "requirement_ids": [
-    "hl7.fhir.us.carin-bb_2.0.0@48",
-    "hl7.fhir.us.carin-bb_2.0.0@57"
+    "hl7.fhir.us.carin-bb_1.1.0@48"
   ],
   "resource_types": [],
   "profile_urls": [],
@@ -64,11 +63,11 @@ should stay stable.
 
 ```json
 {
-  "requirement_id": "hl7.fhir.us.carin-bb_2.0.0@60",
-  "runnable_id": "c4bb_v200_smart_scopes",
-  "source_file": "lib/carin_for_blue_button_test_kit/custom_groups/v2.0.0/c4bb_smart_launch/smart_scopes_test.rb",
+  "requirement_id": "hl7.fhir.us.carin-bb_1.1.0@60",
+  "runnable_id": "c4bb_v110_smart_launch",
+  "source_file": "lib/carin_for_blue_button_test_kit/custom_groups/v1.1.0/c4bb_smart_launch_group.rb",
   "coverage_type": "verifies_requirements",
-  "note": "Traceability link from Inferno source."
+  "note": "Traceability link from baseline Inferno source."
 }
 ```
 
@@ -85,4 +84,3 @@ should stay stable.
 
 Interpretation: the inventory can still support evidence matching through runnable metadata, but later stages should not
 assume requirement-to-test mappings are available.
-

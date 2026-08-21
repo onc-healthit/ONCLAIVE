@@ -7,6 +7,13 @@ Use this contract when reviewing or augmenting `change_ledger_enriched_*.yaml`.
 Each enriched change should retain the raw change fields and add:
 
 ```yaml
+meta:
+  evidence_scope:
+    mode: baseline_only_planning
+    baseline_ig_version: 1.1.0
+    target_ig_version: 2.0.0
+    target_implementation_files_allowed: false
+    evaluation_oracle_allowed_after_update: true
 old_requirement_full_ids: []
 requirement_context: []
 inventory_match:
@@ -96,3 +103,8 @@ evidence_notes:
 - Use `relevance_assessment` to decide what existing tests/files are relevant.
 - Do not decide `add_test` or `revise_existing_test` here.
 - Do not edit the test kit.
+- During `baseline_only_planning`, all evidence `source_file` paths must come from the baseline inventory, baseline source
+  search, or shared helpers inspected because a baseline candidate uses them.
+- Do not include target-version implementation files in `inventory_match`, `relevance_assessment`, or `evidence_notes` unless
+  `target_implementation_files_allowed: true`.
+- If real target files are preserved for later comparison, call them `evaluation_oracle` and keep them outside matcher evidence.

@@ -1,6 +1,6 @@
 ---
 name: inferno-test-kit-inventory
-description: Use when Codex needs to scan an Inferno test kit repository and create searchable JSONL inventory files for suites, groups, tests, requirements, coverage rows, FHIR resources, profiles, search parameters, and source file locations. Trigger for inferno_inventory.py, runnables.jsonl, requirements.jsonl, coverage.jsonl, repos.jsonl, summary.json, or baseline suite inventory work.
+description: Use when coding agent needs to scan an Inferno test kit repository and create searchable JSONL inventory files for suites, groups, tests, requirements, coverage rows, FHIR resources, profiles, search parameters, and source file locations. Trigger for inferno_inventory.py, runnables.jsonl, requirements.jsonl, coverage.jsonl, repos.jsonl, summary.json, or baseline suite inventory work.
 ---
 
 # Inferno Test Kit Inventory
@@ -16,9 +16,14 @@ Build the deterministic baseline test-kit inventory used by later matching and i
 - Inventory output directory
 - Optional suite hint overrides only when the default suite-to-path mapping is insufficient
 
+If the repository also contains target-version suites, do not inventory them for a migration-planning task. A target suite may
+be copied separately as an evaluation oracle, but that oracle inventory must not be fed to the matcher or impact assessor as
+baseline evidence.
+
 ## Workflow
 
 1. Confirm the baseline repository and suite ID. Use the baseline suite, not the future target suite, when planning an update from an existing kit.
+   Record the intended baseline IG version and suite ID in the inventory summary or surrounding notes.
 2. Generate inventory:
 
 ```bash
@@ -45,6 +50,8 @@ The inventory directory must contain:
 
 - Confirm all five output files exist.
 - Read `summary.json` and report counts for runnables, requirements, and coverage rows.
+- Confirm the inventory suite IDs match the baseline suite IDs requested by the user.
+- Confirm future target suite IDs are absent unless the user explicitly requested target-draft assessment.
 - Inspect a few `runnables.jsonl` records when matching later depends on profile URLs, requirement IDs, or source file locations.
 - Do not edit the test kit in this skill.
 

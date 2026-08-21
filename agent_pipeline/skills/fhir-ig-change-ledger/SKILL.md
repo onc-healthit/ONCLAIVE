@@ -1,6 +1,6 @@
 ---
 name: fhir-ig-change-ledger
-description: Use when Codex needs to compare two FHIR Implementation Guide versions, extract and clean IG narrative, identify requirement-level narrative changes, and convert the differences into a raw structured YAML change ledger. Trigger for tasks involving process_igs.py, compare_igs.py, difference_finder_v2.py, diff_to_change_ledger_v2.py, old/new IG zips or package URLs, differences_*.md, or change_ledger_raw_*.yaml.
+description: Use when coding agent needs to compare two FHIR Implementation Guide versions, extract and clean IG narrative, identify requirement-level narrative changes, and convert the differences into a raw structured YAML change ledger. Trigger for tasks involving process_igs.py, compare_igs.py, difference_finder_v2.py, diff_to_change_ledger_v2.py, old/new IG zips or package URLs, differences_*.md, or change_ledger_raw_*.yaml.
 ---
 
 # FHIR IG Change Ledger

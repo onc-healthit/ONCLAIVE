@@ -23,6 +23,41 @@ def _timestamp() -> str:
     return datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
 
 
+def _cached_response_path(cache_dir: Path, filename: str) -> Path:
+    return cache_dir / f"{filename}.txt"
+
+
+def _load_cached_response(cache_dir: Path, filename: str) -> str | None:
+    cache_path = _cached_response_path(cache_dir, filename)
+    if cache_path.exists() and cache_path.stat().st_size > 0:
+        print(f"  [skip] cached comparison found for {filename}")
+        return cache_path.read_text()
+    return None
+
+
+def _save_cached_response(cache_dir: Path, filename: str, response: str) -> None:
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cache_path = _cached_response_path(cache_dir, filename)
+    temp_path = cache_path.with_suffix(cache_path.suffix + ".tmp")
+    temp_path.write_text(response)
+    temp_path.replace(cache_path)
+
+
+def _write_combined_differences(
+    artifacts_path: Path,
+    output_prefix: str,
+    all_changes: dict[str, str],
+) -> Path:
+    final_content = ""
+    for filename, differences in all_changes.items():
+        final_content += f"# {filename}\n\n{differences}\n\n"
+
+    ts = _timestamp()
+    output_path = artifacts_path / "ig" / f"{output_prefix}_{ts}.md"
+    output_path.write_text(final_content)
+    return output_path
+
+
 def _cleaned_markdown_exists(artifacts_path: Path, version: str) -> bool:
     """
     Return True if cleaned_markdown/<version>/ already exists and contains
@@ -151,11 +186,17 @@ def compare_narrative(
     if reqs_xlsx:
         print(f"  Using requirements XLSX as context: {reqs_xlsx}")
 
-    new_ig_files = list(new_ig_dir.glob('*.md'))
+    new_ig_files = sorted(new_ig_dir.glob('*.md'))
+    cache_dir = artifacts_path / "ig" / "difference_chunks"
     all_changes = {}
     client_instance.safety_blocked_count = 0
 
     for new_ig_file_path in new_ig_files:
+        cached_response = _load_cached_response(cache_dir, new_ig_file_path.name)
+        if cached_response is not None:
+            all_changes[new_ig_file_path.name] = cached_response
+            continue
+
         old_ig_file_path = old_ig_dir / new_ig_file_path.name
 
         try:
@@ -180,6 +221,7 @@ def compare_narrative(
                 api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type]
             )
             all_changes[new_ig_file_path.name] = response
+            _save_cached_response(cache_dir, new_ig_file_path.name, response)
         except SafetyFilterException as e:
             client_instance.safety_blocked_count += 1
             print(f"\nSAFETY FILTER BLOCKED CONTENT #{client_instance.safety_blocked_count}")
@@ -189,16 +231,11 @@ def compare_narrative(
             print(e.blocked_content)
             print("=" * 60)
             print("Skipping this chunk and continuing...\n")
-            all_changes[new_ig_file_path.name] = "## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n"
+            response = "## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n"
+            all_changes[new_ig_file_path.name] = response
+            _save_cached_response(cache_dir, new_ig_file_path.name, response)
 
-    final_content = ""
-    for filename, differences in all_changes.items():
-        final_content += f"# {filename}\n\n{differences}\n\n"
-
-    ts = _timestamp()
-    output_path = artifacts_path / 'ig' / f'differences_{ts}.md'
-    with open(output_path, 'w') as f:
-        f.write(final_content)
+    output_path = _write_combined_differences(artifacts_path, "differences", all_changes)
 
     print(f"\nDifferences written to: {output_path}")
     return output_path
@@ -221,11 +258,17 @@ def compare_requirements_to_narrative(
         if not d.exists():
             print(f"WARNING: cleaned_markdown/{label}/ not found at {d}")
 
-    new_ig_files = list(new_ig_dir.glob('*.md'))
+    new_ig_files = sorted(new_ig_dir.glob('*.md'))
+    cache_dir = artifacts_path / "ig" / "reqs_difference_chunks"
     all_changes = {}
     client_instance.safety_blocked_count = 0
 
     for new_ig_file_path in new_ig_files:
+        cached_response = _load_cached_response(cache_dir, new_ig_file_path.name)
+        if cached_response is not None:
+            all_changes[new_ig_file_path.name] = cached_response
+            continue
+
         old_ig_file_path = old_ig_dir / new_ig_file_path.name
 
         try:
@@ -250,6 +293,7 @@ def compare_requirements_to_narrative(
                 api_type, prompt_text, sys_prompt=SYSTEM_PROMPTS[api_type]
             )
             all_changes[new_ig_file_path.name] = response
+            _save_cached_response(cache_dir, new_ig_file_path.name, response)
         except SafetyFilterException as e:
             client_instance.safety_blocked_count += 1
             print(f"\nSAFETY FILTER BLOCKED CONTENT #{client_instance.safety_blocked_count}")
@@ -259,16 +303,11 @@ def compare_requirements_to_narrative(
             print(e.blocked_content)
             print("=" * 60)
             print("Skipping this chunk and continuing...\n")
-            all_changes[new_ig_file_path.name] = "## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n"
+            response = "## CHUNK SKIPPED DUE TO SAFETY FILTER\n[Content blocked by safety filters]\n\n"
+            all_changes[new_ig_file_path.name] = response
+            _save_cached_response(cache_dir, new_ig_file_path.name, response)
 
-    final_content = ""
-    for filename, differences in all_changes.items():
-        final_content += f"# {filename}\n\n{differences}\n\n"
-
-    ts = _timestamp()
-    output_path = artifacts_path / 'ig' / f'reqs_difference_output_{ts}.md'
-    with open(output_path, 'w') as f:
-        f.write(final_content)
+    output_path = _write_combined_differences(artifacts_path, "reqs_difference_output", all_changes)
 
     print(f"\nRequirements difference written to: {output_path}")
     return output_path

@@ -77,10 +77,10 @@ relevance_assessment:
 relevance_assessment:
   status: relevant_existing_test_found
   confidence: high
-  summary: Existing security attestation covers TLS and privacy controls.
+  summary: Existing baseline security attestation covers TLS and privacy controls.
   relevant_targets:
-    - source_file: lib/carin_for_blue_button_test_kit/custom_groups/visual_inspection_and_attestation/v200_server/00_authorization_group/attestation_test_requirement_48.rb
-      runnable_id: carin_server_requirement_48_57_attestation
+    - source_file: lib/carin_for_blue_button_test_kit/custom_groups/visual_inspection_and_attestation/v110_server/authorization_group/attestation_test_requirement_48.rb
+      runnable_id: carin_v110_server_requirement_48_attestation
       title: Secures data
       relevance: relevant
       evidence_sources:
@@ -95,3 +95,16 @@ relevance_assessment:
     - This is attestation coverage, not automated TLS probing.
 ```
 
+## Target Implementation Kept Out Of Evidence
+
+```yaml
+relevance_assessment:
+  status: no_relevant_existing_test_found
+  confidence: high
+  summary: No baseline SMART scope test exists in the v1.1.0 suite.
+  relevant_targets: []
+  possible_targets: []
+  rejected_candidates: []
+  gaps:
+    - Target v2.0.0 SMART scope files exist locally, but they were not used as matcher evidence because this is baseline-only planning.
+```

@@ -53,10 +53,20 @@ Every actionable decision should state observable behavior after the update:
 
 Avoid vague summaries such as "update tests for this change."
 
+## Path Provenance
+
+`required_update.likely_files_to_edit` is a baseline-field. Populate it only with files found in the baseline inventory,
+baseline source search, or baseline test-kit inspection. If the updated suite is expected to create or modify a target-version
+file, describe that separately in `target_output_hints` or `discovery_instructions`.
+
+Do not convert baseline paths such as `generated/v1.1.0/...` into concrete target paths such as `generated/v2.0.0/...` inside
+`likely_files_to_edit`. The updater is responsible for translating baseline evidence into the target worktree.
+
 ## Generated vs Custom
 
-If a target IG artifact can drive the behavior through the existing generator pattern, likely files may be expected generated
-paths or generator discovery instructions. If the behavior is semantic, conditional, process-oriented, or attestation-based,
+If a target IG artifact can drive the behavior through the existing generator pattern, `likely_files_to_edit` should point to
+the relevant baseline generated files or stay empty when no baseline file exists; use `target_output_hints` for expected
+generated target paths or generator discovery instructions. If the behavior is semantic, conditional, process-oriented, or attestation-based,
 point to custom/helper/fixture locations or a precise discovery instruction.
 
 Do not treat generated profile validation as proof of semantic narrative coverage unless the rule is encoded as cardinality,
@@ -69,4 +79,3 @@ binding, invariant, or other validator-visible constraint.
 - Low: evidence is weak, broad, or policy-dependent.
 
 When confidence is low and conformance impact is important, prefer `manual_review_required`.
-

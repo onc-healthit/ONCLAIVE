@@ -29,9 +29,10 @@ from typing import Dict, Any, Union, List
 from dotenv import load_dotenv
 
 try:
-    from anthropic import Anthropic, RateLimitError
+    from anthropic import Anthropic, RateLimitError as AnthropicRateLimitError
     import google.genai as gemini
-    from openai import OpenAI
+    from openai import APIConnectionError, APITimeoutError, OpenAI
+    from openai import RateLimitError as OpenAIRateLimitError
     from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 except ImportError:
     raise ImportError("Please install required packages: pip install anthropic google-generativeai openai tenacity")
@@ -83,6 +84,7 @@ API_CONFIGS = {
     "gpt": {
         "model": "gpt-5-mini",
         "max_tokens": 16384,
+        "timeout": 300,
         "temperature": 1,
         "batch_size": 20,  
         "delay_between_chunks": 0.01,   
@@ -199,7 +201,7 @@ class LLMApiClient:
             if openai_api_key:
                 self.clients['gpt'] = OpenAI(
                     api_key=openai_api_key,
-                    timeout=900.0
+                    timeout=self.config["gpt"].get("timeout", 300)
                 )
             else:
                 self.logger.warning("OPENAI_API_KEY not found. GPT API client will not be loaded.")
@@ -349,11 +351,17 @@ class LLMApiClient:
             state['tokens'].append((now, estimated_total_tokens))
 
     @retry(
-        wait=wait_exponential(multiplier=2, min=60, max=7200),
-        stop=stop_after_attempt(100),
-        retry=(retry_if_exception_type(RateLimitError) | 
-               retry_if_exception_type(TimeoutError) | 
-               retry_if_exception_type(Exception))
+        wait=wait_exponential(multiplier=2, min=10, max=60),
+        stop=stop_after_attempt(3),
+        retry=retry_if_exception_type((
+            AnthropicRateLimitError,
+            OpenAIRateLimitError,
+            APIConnectionError,
+            APITimeoutError,
+            TimeoutError,
+            httpx.TimeoutException,
+            httpx.TransportError,
+        ))
     )
     def make_one_llm_request(self, api_type: str, prompt: str, system_prompt: str, max_tokens: int = None) -> str:
         """
