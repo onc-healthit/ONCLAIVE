@@ -1,4 +1,4 @@
-# ASTP/ONC Leveraging Artificial Intelligence Validation and Exploration (ONCLAIVE) for Inferno FHIR Testing
+# ONC Leveraging Artificial Intelligence Validation and Exploration (ONCLAIVE) for Inferno FHIR Testing
 
 ## Overview
 
