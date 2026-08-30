@@ -1,0 +1,10 @@
+[project]
+name = "agent-usage-metrics"
+version = "0.1.0"
+description = "Agent usage metrics skill for ONCLAIVE"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,16 @@
+{
+  "sessions": [
+    {
+      "sessionId": "7f8c3ed2-3907-43fe-b9ed-db16df5b5302",
+      "inputTokens": 100,
+      "outputTokens": 20,
+      "totalCostUSD": 0.001
+    },
+    {
+      "sessionId": "7f8c3ed2-3907-43fe-b9ed-db16df5b5302",
+      "inputTokens": 200,
+      "outputTokens": 40,
+      "totalCostUSD": 0.002
+    }
+  ]
+}
