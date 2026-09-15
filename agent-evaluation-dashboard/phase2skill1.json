@@ -1,0 +1,91 @@
+{
+  "run_metadata": {
+    "agent": "codex",
+    "session_files": [
+      "rollout-2026-08-23T22-01-59-01a03180-cbf6-7363-87cf-213c58de919b.jsonl"
+    ],
+    "conversation_name": "Enrich US Core change ledger",
+    "workspace_name": "us_core_differences",
+    "scope_type": "conversation",
+    "model": "GPT-5.5",
+    "generated_at": "2026-08-28T17:22:58.972648Z"
+  },
+  "metrics": [
+    {
+      "name": "wall_clock_time_seconds",
+      "value": 431.638,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "estimated_cost",
+      "value": 0.81145,
+      "unit": "USD",
+      "status": "estimated",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "human_prompts_required",
+      "value": 1,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "tool_calls",
+      "value": 37,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "file_edits",
+      "value": 1,
+      "status": "partial",
+      "source": "codex_patch_events",
+      "warnings": [
+        "File edits are partial because shell-based edits may not be captured."
+      ],
+      "notes": []
+    },
+    {
+      "name": "input_tokens",
+      "value": 102875,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "output_tokens",
+      "value": 11947,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "total_tokens",
+      "value": 114822,
+      "status": "computed",
+      "source": "derived",
+      "warnings": [],
+      "notes": []
+    }
+  ],
+  "warnings": [
+    "File edits are partial because shell-based edits may not be captured."
+  ],
+  "sources_used": [
+    "jsonl_session",
+    "logs_2.sqlite",
+    "state_5.sqlite",
+    "ccusage"
+  ]
+}
