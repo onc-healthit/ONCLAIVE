@@ -1,0 +1,93 @@
+{
+  "run_metadata": {
+    "agent": "codex",
+    "session_files": [
+      "rollout-2026-08-03T15-21-38-019fc913-1353-7aa3-8978-36eeb7f39ba5.jsonl",
+      "rollout-2026-08-23T22-01-59-01a03180-cbf6-7363-87cf-213c58de919b.jsonl"
+    ],
+    "conversation_name": null,
+    "conversation_count": 2,
+    "workspace_name": "us_core_differences",
+    "scope_type": "workspace",
+    "model": null,
+    "generated_at": "2026-08-28T17:26:48.995782Z"
+  },
+  "metrics": [
+    {
+      "name": "wall_clock_time_seconds",
+      "value": 6004.662,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "estimated_cost",
+      "value": 17.8494,
+      "unit": "USD",
+      "status": "estimated",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "human_prompts_required",
+      "value": 9,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "tool_calls",
+      "value": 331,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "file_edits",
+      "value": 5,
+      "status": "partial",
+      "source": "codex_patch_events",
+      "warnings": [
+        "File edits are partial because shell-based edits may not be captured."
+      ],
+      "notes": []
+    },
+    {
+      "name": "input_tokens",
+      "value": 1281444,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "output_tokens",
+      "value": 96563,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "total_tokens",
+      "value": 1378007,
+      "status": "computed",
+      "source": "derived",
+      "warnings": [],
+      "notes": []
+    }
+  ],
+  "warnings": [
+    "File edits are partial because shell-based edits may not be captured."
+  ],
+  "sources_used": [
+    "jsonl_session",
+    "logs_2.sqlite",
+    "state_5.sqlite",
+    "ccusage"
+  ]
+}

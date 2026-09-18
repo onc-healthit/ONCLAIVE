@@ -1,0 +1,17 @@
+{
+  "sessions": [
+    {
+      "sessionId": "7f8c3ed2-3907-43fe-b9ed-db16df5b5302",
+      "projectPath": "C:\\workspace\\sample-project",
+      "startedAt": "2026-07-21T14:41:08.967Z",
+      "endedAt": "2026-07-21T14:41:53.099Z",
+      "model": "claude-sonnet-test",
+      "inputTokens": 1200,
+      "cacheReadTokens": 300,
+      "outputTokens": 450,
+      "totalTokens": 1950,
+      "totalCostUSD": 0.0123,
+      "currency": "USD"
+    }
+  ]
+}

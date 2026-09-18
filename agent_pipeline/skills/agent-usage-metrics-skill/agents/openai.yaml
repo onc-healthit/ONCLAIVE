@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Usage Metrics"
+  short_description: "Generate usage metrics reports for Codex agent runs."
+  default_prompt: "Use $agent-usage-metrics-skill to generate an Agent Usage Metrics report for the latest Codex run."

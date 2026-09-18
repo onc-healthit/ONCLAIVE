@@ -1,0 +1,100 @@
+{
+  "run_metadata": {
+    "agent": "codex",
+    "session_files": [
+      "rollout-2026-08-03T15-21-38-019fc913-1353-7aa3-8978-36eeb7f39ba5.jsonl"
+    ],
+    "conversation_name": "Compare US Core IG packages v3",
+    "workspace_name": "us_core_differences",
+    "scope_type": "conversation",
+    "model": "GPT-5.5",
+    "generated_at": "2026-08-28T17:21:38.243335Z"
+  },
+  "metrics": [
+    {
+      "name": "wall_clock_time_seconds",
+      "value": 5573.024,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "estimated_cost",
+      "value": 17.038,
+      "unit": "USD",
+      "status": "estimated",
+      "source": "ccusage",
+      "warnings": [
+        "ccusage session enrichment requires a confident match between the selected coding agent rollout and a ccusage session row."
+      ],
+      "notes": []
+    },
+    {
+      "name": "human_prompts_required",
+      "value": 8,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "tool_calls",
+      "value": 294,
+      "status": "computed",
+      "source": "codex_logs",
+      "warnings": [],
+      "notes": []
+    },
+    {
+      "name": "file_edits",
+      "value": 4,
+      "status": "partial",
+      "source": "codex_patch_events",
+      "warnings": [
+        "File edits are partial because shell-based edits may not be captured."
+      ],
+      "notes": []
+    },
+    {
+      "name": "input_tokens",
+      "value": 1178569,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [
+        "ccusage session enrichment requires a confident match between the selected coding agent rollout and a ccusage session row."
+      ],
+      "notes": []
+    },
+    {
+      "name": "output_tokens",
+      "value": 84616,
+      "status": "computed",
+      "source": "ccusage",
+      "warnings": [
+        "ccusage session enrichment requires a confident match between the selected coding agent rollout and a ccusage session row."
+      ],
+      "notes": []
+    },
+    {
+      "name": "total_tokens",
+      "value": 1263185,
+      "status": "computed",
+      "source": "derived",
+      "warnings": [
+        "ccusage session enrichment requires a confident match between the selected coding agent rollout and a ccusage session row."
+      ],
+      "notes": []
+    }
+  ],
+  "warnings": [
+    "ccusage session enrichment requires a confident match between the selected coding agent rollout and a ccusage session row.",
+    "File edits are partial because shell-based edits may not be captured."
+  ],
+  "sources_used": [
+    "jsonl_session",
+    "logs_2.sqlite",
+    "state_5.sqlite",
+    "ccusage"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "run_metadata": {
+    "agent": "codex",
+    "session_files": [
+      "rollout-2026-08-17T14-00-00-codex-sample.jsonl",
+      "rollout-2026-08-17T14-45-00-codex-followup.jsonl"
+    ],
+    "conversation_name": "Phase 1",
+    "workspace_name": "ONCLAIVE",
+    "scope_type": "conversation",
+    "model": "gpt-5.6-codex",
+    "generated_at": "2026-08-17T14:01:35Z"
+  },
+  "metrics": [
+    {"name": "wall_clock_time_seconds", "value": 91.132, "status": "computed", "source": "codex_logs", "warnings": [], "notes": []},
+    {"name": "estimated_cost", "value": 1.67, "unit": "USD", "status": "estimated", "source": "ccusage", "warnings": [], "notes": []},
+    {"name": "human_prompts_required", "value": 4, "status": "computed", "source": "codex_logs", "warnings": [], "notes": []},
+    {"name": "tool_calls", "value": 38, "status": "computed", "source": "codex_logs", "warnings": [], "notes": []},
+    {"name": "file_edits", "value": 9, "status": "partial", "source": "codex_patch_events", "warnings": ["File edits are partial because shell-based edits may not be captured."], "notes": []},
+    {"name": "input_tokens", "value": 48320, "status": "computed", "source": "ccusage", "warnings": [], "notes": []},
+    {"name": "output_tokens", "value": 9850, "status": "computed", "source": "ccusage", "warnings": [], "notes": []},
+    {"name": "total_tokens", "value": 58170, "status": "computed", "source": "derived", "warnings": [], "notes": []}
+  ],
+  "warnings": [
+    "File edits are partial because shell-based edits may not be captured."
+  ],
+  "sources_used": [
+    "jsonl_session",
+    "logs_2.sqlite",
+    "state_5.sqlite",
+    "ccusage"
+  ]
+}
