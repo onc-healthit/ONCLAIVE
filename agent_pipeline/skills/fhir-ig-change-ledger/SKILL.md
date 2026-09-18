@@ -17,6 +17,39 @@ Build the raw IG-change ledger. This skill owns the pipeline segment from old/ne
 - LLM provider for comparison and ledger conversion
 - Optional old requirements XLSX for comparison context
 
+## Credentials
+
+The default workflow uses OpenAI for both comparison and ledger conversion. Before running the workflow, provide an
+`OPENAI_API_KEY` either as an environment variable or in an untracked `.env` file in this skill directory. A parent
+directory also works, but the skill-local `.env` is recommended for clarity:
+
+```bash
+export OPENAI_API_KEY="<your-key>"
+```
+
+```dotenv
+# .env — do not commit this file
+OPENAI_API_KEY=<your-key>
+```
+
+For the Claude alternative, set `ANTHROPIC_API_KEY` and use `-a claude` for comparison plus `--provider claude` for
+ledger conversion. Do not place API keys in command arguments, artifacts, logs, or chat messages. If a required key is
+not available, ask the user to configure it locally rather than requesting the key itself.
+
+## Environment Setup
+
+This repository requires Python 3.12 or later. From this skill directory, run the following once to install the
+project's pinned dependencies into the managed environment:
+
+```bash
+uv sync
+uv run python --version
+```
+
+Use `uv run python` for every command below rather than a system `python3`; this ensures the scripts use the project's
+configured Python version and dependencies. If the selected provider key is missing, the relevant script exits with a
+clear error before sending a request.
+
 ## Workflow
 
 Run the commands below from this skill's directory.
@@ -25,7 +58,7 @@ Run the commands below from this skill's directory.
 2. Extract, convert, and clean narrative:
 
 ```bash
-python3 scripts/process_igs.py \
+uv run python scripts/process_igs.py \
   <artifacts_dir> \
   -o <old_ig_zip_or_url> \
   -n <new_ig_zip_or_url> \
@@ -35,7 +68,7 @@ python3 scripts/process_igs.py \
 3. Compare cleaned old/new narrative:
 
 ```bash
-python3 scripts/compare_igs.py \
+uv run python scripts/compare_igs.py \
   <artifacts_dir> \
   -a gpt
 ```
@@ -45,7 +78,7 @@ Add `--reqs-xlsx <old_requirements.xlsx>` only when the user explicitly wants sp
 4. Convert the newest `ig/differences_*.md` into a raw ledger:
 
 ```bash
-python3 scripts/diff_to_change_ledger_v2.py \
+uv run python scripts/diff_to_change_ledger_v2.py \
   --diff-file <artifacts_dir>/ig/differences_YYYYMMDD_HHMMSS.md \
   --provider openai
 ```
